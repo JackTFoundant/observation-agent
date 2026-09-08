@@ -15,6 +15,7 @@ one-line note in their place saying what was removed and why.
 from __future__ import annotations
 
 import json
+import os
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -26,7 +27,16 @@ from observe.llm.schema_guard import check_extraction_batch
 EXTRACT_VERSION = "1.1.0"
 
 MAX_CHARS_PER_MESSAGE = 1600
-BATCH_SIZE = 24
+
+# Measured, not guessed. At 24 messages a batch runs 38s median / 94s p95 over 106 samples.
+# At 40 it still returns every message with 100% quote fidelity, but latency spread widens
+# sharply (58s and 179s on two samples, against a 300s timeout). 32 takes the middle: 25%
+# fewer calls than 24 - and call count, not per-call latency, is what drives rate-limit
+# exposure - without pushing p95 toward the timeout.
+#
+# Batch size is deliberately *not* part of the extraction cache key: the unit of cached work
+# is one message, so changing this re-batches without invalidating anything.
+BATCH_SIZE = int(os.environ.get("OBSERVE_BATCH_SIZE", "32"))
 
 
 @dataclass

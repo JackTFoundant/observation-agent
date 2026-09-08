@@ -481,7 +481,7 @@
       "task_instances": 2823,
       "people": 2691,
       "generated_tables": 1,
-      "seconds": 2.87
+      "seconds": 2.54
     },
     "stage1": {
       "messages_eligible": 2531,
@@ -500,7 +500,7 @@
       "clusters": 965,
       "promoted": 12,
       "residual": 953,
-      "seconds": 0.92
+      "seconds": 0.95
     },
     "stage3": {
       "clusters": 12,

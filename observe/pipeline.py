@@ -75,7 +75,12 @@ class Context:
     # artifact drafting then got *zero* calls - the report shipped with no narratives and
     # no artifacts at all, while still printing a normal headline. Reserving budget is the
     # structural fix: extraction may take most of the run, but not all of it.
-    STAGE_BUDGET = {"extract": 0.62, "characterize": 0.80, "artifact": 0.97}
+    STAGE_BUDGET = {"extract": 0.55, "characterize": 0.78, "artifact": 0.96}
+    # 0.55/0.78/0.96 of a 25-minute budget is 13.8 min for extraction, then 5.8 for
+    # characterization and 4.5 for artifacts, leaving a minute of slack. The first version
+    # gave extraction 0.62 and left the later stages too little: on a throttled run
+    # extraction would still have consumed its share and characterization would have had
+    # under three minutes for fourteen calls.
 
     @property
     def deadline_at(self) -> float:
