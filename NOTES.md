@@ -138,8 +138,31 @@ with the run deadline as the real stop. And the loss was under-reported: coverag
 travels with the report, `out/summary.json` names every message that never got an
 extraction, and an incomplete run says so in bold at the top of `report.md`.
 
-This is the failure I would have been least happy to have shipped, and I only found it
-because I forced myself to test the path the grader would actually take.
+**Then my fix for that broke the run in a worse way.** The second cold run lost no
+messages — and shipped a report with *no narratives and no artifacts at all*. Thirteen
+throttles had cost 29 minutes of cumulative backoff sleep, extraction ran to 28.7 of a
+25-minute budget, and characterization and artifact drafting were then cut off with zero
+calls each. It still printed a normal headline and `make verify` still said PASS, because
+verify was checking whether what shipped was *true*, not whether it was *complete*.
+
+Three things were wrong, and all three are now fixed:
+
+- **One global deadline let the first stage eat everything.** Stages now have reserved
+  shares of the budget (`Context.STAGE_BUDGET`), so extraction can take most of a run but
+  never all of it.
+- **The backoff was a double penalty.** The adaptive semaphore already halves concurrency
+  on a throttle; sleeping up to 180 seconds on top of that was what burned the clock.
+  Backoff is now capped at 45s with more retries — retry often, sleep briefly, let the
+  semaphore do the throttling.
+- **A degraded run looked like a good one.** Any stage cut short is now recorded, printed
+  as a banner above the headline in `report.md`, published as `degraded_stages` in
+  `summary.json`, and raised as a warning by `verify` — which also warns when a run with
+  counted opportunities drafted no artifacts at all.
+
+I am reporting these two runs rather than only the clean one because the pattern is the
+interesting part: the first fix was right in isolation and wrong in the system, and the
+only reason I found either failure is that I made myself run the path the grader would
+actually take instead of the warm path I had been developing against.
 
 ## Where this system is most likely to be wrong
 

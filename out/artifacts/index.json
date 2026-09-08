@@ -5,7 +5,7 @@
     "artifact_type": "template",
     "opportunity_id": "proc_121d13b6be",
     "opportunity_title": "Moving deals between trading books by hand-run script requests",
-    "generated_at": "2026-09-08T21:38:37.777863+00:00",
+    "generated_at": "2026-09-08T22:19:47.506183+00:00",
     "generator": "claude -p via .claude/agents/artifact-drafter.md",
     "review_status": "draft-unreviewed",
     "evidence": [
@@ -27,7 +27,7 @@
     "artifact_type": "runbook",
     "opportunity_id": "proc_7dd2a1eead",
     "opportunity_title": "Extending existing deal tickets in Sitara/Unify to cover unbooked meter flow",
-    "generated_at": "2026-09-08T21:38:37.778699+00:00",
+    "generated_at": "2026-09-08T22:19:47.507044+00:00",
     "generator": "claude -p via .claude/agents/artifact-drafter.md",
     "review_status": "draft-unreviewed",
     "evidence": [
@@ -49,7 +49,7 @@
     "artifact_type": "runbook",
     "opportunity_id": "proc_8381da9a4e",
     "opportunity_title": "Meter-level scheduled-vs-actual variance clearing across Unify, Sitara and UA4",
-    "generated_at": "2026-09-08T21:38:37.779424+00:00",
+    "generated_at": "2026-09-08T22:19:47.507762+00:00",
     "generator": "claude -p via .claude/agents/artifact-drafter.md",
     "review_status": "draft-unreviewed",
     "evidence": [
@@ -71,7 +71,7 @@
     "artifact_type": "template",
     "opportunity_id": "proc_a58e286bd5",
     "opportunity_title": "Weekly California Capacity Report, assembled and mailed by hand",
-    "generated_at": "2026-09-08T21:38:37.780119+00:00",
+    "generated_at": "2026-09-08T22:19:47.508441+00:00",
     "generator": "claude -p via .claude/agents/artifact-drafter.md",
     "review_status": "draft-unreviewed",
     "evidence": [
@@ -93,7 +93,7 @@
     "artifact_type": "email",
     "opportunity_id": "ser_06b1e12574",
     "opportunity_title": "\"Credit Report - 1/30/01\" produced daily",
-    "generated_at": "2026-09-08T21:38:37.780835+00:00",
+    "generated_at": "2026-09-08T22:19:47.509091+00:00",
     "generator": "claude -p via .claude/agents/artifact-drafter.md",
     "review_status": "draft-unreviewed",
     "evidence": [
@@ -115,7 +115,7 @@
     "artifact_type": "email",
     "opportunity_id": "ser_4d4f0b156e",
     "opportunity_title": "\"California Capacity Report for Week of 01/14-01/18\" produced weekly",
-    "generated_at": "2026-09-08T21:38:37.781565+00:00",
+    "generated_at": "2026-09-08T22:19:47.509768+00:00",
     "generator": "claude -p via .claude/agents/artifact-drafter.md",
     "review_status": "draft-unreviewed",
     "evidence": [
@@ -137,7 +137,7 @@
     "artifact_type": "email",
     "opportunity_id": "ser_c103eb437b",
     "opportunity_title": "\"Calpine Daily Gas Nomination\" produced monthly",
-    "generated_at": "2026-09-08T21:38:37.782276+00:00",
+    "generated_at": "2026-09-08T22:19:47.510420+00:00",
     "generator": "claude -p via .claude/agents/artifact-drafter.md",
     "review_status": "draft-unreviewed",
     "evidence": [

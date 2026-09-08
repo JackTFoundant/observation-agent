@@ -1,7 +1,7 @@
 {
   "verify_version": "1.0.0",
   "passed": true,
-  "checks": 165,
+  "checks": 166,
   "failures": [],
   "warnings": [],
   "citation_tiers": {

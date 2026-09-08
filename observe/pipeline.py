@@ -66,10 +66,24 @@ class Context:
     concurrency: int = 8
     stats: dict = field(default_factory=dict)
     unextracted: list = field(default_factory=list)
+    degraded: list = field(default_factory=list)
+
+    # Share of the run budget each model stage may consume.
+    #
+    # A single global deadline let the first stage eat everything. On a heavily throttled
+    # cold run, extraction ran to 28.7 of a 25-minute budget and characterization and
+    # artifact drafting then got *zero* calls - the report shipped with no narratives and
+    # no artifacts at all, while still printing a normal headline. Reserving budget is the
+    # structural fix: extraction may take most of the run, but not all of it.
+    STAGE_BUDGET = {"extract": 0.62, "characterize": 0.80, "artifact": 0.97}
 
     @property
     def deadline_at(self) -> float:
         return self.started + self.deadline_s
+
+    def stage_deadline(self, stage: str) -> float:
+        """Wall-clock point past which `stage` must stop dispatching new work."""
+        return self.started + self.deadline_s * self.STAGE_BUDGET.get(stage, 1.0)
 
     def elapsed(self) -> float:
         return time.monotonic() - self.started
@@ -185,7 +199,8 @@ def stage1(ctx: Context, corpus: Corpus, *, model: str = "sonnet") -> dict:
         units, stage="extract_batch", system_prompt=system_prompt, json_schema=schema,
         validate=extract_mod.validate, cache=ctx.cache, log=ctx.log, model=model,
         effort="low", concurrency=ctx.concurrency, timeout=300,
-        deadline_at=ctx.deadline_at, max_model_calls=300, split=extract_mod.split_unit,
+        deadline_at=ctx.stage_deadline("extract"), max_model_calls=300,
+        split=extract_mod.split_unit,
     )
 
     for result in outcome.results.values():
@@ -204,6 +219,11 @@ def stage1(ctx: Context, corpus: Corpus, *, model: str = "sonnet") -> dict:
     # cold run lost two batches to rate limiting and covered 2,483 of 2,531 messages while
     # the headline still said it had read all of them. That gap now travels with the
     # report instead of living in a log line.
+    if outcome.deadline_hit:
+        ctx.degraded.append({
+            "stage": "extract", "completed": len(outcome.results), "total": len(units),
+            "effect": "some messages were never classified",
+        })
     lost: list[dict] = []
     for f in outcome.failed:
         for uid in f.get("expected_ids") or []:
@@ -343,9 +363,15 @@ def stage3(ctx: Context, clusters, records: dict, *, model: str = "opus") -> dic
     outcome = dispatch(
         units, stage="characterize", system_prompt=system_prompt, json_schema=schema,
         validate=validate, cache=ctx.cache, log=ctx.log, model=model, effort="medium",
-        concurrency=min(6, ctx.concurrency), timeout=300, deadline_at=ctx.deadline_at,
-        max_model_calls=120,
+        concurrency=min(6, ctx.concurrency), timeout=300,
+        deadline_at=ctx.stage_deadline("characterize"), max_model_calls=120,
     )
+    if outcome.deadline_hit:
+        ctx.degraded.append({
+            "stage": "characterize", "completed": len(outcome.results),
+            "total": len(units),
+            "effect": "opportunities have no narrative; only measured counts and citations",
+        })
     ctx.stats["stage3"] = {
         "clusters": len(units), "characterized": len(outcome.results),
         "model_calls": outcome.model_calls, "cache_hits": outcome.cache_hits,
@@ -487,9 +513,14 @@ def stage6(ctx: Context, opportunities, *, model: str = "opus") -> tuple[list[di
     outcome = dispatch(
         units, stage="artifact", system_prompt=system_prompt, json_schema=schema,
         validate=art.validate, cache=ctx.cache, log=ctx.log, model=model, effort="high",
-        concurrency=min(4, ctx.concurrency), timeout=360, deadline_at=ctx.deadline_at,
-        max_model_calls=40,
+        concurrency=min(4, ctx.concurrency), timeout=360,
+        deadline_at=ctx.stage_deadline("artifact"), max_model_calls=40,
     )
+    if outcome.deadline_hit:
+        ctx.degraded.append({
+            "stage": "artifact", "completed": len(outcome.results), "total": len(units),
+            "effect": "no documents were drafted; the Acts deliverable is missing",
+        })
     written = art.write_files(outcome.results, selected, ctx.root / "out" / "artifacts")
     for f in outcome.failed:
         skipped.append({"opportunity_id": f["unit_id"].replace("artifact_", ""),

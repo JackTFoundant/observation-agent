@@ -130,8 +130,11 @@ def write_all(ctx, corpus, opportunities, clusters, rejected_series, artifacts,
         ),
     }
 
+    degraded = list(getattr(ctx, "degraded", []))
     summary = {
         "run_id": ctx.run_id,
+        "complete_run": not degraded and coverage["complete"],
+        "degraded_stages": degraded,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "corpus_digest": corpus.corpus_digest,
         "scope_line": _scope_line(corpus_stats),
@@ -362,6 +365,18 @@ def _report_md(summary: dict, opportunities, artifacts) -> str:
     A(f"*Run `{summary['run_id']}` · generated {summary['generated_at'][:19]}Z · "
       f"corpus digest `{summary['corpus_digest'][:12]}`*")
     A("")
+    if summary["degraded_stages"]:
+        A("> ## This run was cut short and is incomplete")
+        A(">")
+        for d in summary["degraded_stages"]:
+            A(f"> - **{d['stage']}**: {d['completed']} of {d['total']} units completed "
+              f"before the stage ran out of time — {d['effect']}.")
+        A(">")
+        A("> The figures below are still correctly derived and every citation still "
+          "verifies, but the report is not what a complete run produces. Re-run to fill "
+          "the gap; finished work is cached, so the re-run only does what is missing.")
+        A("")
+
     A(f"## {_money(h['dollars_per_month']['base'])} per month")
     A("")
     A(f"Range {_money(h['dollars_per_month']['low'])} – "

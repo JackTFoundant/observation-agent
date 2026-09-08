@@ -6,7 +6,7 @@ artifact_type: runbook
 opportunity_id: proc_8381da9a4e
 opportunity_title: Meter-level scheduled-vs-actual variance clearing across Unify,
   Sitara and UA4
-generated_at: '2026-09-08T21:38:37.779424+00:00'
+generated_at: '2026-09-08T22:19:47.507762+00:00'
 generator: claude -p via .claude/agents/artifact-drafter.md
 review_status: draft-unreviewed
 evidence:

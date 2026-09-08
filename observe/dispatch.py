@@ -254,7 +254,12 @@ def dispatch(
                     sem.penalize()
                     throttles += 1
                     attempt -= 1          # a throttle is not a content failure
-                    backoff = min(180, 15 * (2 ** min(throttles, 4))) + random.uniform(0, 8)
+                    # Capped well below the old 180s. The adaptive semaphore already
+                    # halves concurrency on a throttle, so a long sleep on top is a double
+                    # penalty: 13 throttles once cost 29 minutes of cumulative sleep and
+                    # starved every later stage. Retry often, sleep briefly, let the
+                    # semaphore do the throttling.
+                    backoff = min(45, 8 * (2 ** min(throttles, 3))) + random.uniform(0, 5)
                     log.event(stage=stage, unit_id=unit.unit_id, event="rate_limited",
                               throttle=throttles, new_limit=sem.limit,
                               backoff_s=round(backoff, 1))

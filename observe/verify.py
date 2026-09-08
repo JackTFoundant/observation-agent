@@ -77,10 +77,38 @@ def verify(out_dir: Path, corpus_root: Path, *, strict: bool = True) -> Report:
             if c.get("citation_id"):
                 quarantined_ids.add(c["citation_id"])
 
+    _verify_completeness(rep, summary, out_dir)
     _verify_citations(rep, opportunities, corpus_root, quarantined_ids)
     _verify_arithmetic(rep, summary, opportunities)
     _verify_artifacts(rep, out_dir, opportunities)
     return rep
+
+
+def _verify_completeness(rep: Report, summary: dict, out_dir: Path) -> None:
+    """A degraded run must not be indistinguishable from a good one.
+
+    `verify` checks that what shipped is *true*; this checks that what shipped is
+    *complete*. A cold run once hit its deadline during extraction, drafted no artifacts
+    and wrote no narratives, and still reported PASS with a normal-looking headline.
+    """
+    for d in summary.get("degraded_stages", []):
+        rep.warn("stage_incomplete",
+                 f"{d['stage']}: {d.get('completed')} of {d.get('total')} units completed "
+                 f"- {d.get('effect')}",
+                 stage=d["stage"])
+
+    cov = summary.get("coverage") or {}
+    if cov and not cov.get("complete", True):
+        rep.warn("incomplete_coverage",
+                 f"{cov.get('messages_extracted')} of {cov.get('messages_eligible')} "
+                 f"eligible messages were classified")
+
+    counted = [o for o in summary.get("opportunities", []) if o.get("status") == "counted"]
+    if counted and not summary.get("artifacts"):
+        rep.warn("no_artifacts",
+                 "the run produced no drafted artifacts, so the 'act on what you find' "
+                 "deliverable is empty")
+    rep.ok()
 
 
 def _verify_citations(rep: Report, opportunities, corpus_root: Path,

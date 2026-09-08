@@ -148,3 +148,86 @@ def test_auth_failure_stops_the_whole_run_immediately(monkeypatch, log):
 
     with pytest.raises(mod.AuthenticationFailed):
         _dispatch([unit("a"), unit("b"), unit("c")], runner, FakeCache(), log)
+
+
+# ---------------------------------------------------------------------------
+# Per-stage budgets: one stage must not be able to consume the whole run
+# ---------------------------------------------------------------------------
+
+def test_stage_budgets_reserve_time_for_later_stages(tmp_path):
+    """Extraction may take most of a run, but never all of it.
+
+    A heavily throttled cold run once ran extraction to 28.7 of a 25-minute budget, so
+    characterization and artifact drafting got zero calls and the report shipped with no
+    narratives and no artifacts at all.
+    """
+    from observe.pipeline import Context, new_context
+    ctx = new_context(tmp_path, run_id="t", deadline_s=1000)
+
+    e = ctx.stage_deadline("extract") - ctx.started
+    c = ctx.stage_deadline("characterize") - ctx.started
+    a = ctx.stage_deadline("artifact") - ctx.started
+
+    assert e < c < a <= ctx.deadline_s, "each stage must yield to the next"
+    assert e <= ctx.deadline_s * 0.7, "extraction must not be able to eat the whole budget"
+    assert ctx.deadline_s - a > 0, "the run must keep slack after the last model stage"
+
+
+def test_an_unknown_stage_gets_the_whole_budget():
+    from observe.pipeline import new_context
+    from pathlib import Path
+    ctx = new_context(Path("."), run_id="t2", deadline_s=600)
+    assert ctx.stage_deadline("something_else") == ctx.deadline_at
+
+
+def test_backoff_is_bounded_so_throttles_cannot_burn_the_budget(monkeypatch, log):
+    """13 throttles once cost 29 minutes of cumulative sleep. The adaptive semaphore
+    already reduces pressure; a long sleep on top is a double penalty."""
+    import observe.dispatch as mod
+    slept: list[float] = []
+    calls = {"n": 0}
+
+    def runner(payload, **kwargs):
+        calls["n"] += 1
+        if calls["n"] <= 6:
+            raise WorkerError("rate_limit", "429")
+        return type("R", (), {"parsed": {}, "model": "m", "duration_ms": 1, "attempt": 1})()
+
+    monkeypatch.setattr(mod, "run_worker", runner)
+    monkeypatch.setattr(mod.time, "sleep", lambda s: slept.append(s))
+    monkeypatch.setattr(mod, "resolve_cli", lambda: Path("/bin/true"))
+
+    _dispatch([unit()], runner, FakeCache(), log)
+    assert slept, "a throttle should back off"
+
+    # The property that matters is the per-throttle ceiling. Cumulative sleep for one unit
+    # is bounded structurally by MAX_THROTTLE_RETRIES x that ceiling, and in practice by the
+    # stage deadline (tested separately) - units back off in parallel, so this does not sum
+    # across the run. My first version of this test asserted a flat 240s, a number I picked
+    # rather than one the design implies; it failed at 251s while the behaviour was correct.
+    assert max(slept) <= 50, f"single backoff too long: {max(slept):.0f}s"
+    assert sum(slept) <= MAX_THROTTLE_RETRIES * 50, (
+        f"cumulative backoff {sum(slept):.0f}s exceeds the structural ceiling")
+    assert sum(slept) / len(slept) <= 45, (
+        f"mean backoff {sum(slept) / len(slept):.0f}s is too aggressive; the semaphore, "
+        f"not sleep, should be doing the throttling")
+
+
+def test_deadline_is_reported_not_absorbed(monkeypatch, log):
+    """Hitting the deadline must surface, so the report can say the run was cut short."""
+    import observe.dispatch as mod
+
+    def runner(payload, **kwargs):
+        return type("R", (), {"parsed": {}, "model": "m", "duration_ms": 1, "attempt": 1})()
+
+    monkeypatch.setattr(mod, "run_worker", runner)
+    monkeypatch.setattr(mod, "resolve_cli", lambda: Path("/bin/true"))
+
+    out = mod.dispatch(
+        [unit("a"), unit("b")], stage="test", system_prompt="sp",
+        json_schema={"type": "object"}, validate=lambda p, u: [],
+        cache=FakeCache(), log=log, concurrency=1, timeout=5,
+        deadline_at=mod.time.monotonic() - 1,      # already past
+    )
+    assert out.deadline_hit
+    assert not out.results

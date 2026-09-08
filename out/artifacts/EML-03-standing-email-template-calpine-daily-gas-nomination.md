@@ -4,7 +4,7 @@ title: 'Standing email template: Calpine Daily Gas Nomination notice'
 artifact_type: email
 opportunity_id: ser_c103eb437b
 opportunity_title: '"Calpine Daily Gas Nomination" produced monthly'
-generated_at: '2026-09-08T21:38:37.782276+00:00'
+generated_at: '2026-09-08T22:19:47.510420+00:00'
 generator: claude -p via .claude/agents/artifact-drafter.md
 review_status: draft-unreviewed
 evidence:
