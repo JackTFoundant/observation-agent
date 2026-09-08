@@ -1,0 +1,122 @@
+# The closed vocabulary a model extractor may assign to a message.
+#
+# Closed on purpose. If the model could invent class names, the clustering step would be
+# choosing between labels a model authored, and the "processes emerged from the corpus"
+# claim would be false. These were derived by reading the corpus, not guessed: every entry
+# below was visible in subject lines and bodies before any model call was made.
+#
+# `other` exists so a message that fits nothing is recorded as unclassified rather than
+# forced into the nearest label. Unclassified volume is reported, not hidden.
+
+classes:
+  gas_nomination:
+    label: Gas nomination and scheduling
+    hint: >
+      Nominating or changing gas volumes on a pipeline for a flow date; confirming a nom
+      with a scheduler or counterparty; intraday changes and cuts.
+    artifact_shape: sop
+
+  volume_imbalance_reconciliation:
+    label: Volume and imbalance reconciliation
+    hint: >
+      Comparing scheduled against actual volumes, resolving imbalances or OBA positions,
+      chasing variances between Enron and a pipeline or counterparty.
+    artifact_shape: worksheet
+
+  deal_entry_correction:
+    label: Deal entry and correction in Sitara / Unify / TAGG
+    hint: >
+      Entering, amending, zeroing or killing deals in a system of record; fixing a deal
+      that was booked wrong; reconciling between two systems.
+    artifact_shape: runbook
+
+  month_end_close:
+    label: Month-end close and allocations
+    hint: >
+      Month-end or period-end sequences: allocations, estimates versus actuals, closing
+      the books, prior-period adjustments, deadlines tied to a close calendar.
+    artifact_shape: checklist
+
+  counterparty_admin:
+    label: Counterparty setup and change
+    hint: >
+      Adding a counterparty, name changes, mergers, credit checks, contract or agreement
+      paperwork that must propagate into systems.
+    artifact_shape: sop
+
+  recurring_report:
+    label: Recurring report production and distribution
+    hint: >
+      Producing and sending a report on a fixed cadence - daily credit report, weekly
+      capacity report, daily position report, market recap. The work is assembling the
+      same numbers again and mailing them to the same list.
+    artifact_shape: email
+
+  capacity_notice:
+    label: Pipeline capacity, maintenance and OFO notices
+    hint: >
+      Receiving, interpreting and forwarding operational notices from a pipeline or ISO:
+      capacity constraints, maintenance windows, OFOs, critical notices.
+    artifact_shape: sop
+
+  meter_data:
+    label: Meter data requests and corrections
+    hint: >
+      Requests for meter numbers, meter volumes, or corrections to metered quantities;
+      mapping meters to deals or counterparties.
+    artifact_shape: template
+
+  invoice_settlement:
+    label: Invoice, payment and settlement handling
+    hint: >
+      Invoices, payments, netting, settlement statements, disputes about amounts owed.
+    artifact_shape: sop
+
+  access_provisioning:
+    label: System access and account provisioning
+    hint: >
+      Granting, changing or disabling access to a system; dial-in access; account setup
+      or removal when people move or leave.
+    artifact_shape: checklist
+
+  pnl_reporting:
+    label: P&L and position reporting requests
+    hint: >
+      Requests for P&L, position, or book data; ad-hoc pulls someone assembles by hand.
+    artifact_shape: template
+
+  staffing_coverage:
+    label: Staffing, coverage and work assignment
+    hint: >
+      Who is covering which desk or shift, on-call notes, work assignments, handover when
+      someone is out.
+    artifact_shape: checklist
+
+  other:
+    label: Unclassified
+    hint: Operational but fitting none of the above.
+    artifact_shape: none
+
+# What the extractor is allowed to say a message *is* within its process.
+roles:
+  - request          # asking someone to do something
+  - response         # answering a request
+  - confirmation     # confirming something was done
+  - correction       # fixing something that was wrong
+  - escalation       # pushing for action, chasing, raising urgency
+  - status_report    # reporting state, no action requested
+  - handoff          # passing work to another person or team
+  - fyi              # informational only
+
+# Systems the extractor may report as referenced. Closed so counts stay comparable.
+systems:
+  - sitara
+  - unify
+  - tagg
+  - enovate
+  - spreadsheet
+  - email
+  - fax
+  - phone
+  - pipeline_website
+  - other_system

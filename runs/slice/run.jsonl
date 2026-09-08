@@ -1,0 +1,4 @@
+{"ts":1788892777.627,"stage":"extract","event":"cache_pass","cached":0,"pending":3}
+{"ts":1788892814.179,"stage":"extract","unit_id":"extract_0001","event":"ok","attempt":1,"duration_ms":36549,"model":"sonnet","payload_chars":14954}
+{"ts":1788892814.23,"stage":"extract","unit_id":"extract_0000","event":"ok","attempt":1,"duration_ms":36601,"model":"sonnet","payload_chars":16428}
+{"ts":1788892814.889,"stage":"extract","unit_id":"extract_0002","event":"ok","attempt":1,"duration_ms":37260,"model":"sonnet","payload_chars":11827}

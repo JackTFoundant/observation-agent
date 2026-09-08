@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Per-message extraction batch",
+  "description": "What a worker may return about a batch of messages. Deliberately free of any duration or amount: those are computed by deterministic code from the counts below. See observe/llm/schema_guard.py, which rejects any response carrying one anyway.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "messages"
+  ],
+  "properties": {
+    "messages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "msg_uid",
+          "is_operational",
+          "task_class",
+          "process_phrase",
+          "role",
+          "systems_referenced",
+          "rework_signal",
+          "waiting_signal",
+          "manual_transfer_signal",
+          "deadline_signal",
+          "evidence",
+          "confidence"
+        ],
+        "properties": {
+          "msg_uid": {
+            "type": "string",
+            "description": "Echo back exactly the id given for this message."
+          },
+          "is_operational": {
+            "type": "boolean",
+            "description": "True if this is the company's work. False for social, personal, newsletter or administrative-chatter messages."
+          },
+          "task_class": {
+            "type": "string",
+            "enum": [
+              "gas_nomination",
+              "volume_imbalance_reconciliation",
+              "deal_entry_correction",
+              "month_end_close",
+              "counterparty_admin",
+              "recurring_report",
+              "capacity_notice",
+              "meter_data",
+              "invoice_settlement",
+              "access_provisioning",
+              "pnl_reporting",
+              "staffing_coverage",
+              "other"
+            ]
+          },
+          "process_phrase": {
+            "type": "string",
+            "maxLength": 90,
+            "description": "A short canonical phrase naming the specific recurring activity, lowercase, verb first, no dates or names. For example 'confirm nomination change with pipeline scheduler'. This is clustered later; consistent phrasing across messages matters more than elegance."
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "request",
+              "response",
+              "confirmation",
+              "correction",
+              "escalation",
+              "status_report",
+              "handoff",
+              "fyi"
+            ]
+          },
+          "systems_referenced": {
+            "type": "array",
+            "maxItems": 6,
+            "items": {
+              "type": "string",
+              "enum": [
+                "sitara",
+                "unify",
+                "tagg",
+                "enovate",
+                "spreadsheet",
+                "email",
+                "fax",
+                "phone",
+                "pipeline_website",
+                "other_system"
+              ]
+            }
+          },
+          "rework_signal": {
+            "type": "boolean",
+            "description": "The message shows something being redone, corrected, or having been wrong."
+          },
+          "waiting_signal": {
+            "type": "boolean",
+            "description": "The message shows someone blocked, chasing, or waiting on another party."
+          },
+          "manual_transfer_signal": {
+            "type": "boolean",
+            "description": "The message shows data being moved between systems or documents by hand: re-keying, copy-paste, pasting a table into mail, reading numbers off one screen into another."
+          },
+          "deadline_signal": {
+            "type": "boolean",
+            "description": "The message names a cutoff, deadline or time pressure."
+          },
+          "actors_named": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 40,
+            "description": "How many distinct people are named as doing part of this work in the visible text. A cross-check only; participant counts come from the headers."
+          },
+          "evidence": {
+            "type": "array",
+            "maxItems": 2,
+            "description": "Quotes that would let a sceptical reader verify the classification. Copy the words EXACTLY as they appear; they are used as a search key against the raw file and a quote that cannot be located is discarded.",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "quote_proposal",
+                "why"
+              ],
+              "properties": {
+                "quote_proposal": {
+                  "type": "string",
+                  "minLength": 24,
+                  "maxLength": 300
+                },
+                "why": {
+                  "type": "string",
+                  "maxLength": 200
+                }
+              }
+            }
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
