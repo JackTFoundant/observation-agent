@@ -481,7 +481,7 @@
       "task_instances": 2823,
       "people": 2691,
       "generated_tables": 1,
-      "seconds": 2.86
+      "seconds": 2.56
     },
     "stage1": {
       "messages_eligible": 2531,
@@ -500,7 +500,7 @@
       "clusters": 965,
       "promoted": 12,
       "residual": 953,
-      "seconds": 1.06
+      "seconds": 0.93
     },
     "stage3": {
       "clusters": 12,
@@ -518,7 +518,7 @@
       "citations_quarantined": 0,
       "series_promoted": 3,
       "series_rejected": 19,
-      "seconds": 0.42
+      "seconds": 0.41
     },
     "stage6": {
       "selected": 7,

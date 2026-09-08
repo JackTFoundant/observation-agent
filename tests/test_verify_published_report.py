@@ -149,3 +149,23 @@ def test_the_shipped_run_has_complete_coverage(summary):
         f"shipped run covered {cov['messages_extracted']}/{cov['messages_eligible']} "
         f"messages; re-run to fill the gap before submitting"
     )
+
+
+def test_no_stale_artifacts_on_disk(summary):
+    """Every .md in out/artifacts must be listed in the index, and vice versa.
+
+    A fresh clone once showed twelve documents where the index listed seven: earlier runs
+    had left behind artifacts for opportunities later runs re-titled or dropped. Stale
+    documents in a folder presented as "ready for Monday morning" are worse than absent
+    ones.
+    """
+    d = OUT / "artifacts"
+    if not d.exists():
+        pytest.skip("no artifacts on this run")
+    on_disk = {p.name for p in d.glob("*.md")}
+    indexed = {a["filename"] for a in json.loads((d / "index.json").read_text())}
+    assert on_disk == indexed, (
+        f"on disk but not indexed: {sorted(on_disk - indexed)}; "
+        f"indexed but missing: {sorted(indexed - on_disk)}"
+    )
+    assert indexed == {a["filename"] for a in summary["artifacts"]}

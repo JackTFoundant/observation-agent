@@ -274,8 +274,16 @@ def validate(parsed, unit: Unit) -> list[str]:
 
 
 def write_files(results: dict, selected, out_dir: Path) -> list[dict]:
-    """Write the artifacts to disk as plain Markdown, with machine-readable front matter."""
+    """Write the artifacts to disk as plain Markdown, with machine-readable front matter.
+
+    Clears the directory first. Without that, artifacts accumulated across runs: a fresh
+    clone showed twelve `.md` files where `index.json` listed seven, because earlier runs
+    had produced documents for opportunities that later runs re-titled or dropped. Stale
+    documents in a folder called "ready for Monday morning" are worse than missing ones.
+    """
     out_dir.mkdir(parents=True, exist_ok=True)
+    for stale in out_dir.glob("*.md"):
+        stale.unlink()
     by_id = {o.opportunity_id: o for o in selected}
     written: list[dict] = []
     counter: dict[str, int] = {}

@@ -4,7 +4,7 @@ title: "Daily Credit Report \u2014 standing distribution email (draft)"
 artifact_type: email
 opportunity_id: ser_06b1e12574
 opportunity_title: '"Credit Report - 1/30/01" produced daily'
-generated_at: '2026-09-08T21:34:50.319773+00:00'
+generated_at: '2026-09-08T21:38:37.780835+00:00'
 generator: claude -p via .claude/agents/artifact-drafter.md
 review_status: draft-unreviewed
 evidence:
