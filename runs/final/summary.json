@@ -1,6 +1,6 @@
 {
   "run_id": "final",
-  "generated_at": "2026-09-08T20:56:33.385338+00:00",
+  "generated_at": "2026-09-08T20:58:42.806728+00:00",
   "corpus_digest": "c94acc4b08cb62348a8aba9361e40e59a6bc5e13942e0d86d7029495adb5f79b",
   "scope_line": "Observed across 4 mailboxes and 3,240 messages, 1999-12-13 to 2002-03-25 (28 months). Not extrapolated beyond what was observed.",
   "attribution": {
@@ -628,7 +628,7 @@
       "task_instances": 2823,
       "people": 2691,
       "generated_tables": 1,
-      "seconds": 2.61
+      "seconds": 2.58
     },
     "stage1": {
       "messages_eligible": 2531,
@@ -645,7 +645,7 @@
       "clusters": 965,
       "promoted": 12,
       "residual": 953,
-      "seconds": 0.97
+      "seconds": 0.95
     },
     "stage3": {
       "clusters": 12,
@@ -663,7 +663,7 @@
       "citations_quarantined": 0,
       "series_promoted": 3,
       "series_rejected": 19,
-      "seconds": 0.42
+      "seconds": 0.41
     },
     "stage6": {
       "selected": 7,
