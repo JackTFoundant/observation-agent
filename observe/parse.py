@@ -67,6 +67,7 @@ class ParsedMessage:
     message_id: str | None
     subject: str
     subject_key: str
+    is_reply: bool
     sender: str | None
     sender_display: str | None
     recipients: list[str]
@@ -270,6 +271,7 @@ def parse_file(path: Path, corpus_root: Path) -> ParsedMessage:
 
     novel_end, trailer_reason = find_trailer(body_decoded)
     subject = (headers.get("Subject") or "").replace("\n", " ").replace("\t", " ").strip()
+    is_reply = bool(_SUBJECT_PREFIX.match(subject))
 
     sender_list = _addresses(headers.get("From"))
     sender = sender_list[0] if sender_list else None
@@ -316,6 +318,7 @@ def parse_file(path: Path, corpus_root: Path) -> ParsedMessage:
         message_id=(headers.get("Message-ID") or "").strip() or None,
         subject=subject,
         subject_key=normalize_subject_key(subject),
+        is_reply=is_reply,
         sender=sender,
         sender_display=(headers.get("X-From") or "").strip() or None,
         recipients=recipients,
