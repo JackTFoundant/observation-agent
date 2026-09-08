@@ -1,0 +1,173 @@
+# Every assumption in this system, in one reviewable file.
+#
+# READ THIS FIRST, because it is the most important caveat in the whole report:
+#
+#   The *counts* are measured. Task instances, touches per instance, participants, months
+#   of coverage, rework and waiting rates - all of those are computed from the corpus by
+#   deterministic code, and `observe/verify.py` recomputes them from scratch.
+#
+#   The *minutes* are not measured. Nobody timed this work. Nobody could: everyone involved
+#   left the building in 2002 and the systems named in the mail no longer exist. Every
+#   `_min` value below is my estimate by analogy to comparable pipeline-scheduling and
+#   back-office work. They are the largest faith-based input in the system, and the dollar
+#   total moves close to linearly with them.
+#
+# That is why every value carries a low/base/high band and why the dashboard shows the
+# resulting range in the same weight as the headline number rather than in a footnote. A
+# reader who has actually done gas scheduling should overwrite this file first; the
+# published range is deliberately wide enough to survive their doing so.
+#
+# A model is never allowed to produce any number in this file, or any number derived from
+# it. See observe/llm/schema_guard.py.
+
+global:
+  # Given by the assignment, not an assumption.
+  blended_rate_usd_per_hour: 85
+
+  # Coordination cost of extra participants. A task involving four people costs more than
+  # four times a task involving one, because of the handoffs between them; alpha is the
+  # per-extra-person uplift.
+  # basis: judgment. Brooks-style coordination overhead, deliberately conservative -
+  #        0.35 means a 3-person task costs 1.7x a 1-person task, not 3x.
+  # NOT measured.
+  coordination_alpha: {low: 0.15, base: 0.35, high: 0.55}
+
+  # Deliberately 1.0. The corpus is four mailboxes, not a company. Scaling these findings
+  # to "all of Enron" would produce a bigger and far less defensible number, and it is the
+  # first thing a sceptical reader would attack. The report states its scope instead.
+  extrapolation_factor: 1.0
+
+  # Undated messages inflate instance counts proportionally but never widen a coverage
+  # window - widening it would silently shrink every per-month rate.
+  undated_uplift: true
+
+  # Floor on months of coverage, so a cluster confined to one month cannot divide by a
+  # near-zero denominator and report an enormous monthly rate.
+  min_months: 1.0
+
+# Per task class. `handle_min` is the first touch; `per_touch_min` each subsequent one;
+# `rework_min` and `waiting_admin_min` are added in proportion to the measured rates.
+#
+# `automatable_share` is the fraction a system could plausibly absorb. It is the second
+# largest act of faith here: judging that 60% of a nomination change is automatable is a
+# claim about Sitara, Unify and TAGG, which are names in 2001 emails to me and nothing more.
+task_classes:
+
+  gas_nomination:
+    handle_min:        {low: 4,  base: 8,  high: 15}
+    per_touch_min:     {low: 2,  base: 3,  high: 6}
+    rework_min:        {low: 6,  base: 12, high: 25}
+    waiting_admin_min: {low: 1,  base: 2,  high: 5}
+    automatable_share: {low: 0.30, base: 0.55, high: 0.75}
+    # basis: entering volumes for a flow date across two systems plus one confirmation
+    #        message. Cutoffs are daily and the work is repetitive and rule-shaped.
+
+  volume_imbalance_reconciliation:
+    handle_min:        {low: 10, base: 20, high: 40}
+    per_touch_min:     {low: 4,  base: 7,  high: 14}
+    rework_min:        {low: 10, base: 20, high: 45}
+    waiting_admin_min: {low: 2,  base: 4,  high: 9}
+    automatable_share: {low: 0.35, base: 0.60, high: 0.80}
+    # basis: comparing two sources of volume data by hand and chasing the difference.
+    #        Higher than a nomination because it is investigative, and highly automatable
+    #        because the comparison itself is mechanical.
+
+  deal_entry_correction:
+    handle_min:        {low: 6,  base: 12, high: 25}
+    per_touch_min:     {low: 3,  base: 5,  high: 10}
+    rework_min:        {low: 8,  base: 18, high: 35}
+    waiting_admin_min: {low: 2,  base: 3,  high: 7}
+    automatable_share: {low: 0.25, base: 0.45, high: 0.65}
+    # basis: locating a mis-booked deal, deciding the correction, applying it in one or
+    #        both systems. Lower automatable share: the *diagnosis* needs a human even
+    #        when the correction does not.
+
+  month_end_close:
+    handle_min:        {low: 15, base: 30, high: 60}
+    per_touch_min:     {low: 5,  base: 10, high: 20}
+    rework_min:        {low: 15, base: 30, high: 60}
+    waiting_admin_min: {low: 3,  base: 6,  high: 12}
+    automatable_share: {low: 0.20, base: 0.40, high: 0.60}
+    # basis: close tasks are long, deadline-bound and involve several people signing off.
+    #        Sign-off is intrinsically human, hence the lower share.
+
+  counterparty_admin:
+    handle_min:        {low: 8,  base: 15, high: 30}
+    per_touch_min:     {low: 3,  base: 6,  high: 12}
+    rework_min:        {low: 8,  base: 15, high: 30}
+    waiting_admin_min: {low: 3,  base: 5,  high: 10}
+    automatable_share: {low: 0.25, base: 0.45, high: 0.65}
+    # basis: a name change or new counterparty has to propagate into several systems,
+    #        which is exactly the shape of work a workflow tool absorbs.
+
+  recurring_report:
+    handle_min:        {low: 10, base: 22, high: 45}
+    per_touch_min:     {low: 2,  base: 4,  high: 8}
+    rework_min:        {low: 5,  base: 10, high: 20}
+    waiting_admin_min: {low: 1,  base: 2,  high: 4}
+    automatable_share: {low: 0.55, base: 0.75, high: 0.90}
+    # basis: assembling the same figures from the same sources and mailing them to the
+    #        same list. The highest automatable share in the file, and the easiest to
+    #        defend: the weekly capacity report has near-identical structure every week.
+
+  capacity_notice:
+    handle_min:        {low: 3,  base: 6,  high: 12}
+    per_touch_min:     {low: 2,  base: 3,  high: 6}
+    rework_min:        {low: 3,  base: 6,  high: 12}
+    waiting_admin_min: {low: 1,  base: 2,  high: 4}
+    automatable_share: {low: 0.40, base: 0.65, high: 0.85}
+    # basis: read an inbound notice, decide who needs it, forward it. Routing is
+    #        mechanical; judging operational impact is not.
+
+  meter_data:
+    handle_min:        {low: 4,  base: 9,  high: 18}
+    per_touch_min:     {low: 2,  base: 4,  high: 8}
+    rework_min:        {low: 5,  base: 12, high: 25}
+    waiting_admin_min: {low: 2,  base: 3,  high: 7}
+    automatable_share: {low: 0.40, base: 0.65, high: 0.85}
+    # basis: looking a meter up and mailing the answer back. A lookup anyone could
+    #        self-serve, which is why the share is high.
+
+  invoice_settlement:
+    handle_min:        {low: 8,  base: 18, high: 35}
+    per_touch_min:     {low: 4,  base: 7,  high: 14}
+    rework_min:        {low: 10, base: 20, high: 40}
+    waiting_admin_min: {low: 3,  base: 6,  high: 12}
+    automatable_share: {low: 0.25, base: 0.45, high: 0.65}
+    # basis: amounts get disputed, and disputes need a human.
+
+  access_provisioning:
+    handle_min:        {low: 5,  base: 10, high: 20}
+    per_touch_min:     {low: 2,  base: 4,  high: 8}
+    rework_min:        {low: 5,  base: 10, high: 20}
+    waiting_admin_min: {low: 2,  base: 4,  high: 8}
+    automatable_share: {low: 0.50, base: 0.70, high: 0.88}
+    # basis: pure workflow - request, approve, provision, confirm. Well-understood
+    #        automation territory even in 2001.
+
+  pnl_reporting:
+    handle_min:        {low: 8,  base: 16, high: 32}
+    per_touch_min:     {low: 3,  base: 5,  high: 10}
+    rework_min:        {low: 6,  base: 12, high: 24}
+    waiting_admin_min: {low: 2,  base: 3,  high: 7}
+    automatable_share: {low: 0.45, base: 0.68, high: 0.85}
+    # basis: an ad-hoc data pull assembled by hand; a report or query replaces it.
+
+  staffing_coverage:
+    handle_min:        {low: 4,  base: 8,  high: 16}
+    per_touch_min:     {low: 2,  base: 3,  high: 6}
+    rework_min:        {low: 3,  base: 6,  high: 12}
+    waiting_admin_min: {low: 1,  base: 2,  high: 5}
+    automatable_share: {low: 0.20, base: 0.40, high: 0.60}
+    # basis: a shared rota removes the mail, but deciding who covers a desk is a human
+    #        negotiation.
+
+  other:
+    handle_min:        {low: 3,  base: 6,  high: 12}
+    per_touch_min:     {low: 2,  base: 3,  high: 5}
+    rework_min:        {low: 3,  base: 6,  high: 12}
+    waiting_admin_min: {low: 1,  base: 2,  high: 4}
+    automatable_share: {low: 0.05, base: 0.15, high: 0.30}
+    # Unclassified work. The share is deliberately near zero: we will not claim savings on
+    # work we could not identify. It appears in the report as measured volume with almost
+    # no dollar attached, which is the honest treatment.

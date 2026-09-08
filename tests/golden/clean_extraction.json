@@ -1,0 +1,25 @@
+{
+  "_comment": "The same message extracted correctly: observations and counts only, no durations or amounts. Recorded from a real run.",
+  "messages": [
+    {
+      "msg_uid": "m_0a1b2c3d4e5f",
+      "is_operational": true,
+      "task_class": "recurring_report",
+      "process_phrase": "assemble and distribute weekly capacity report",
+      "role": "status_report",
+      "systems_referenced": ["spreadsheet", "email"],
+      "rework_signal": false,
+      "waiting_signal": false,
+      "manual_transfer_signal": true,
+      "deadline_signal": true,
+      "actors_named": 7,
+      "evidence": [
+        {
+          "quote_proposal": "Transwestern's average deliveries to California were 933 MMBtu/d",
+          "why": "the recurring figure the report exists to communicate"
+        }
+      ],
+      "confidence": "high"
+    }
+  ]
+}

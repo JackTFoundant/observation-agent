@@ -291,11 +291,22 @@ def parse_file(path: Path, corpus_root: Path) -> ParsedMessage:
     sent_at, date_usable = _parse_date(headers.get("Date"))
 
     novel = body_decoded[:novel_end]
+    # The send time is part of the content hash, and it has to be.
+    #
+    # A genuine duplicate is one message stored twice - a sender's `sent_items` copy and a
+    # recipient's `inbox` copy - and those share a Date header exactly. Two instances of a
+    # recurring report do not. Without the timestamp, 48 of the 71 daily credit reports
+    # collapsed into one "duplicate" group: their bodies are empty (the report was an
+    # attachment) and the subject key deliberately strips the date, so every day hashed
+    # identically. Dedup was deleting the most recurring process in the corpus.
+    stamp = sent_at.strftime("%Y-%m-%dT%H:%M") if sent_at else f"undated:{rel}"
     content_hash = hashlib.sha256(
-        f"{normalize_subject_key(subject)}|{sender or ''}|{_WS.sub(' ', body_decoded).strip()}".encode()
+        f"{normalize_subject_key(subject)}|{sender or ''}|{stamp}|"
+        f"{_WS.sub(' ', body_decoded).strip()}".encode()
     ).hexdigest()
     novel_hash = hashlib.sha256(
-        f"{normalize_subject_key(subject)}|{sender or ''}|{_WS.sub(' ', novel).strip()}".encode()
+        f"{normalize_subject_key(subject)}|{sender or ''}|{stamp}|"
+        f"{_WS.sub(' ', novel).strip()}".encode()
     ).hexdigest()
 
     flags: list[str] = []

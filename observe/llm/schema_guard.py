@@ -58,6 +58,21 @@ _ALLOWED_NUMERIC_KEYS = frozenset({
     "message_index", "confidence_score", "distinct_recipients",
 })
 
+# Fields holding text copied verbatim out of the corpus. The value lint must not apply to
+# these.
+#
+# The guard exists to stop a model *asserting* a quantity, not to stop it *quoting* the
+# archive. Applied to quotes it does real damage: a verbatim line like "entitled to receive
+# the additional payment of $4,500" is exactly the evidence an invoice-and-settlement
+# finding needs, and rejecting it would blind the report to an entire task class. Corpus
+# text is data; only the model's own prose is an assertion.
+#
+# This is safe because the quote is never trusted anyway — deterministic code re-locates it
+# in the raw file and slices the published text from there.
+_VERBATIM_KEYS = frozenset({
+    "quote_proposal", "quote", "excerpt", "raw_excerpt", "text", "snippet", "verbatim",
+})
+
 
 @dataclass
 class GuardResult:
@@ -78,11 +93,11 @@ class SchemaGuardViolation(Exception):
 def check(payload, path: str = "$") -> GuardResult:
     """Walk a parsed response and collect every violation. Never raises."""
     violations: list[str] = []
-    _walk(payload, path, violations)
+    _walk(payload, path, violations, verbatim=False)
     return GuardResult(ok=not violations, violations=violations)
 
 
-def _walk(node, path: str, out: list[str]) -> None:
+def _walk(node, path: str, out: list[str], *, verbatim: bool) -> None:
     if isinstance(node, dict):
         for key, value in node.items():
             here = f"{path}.{key}"
@@ -95,11 +110,13 @@ def _walk(node, path: str, out: list[str]) -> None:
                         f"{here}: key segment {sorted(offending)[0]!r} names a duration or "
                         f"an amount, which only deterministic code may produce"
                     )
-            _walk(value, here, out)
+            _walk(value, here, out, verbatim=name in _VERBATIM_KEYS)
     elif isinstance(node, list):
         for i, value in enumerate(node):
-            _walk(value, f"{path}[{i}]", out)
+            _walk(value, f"{path}[{i}]", out, verbatim=verbatim)
     elif isinstance(node, str):
+        if verbatim:
+            return          # corpus text, not the model's assertion
         for pat in _FORBIDDEN_VALUE:
             m = pat.search(node)
             if m:

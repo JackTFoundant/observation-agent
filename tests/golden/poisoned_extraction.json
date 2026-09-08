@@ -1,0 +1,28 @@
+{
+  "_comment": "A recorded worker response that did the arithmetic it was told not to do. Kept as a fixture so the guard's rejection is a test, not a claim.",
+  "messages": [
+    {
+      "msg_uid": "m_0a1b2c3d4e5f",
+      "is_operational": true,
+      "task_class": "recurring_report",
+      "process_phrase": "assemble and distribute weekly capacity report",
+      "role": "status_report",
+      "systems_referenced": ["spreadsheet", "email"],
+      "rework_signal": false,
+      "waiting_signal": false,
+      "manual_transfer_signal": true,
+      "deadline_signal": true,
+      "actors_named": 7,
+      "hours_saved": 40,
+      "estimated_minutes_per_instance": 25,
+      "annual_dollar_savings": 40800,
+      "evidence": [
+        {
+          "quote_proposal": "Transwestern's average deliveries to California were 933 MMBtu/d",
+          "why": "names the recurring report content; I estimate this takes 25 minutes to assemble"
+        }
+      ],
+      "confidence": "high"
+    }
+  ]
+}

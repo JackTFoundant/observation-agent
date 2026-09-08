@@ -32,6 +32,11 @@ _SHINGLE = 5
 _PERMS = 128
 _MASK = (1 << 61) - 1
 
+# Below this much text, two messages cannot be meaningfully compared for similarity.
+_MIN_NEAR_DUP_WORDS = 25
+# How close two send times must be to be the same message stored twice.
+_SAME_MOMENT_SECONDS = 120
+
 
 @dataclass
 class DuplicateGroup:
@@ -50,6 +55,17 @@ class Thread:
     @property
     def size(self) -> int:
         return len(self.msg_uids)
+
+
+def _same_moment(a, b) -> bool:
+    """True when two messages could be one message stored twice.
+
+    A `sent_items` copy and an `inbox` copy carry the same Date header. Two instances
+    of a recurring task, however similar their text, do not.
+    """
+    if a.sent_at is None or b.sent_at is None:
+        return a.sent_at is None and b.sent_at is None
+    return abs((a.sent_at - b.sent_at).total_seconds()) <= _SAME_MOMENT_SECONDS
 
 
 def _normalized_text(msg) -> str:
@@ -145,6 +161,16 @@ def find_duplicates(messages, near_threshold: float = 0.90) -> tuple[dict[str, s
     for _key, block in by_subject.items():
         if len(block) < 2 or len(block) > 400:
             continue
+        # Only compare messages with enough text to compare.
+        #
+        # Without this floor, near-duplicate detection destroyed the clearest recurring
+        # process in the corpus. The daily credit reports have empty bodies (the report was
+        # an attachment) and share a subject key once the date is stripped, so they all
+        # shingle to the same empty signature and every day looked like a copy of every
+        # other. 71 instances collapsed to 30.
+        block = [m for m in block if len(_normalized_text(m).split()) >= _MIN_NEAR_DUP_WORDS]
+        if len(block) < 2:
+            continue
         for m in block:
             if m.msg_uid not in sig_cache:
                 sig_cache[m.msg_uid] = _minhash(_shingles(_normalized_text(m)))
@@ -156,6 +182,10 @@ def find_duplicates(messages, near_threshold: float = 0.90) -> tuple[dict[str, s
             dups: list[str] = []
             for b in block[i + 1:]:
                 if b.msg_uid in dup_to_canon or b.msg_uid in claimed:
+                    continue
+                # A real near-duplicate is one message stored twice, so it carries the same
+                # send time. Two instances of a recurring task do not.
+                if not _same_moment(a, b):
                     continue
                 if _jaccard(sig_cache[a.msg_uid], sig_cache[b.msg_uid]) >= near_threshold:
                     dups.append(b.msg_uid)
