@@ -1,0 +1,35 @@
+# When is an opportunity worth writing a document for?
+#
+# The assignment asks me to pick a threshold and defend it. This is the defence.
+
+artifacts:
+  # About 3 hours a month, roughly 45 minutes a week.
+  #
+  # Below this, a written SOP costs more than it returns. Someone has to read it,
+  # circulate it, argue about it and keep it current, and for work that happens less than
+  # weekly that maintenance exceeds the saving. The threshold is about the document's
+  # carrying cost, not about the money being uninteresting.
+  min_dollars_per_month: 250
+
+  # A document is a much stronger claim than a table row. A row says "we saw this
+  # pattern"; a document says "here is how to do this work". Drafting one off two quotes
+  # is precisely how a credible report becomes a discredited one, so the evidence bar is
+  # higher than the bar for appearing in the ranking at all.
+  min_verified_citations: 4
+  min_distinct_messages: 3
+
+  # Six is what a team will actually adopt in a quarter. Twelve is shelfware, and shipping
+  # twelve would be optimising for looking thorough rather than for being used.
+  max_artifacts: 6
+
+  # One slot for the best-evidenced opportunity that fails *only* the dollar test, marked
+  # in its front matter as a judgment call. A purely numeric cutoff is not a strategy: the
+  # cheapest process to fix is sometimes the one worth fixing first, because it is the one
+  # people will accept a change to.
+  allow_one_judgment_exception: true
+
+  rationale: >
+    $250/month is roughly 45 minutes a week. Below that the document costs more attention
+    to maintain than it saves. The citation bar is higher than for the ranking because a
+    procedure someone acts on is a stronger claim than a row in a table. The cap of six
+    reflects what a team adopts in a quarter rather than what looks thorough.

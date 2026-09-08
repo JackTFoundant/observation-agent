@@ -69,11 +69,38 @@ def hash_paths(paths: list[Path]) -> str:
     return h.hexdigest()
 
 
-def prompt_hash(claude_dir: Path, *extra: Path) -> str:
-    """The bytes of the Claude Code configuration a worker actually loads."""
-    paths = list(claude_dir.glob("agents/*.md")) + list(claude_dir.glob("skills/*/SKILL.md"))
-    paths += [p for p in extra if p.is_file()]
-    return hash_paths(paths)
+def prompt_hash(claude_dir: Path, *relative: str) -> str:
+    """Hash the `.claude/` files one stage's worker actually loads.
+
+    This is what puts the Claude Code configuration into the build graph: edit the
+    extractor's rubric and every extraction downstream of it correctly invalidates. You can
+    demonstrate it in ten seconds — touch the skill, re-run, watch stage 1 re-execute.
+
+    **Scoped per stage, not globbed.** An earlier version hashed every `agents/*.md`, so
+    simply *adding* the artifact-drafter agent invalidated all 2,500 cached extractions and
+    the next run paid for them again. Invalidation has to be as precise as the dependency
+    actually is: a stage's key covers the files that reach its worker's context window and
+    nothing else.
+    """
+    if not relative:
+        raise ValueError("name the files this stage's worker loads; do not glob")
+    return hash_paths([claude_dir / r for r in relative])
+
+
+# What each model stage actually loads. Kept here so the dependency is declared in one
+# place rather than implied by whatever a glob happens to match.
+EXTRACT_PROMPT_FILES = (
+    "agents/message-extractor.md",
+    "skills/enron-email-forensics/SKILL.md",
+)
+CHARACTERIZE_PROMPT_FILES = (
+    "agents/process-characterizer.md",
+    "skills/enron-email-forensics/SKILL.md",
+)
+ARTIFACT_PROMPT_FILES = (
+    "agents/artifact-drafter.md",
+    "skills/enron-email-forensics/SKILL.md",
+)
 
 
 @dataclass

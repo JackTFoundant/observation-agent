@@ -1,0 +1,164 @@
+{
+  "opportunity_id": "proc_e08a3f7fc5",
+  "source": "content_cluster",
+  "title": "Ad-hoc meter volume figures mailed out by hand",
+  "task_class": "meter_data",
+  "label_mechanical": "Meter data requests and corrections: report meter / volume / data",
+  "narrative": {
+    "what_happens": "Someone in the logistics mailbox needs volumes for a specific meter or set of meters for a given month, and a colleague pulls the numbers and mails them over. Most of the messages are one-way notifications \u2014 here are the meter volumes \u2014 with a smaller group confirming volumes that someone else had already reported for the month. One instance breaks the volumes down by counterparty and appends a meter the sender was not certain the recipient needed (\"Meter 6722 (not sure if you need this) - Julie\"), which shows the scope of each request is agreed informally rather than from a standing definition. The exchange ends when the figures land in the recipient's mailbox; nothing in the messages shows the numbers being written back to a system. The traffic appears in short bursts a few months apart rather than on a fixed cycle.",
+    "where_it_stalls": "There is no visible stall: none of these messages carry waiting, rework or deadline signals, and there are no escalation or correction roles. The weakness is upstream of any delay \u2014 the requester and the responder negotiate which meters and which month are in scope inside the mail itself, so the sender has to guess at inclusion, and the confirmation messages exist only to restate numbers already sent. Who owns the meter volume source of record is not visible in these messages.",
+    "why_it_recurs": "Meter volumes are needed per meter per month, and the recipient has no direct access to them, so each new month or new meter question produces another hand-assembled mail rather than a lookup.",
+    "automation_opportunity": "A parameterised extract that returns volumes for a named meter list and month \u2014 run by the requester rather than mailed on request \u2014 would remove both the hand-pull and the follow-up confirmation. Failing direct access, a fixed monthly extract covering the meters these recipients repeatedly ask about, mailed on a schedule, would absorb most of this traffic.",
+    "coherence": "mixed"
+  },
+  "status": "quarantined",
+  "status_reason": "only 1 verified citation(s); 3 required",
+  "confidence": "medium",
+  "artifact_shape": "template",
+  "measured": {
+    "instances": 11,
+    "messages": 13,
+    "dated_messages": 13,
+    "undated_messages": 0,
+    "participants_median": 3,
+    "months": 5.0,
+    "rework_rate": 0.0,
+    "waiting_rate": 0.0,
+    "manual_transfer_rate": 0.07692307692307693,
+    "senders": 4
+  },
+  "gate_metrics": {
+    "messages": 13,
+    "distinct_content": 13,
+    "senders": 4,
+    "threads": 11,
+    "months": 5,
+    "weeks": 8,
+    "folders": 1,
+    "people": 11
+  },
+  "signal_rates": {
+    "rework_signal": 0.0,
+    "waiting_signal": 0.0,
+    "manual_transfer_signal": 0.0769,
+    "deadline_signal": 0.0
+  },
+  "systems": {
+    "other_system": 1
+  },
+  "roles": {
+    "fyi": 8,
+    "confirmation": 3,
+    "status_report": 1,
+    "response": 1
+  },
+  "months": [
+    "2000-01",
+    "2000-07",
+    "2000-09",
+    "2001-01",
+    "2001-04"
+  ],
+  "people": 11,
+  "hours_per_month": {
+    "low": 0.2,
+    "base": 0.6,
+    "high": 1.5
+  },
+  "automatable_hours_per_month": {
+    "low": 0.1,
+    "base": 0.4,
+    "high": 1.3
+  },
+  "dollars_per_month": {
+    "low": 7.07,
+    "base": 33.5,
+    "high": 108.23
+  },
+  "derivation": {
+    "formula_id": "hours_v1",
+    "estimate_version": "1.0.0",
+    "measured": {
+      "instances": 11,
+      "messages": 13,
+      "dated_messages": 13,
+      "undated_messages": 0,
+      "participants_median": 3,
+      "months": 5.0,
+      "rework_rate": 0.0,
+      "waiting_rate": 0.0,
+      "manual_transfer_rate": 0.07692307692307693,
+      "senders": 4
+    },
+    "assumed": {
+      "handle_min": 9.0,
+      "per_touch_min": 4.0,
+      "rework_min": 12.0,
+      "waiting_admin_min": 3.0,
+      "automatable_share": 0.65
+    },
+    "assumed_global": {
+      "blended_rate_usd_per_hour": 85.0,
+      "coordination_alpha": 0.35,
+      "extrapolation_factor": 1.0
+    },
+    "assumption_source": "config/estimation.yml#task_classes.meter_data",
+    "steps": [
+      "11.00 task instances / 5 months of coverage = 2.200 instances per month",
+      "minutes per instance = 9 handle + (1.18 touches - 1) x 4 + 0.00 rework rate x 12 + 0.00 waiting rate x 3 = 9.73 min",
+      "coordination multiplier = 1 + 0.35 x (3 median participants - 1) = 1.700",
+      "hours per month = 2.200 x 9.73 x 1.700 / 60 = 0.606",
+      "automatable hours = 0.606 x 0.65 automatable share = 0.394",
+      "dollars per month = 0.394 h x $85/h = $33.50"
+    ],
+    "result": {
+      "hours_per_month": 0.6,
+      "automatable_hours_per_month": 0.4,
+      "dollars_per_month": 33.5
+    }
+  },
+  "citations": [
+    {
+      "citation_id": "cit_a571de3d3430",
+      "source_path": "corpus/farmer-d/logistics/153.",
+      "source_sha256": "79e43a70ce968533d4059bb1a2346def5a7a66bd0a6b5424fb455261a087c91f",
+      "message_id": "<7210860.1075840435823.JavaMail.evans@thyme>",
+      "msg_uid": "m_64654c95163c",
+      "quote": "Meter 6722 (not sure if you need this) - Julie",
+      "match_tier": "raw_exact",
+      "raw_start": 552,
+      "raw_end": 598,
+      "decoded_start": 1,
+      "decoded_end": 47,
+      "line_start": 17,
+      "line_end": 17,
+      "repaired": false,
+      "sender": "juliann.kemp@enron.com",
+      "sent_at": "2001-04-30T07:36:41-07:00",
+      "subject": "Duke Energy meter 6722 May 2001",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=552 count=46 if=corpus/farmer-d/logistics/153. 2>/dev/null",
+        "sed": "sed -n '17,17p' corpus/farmer-d/logistics/153."
+      }
+    }
+  ],
+  "quarantined_citations": [],
+  "member_count": 13,
+  "member_uids": [
+    "m_64654c95163c",
+    "m_f5c96ac8f303",
+    "m_ad1b54e0f08c",
+    "m_a84d54b96851",
+    "m_e3101d94356b",
+    "m_07d80154ef29",
+    "m_7eda026c71fb",
+    "m_2e10e2f0996e",
+    "m_b9e312bbb441",
+    "m_7ec4e2cbea92",
+    "m_04bacc21e37d",
+    "m_d1ccc5b5ecc4",
+    "m_a35794a8a50c"
+  ],
+  "flags": []
+}

@@ -1,47 +1,88 @@
-# Build assignment: an observation agent
+# Observation agent
 
-You are given a company's email archive. Build a system that reads all of it, works out where that company is losing time, proves every claim it makes, and puts the result on a dashboard. It should also act on what it finds rather than only describing it.
+Reads a company's entire email archive, works out where it is losing time, proves every
+claim against the raw files, and serves the result on a dashboard. It also acts on what it
+finds: for the biggest opportunities it drafts a document someone could use the next
+morning.
 
-Claude Code is the runtime here. The thing you deliver runs inside it and is driven by it. That is the exercise.
+Built to run inside Claude Code on a subscription. No API keys, no API spend, everything
+local.
 
-## The corpus
+## Quick start
 
-A subset of the Enron email archive, 3,240 messages, at `corpus/` in this repo. It is raw. Some messages have no usable date. Some are duplicated. One is enormous. The formatting is inconsistent because it came off a real mail server in 2002.
+```bash
+uv sync --extra dev          # Python 3.12, pinned by uv.lock
+make doctor                  # one real model call, to fail fast with a specific remedy
+make run                     # the whole pipeline
+make serve                   # dashboard on http://localhost:8787
+```
 
-It is about thirty times larger than a single context window. Everything about this assignment follows from that.
+`make run` is safe to re-run. Everything is content-addressed, so an unchanged corpus
+replays from cache in seconds and an interrupted run resumes by running it again.
 
-## What it has to do
+If the `claude` CLI is not on your `PATH`, the runner finds it anyway (including inside a
+VS Code extension directory). Set `CLAUDE_BIN` to override. If it is not authenticated,
+`make doctor` says exactly what to run.
 
-One command, and the system:
+## Check it rather than trust it
 
-1. Reads every message in the corpus. Not a sample.
+```bash
+make verify    # re-anchors every citation from scratch, recomputes every number
+make test      # full suite, zero model calls
+```
 
-2. Identifies the recurring processes at that company: the work that happens over and over, who touches it, how often, and where it stalls.
+`make verify` shares no state with the pipeline. It re-reads the corpus off disk, re-hashes
+every file, re-slices every published byte range, and asserts each citation matches at the
+tier it claims **and no weaker one**. Then it recomputes every hours-and-dollars figure from
+its own published derivation and asserts equality to the cent, and that the headline equals
+the sum of its parts.
 
-3. Ranks the automation opportunities. Each one carries an estimate of hours per month and dollars per month at a blended $85/hour.
+`docs/AUDIT.md` holds 25 randomly sampled citations with the `dd` and `sed` commands that
+reproduce each one. Every citation in the dashboard shows both.
 
-4. Cites everything. Every process and every opportunity traces back to specific messages, each carrying a verbatim quote. A claim that cannot name its evidence does not ship. I will pull claims at random and check them against the raw files.
+## How it works
 
-5. Acts. For the opportunities above a threshold you choose, produce a drafted artifact someone could use the next morning: a written SOP, a draft email, a checklist, a template. You decide what is worth producing, and you defend that decision in your notes.
+A deterministic conductor whose entire workforce is Claude Code.
 
-6. Serves a dashboard on localhost. Ranked opportunities, the running dollar total, and drill-through on every claim. If I cannot click a number and land on the message it came from, the dashboard is not finished. It should look like something I would put in front of a client president.
+| Stage | Kind |
+|---|---|
+| parse, decode, resolve identity, dedupe, thread, triage | deterministic |
+| classify each message | **model**, ~100 batched calls |
+| block, cluster, gate, label | deterministic |
+| describe each promoted cluster | **model**, one call each |
+| measure, cost, rank | deterministic |
+| anchor every quote to raw bytes, gate claims | deterministic |
+| draft artifacts above the threshold | **model**, up to 7 calls |
+| render report and dashboard data | deterministic |
 
-## Constraints
+The split is not arbitrary. *Promises about control flow* — finishes unattended, inside a
+time budget, resumable, arithmetic exact, tests pass with no model — cannot be delegated to
+a model, because a model cannot promise its own control flow. *Judgments* — what is this
+message about, where does this work stall, what should the SOP say — cannot be delegated to
+code.
 
-- No paid API keys and no API spend, yours or mine. It runs on your Claude Code subscription. Wanting to buy tokens means the design went wrong somewhere.
-- A full run completes unattended in under 30 minutes.
-- Re-running against an unchanged corpus does not repeat finished work.
-- Anything that has to be exactly right is deterministic code rather than a model call. Parsing, deduplication, the hours and dollars arithmetic, citation validation, the server. I will check whether a model was left holding any of it.
-- Tests pass without invoking a model at all.
-- Python or TypeScript for the deterministic parts.
-- Everything runs locally.
+Two invariants hold the whole thing up, and both are enforced rather than asserted:
 
-## What to send back
+- **Every published quote is sliced out of a corpus file**, never copied from model output.
+  A hallucinated quote cannot reach the report because there is nothing to assign.
+- **No model produces a duration or an amount.** A guard rejects any response containing
+  one, and a test proves it with a recorded poisoned response.
 
-- The repo.
-- Your `.claude/` directory exactly as you used it. CLAUDE.md, subagents, skills, hooks, slash commands, settings, whatever you built.
-- `NOTES.md`, two pages at most. How you drove Claude Code. What you handed to subagents and why. How you budgeted their context. What you ran in parallel. Where Claude Code got it wrong and how you caught it before it reached the output. What you would build next with another week.
-- In those notes, tell me where your system is most likely to be wrong, and what it took on faith because you had no way to check it.
-- The output of one real run: the report, the dashboard, the run logs, and the drafted artifacts.
+`NOTES.md` covers how Claude Code was driven, what went wrong along the way, and — at
+length — where this system is most likely to be wrong.
 
-Push all of it to your own repo and send me the link.
+## Layout
+
+```
+observe/            the pipeline; cli.py is the entrypoint
+  ingest/qp.py      quoted-printable decoding with a byte-offset map
+  evidence/anchor.py  quote -> byte range; the slice-never-copy invariant
+  estimate/model.py   counts -> hours -> dollars, in Decimal
+  verify.py         the independent re-verifier
+  serve.py          the dashboard server; reads files, computes nothing
+config/             every assumption, commented, with low/base/high bands
+.claude/            agents, skills, hooks, slash commands, settings as used
+out/                the report, dashboard data, drafted artifacts
+runs/<id>/          run.jsonl: one JSON event per unit of work
+tests/              full suite; a fixture makes model calls impossible
+```

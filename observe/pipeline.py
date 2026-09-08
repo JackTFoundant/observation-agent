@@ -34,7 +34,9 @@ import yaml
 
 from observe import cluster as cluster_mod
 from observe import extract as extract_mod
-from observe.cache import Cache, prompt_hash, sha256_text
+from observe.cache import (
+    ARTIFACT_PROMPT_FILES, CHARACTERIZE_PROMPT_FILES, EXTRACT_PROMPT_FILES,
+    Cache, prompt_hash, sha256_text)
 from observe.classify import classify, detect_table
 from observe.dedupe import build_threads, find_duplicates
 from observe.dispatch import RunLog, Unit, dispatch
@@ -156,29 +158,52 @@ def stage0(ctx: Context) -> Corpus:
 def stage1(ctx: Context, corpus: Corpus, *, model: str = "sonnet") -> dict:
     schema, schema_hash = extract_mod.load_schema(ctx.root)
     system_prompt = extract_mod.load_system_prompt(ctx.root)
-    ph = prompt_hash(ctx.root / ".claude")
+    ph = prompt_hash(ctx.root / ".claude", *EXTRACT_PROMPT_FILES)
 
-    units = extract_mod.build_units(
+    cards = extract_mod.message_cards(
         corpus.survivors, corpus.classifications,
         prompt_hash=ph, model=model, schema_hash=schema_hash,
     )
+
+    # The unit of cached work is one message. Batching is only how they travel.
+    key_by_uid = {uid: key for uid, _card, key in cards}
+    cached = ctx.cache.get_many(extract_mod.MESSAGE_STAGE, [k for _u, _c, k in cards])
+    extractions: dict[str, dict] = {}
+    todo: list[tuple[str, object, str]] = []
+    for uid, card, key in cards:
+        if key in cached:
+            extractions[uid] = cached[key]
+        else:
+            todo.append((uid, card, key))
+
+    ctx.log.event(stage="extract", event="message_cache_pass",
+                  total=len(cards), cached=len(extractions), todo=len(todo))
+
+    units = extract_mod.build_units(todo)
     outcome = dispatch(
-        units, stage="extract", system_prompt=system_prompt, json_schema=schema,
+        units, stage="extract_batch", system_prompt=system_prompt, json_schema=schema,
         validate=extract_mod.validate, cache=ctx.cache, log=ctx.log, model=model,
         effort="low", concurrency=ctx.concurrency, timeout=300,
         deadline_at=ctx.deadline_at, max_model_calls=300, split=extract_mod.split_unit,
     )
 
-    extractions: dict[str, dict] = {}
     for result in outcome.results.values():
         for item in result.get("messages", []):
-            extractions[item["msg_uid"]] = item
+            uid = item.get("msg_uid")
+            if uid not in key_by_uid:
+                continue
+            extractions[uid] = item
+            # Store per message, so the next run skips it whatever batch it lands in.
+            ctx.cache.put(extract_mod.MESSAGE_STAGE, key_by_uid[uid], item, unit_id=uid,
+                          model=model)
 
     ctx.stats["stage1"] = {
+        "messages_eligible": len(cards),
+        "cache_hits_messages": len(cards) - len(todo),
+        "messages_extracted_now": len(todo),
         "batches": len(units), "batches_ok": len(outcome.results),
-        "model_calls": outcome.model_calls, "cache_hits": outcome.cache_hits,
+        "model_calls": outcome.model_calls,
         "extractions": len(extractions), "failed_batches": len(outcome.failed),
-        "messages_offered": sum(len(u.expected_ids) for u in units),
     }
     ctx.log.event(stage="extract", event="stage_done", **ctx.stats["stage1"])
     return extractions
@@ -255,7 +280,7 @@ def stage3(ctx: Context, clusters, records: dict, *, model: str = "opus") -> dic
     schema.pop("$schema", None)
     schema_hash = sha256_text(json.dumps(schema, sort_keys=True))
     system_prompt = _characterizer_prompt(ctx.root)
-    ph = prompt_hash(ctx.root / ".claude")
+    ph = prompt_hash(ctx.root / ".claude", *CHARACTERIZE_PROMPT_FILES)
 
     units: list[Unit] = []
     for c in promoted:
@@ -341,3 +366,105 @@ def _render_cluster(c, records: dict) -> str:
             quote = (ev.get("quote_proposal") or "").replace("\n", " ")[:240]
             lines.append(f'    quote: "{quote}"')
     return "\n".join(lines)
+
+# ---------------------------------------------------------------------------
+# Stage 4-5 - measure, cite, gate, cost, rank
+# ---------------------------------------------------------------------------
+
+def stage45(ctx: Context, corpus: Corpus, clusters, records: dict,
+            characterizations: dict, series):
+    """Everything here is deterministic. No model is consulted about any number."""
+    from observe.recurring import promote as promote_series
+    from observe.reduce import build as build_mod
+
+    t0 = time.monotonic()
+    config = ctx.root / "config/estimation.yml"
+    get_raw = build_mod._raw_cache(ctx.corpus)
+
+    promoted_series, rejected_series = promote_series(series)
+    opportunities = build_mod.build_from_clusters(
+        clusters, characterizations, records, corpus, config, get_raw)
+    opportunities += build_mod.build_from_series(
+        promoted_series, corpus, config, get_raw, characterizations)
+    opportunities = build_mod.rank(opportunities)
+
+    counted = [o for o in opportunities if o.status == "counted"]
+    cited = sum(len(o.citations) for o in opportunities)
+    quarantined_cits = sum(len(o.quarantined_citations) for o in opportunities)
+
+    ctx.stats["stage45"] = {
+        "opportunities": len(opportunities),
+        "counted": len(counted),
+        "low_confidence": sum(1 for o in opportunities if o.status == "low_confidence"),
+        "quarantined": sum(1 for o in opportunities if o.status == "quarantined"),
+        "citations_verified": cited,
+        "citations_quarantined": quarantined_cits,
+        "series_promoted": len(promoted_series),
+        "series_rejected": len(rejected_series),
+        "seconds": round(time.monotonic() - t0, 2),
+    }
+    ctx.log.event(stage="build", event="done", **ctx.stats["stage45"])
+    return opportunities, rejected_series
+
+
+# ---------------------------------------------------------------------------
+# Stage 7 - render
+# ---------------------------------------------------------------------------
+
+def stage7(ctx: Context, corpus: Corpus, opportunities, clusters, rejected_series,
+           artifacts: list[dict] | None = None) -> dict:
+    from observe.reduce import render as render_mod
+    t0 = time.monotonic()
+    summary = render_mod.write_all(
+        ctx, corpus, opportunities, clusters, rejected_series, artifacts or [])
+    ctx.stats["stage7"] = {"seconds": round(time.monotonic() - t0, 2)}
+    ctx.log.event(stage="render", event="done", **ctx.stats["stage7"])
+    return summary
+
+
+# ---------------------------------------------------------------------------
+# Stage 6 - act
+# ---------------------------------------------------------------------------
+
+def stage6(ctx: Context, opportunities, *, model: str = "opus") -> tuple[list[dict], list[dict]]:
+    """Draft a usable document for each opportunity above the defended threshold."""
+    from observe.reduce import artifacts as art
+
+    thresholds = art.Thresholds.load(ctx.root / "config/thresholds.yml")
+    selected, skipped = art.select(opportunities, thresholds)
+    if not selected:
+        ctx.stats["stage6"] = {"selected": 0, "written": 0, "skipped": len(skipped)}
+        return [], skipped
+
+    schema = json.loads((ctx.root / "schemas/artifact.schema.json").read_text())
+    schema.pop("$schema", None)
+    schema_hash = sha256_text(json.dumps(schema, sort_keys=True))
+    agent = extract_mod._strip_frontmatter(
+        (ctx.root / ".claude/agents/artifact-drafter.md").read_text())
+    skill = extract_mod._strip_frontmatter(
+        (ctx.root / ".claude/skills/enron-email-forensics/SKILL.md").read_text())
+    system_prompt = ("You draft one working document. You return JSON only.\n\n"
+                     + agent + "\n\n---\n\n# Domain reference\n\n" + skill)
+    ph = prompt_hash(ctx.root / ".claude", *ARTIFACT_PROMPT_FILES)
+
+    units = art.build_units(selected, prompt_hash=ph, model=model, schema_hash=schema_hash)
+    outcome = dispatch(
+        units, stage="artifact", system_prompt=system_prompt, json_schema=schema,
+        validate=art.validate, cache=ctx.cache, log=ctx.log, model=model, effort="high",
+        concurrency=min(4, ctx.concurrency), timeout=360, deadline_at=ctx.deadline_at,
+        max_model_calls=40,
+    )
+    written = art.write_files(outcome.results, selected, ctx.root / "out" / "artifacts")
+    for f in outcome.failed:
+        skipped.append({"opportunity_id": f["unit_id"].replace("artifact_", ""),
+                        "title": "", "reasons": [f"drafting failed: {f['detail'][:160]}"]})
+
+    ctx.stats["stage6"] = {
+        "selected": len(selected), "written": len(written),
+        "skipped": len(skipped), "model_calls": outcome.model_calls,
+        "cache_hits": outcome.cache_hits, "failed": len(outcome.failed),
+        "threshold_dollars": thresholds.min_dollars,
+        "cap": thresholds.max_artifacts,
+    }
+    ctx.log.event(stage="artifact", event="stage_done", **ctx.stats["stage6"])
+    return written, skipped

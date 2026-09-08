@@ -31,7 +31,20 @@ MAX_QUOTE_CHARS = 300
 
 # Ordered strongest to weakest. A citation records the strongest tier it actually matched,
 # and `verify` later asserts it matches at that tier and *no weaker one*.
-TIERS = ("raw_exact", "decoded_exact", "normalized")
+#
+# `rewrapped` exists because lumping it in with `normalized` was materially unfair to good
+# evidence. Mail from 2001 hard-wraps at about 72 columns, so a sentence a human typed as
+# one line is stored across two or three. A model quoting that sentence reproduces it as
+# one line, which is a *faithful* quote that simply cannot be found byte-for-byte. The
+# characters are identical apart from where the newlines fall.
+#
+# `normalized` is genuinely weaker: it needed case folding or punctuation substitution to
+# match, so the quote is no longer character-identical to the source. Only that tier is
+# capped, and it was demoting four well-evidenced findings when the two were conflated.
+TIERS = ("raw_exact", "decoded_exact", "rewrapped", "normalized")
+
+# Tiers whose published quote is character-identical to the source apart from line breaks.
+STRONG_TIERS = frozenset({"raw_exact", "decoded_exact", "rewrapped"})
 
 _WS = re.compile(r"\s+")
 _SMART = str.maketrans({
@@ -110,6 +123,15 @@ def citation_id(source_path: str, raw_start: int, raw_end: int) -> str:
     return "cit_" + hashlib.sha256(key).hexdigest()[:12]
 
 
+def collapse_whitespace(text: str) -> str:
+    """Whitespace-only folding. Characters are otherwise untouched.
+
+    This is what recovers a quote that a mail client hard-wrapped: same characters, and
+    only the newlines moved.
+    """
+    return _WS.sub(" ", text).strip()
+
+
 def normalize_for_match(text: str) -> str:
     """The weakest comparison we will accept: NFKC, smart punctuation folded, whitespace
     collapsed, lowercased. Used only for the `normalized` tier."""
@@ -128,18 +150,21 @@ def _line_bounds(raw: str, start: int, end: int) -> tuple[int, int]:
     return line_start, line_end
 
 
-def _find_normalized(haystack: str, needle: str) -> tuple[int, int] | None:
-    """Locate a normalized needle inside a haystack, returning *haystack* offsets.
+def _find_folded(haystack: str, needle: str, fold=None) -> tuple[int, int] | None:
+    """Locate a folded needle inside a haystack, returning *haystack* offsets.
 
     Built by walking the haystack once and recording, for each character kept by
     normalization, where it came from. That keeps the mapping exact rather than guessing
     at an offset after the fact.
     """
+    if fold is None:
+        def fold(ch: str) -> str:
+            return unicodedata.normalize("NFKC", ch).translate(_SMART).lower()
     norm_chars: list[str] = []
     origins: list[int] = []
     prev_space = True
     for i, ch in enumerate(haystack):
-        folded = unicodedata.normalize("NFKC", ch).translate(_SMART).lower()
+        folded = fold(ch)
         if not folded:
             continue
         if folded.isspace():
@@ -197,14 +222,25 @@ def anchor_quote(
         rs, re_ = omap.to_raw(idx, idx + len(proposal))
         return rs, re_, idx, idx + len(proposal), "decoded_exact", False
 
-    # Tier 3: matches only after normalization.
+    # Tier 3: whitespace-only. The quote is character-identical; the mail client wrapped it.
+    rewrapped_needle = collapse_whitespace(proposal)
+    if len(rewrapped_needle) >= MIN_QUOTE_CHARS:
+        hit = _find_folded(body_decoded, rewrapped_needle, fold=lambda ch: ch)
+        if hit:
+            rs, re_ = omap.to_raw(hit[0], hit[1])
+            return rs, re_, hit[0], hit[1], "rewrapped", False
+        hit = _find_folded(raw, rewrapped_needle, fold=lambda ch: ch)
+        if hit:
+            return hit[0], hit[1], 0, 0, "rewrapped", False
+
+    # Tier 4: matches only after case and punctuation folding too.
     needle = normalize_for_match(proposal)
     if len(needle) >= MIN_QUOTE_CHARS:
-        hit = _find_normalized(body_decoded, needle)
+        hit = _find_folded(body_decoded, needle)
         if hit:
             rs, re_ = omap.to_raw(hit[0], hit[1])
             return rs, re_, hit[0], hit[1], "normalized", False
-        hit = _find_normalized(raw, needle)
+        hit = _find_folded(raw, needle)
         if hit:
             return hit[0], hit[1], 0, 0, "normalized", False
 
@@ -269,6 +305,8 @@ def build_citation(
     flags: list[str] = []
     if tier != "raw_exact":
         flags.append(f"tier_{tier}")
+    if tier not in STRONG_TIERS:
+        flags.append("weak_tier")
     if repaired:
         flags.append("repaired_to_source_text")
 
@@ -325,6 +363,10 @@ def reverify(citation: dict, raw: str, body_decoded: str, omap: OffsetMap) -> tu
             if mapped[0] <= rs and re_ <= mapped[1]:
                 return True, "ok"
         return False, "decoded_span_does_not_map_to_raw_range"
+    if tier == "rewrapped":
+        if collapse_whitespace(quote) and collapse_whitespace(quote) in collapse_whitespace(raw):
+            return True, "ok"
+        return False, "rewrapped_match_failed"
     if tier == "normalized":
         if normalize_for_match(quote) and normalize_for_match(quote) in normalize_for_match(raw):
             return True, "ok"

@@ -1,0 +1,12 @@
+{
+  "verify_version": "1.0.0",
+  "passed": true,
+  "checks": 161,
+  "failures": [],
+  "warnings": [],
+  "citation_tiers": {
+    "raw_exact": 86,
+    "rewrapped": 25,
+    "decoded_exact": 1
+  }
+}

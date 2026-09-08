@@ -1,0 +1,347 @@
+{
+  "opportunity_id": "proc_74b0718acf",
+  "source": "content_cluster",
+  "title": "Metered gas that flowed with no deal: HPL Logistics write-off requests",
+  "task_class": "deal_entry_correction",
+  "label_mechanical": "Deal entry and correction in Sitara / Unify / TAGG: resolve meter / deal / flow",
+  "narrative": {
+    "what_happens": "A meter on HPL's system records gas that flowed on days where no deal covers the volume, and Logistics cannot record it. Someone in Logistics mails the desk a per-meter, per-month write-up naming the days, the volumes and the expired or missing deal number, then asks the recipient to choose one of a standard set of remedies: extend the existing deal, issue a new deal, or approve a write-off to Unaccounted for Gas. The recipient is expected to reply with a deal number or an approval; in this set only a small number of replies are visible, one of them supplying a deal number and one escalating because the named person did not recognise the deal. The message body is written by hand each time even though the three-option wording is near-identical across instances, and the same template recurs meter by meter.",
+    "where_it_stalls": "The sender cannot close the volume alone \u2014 the fix requires a trader or deal owner to extend a contract, cut a new deal, or authorise a write-off, and almost every message in this cluster is an outbound request with almost no visible reply. Where a response does appear, it is either a deal number supplied late or an escalation reporting that the person asked was unaware of the deal and speculating it might relate to ENTEX. The volumes are frequently months old by the time they surface (contracts expired the prior August or September), so the work is reconstruction after the fact rather than correction at the point of flow.",
+    "why_it_recurs": "Contracts expire while gas keeps physically flowing at the meter, and nothing links the deal's end date to the meter's measurement, so every accounting cycle throws up a fresh batch of uncovered volumes to be chased by hand.",
+    "automation_opportunity": "A scheduled comparison of measured meter flow against active deal coverage that flags uncovered meter-days as they occur and raises a pre-filled request naming the meter, days, volumes and the expired deal, with the three standard dispositions as selectable options routed to the deal owner and logged when answered. Contract expiry dates could also trigger an advance warning at meters still recording flow.",
+    "coherence": "tight"
+  },
+  "status": "counted",
+  "status_reason": "",
+  "confidence": "medium",
+  "artifact_shape": "template",
+  "measured": {
+    "instances": 18,
+    "messages": 19,
+    "dated_messages": 19,
+    "undated_messages": 0,
+    "participants_median": 4,
+    "months": 3.0,
+    "rework_rate": 0.9473684210526315,
+    "waiting_rate": 0.05263157894736842,
+    "manual_transfer_rate": 0.42105263157894735,
+    "senders": 5
+  },
+  "gate_metrics": {
+    "messages": 19,
+    "distinct_content": 19,
+    "senders": 5,
+    "threads": 18,
+    "months": 3,
+    "weeks": 5,
+    "folders": 1,
+    "people": 13
+  },
+  "signal_rates": {
+    "rework_signal": 0.9474,
+    "waiting_signal": 0.0526,
+    "manual_transfer_signal": 0.4211,
+    "deadline_signal": 0.0
+  },
+  "systems": {
+    "other_system": 19
+  },
+  "roles": {
+    "request": 16,
+    "response": 2,
+    "escalation": 1
+  },
+  "months": [
+    "2000-12",
+    "2001-01",
+    "2001-03"
+  ],
+  "people": 13,
+  "hours_per_month": {
+    "low": 2.0,
+    "base": 6.0,
+    "high": 15.7
+  },
+  "automatable_hours_per_month": {
+    "low": 0.5,
+    "base": 2.7,
+    "high": 10.2
+  },
+  "dollars_per_month": {
+    "low": 42.68,
+    "base": 231.23,
+    "high": 865.03
+  },
+  "derivation": {
+    "formula_id": "hours_v1",
+    "estimate_version": "1.0.0",
+    "measured": {
+      "instances": 18,
+      "messages": 19,
+      "dated_messages": 19,
+      "undated_messages": 0,
+      "participants_median": 4,
+      "months": 3.0,
+      "rework_rate": 0.9473684210526315,
+      "waiting_rate": 0.05263157894736842,
+      "manual_transfer_rate": 0.42105263157894735,
+      "senders": 5
+    },
+    "assumed": {
+      "handle_min": 12.0,
+      "per_touch_min": 5.0,
+      "rework_min": 18.0,
+      "waiting_admin_min": 3.0,
+      "automatable_share": 0.45
+    },
+    "assumed_global": {
+      "blended_rate_usd_per_hour": 85.0,
+      "coordination_alpha": 0.35,
+      "extrapolation_factor": 1.0
+    },
+    "assumption_source": "config/estimation.yml#task_classes.deal_entry_correction",
+    "steps": [
+      "18.00 task instances / 3 months of coverage = 6.000 instances per month",
+      "minutes per instance = 12 handle + (1.06 touches - 1) x 5 + 0.95 rework rate x 18 + 0.05 waiting rate x 3 = 29.49 min",
+      "coordination multiplier = 1 + 0.35 x (4 median participants - 1) = 2.050",
+      "hours per month = 6.000 x 29.49 x 2.050 / 60 = 6.045",
+      "automatable hours = 6.045 x 0.45 automatable share = 2.720",
+      "dollars per month = 2.720 h x $85/h = $231.23"
+    ],
+    "result": {
+      "hours_per_month": 6.0,
+      "automatable_hours_per_month": 2.7,
+      "dollars_per_month": 231.23
+    }
+  },
+  "citations": [
+    {
+      "citation_id": "cit_8d089971756a",
+      "source_path": "corpus/farmer-d/logistics/2016.",
+      "source_sha256": "0de32ac95b97abc43dcb9c10b31c6b93ad186ca5c681351b5290aa780c1f341a",
+      "message_id": "<286235.1075854317780.JavaMail.evans@thyme>",
+      "msg_uid": "m_2aa5baf1b341",
+      "quote": "Logistics needs either (1) Deal #124400 extended, (2) new \ndeal, or (3) approval to write-off these volumes to Unaccounted for Gas.",
+      "match_tier": "rewrapped",
+      "raw_start": 966,
+      "raw_end": 1097,
+      "decoded_start": 257,
+      "decoded_end": 388,
+      "line_start": 32,
+      "line_end": 33,
+      "repaired": false,
+      "sender": "clem.cernosek@enron.com",
+      "sent_at": "2000-12-28T03:26:00-08:00",
+      "subject": "HPL Meter #981488 PARIS TENASKA HPL",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=966 count=131 if=corpus/farmer-d/logistics/2016. 2>/dev/null",
+        "sed": "sed -n '32,33p' corpus/farmer-d/logistics/2016."
+      }
+    },
+    {
+      "citation_id": "cit_6a326ad8af84",
+      "source_path": "corpus/farmer-d/logistics/2040.",
+      "source_sha256": "d73dcb120fb57dae2f256af40ae210c118e8093d1f221eda856d22fbb3a13b6c",
+      "message_id": "<7558194.1075854318319.JavaMail.evans@thyme>",
+      "msg_uid": "m_c6a1cda8d103",
+      "quote": "Logistics needs either \n(1) Deals #133196 or #466305 extended to cover September and October 2000, \n(2) a new deal to cover September and October 2000, or (3) Logistics needs \napproval to write-off",
+      "match_tier": "rewrapped",
+      "raw_start": 1597,
+      "raw_end": 1794,
+      "decoded_start": 767,
+      "decoded_end": 964,
+      "line_start": 47,
+      "line_end": 50,
+      "repaired": false,
+      "sender": "mark.mccoy@enron.com",
+      "sent_at": "2001-01-09T06:21:00-08:00",
+      "subject": "Re: HPL Meter #985892 South Katy Gas Unit No. 2 #1",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1597 count=197 if=corpus/farmer-d/logistics/2040. 2>/dev/null",
+        "sed": "sed -n '47,50p' corpus/farmer-d/logistics/2040."
+      }
+    },
+    {
+      "citation_id": "cit_530ca9cedadf",
+      "source_path": "corpus/farmer-d/logistics/2020.",
+      "source_sha256": "43421c4ba673ea02bfa78a13421ee30545d3d053dc08f97b0e64255db7697b65",
+      "message_id": "<1007009.1075854317870.JavaMail.evans@thyme>",
+      "msg_uid": "m_a83e8098a539",
+      "quote": "Deal #135714 was at this meter, but the contract tied to this deal expired at \nthe end of August 2000",
+      "match_tier": "rewrapped",
+      "raw_start": 1011,
+      "raw_end": 1112,
+      "decoded_start": 394,
+      "decoded_end": 495,
+      "line_start": 38,
+      "line_end": 39,
+      "repaired": false,
+      "sender": "clem.cernosek@enron.com",
+      "sent_at": "2000-12-28T08:27:00-08:00",
+      "subject": "HPL Meter #984179 HOFF-HELLER UNIT #22 CDP",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1011 count=101 if=corpus/farmer-d/logistics/2020. 2>/dev/null",
+        "sed": "sed -n '38,39p' corpus/farmer-d/logistics/2020."
+      }
+    },
+    {
+      "citation_id": "cit_12118e5ff76f",
+      "source_path": "corpus/farmer-d/logistics/2041.",
+      "source_sha256": "0dbfd93b14ec391310b8e8582b45a53bc8a24b7b0299d4f9bb8692f9292a75e9",
+      "message_id": "<27052789.1075854318341.JavaMail.evans@thyme>",
+      "msg_uid": "m_48369e75613e",
+      "quote": "Daren indicated that he was not aware of \nthis deal unless it has something to do with ENTEX",
+      "match_tier": "rewrapped",
+      "raw_start": 650,
+      "raw_end": 742,
+      "decoded_start": 37,
+      "decoded_end": 129,
+      "line_start": 21,
+      "line_end": 22,
+      "repaired": false,
+      "sender": "katherine.herrera@enron.com",
+      "sent_at": "2001-01-10T03:02:00-08:00",
+      "subject": "Dec 2000 Prod: Panther Pipeline Demand Charge",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=650 count=92 if=corpus/farmer-d/logistics/2041. 2>/dev/null",
+        "sed": "sed -n '21,22p' corpus/farmer-d/logistics/2041."
+      }
+    },
+    {
+      "citation_id": "cit_9a16ee1ba968",
+      "source_path": "corpus/farmer-d/logistics/2013.",
+      "source_sha256": "c9aa0575283bb7e1ded4547ea39b1e761e3ace52c5b715a2080eb019978ad57b",
+      "message_id": "<10214788.1075854317706.JavaMail.evans@thyme>",
+      "msg_uid": "m_5f8320c45418",
+      "quote": "HPL Logistics needs either a deal to \nrecord these volumes which have flowed into HPL's pipeline or Logistics needs \napproval to write-off these volumes",
+      "match_tier": "rewrapped",
+      "raw_start": 884,
+      "raw_end": 1036,
+      "decoded_start": 263,
+      "decoded_end": 415,
+      "line_start": 24,
+      "line_end": 26,
+      "repaired": false,
+      "sender": "clem.cernosek@enron.com",
+      "sent_at": "2000-12-27T08:45:00-08:00",
+      "subject": "HPL Meter #981052 PASADENA PLANT PHILLIPS HPL",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=884 count=152 if=corpus/farmer-d/logistics/2013. 2>/dev/null",
+        "sed": "sed -n '24,26p' corpus/farmer-d/logistics/2013."
+      }
+    },
+    {
+      "citation_id": "cit_8d240e3c0e5b",
+      "source_path": "corpus/farmer-d/logistics/2129.",
+      "source_sha256": "21e711256facc133ff917da4926ceaeb46d4083eeb67fa2d1663131a54bd1379",
+      "message_id": "<27130500.1075854320333.JavaMail.evans@thyme>",
+      "msg_uid": "m_02df243b396f",
+      "quote": "This meter has recorded flow for the following days with no deal.",
+      "match_tier": "raw_exact",
+      "raw_start": 457,
+      "raw_end": 522,
+      "decoded_start": 0,
+      "decoded_end": 65,
+      "line_start": 19,
+      "line_end": 19,
+      "repaired": false,
+      "sender": "michael.olsen@enron.com",
+      "sent_at": "2001-03-21T06:18:00-08:00",
+      "subject": "meter 980070",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=457 count=65 if=corpus/farmer-d/logistics/2129. 2>/dev/null",
+        "sed": "sed -n '19,19p' corpus/farmer-d/logistics/2129."
+      }
+    },
+    {
+      "citation_id": "cit_a655ac28f382",
+      "source_path": "corpus/farmer-d/logistics/2129.",
+      "source_sha256": "21e711256facc133ff917da4926ceaeb46d4083eeb67fa2d1663131a54bd1379",
+      "message_id": "<27130500.1075854320333.JavaMail.evans@thyme>",
+      "msg_uid": "m_02df243b396f",
+      "quote": "How should this flow be handled?",
+      "match_tier": "raw_exact",
+      "raw_start": 684,
+      "raw_end": 716,
+      "decoded_start": 227,
+      "decoded_end": 259,
+      "line_start": 27,
+      "line_end": 27,
+      "repaired": false,
+      "sender": "michael.olsen@enron.com",
+      "sent_at": "2001-03-21T06:18:00-08:00",
+      "subject": "meter 980070",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=684 count=32 if=corpus/farmer-d/logistics/2129. 2>/dev/null",
+        "sed": "sed -n '27,27p' corpus/farmer-d/logistics/2129."
+      }
+    },
+    {
+      "citation_id": "cit_d8f168e52d1f",
+      "source_path": "corpus/farmer-d/logistics/2033.",
+      "source_sha256": "5c2c65cde5b00c0c4aca7e4a1f851c2f11f83c4c02d6a697233c394f9b6fd179",
+      "message_id": "<25339808.1075854318162.JavaMail.evans@thyme>",
+      "msg_uid": "m_bb09c0e2b23a",
+      "quote": "Logistics needs \neither (10 Deal issued, or (2) approval to write-off this volume to \nUnaccounted for Gas",
+      "match_tier": "rewrapped",
+      "raw_start": 685,
+      "raw_end": 790,
+      "decoded_start": 134,
+      "decoded_end": 239,
+      "line_start": 22,
+      "line_end": 24,
+      "repaired": false,
+      "sender": "clem.cernosek@enron.com",
+      "sent_at": "2001-01-08T04:32:00-08:00",
+      "subject": "HPL Meter #987195 Tatton Central Point",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=685 count=105 if=corpus/farmer-d/logistics/2033. 2>/dev/null",
+        "sed": "sed -n '22,24p' corpus/farmer-d/logistics/2033."
+      }
+    }
+  ],
+  "quarantined_citations": [],
+  "member_count": 19,
+  "member_uids": [
+    "m_a417ae5634a1",
+    "m_5d8eb1de8b9f",
+    "m_036daf87f0f8",
+    "m_ca4163e18e9b",
+    "m_5f8320c45418",
+    "m_0186944d0cf0",
+    "m_2aa5baf1b341",
+    "m_ceb79d8c8259",
+    "m_073c8835ce30",
+    "m_a83e8098a539",
+    "m_5d19138c2545",
+    "m_c53cc030ca00",
+    "m_bb09c0e2b23a",
+    "m_f1a69dd4c4e7",
+    "m_ffa22309452a",
+    "m_c6a1cda8d103",
+    "m_48369e75613e",
+    "m_b5bcadf5df24",
+    "m_02df243b396f"
+  ],
+  "flags": []
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Drafted artifact",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["title", "body_markdown", "citation_ids"],
+  "properties": {
+    "title": { "type": "string", "minLength": 8, "maxLength": 100 },
+    "body_markdown": { "type": "string", "minLength": 300, "maxLength": 12000 },
+    "citation_ids": { "type": "array", "items": { "type": "string" }, "maxItems": 12 }
+  }
+}

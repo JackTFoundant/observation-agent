@@ -105,33 +105,47 @@ def build_card(msg, cls: Classification) -> MessageCard:
     )
 
 
-def build_units(
+MESSAGE_STAGE = "extract_message"
+
+
+def message_cards(
     messages,
     classifications: dict[str, Classification],
     *,
     prompt_hash: str,
     model: str,
     schema_hash: str,
-    batch_size: int = BATCH_SIZE,
-) -> list[Unit]:
-    """Batch the messages that should reach a model.
-
-    The cache key is **per message**, combined into the batch key, so re-batching does not
-    invalidate work and an interrupted run resumes mid-batch.
-    """
+) -> list[tuple[str, MessageCard, str]]:
+    """Every message that should reach a model, with its own content-addressed cache key."""
     cards: list[tuple[str, MessageCard, str]] = []
     for m in messages:
         cls = classifications[m.msg_uid]
         if not cls.send_to_model:
             continue
         card = build_card(m, cls)
-        rendered = card.render()
         key = sha256_text(
-            "extract", m.file_sha256, str(m.novel_end), rendered,
+            "extract", m.file_sha256, str(m.novel_end), card.render(),
             prompt_hash, model, schema_hash, EXTRACT_VERSION,
         )
         cards.append((m.msg_uid, card, key))
+    return cards
 
+
+def build_units(
+    cards: list[tuple[str, MessageCard, str]],
+    *,
+    batch_size: int = BATCH_SIZE,
+) -> list[Unit]:
+    """Batch the (uncached) message cards for dispatch.
+
+    Batches are a transport detail, not a unit of work. The unit of work is one message,
+    cached under its own key — see `message_cards`. Batching per-message-cached work means
+    a changed batch boundary invalidates nothing: dedup got more conservative partway
+    through this build, the survivor set changed, every batch boundary moved, and with a
+    batch-keyed cache that alone would have thrown away 2,400 completed extractions.
+
+    It is also what makes an interrupted run resume mid-batch rather than redoing it.
+    """
     units: list[Unit] = []
     for i in range(0, len(cards), batch_size):
         chunk = cards[i:i + batch_size]

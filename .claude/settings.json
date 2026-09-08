@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/no_model_arithmetic.py\""
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(make *)",
+      "Bash(uv run *)",
+      "Bash(dd *)",
+      "Bash(sed -n *)",
+      "Bash(grep *)",
+      "Bash(rg *)",
+      "Read"
+    ]
+  }
+}

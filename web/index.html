@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Observation report</title>
+<link rel="stylesheet" href="/web/styles.css">
+</head>
+<body>
+
+<header class="dateline">
+  <div class="dateline-inner">
+    <div>
+      <div class="client">Operations observation</div>
+      <div class="scope" id="scope">reading report…</div>
+    </div>
+    <div class="dateline-right">
+      <a class="badge" id="verifyBadge" href="#/method" title="Independent re-verification">checking…</a>
+      <div class="runmeta" id="runmeta"></div>
+    </div>
+  </div>
+  <nav>
+    <a href="#/" data-route="/">Overview</a>
+    <a href="#/artifacts" data-route="/artifacts">Artifacts</a>
+    <a href="#/excluded" data-route="/excluded">Not counted</a>
+    <a href="#/method" data-route="/method">Method &amp; assumptions</a>
+  </nav>
+</header>
+
+<main id="view" aria-live="polite"><div class="loading">Loading…</div></main>
+
+<div class="drawer-backdrop" id="backdrop" hidden></div>
+<aside class="drawer" id="drawer" hidden aria-label="Detail">
+  <button class="drawer-close" id="drawerClose" aria-label="Close">&times;</button>
+  <div id="drawerBody"></div>
+</aside>
+
+<footer>
+  <p>Every quote below is produced by slicing bytes out of a corpus file &mdash; never copied
+  from model output. Each citation shows its byte range and line range, and the raw view
+  highlights the span by slicing the file the server just read from disk. Run
+  <code>make verify</code> to re-check all of it from scratch.</p>
+</footer>
+
+<script src="/web/app.js"></script>
+</body>
+</html>

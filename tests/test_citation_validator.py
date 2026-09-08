@@ -15,6 +15,7 @@ from pathlib import Path
 import pytest
 
 from observe.evidence.anchor import (
+    STRONG_TIERS,
     MIN_QUOTE_CHARS,
     AnchorError,
     anchor_quote,
@@ -84,13 +85,48 @@ def test_decoded_exact_tier_on_quoted_printable_message():
     assert f"tier_{cit.match_tier}" in cit.flags
 
 
-def test_normalized_tier_when_only_whitespace_differs():
+def test_rewrapped_tier_when_only_whitespace_differs():
+    """A whitespace-only difference gets its own tier, and it counts as strong evidence.
+
+    2001 mail hard-wraps at ~72 columns, so a sentence typed as one line is stored across
+    two or three, and a model quoting it faithfully produces one line that cannot be found
+    byte-for-byte. Treating that as equivalent to case-and-punctuation folding demoted four
+    well-evidenced findings to low confidence.
+    """
     raw, msg = load(NESTED)
     original = "Here is a list of the 66 physical deals that were zeroed out"
     assert original in raw
     proposal = "Here  is a  list of the 66   physical deals that were zeroed  out"
     cit = build_citation(proposal, raw=raw, msg=msg)
-    assert cit.match_tier in ("normalized", "decoded_exact")
+    assert cit.match_tier == "rewrapped"
+    assert cit.match_tier in STRONG_TIERS
+    assert "weak_tier" not in cit.flags
+    assert cit.quote == raw[cit.raw_start:cit.raw_end]
+
+
+def test_a_real_hard_wrapped_quote_from_the_corpus_anchors_as_rewrapped():
+    """The actual shape this tier exists for: a wrapped line quoted as one line."""
+    raw, msg = load(NESTED)
+    wrapped = None
+    lines = msg.body_decoded.split("\n")
+    for i in range(len(lines) - 1):
+        a, b = lines[i].strip(), lines[i + 1].strip()
+        if len(a) > 30 and len(b) > 20 and not b.startswith(("-", ">", "From:")):
+            wrapped = f"{a} {b}"
+            break
+    assert wrapped, "expected a wrapped pair in a real message"
+    cit = build_citation(wrapped[:200], raw=raw, msg=msg)
+    assert cit.match_tier in STRONG_TIERS
+    assert cit.quote == raw[cit.raw_start:cit.raw_end]
+
+
+def test_case_folding_is_still_only_the_weak_tier():
+    raw, msg = load(PLAIN)
+    proposal = "TRANSWESTERN'S AVERAGE DELIVERIES TO CALIFORNIA WERE 933 MMBTU/D"
+    cit = build_citation(proposal, raw=raw, msg=msg)
+    assert cit.match_tier == "normalized"
+    assert cit.match_tier not in STRONG_TIERS
+    assert "weak_tier" in cit.flags
     assert cit.quote == raw[cit.raw_start:cit.raw_end]
 
 

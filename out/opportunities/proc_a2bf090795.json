@@ -1,0 +1,341 @@
+{
+  "opportunity_id": "proc_a2bf090795",
+  "source": "content_cluster",
+  "title": "Correcting deal price and volume errors in Sitara by email request",
+  "task_class": "deal_entry_correction",
+  "label_mechanical": "Deal entry and correction in Sitara / Unify / TAGG: correct deal / system / trading",
+  "narrative": {
+    "what_happens": "Someone checks a booked deal against what was actually confirmed or against a spreadsheet they circulated, finds the price or the scheduled volume in Sitara does not match, and emails whoever can edit the ticket to change it. The messages name the deal or ticket number, state what Sitara currently shows, and state what it should say \u2014 a fixed price instead of an index or tier price, a different index basis, or a corrected volume. The recipient makes the edit in the system and replies to confirm; in some threads the requester cannot make the change themselves because of access restrictions on the deal. It ends when the deal in the system matches the confirmation, which is asserted in mail rather than shown by any system output.",
+    "where_it_stalls": "The correction cannot be made by the person who found it. One requester writes that they tried to open the Sitara ticket to fix swing pricing \"but I am not allowed to access it\", so the fix waits on a second party. Elsewhere the two sides disagree about the source of truth \u2014 a scheduled volume in Sitara against a volume in a spreadsheet the requester mailed \u2014 and the thread turns into asking whether there are conflicting numbers rather than a straight edit. Almost every message in this group carries a rework signal: the deal is being entered a second time by hand.",
+    "why_it_recurs": "Deals are captured once from a confirmation and are only checked afterwards by eye. There is no automatic comparison between the confirmed terms and what Sitara holds, so each mismatch surfaces individually and is fixed by an email to someone with edit rights.",
+    "automation_opportunity": "A scheduled reconciliation that compares confirmed price and volume against the Sitara record for each deal and emits an exception list to the desk, so discrepancies are found by the system rather than by reading. Paired with a standing change-request form carrying deal number, current value and corrected value, routed to whoever holds edit rights on that book.",
+    "coherence": "tight"
+  },
+  "status": "counted",
+  "status_reason": "",
+  "confidence": "high",
+  "artifact_shape": "template",
+  "measured": {
+    "instances": 11,
+    "messages": 12,
+    "dated_messages": 12,
+    "undated_messages": 0,
+    "participants_median": 1,
+    "months": 5.0,
+    "rework_rate": 0.8333333333333334,
+    "waiting_rate": 0.16666666666666666,
+    "manual_transfer_rate": 0.16666666666666666,
+    "senders": 7
+  },
+  "gate_metrics": {
+    "messages": 12,
+    "distinct_content": 12,
+    "senders": 7,
+    "threads": 11,
+    "months": 5,
+    "weeks": 7,
+    "folders": 2,
+    "people": 15
+  },
+  "signal_rates": {
+    "rework_signal": 0.8333,
+    "waiting_signal": 0.1667,
+    "manual_transfer_signal": 0.1667,
+    "deadline_signal": 0.0
+  },
+  "systems": {
+    "sitara": 5,
+    "other_system": 4,
+    "email": 3,
+    "spreadsheet": 2
+  },
+  "roles": {
+    "request": 5,
+    "correction": 3,
+    "fyi": 1,
+    "escalation": 1,
+    "confirmation": 1,
+    "handoff": 1
+  },
+  "months": [
+    "2000-09",
+    "2001-01",
+    "2001-04",
+    "2001-06",
+    "2001-08"
+  ],
+  "people": 15,
+  "hours_per_month": {
+    "low": 0.5,
+    "base": 1.0,
+    "high": 2.1
+  },
+  "automatable_hours_per_month": {
+    "low": 0.1,
+    "base": 0.5,
+    "high": 1.3
+  },
+  "dollars_per_month": {
+    "low": 10.34,
+    "base": 39.21,
+    "high": 113.94
+  },
+  "derivation": {
+    "formula_id": "hours_v1",
+    "estimate_version": "1.0.0",
+    "measured": {
+      "instances": 11,
+      "messages": 12,
+      "dated_messages": 12,
+      "undated_messages": 0,
+      "participants_median": 1,
+      "months": 5.0,
+      "rework_rate": 0.8333333333333334,
+      "waiting_rate": 0.16666666666666666,
+      "manual_transfer_rate": 0.16666666666666666,
+      "senders": 7
+    },
+    "assumed": {
+      "handle_min": 12.0,
+      "per_touch_min": 5.0,
+      "rework_min": 18.0,
+      "waiting_admin_min": 3.0,
+      "automatable_share": 0.45
+    },
+    "assumed_global": {
+      "blended_rate_usd_per_hour": 85.0,
+      "coordination_alpha": 0.35,
+      "extrapolation_factor": 1.0
+    },
+    "assumption_source": "config/estimation.yml#task_classes.deal_entry_correction",
+    "steps": [
+      "11.00 task instances / 5 months of coverage = 2.200 instances per month",
+      "minutes per instance = 12 handle + (1.09 touches - 1) x 5 + 0.83 rework rate x 18 + 0.17 waiting rate x 3 = 27.95 min",
+      "coordination multiplier = 1 + 0.35 x (1 median participants - 1) = 1.000",
+      "hours per month = 2.200 x 27.95 x 1.000 / 60 = 1.025",
+      "automatable hours = 1.025 x 0.45 automatable share = 0.461",
+      "dollars per month = 0.461 h x $85/h = $39.21"
+    ],
+    "result": {
+      "hours_per_month": 1.0,
+      "automatable_hours_per_month": 0.5,
+      "dollars_per_month": 39.21
+    }
+  },
+  "citations": [
+    {
+      "citation_id": "cit_b317a748a55a",
+      "source_path": "corpus/farmer-d/logistics/106.",
+      "source_sha256": "1708d12eba855c80c716c0d34de36141378b6c930afb18f6a5c55ebc80f931ae",
+      "message_id": "<24078977.1075840434656.JavaMail.evans@thyme>",
+      "msg_uid": "m_e1ca3ba99b6b",
+      "quote": "I tried to get into the Sitara ticket # 373590 to correct the swing pricing",
+      "match_tier": "raw_exact",
+      "raw_start": 1341,
+      "raw_end": 1416,
+      "decoded_start": 256,
+      "decoded_end": 331,
+      "line_start": 39,
+      "line_end": 39,
+      "repaired": false,
+      "sender": "aepin@aep.com",
+      "sent_at": "2001-06-25T12:56:01-07:00",
+      "subject": "Global Octanes",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1341 count=75 if=corpus/farmer-d/logistics/106. 2>/dev/null",
+        "sed": "sed -n '39,39p' corpus/farmer-d/logistics/106."
+      }
+    },
+    {
+      "citation_id": "cit_8340d6e42e9b",
+      "source_path": "corpus/farmer-d/logistics/106.",
+      "source_sha256": "1708d12eba855c80c716c0d34de36141378b6c930afb18f6a5c55ebc80f931ae",
+      "message_id": "<24078977.1075840434656.JavaMail.evans@thyme>",
+      "msg_uid": "m_e1ca3ba99b6b",
+      "quote": "but I am not allowed to access it beacuse it is a deal from when we\nwere at Enron",
+      "match_tier": "rewrapped",
+      "raw_start": 1421,
+      "raw_end": 1502,
+      "decoded_start": 336,
+      "decoded_end": 417,
+      "line_start": 40,
+      "line_end": 41,
+      "repaired": false,
+      "sender": "aepin@aep.com",
+      "sent_at": "2001-06-25T12:56:01-07:00",
+      "subject": "Global Octanes",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1421 count=81 if=corpus/farmer-d/logistics/106. 2>/dev/null",
+        "sed": "sed -n '40,41p' corpus/farmer-d/logistics/106."
+      }
+    },
+    {
+      "citation_id": "cit_34b5773099da",
+      "source_path": "corpus/farmer-d/logistics/74.",
+      "source_sha256": "b515a10023a1f8df198e76c2a9fcd27ad5dfd4fea51b0a03591e8b32e46db41c",
+      "message_id": "<7610879.1075840433798.JavaMail.evans@thyme>",
+      "msg_uid": "m_68eff2156fb2",
+      "quote": "Deal 895691 - swing deal - currently has 234,000 in the scheduled column and it should be 441,000 based on the spreadsheet I sent. Did you have some conflicting volumes?",
+      "match_tier": "raw_exact",
+      "raw_start": 1027,
+      "raw_end": 1196,
+      "decoded_start": 375,
+      "decoded_end": 544,
+      "line_start": 28,
+      "line_end": 28,
+      "repaired": false,
+      "sender": "valerie.vela@enron.com",
+      "sent_at": "2001-08-17T12:54:45-07:00",
+      "subject": "RE: error repairs",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1027 count=169 if=corpus/farmer-d/logistics/74. 2>/dev/null",
+        "sed": "sed -n '28,28p' corpus/farmer-d/logistics/74."
+      }
+    },
+    {
+      "citation_id": "cit_47c228c2a85d",
+      "source_path": "corpus/giron-d/sent/655.",
+      "source_sha256": "bf545116de32ec7684fa548b4e1c0faf3a9b034a8b3756a409156e79e81d1ad9",
+      "message_id": "<16316450.1075854407474.JavaMail.evans@thyme>",
+      "msg_uid": "m_9c66e0f7291f",
+      "quote": "can you please change the full volume to be priced at \nNGPL.ILL-CITYGATE.NGI.M.I - .02 USD",
+      "match_tier": "raw_exact",
+      "raw_start": 882,
+      "raw_end": 972,
+      "decoded_start": 387,
+      "decoded_end": 477,
+      "line_start": 34,
+      "line_end": 35,
+      "repaired": false,
+      "sender": "darron.giron@enron.com",
+      "sent_at": "2000-09-11T09:56:00-07:00",
+      "subject": "Re: North Shore - Deal 116695 - pricing adjustment",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=882 count=90 if=corpus/giron-d/sent/655. 2>/dev/null",
+        "sed": "sed -n '34,35p' corpus/giron-d/sent/655."
+      }
+    },
+    {
+      "citation_id": "cit_4764431d995a",
+      "source_path": "corpus/giron-d/sent/655.",
+      "source_sha256": "bf545116de32ec7684fa548b4e1c0faf3a9b034a8b3756a409156e79e81d1ad9",
+      "message_id": "<16316450.1075854407474.JavaMail.evans@thyme>",
+      "msg_uid": "m_9c66e0f7291f",
+      "quote": "not tier priced as shown below in Sitara.",
+      "match_tier": "decoded_exact",
+      "raw_start": 793,
+      "raw_end": 834,
+      "decoded_start": 298,
+      "decoded_end": 339,
+      "line_start": 33,
+      "line_end": 33,
+      "repaired": true,
+      "sender": "darron.giron@enron.com",
+      "sent_at": "2000-09-11T09:56:00-07:00",
+      "subject": "Re: North Shore - Deal 116695 - pricing adjustment",
+      "flags": [
+        "repaired_to_source_text",
+        "tier_decoded_exact"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=793 count=41 if=corpus/giron-d/sent/655. 2>/dev/null",
+        "sed": "sed -n '33,33p' corpus/giron-d/sent/655."
+      }
+    },
+    {
+      "citation_id": "cit_0f8385967b03",
+      "source_path": "corpus/farmer-d/logistics/179.",
+      "source_sha256": "ce7cdfb25e0c90a4da680f920e7b1eaaea6c01b799fe3c8741fc5b8dd0ecf7d6",
+      "message_id": "<28169043.1075840436494.JavaMail.evans@thyme>",
+      "msg_uid": "m_c23a6052cbdd",
+      "quote": "Currently, Sitara is showing a price of  HSC GDP +.05.",
+      "match_tier": "raw_exact",
+      "raw_start": 791,
+      "raw_end": 845,
+      "decoded_start": 178,
+      "decoded_end": 232,
+      "line_start": 18,
+      "line_end": 18,
+      "repaired": false,
+      "sender": "katherine.herrera@enron.com",
+      "sent_at": "2001-04-16T10:43:13-07:00",
+      "subject": "Southern Union- 03/01 prod- Austin Spot deal # 690249 (sale)",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=791 count=54 if=corpus/farmer-d/logistics/179. 2>/dev/null",
+        "sed": "sed -n '18,18p' corpus/farmer-d/logistics/179."
+      }
+    },
+    {
+      "citation_id": "cit_13d8150bbd42",
+      "source_path": "corpus/farmer-d/logistics/173.",
+      "source_sha256": "84f3ad21ae5b237b7a5edb0c2d777a0a7d2fe00278be74b9689eddbefbbeb09a",
+      "message_id": "<22956773.1075840436344.JavaMail.evans@thyme>",
+      "msg_uid": "m_68a5cd3102b2",
+      "quote": "this deal is in for 5322 and I confirmed 5323, do you mind if I up it one giant decatherm",
+      "match_tier": "raw_exact",
+      "raw_start": 554,
+      "raw_end": 643,
+      "decoded_start": 21,
+      "decoded_end": 110,
+      "line_start": 18,
+      "line_end": 18,
+      "repaired": false,
+      "sender": "michael.olsen@enron.com",
+      "sent_at": "2001-04-18T13:10:35-07:00",
+      "subject": "deal 709296 Astra",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=554 count=89 if=corpus/farmer-d/logistics/173. 2>/dev/null",
+        "sed": "sed -n '18,18p' corpus/farmer-d/logistics/173."
+      }
+    },
+    {
+      "citation_id": "cit_0a377201ed52",
+      "source_path": "corpus/giron-d/sent/300.",
+      "source_sha256": "58f049f7964fff72e05604e55aea215f3085ac309746deaaea0444c237ee7916",
+      "message_id": "<6455584.1075854399299.JavaMail.evans@thyme>",
+      "msg_uid": "m_68ef7cbd85ae",
+      "quote": "Can you please update the pricing for the 12/00 purchase from Agave",
+      "match_tier": "raw_exact",
+      "raw_start": 803,
+      "raw_end": 870,
+      "decoded_start": 234,
+      "decoded_end": 301,
+      "line_start": 37,
+      "line_end": 37,
+      "repaired": false,
+      "sender": "darron.giron@enron.com",
+      "sent_at": "2001-01-24T01:13:00-08:00",
+      "subject": "Re: 12/00 Agave Pricing",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=803 count=67 if=corpus/giron-d/sent/300. 2>/dev/null",
+        "sed": "sed -n '37,37p' corpus/giron-d/sent/300."
+      }
+    }
+  ],
+  "quarantined_citations": [],
+  "member_count": 12,
+  "member_uids": [
+    "m_68eff2156fb2",
+    "m_e1ca3ba99b6b",
+    "m_023ab67b9f05",
+    "m_68a5cd3102b2",
+    "m_2586b3e2dc9c",
+    "m_f2eb02b7cc75",
+    "m_031c03b4ea38",
+    "m_c9915ac63d18",
+    "m_c23a6052cbdd",
+    "m_729650550226",
+    "m_68ef7cbd85ae",
+    "m_9c66e0f7291f"
+  ],
+  "flags": []
+}

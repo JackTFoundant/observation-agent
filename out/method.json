@@ -1,0 +1,532 @@
+{
+  "the_evidence_invariant": "Every quote published by this system is produced by slicing bytes out of a corpus file. It is never copied from model output; a model's proposed quote is used only as a search key. If no anchor is found there is no quote, and the claim that depended on it does not ship. A hallucinated quote therefore cannot reach the report.",
+  "the_arithmetic_invariant": "No model produces any duration or amount. Every response is passed through a guard that rejects a key or value naming one, and a test feeds that guard a recorded poisoned response to prove the rejection. Hours and dollars are computed in Decimal from counts measured by deterministic code, and every published number carries the derivation that produced it.",
+  "formula": "hours_per_month = (instances / coverage / months) x minutes_per_instance x coordination_multiplier / 60;  minutes_per_instance = handle + (touches-1) x per_touch + rework_rate x rework + waiting_rate x waiting_admin;  coordination_multiplier = 1 + alpha x (median_participants - 1);  dollars = automatable_hours x $85",
+  "what_is_measured": [
+    "task instances (threads, not messages)",
+    "touches per instance",
+    "median participants per instance",
+    "months and weeks of coverage",
+    "rework / waiting / manual-transfer signal rates",
+    "distinct senders"
+  ],
+  "what_is_assumed": [
+    "minutes per touch, per task class",
+    "minutes added by rework and waiting",
+    "the automatable share of each task class",
+    "the coordination alpha"
+  ],
+  "largest_uncertainty": "The per-class handling-minute assumptions. Nobody timed this work and nobody could: the people left in 2002 and the systems no longer exist. The dollar total moves close to linearly with these values, which is why every figure ships a low-base-high band rather than a point estimate.",
+  "assumptions_file": "config/estimation.yml",
+  "assumptions": {
+    "global": {
+      "blended_rate_usd_per_hour": 85,
+      "coordination_alpha": {
+        "low": 0.15,
+        "base": 0.35,
+        "high": 0.55
+      },
+      "extrapolation_factor": 1.0,
+      "undated_uplift": true,
+      "min_months": 1.0
+    },
+    "task_classes": {
+      "gas_nomination": {
+        "handle_min": {
+          "low": 4,
+          "base": 8,
+          "high": 15
+        },
+        "per_touch_min": {
+          "low": 2,
+          "base": 3,
+          "high": 6
+        },
+        "rework_min": {
+          "low": 6,
+          "base": 12,
+          "high": 25
+        },
+        "waiting_admin_min": {
+          "low": 1,
+          "base": 2,
+          "high": 5
+        },
+        "automatable_share": {
+          "low": 0.3,
+          "base": 0.55,
+          "high": 0.75
+        }
+      },
+      "volume_imbalance_reconciliation": {
+        "handle_min": {
+          "low": 10,
+          "base": 20,
+          "high": 40
+        },
+        "per_touch_min": {
+          "low": 4,
+          "base": 7,
+          "high": 14
+        },
+        "rework_min": {
+          "low": 10,
+          "base": 20,
+          "high": 45
+        },
+        "waiting_admin_min": {
+          "low": 2,
+          "base": 4,
+          "high": 9
+        },
+        "automatable_share": {
+          "low": 0.35,
+          "base": 0.6,
+          "high": 0.8
+        }
+      },
+      "deal_entry_correction": {
+        "handle_min": {
+          "low": 6,
+          "base": 12,
+          "high": 25
+        },
+        "per_touch_min": {
+          "low": 3,
+          "base": 5,
+          "high": 10
+        },
+        "rework_min": {
+          "low": 8,
+          "base": 18,
+          "high": 35
+        },
+        "waiting_admin_min": {
+          "low": 2,
+          "base": 3,
+          "high": 7
+        },
+        "automatable_share": {
+          "low": 0.25,
+          "base": 0.45,
+          "high": 0.65
+        }
+      },
+      "month_end_close": {
+        "handle_min": {
+          "low": 15,
+          "base": 30,
+          "high": 60
+        },
+        "per_touch_min": {
+          "low": 5,
+          "base": 10,
+          "high": 20
+        },
+        "rework_min": {
+          "low": 15,
+          "base": 30,
+          "high": 60
+        },
+        "waiting_admin_min": {
+          "low": 3,
+          "base": 6,
+          "high": 12
+        },
+        "automatable_share": {
+          "low": 0.2,
+          "base": 0.4,
+          "high": 0.6
+        }
+      },
+      "counterparty_admin": {
+        "handle_min": {
+          "low": 8,
+          "base": 15,
+          "high": 30
+        },
+        "per_touch_min": {
+          "low": 3,
+          "base": 6,
+          "high": 12
+        },
+        "rework_min": {
+          "low": 8,
+          "base": 15,
+          "high": 30
+        },
+        "waiting_admin_min": {
+          "low": 3,
+          "base": 5,
+          "high": 10
+        },
+        "automatable_share": {
+          "low": 0.25,
+          "base": 0.45,
+          "high": 0.65
+        }
+      },
+      "recurring_report": {
+        "handle_min": {
+          "low": 10,
+          "base": 22,
+          "high": 45
+        },
+        "per_touch_min": {
+          "low": 2,
+          "base": 4,
+          "high": 8
+        },
+        "rework_min": {
+          "low": 5,
+          "base": 10,
+          "high": 20
+        },
+        "waiting_admin_min": {
+          "low": 1,
+          "base": 2,
+          "high": 4
+        },
+        "automatable_share": {
+          "low": 0.55,
+          "base": 0.75,
+          "high": 0.9
+        }
+      },
+      "capacity_notice": {
+        "handle_min": {
+          "low": 3,
+          "base": 6,
+          "high": 12
+        },
+        "per_touch_min": {
+          "low": 2,
+          "base": 3,
+          "high": 6
+        },
+        "rework_min": {
+          "low": 3,
+          "base": 6,
+          "high": 12
+        },
+        "waiting_admin_min": {
+          "low": 1,
+          "base": 2,
+          "high": 4
+        },
+        "automatable_share": {
+          "low": 0.4,
+          "base": 0.65,
+          "high": 0.85
+        }
+      },
+      "meter_data": {
+        "handle_min": {
+          "low": 4,
+          "base": 9,
+          "high": 18
+        },
+        "per_touch_min": {
+          "low": 2,
+          "base": 4,
+          "high": 8
+        },
+        "rework_min": {
+          "low": 5,
+          "base": 12,
+          "high": 25
+        },
+        "waiting_admin_min": {
+          "low": 2,
+          "base": 3,
+          "high": 7
+        },
+        "automatable_share": {
+          "low": 0.4,
+          "base": 0.65,
+          "high": 0.85
+        }
+      },
+      "invoice_settlement": {
+        "handle_min": {
+          "low": 8,
+          "base": 18,
+          "high": 35
+        },
+        "per_touch_min": {
+          "low": 4,
+          "base": 7,
+          "high": 14
+        },
+        "rework_min": {
+          "low": 10,
+          "base": 20,
+          "high": 40
+        },
+        "waiting_admin_min": {
+          "low": 3,
+          "base": 6,
+          "high": 12
+        },
+        "automatable_share": {
+          "low": 0.25,
+          "base": 0.45,
+          "high": 0.65
+        }
+      },
+      "access_provisioning": {
+        "handle_min": {
+          "low": 5,
+          "base": 10,
+          "high": 20
+        },
+        "per_touch_min": {
+          "low": 2,
+          "base": 4,
+          "high": 8
+        },
+        "rework_min": {
+          "low": 5,
+          "base": 10,
+          "high": 20
+        },
+        "waiting_admin_min": {
+          "low": 2,
+          "base": 4,
+          "high": 8
+        },
+        "automatable_share": {
+          "low": 0.5,
+          "base": 0.7,
+          "high": 0.88
+        }
+      },
+      "pnl_reporting": {
+        "handle_min": {
+          "low": 8,
+          "base": 16,
+          "high": 32
+        },
+        "per_touch_min": {
+          "low": 3,
+          "base": 5,
+          "high": 10
+        },
+        "rework_min": {
+          "low": 6,
+          "base": 12,
+          "high": 24
+        },
+        "waiting_admin_min": {
+          "low": 2,
+          "base": 3,
+          "high": 7
+        },
+        "automatable_share": {
+          "low": 0.45,
+          "base": 0.68,
+          "high": 0.85
+        }
+      },
+      "staffing_coverage": {
+        "handle_min": {
+          "low": 4,
+          "base": 8,
+          "high": 16
+        },
+        "per_touch_min": {
+          "low": 2,
+          "base": 3,
+          "high": 6
+        },
+        "rework_min": {
+          "low": 3,
+          "base": 6,
+          "high": 12
+        },
+        "waiting_admin_min": {
+          "low": 1,
+          "base": 2,
+          "high": 5
+        },
+        "automatable_share": {
+          "low": 0.2,
+          "base": 0.4,
+          "high": 0.6
+        }
+      },
+      "other": {
+        "handle_min": {
+          "low": 3,
+          "base": 6,
+          "high": 12
+        },
+        "per_touch_min": {
+          "low": 2,
+          "base": 3,
+          "high": 5
+        },
+        "rework_min": {
+          "low": 3,
+          "base": 6,
+          "high": 12
+        },
+        "waiting_admin_min": {
+          "low": 1,
+          "base": 2,
+          "high": 4
+        },
+        "automatable_share": {
+          "low": 0.05,
+          "base": 0.15,
+          "high": 0.3
+        }
+      }
+    }
+  },
+  "assumptions_source_text": "# Every assumption in this system, in one reviewable file.\n#\n# READ THIS FIRST, because it is the most important caveat in the whole report:\n#\n#   The *counts* are measured. Task instances, touches per instance, participants, months\n#   of coverage, rework and waiting rates - all of those are computed from the corpus by\n#   deterministic code, and `observe/verify.py` recomputes them from scratch.\n#\n#   The *minutes* are not measured. Nobody timed this work. Nobody could: everyone involved\n#   left the building in 2002 and the systems named in the mail no longer exist. Every\n#   `_min` value below is my estimate by analogy to comparable pipeline-scheduling and\n#   back-office work. They are the largest faith-based input in the system, and the dollar\n#   total moves close to linearly with them.\n#\n# That is why every value carries a low/base/high band and why the dashboard shows the\n# resulting range in the same weight as the headline number rather than in a footnote. A\n# reader who has actually done gas scheduling should overwrite this file first; the\n# published range is deliberately wide enough to survive their doing so.\n#\n# A model is never allowed to produce any number in this file, or any number derived from\n# it. See observe/llm/schema_guard.py.\n\nglobal:\n  # Given by the assignment, not an assumption.\n  blended_rate_usd_per_hour: 85\n\n  # Coordination cost of extra participants. A task involving four people costs more than\n  # four times a task involving one, because of the handoffs between them; alpha is the\n  # per-extra-person uplift.\n  # basis: judgment. Brooks-style coordination overhead, deliberately conservative -\n  #        0.35 means a 3-person task costs 1.7x a 1-person task, not 3x.\n  # NOT measured.\n  coordination_alpha: {low: 0.15, base: 0.35, high: 0.55}\n\n  # Deliberately 1.0. The corpus is four mailboxes, not a company. Scaling these findings\n  # to \"all of Enron\" would produce a bigger and far less defensible number, and it is the\n  # first thing a sceptical reader would attack. The report states its scope instead.\n  extrapolation_factor: 1.0\n\n  # Undated messages inflate instance counts proportionally but never widen a coverage\n  # window - widening it would silently shrink every per-month rate.\n  undated_uplift: true\n\n  # Floor on months of coverage, so a cluster confined to one month cannot divide by a\n  # near-zero denominator and report an enormous monthly rate.\n  min_months: 1.0\n\n# Per task class. `handle_min` is the first touch; `per_touch_min` each subsequent one;\n# `rework_min` and `waiting_admin_min` are added in proportion to the measured rates.\n#\n# `automatable_share` is the fraction a system could plausibly absorb. It is the second\n# largest act of faith here: judging that 60% of a nomination change is automatable is a\n# claim about Sitara, Unify and TAGG, which are names in 2001 emails to me and nothing more.\ntask_classes:\n\n  gas_nomination:\n    handle_min:        {low: 4,  base: 8,  high: 15}\n    per_touch_min:     {low: 2,  base: 3,  high: 6}\n    rework_min:        {low: 6,  base: 12, high: 25}\n    waiting_admin_min: {low: 1,  base: 2,  high: 5}\n    automatable_share: {low: 0.30, base: 0.55, high: 0.75}\n    # basis: entering volumes for a flow date across two systems plus one confirmation\n    #        message. Cutoffs are daily and the work is repetitive and rule-shaped.\n\n  volume_imbalance_reconciliation:\n    handle_min:        {low: 10, base: 20, high: 40}\n    per_touch_min:     {low: 4,  base: 7,  high: 14}\n    rework_min:        {low: 10, base: 20, high: 45}\n    waiting_admin_min: {low: 2,  base: 4,  high: 9}\n    automatable_share: {low: 0.35, base: 0.60, high: 0.80}\n    # basis: comparing two sources of volume data by hand and chasing the difference.\n    #        Higher than a nomination because it is investigative, and highly automatable\n    #        because the comparison itself is mechanical.\n\n  deal_entry_correction:\n    handle_min:        {low: 6,  base: 12, high: 25}\n    per_touch_min:     {low: 3,  base: 5,  high: 10}\n    rework_min:        {low: 8,  base: 18, high: 35}\n    waiting_admin_min: {low: 2,  base: 3,  high: 7}\n    automatable_share: {low: 0.25, base: 0.45, high: 0.65}\n    # basis: locating a mis-booked deal, deciding the correction, applying it in one or\n    #        both systems. Lower automatable share: the *diagnosis* needs a human even\n    #        when the correction does not.\n\n  month_end_close:\n    handle_min:        {low: 15, base: 30, high: 60}\n    per_touch_min:     {low: 5,  base: 10, high: 20}\n    rework_min:        {low: 15, base: 30, high: 60}\n    waiting_admin_min: {low: 3,  base: 6,  high: 12}\n    automatable_share: {low: 0.20, base: 0.40, high: 0.60}\n    # basis: close tasks are long, deadline-bound and involve several people signing off.\n    #        Sign-off is intrinsically human, hence the lower share.\n\n  counterparty_admin:\n    handle_min:        {low: 8,  base: 15, high: 30}\n    per_touch_min:     {low: 3,  base: 6,  high: 12}\n    rework_min:        {low: 8,  base: 15, high: 30}\n    waiting_admin_min: {low: 3,  base: 5,  high: 10}\n    automatable_share: {low: 0.25, base: 0.45, high: 0.65}\n    # basis: a name change or new counterparty has to propagate into several systems,\n    #        which is exactly the shape of work a workflow tool absorbs.\n\n  recurring_report:\n    handle_min:        {low: 10, base: 22, high: 45}\n    per_touch_min:     {low: 2,  base: 4,  high: 8}\n    rework_min:        {low: 5,  base: 10, high: 20}\n    waiting_admin_min: {low: 1,  base: 2,  high: 4}\n    automatable_share: {low: 0.55, base: 0.75, high: 0.90}\n    # basis: assembling the same figures from the same sources and mailing them to the\n    #        same list. The highest automatable share in the file, and the easiest to\n    #        defend: the weekly capacity report has near-identical structure every week.\n\n  capacity_notice:\n    handle_min:        {low: 3,  base: 6,  high: 12}\n    per_touch_min:     {low: 2,  base: 3,  high: 6}\n    rework_min:        {low: 3,  base: 6,  high: 12}\n    waiting_admin_min: {low: 1,  base: 2,  high: 4}\n    automatable_share: {low: 0.40, base: 0.65, high: 0.85}\n    # basis: read an inbound notice, decide who needs it, forward it. Routing is\n    #        mechanical; judging operational impact is not.\n\n  meter_data:\n    handle_min:        {low: 4,  base: 9,  high: 18}\n    per_touch_min:     {low: 2,  base: 4,  high: 8}\n    rework_min:        {low: 5,  base: 12, high: 25}\n    waiting_admin_min: {low: 2,  base: 3,  high: 7}\n    automatable_share: {low: 0.40, base: 0.65, high: 0.85}\n    # basis: looking a meter up and mailing the answer back. A lookup anyone could\n    #        self-serve, which is why the share is high.\n\n  invoice_settlement:\n    handle_min:        {low: 8,  base: 18, high: 35}\n    per_touch_min:     {low: 4,  base: 7,  high: 14}\n    rework_min:        {low: 10, base: 20, high: 40}\n    waiting_admin_min: {low: 3,  base: 6,  high: 12}\n    automatable_share: {low: 0.25, base: 0.45, high: 0.65}\n    # basis: amounts get disputed, and disputes need a human.\n\n  access_provisioning:\n    handle_min:        {low: 5,  base: 10, high: 20}\n    per_touch_min:     {low: 2,  base: 4,  high: 8}\n    rework_min:        {low: 5,  base: 10, high: 20}\n    waiting_admin_min: {low: 2,  base: 4,  high: 8}\n    automatable_share: {low: 0.50, base: 0.70, high: 0.88}\n    # basis: pure workflow - request, approve, provision, confirm. Well-understood\n    #        automation territory even in 2001.\n\n  pnl_reporting:\n    handle_min:        {low: 8,  base: 16, high: 32}\n    per_touch_min:     {low: 3,  base: 5,  high: 10}\n    rework_min:        {low: 6,  base: 12, high: 24}\n    waiting_admin_min: {low: 2,  base: 3,  high: 7}\n    automatable_share: {low: 0.45, base: 0.68, high: 0.85}\n    # basis: an ad-hoc data pull assembled by hand; a report or query replaces it.\n\n  staffing_coverage:\n    handle_min:        {low: 4,  base: 8,  high: 16}\n    per_touch_min:     {low: 2,  base: 3,  high: 6}\n    rework_min:        {low: 3,  base: 6,  high: 12}\n    waiting_admin_min: {low: 1,  base: 2,  high: 5}\n    automatable_share: {low: 0.20, base: 0.40, high: 0.60}\n    # basis: a shared rota removes the mail, but deciding who covers a desk is a human\n    #        negotiation.\n\n  other:\n    handle_min:        {low: 3,  base: 6,  high: 12}\n    per_touch_min:     {low: 2,  base: 3,  high: 5}\n    rework_min:        {low: 3,  base: 6,  high: 12}\n    waiting_admin_min: {low: 1,  base: 2,  high: 4}\n    automatable_share: {low: 0.05, base: 0.15, high: 0.30}\n    # Unclassified work. The share is deliberately near zero: we will not claim savings on\n    # work we could not identify. It appears in the report as measured volume with almost\n    # no dollar attached, which is the honest treatment.",
+  "gates": {
+    "content_cluster": {
+      "min_distinct_content": 8,
+      "min_senders": 2,
+      "min_messages_single_sender": 15,
+      "min_months": 3,
+      "min_weeks": 3,
+      "min_folders": 1,
+      "min_threads": 4,
+      "_note": "A cluster becomes a recurring process only if the corpus insists. The single-sender escape exists because one person doing something sixty times is a process, and requiring two senders would delete the recurring reports."
+    },
+    "recurring_series": {
+      "min_instances": 8,
+      "min_months": 3,
+      "min_weeks": 3,
+      "_note": "Replies are excluded from a series rather than disqualifying it."
+    },
+    "claim": {
+      "min_verified_citations": 3,
+      "min_distinct_messages": 2,
+      "min_distinct_senders": 2,
+      "max_normalized_citation_share": 0.4,
+      "_note": "Failing a claim gate quarantines the whole opportunity and removes it from every dollar total."
+    }
+  },
+  "how_to_check_it_yourself": [
+    "make verify - re-anchors every citation from scratch and recomputes every number from its published derivation",
+    "make test - the full suite, with zero model calls",
+    "docs/AUDIT.md - 25 random citations with paste-able dd and sed commands",
+    "Every citation in the dashboard shows its byte range and line range, and the raw message view highlights the span by slicing the file the server just read"
+  ],
+  "corpus": {
+    "files": 3240,
+    "duplicates_removed": 16,
+    "duplicate_groups": 16,
+    "unique_messages": 3224,
+    "task_instances": 2823,
+    "distinct_people": 2691,
+    "mailboxes": [
+      "farmer-d",
+      "giron-d",
+      "lokay-m",
+      "williams-w3"
+    ],
+    "folders": [
+      "corpus/farmer-d/logistics",
+      "corpus/giron-d/inbox",
+      "corpus/giron-d/sent",
+      "corpus/lokay-m/inbox",
+      "corpus/lokay-m/sent_items",
+      "corpus/williams-w3/inbox",
+      "corpus/williams-w3/sent_items"
+    ],
+    "date_span": {
+      "from": "1999-12-13",
+      "to": "2002-03-25",
+      "months": 28
+    },
+    "undated_messages": 3,
+    "categories": {
+      "operational": 2531,
+      "ack": 596,
+      "noise": 74,
+      "automated": 23
+    },
+    "messages_sent_to_a_model": 2531,
+    "ack_only_messages": 596,
+    "generated_tables": [
+      {
+        "path": "corpus/farmer-d/logistics/3221.",
+        "rows": 3600,
+        "columns": 9,
+        "chars": 349199,
+        "proof": [
+          "5 of 9 columns are exact arithmetic sequences in the row index, 2 repeat on a fixed cycle and 1 are constant. Real operational data is not shaped like this. Treated as placeholder content: quotable as evidence of the format and of the workflow around it, never used to derive a quantity.",
+          "column 0: exactly arithmetic across all 3600 rows \u2014 value = 1000000 + 1*n, zero deviation",
+          "column 1: constant 'HPL' for all 3600 rows",
+          "column 2: modular arithmetic \u2014 value = 1*n mod 400 across all 3600 rows (8 wraps, and only 2 distinct first differences where real data would have thousands)",
+          "column 3: repeats with period 60 across 3600 rows (60 identical cycles)",
+          "column 4: modular arithmetic \u2014 value = 911*n mod 45000 across all 3600 rows (72 wraps, and only 2 distinct first differences where real data would have thousands)",
+          "column 5: modular arithmetic \u2014 value = 331*n mod 45000 across all 3600 rows (26 wraps, and only 2 distinct first differences where real data would have thousands)",
+          "column 7: repeats with period 3 across 3600 rows (1200 identical cycles)",
+          "column 8: exactly arithmetic across all 3600 rows \u2014 value = 0 + 7*n, zero deviation"
+        ]
+      }
+    ]
+  },
+  "stages": {
+    "stage0": {
+      "files": 3240,
+      "duplicates_removed": 16,
+      "duplicate_groups": 16,
+      "survivors": 3224,
+      "task_instances": 2823,
+      "people": 2691,
+      "generated_tables": 1,
+      "seconds": 2.58
+    },
+    "stage1": {
+      "messages_eligible": 2531,
+      "cache_hits_messages": 2531,
+      "messages_extracted_now": 0,
+      "batches": 0,
+      "batches_ok": 0,
+      "model_calls": 0,
+      "extractions": 2531,
+      "failed_batches": 0
+    },
+    "stage2": {
+      "records": 1603,
+      "clusters": 965,
+      "promoted": 12,
+      "residual": 953,
+      "seconds": 1.21
+    },
+    "stage3": {
+      "clusters": 12,
+      "characterized": 12,
+      "model_calls": 13,
+      "cache_hits": 0,
+      "failed": 0
+    },
+    "stage45": {
+      "opportunities": 15,
+      "counted": 14,
+      "low_confidence": 0,
+      "quarantined": 1,
+      "citations_verified": 112,
+      "citations_quarantined": 0,
+      "series_promoted": 3,
+      "series_rejected": 19,
+      "seconds": 0.41
+    },
+    "stage6": {
+      "selected": 3,
+      "written": 3,
+      "skipped": 12,
+      "model_calls": 3,
+      "cache_hits": 0,
+      "failed": 0,
+      "threshold_dollars": 250.0,
+      "cap": 6
+    }
+  }
+}

@@ -1,0 +1,363 @@
+{
+  "opportunity_id": "proc_87766d1067",
+  "source": "content_cluster",
+  "title": "Daily gas nominations mailed as Word and Excel attachments",
+  "task_class": "gas_nomination",
+  "label_mechanical": "Gas nomination and scheduling: submit daily / nomination / gas",
+  "narrative": {
+    "what_happens": "For each flow day, a counterparty or an internal scheduler mails in a nomination \u2014 the volume to be moved and the path \u2014 as an attached document rather than as a system entry. Most instances arrive as near-identically named files (\"CALPINE DAILY GAS NOMINATION 1.doc\", \"HIDALGO DAILY GAS NOMINATION.doc\", \"egmnom-Feb.xls\"), and a minority state the volume in the body instead, as in a nomination of a fixed daily quantity into Eastrans from a stated gas day forward. The logistics recipient reads the attachment and carries the numbers into the scheduling systems, sometimes forwarding the same file onward to another desk. Monthly nominations arrive in the same shape as the daily ones. The thread usually ends with either a revised version of the file or a short confirmation back that volumes and path are unchanged.",
+    "where_it_stalls": "The nomination never arrives as data. It arrives as a Word or Excel file, or as free text, so someone must open each attachment and retype the volumes into the scheduling system \u2014 the manual-transfer signal appears on the forwarded-spreadsheet instances and the handoff roles show the same file being relayed on rather than loaded anywhere. Revisions arrive as a fresh attachment with the same filename (\"FW: Calpine Daily Gas Nomination (REVISED)\"), so there is nothing in the mail itself that distinguishes the current version from the superseded one, and which desk owns the retyping is not visible in these messages. Confirmations come back as prose (\"Confirmed on my end. Same volumes as yesterday\"), leaving no machine-readable record that the nomination and the confirmation agree.",
+    "why_it_recurs": "Nominations are per gas day with a daily cutoff, and the counterparties send them by mail attachment as standing practice, so the same file lands and is transcribed again every day across the fourteen months present.",
+    "automation_opportunity": "A watched mailbox that parses the recurring nomination attachments \u2014 they use fixed filenames and a stable layout \u2014 into a nomination record keyed by counterparty, point and gas day, versioning revisions instead of overwriting them, and posting the values straight to the scheduling system for review rather than re-entry. A short structured reply template would let confirmations be matched automatically against the submitted volumes.",
+    "coherence": "tight"
+  },
+  "status": "counted",
+  "status_reason": "",
+  "confidence": "high",
+  "artifact_shape": "runbook",
+  "measured": {
+    "instances": 30,
+    "messages": 30,
+    "dated_messages": 29,
+    "undated_messages": 1,
+    "participants_median": 5,
+    "months": 14.0,
+    "rework_rate": 0.03333333333333333,
+    "waiting_rate": 0.0,
+    "manual_transfer_rate": 0.16666666666666666,
+    "senders": 6
+  },
+  "gate_metrics": {
+    "messages": 30,
+    "distinct_content": 30,
+    "senders": 6,
+    "threads": 30,
+    "months": 14,
+    "weeks": 22,
+    "folders": 3,
+    "people": 33
+  },
+  "signal_rates": {
+    "rework_signal": 0.0333,
+    "waiting_signal": 0.0,
+    "manual_transfer_signal": 0.1667,
+    "deadline_signal": 0.0
+  },
+  "systems": {
+    "email": 19,
+    "other_system": 12,
+    "fax": 6,
+    "spreadsheet": 5
+  },
+  "roles": {
+    "request": 22,
+    "handoff": 4,
+    "fyi": 2,
+    "status_report": 1,
+    "confirmation": 1
+  },
+  "months": [
+    "1999-12",
+    "2000-01",
+    "2000-02",
+    "2000-03",
+    "2000-04",
+    "2000-05",
+    "2000-06",
+    "2000-07",
+    "2000-08",
+    "2000-09",
+    "2000-11",
+    "2000-12",
+    "2001-01",
+    "2001-04"
+  ],
+  "people": 33,
+  "hours_per_month": {
+    "low": 0.2,
+    "base": 0.7,
+    "high": 1.9
+  },
+  "automatable_hours_per_month": {
+    "low": 0.1,
+    "base": 0.4,
+    "high": 1.4
+  },
+  "dollars_per_month": {
+    "low": 6.33,
+    "base": 34.82,
+    "high": 119.33
+  },
+  "derivation": {
+    "formula_id": "hours_v1",
+    "estimate_version": "1.0.0",
+    "measured": {
+      "instances": 30,
+      "messages": 30,
+      "dated_messages": 29,
+      "undated_messages": 1,
+      "participants_median": 5,
+      "months": 14.0,
+      "rework_rate": 0.03333333333333333,
+      "waiting_rate": 0.0,
+      "manual_transfer_rate": 0.16666666666666666,
+      "senders": 6
+    },
+    "assumed": {
+      "handle_min": 8.0,
+      "per_touch_min": 3.0,
+      "rework_min": 12.0,
+      "waiting_admin_min": 2.0,
+      "automatable_share": 0.55
+    },
+    "assumed_global": {
+      "blended_rate_usd_per_hour": 85.0,
+      "coordination_alpha": 0.35,
+      "extrapolation_factor": 1.0
+    },
+    "assumption_source": "config/estimation.yml#task_classes.gas_nomination",
+    "steps": [
+      "coverage = 29 dated / 30 messages = 0.967; instances 30 / 0.967 = 31.03 adjusted",
+      "31.03 task instances / 14 months of coverage = 2.217 instances per month",
+      "minutes per instance = 8 handle + (1.00 touches - 1) x 3 + 0.03 rework rate x 12 + 0.00 waiting rate x 2 = 8.40 min",
+      "coordination multiplier = 1 + 0.35 x (5 median participants - 1) = 2.400",
+      "hours per month = 2.217 x 8.40 x 2.400 / 60 = 0.745",
+      "automatable hours = 0.745 x 0.55 automatable share = 0.410",
+      "dollars per month = 0.410 h x $85/h = $34.82"
+    ],
+    "result": {
+      "hours_per_month": 0.7,
+      "automatable_hours_per_month": 0.4,
+      "dollars_per_month": 34.82
+    }
+  },
+  "citations": [
+    {
+      "citation_id": "cit_472aa5f38a05",
+      "source_path": "corpus/farmer-d/logistics/773.",
+      "source_sha256": "c72165e246bae5223d488db39adca2c580057a1a1439b857cbdf826a7326e243",
+      "message_id": "<23691189.1075854123567.JavaMail.evans@thyme>",
+      "msg_uid": "m_5cea8a02d685",
+      "quote": "FW: Calpine Daily Gas Nomination (REVISED)",
+      "match_tier": "raw_exact",
+      "raw_start": 160,
+      "raw_end": 202,
+      "decoded_start": 0,
+      "decoded_end": 0,
+      "line_start": 5,
+      "line_end": 5,
+      "repaired": false,
+      "sender": "rickya@calpine.com",
+      "sent_at": "2000-02-08T23:36:00-08:00",
+      "subject": "FW: Calpine Daily Gas Nomination (REVISED)",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=160 count=42 if=corpus/farmer-d/logistics/773. 2>/dev/null",
+        "sed": "sed -n '5,5p' corpus/farmer-d/logistics/773."
+      }
+    },
+    {
+      "citation_id": "cit_01ebe214d44f",
+      "source_path": "corpus/farmer-d/logistics/1222.",
+      "source_sha256": "2ce4e4aebff06856bfb90c9b2c280c8b44c3fecb9c46da8e2f2ac723b1e586eb",
+      "message_id": "<11128664.1075854133910.JavaMail.evans@thyme>",
+      "msg_uid": "m_ac5ef27f02c5",
+      "quote": "This is to nominate 33,450 mmbtu/d into Eastrans for GD 6/22/2000 forward.",
+      "match_tier": "raw_exact",
+      "raw_start": 1148,
+      "raw_end": 1222,
+      "decoded_start": 352,
+      "decoded_end": 426,
+      "line_start": 36,
+      "line_end": 36,
+      "repaired": false,
+      "sender": "stacey.neuweiler@enron.com",
+      "sent_at": "2000-06-21T01:49:00-07:00",
+      "subject": "Eastrans Nomination- Gas Day 6/22/2000",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1148 count=74 if=corpus/farmer-d/logistics/1222. 2>/dev/null",
+        "sed": "sed -n '36,36p' corpus/farmer-d/logistics/1222."
+      }
+    },
+    {
+      "citation_id": "cit_8924611d0ea3",
+      "source_path": "corpus/farmer-d/logistics/764.",
+      "source_sha256": "4e124ae0141a11ddcd6fb78f4d1e41ecfd66f6aa1f182c8ced0962dd095bdd0c",
+      "message_id": "<30919184.1075854123362.JavaMail.evans@thyme>",
+      "msg_uid": "m_5ff1b3715982",
+      "quote": "(See attached file: egmnom-Feb.xls)",
+      "match_tier": "raw_exact",
+      "raw_start": 858,
+      "raw_end": 893,
+      "decoded_start": 110,
+      "decoded_end": 145,
+      "line_start": 32,
+      "line_end": 32,
+      "repaired": false,
+      "sender": "ami.chokshi@enron.com",
+      "sent_at": "2000-02-07T08:48:00-08:00",
+      "subject": "",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=858 count=35 if=corpus/farmer-d/logistics/764. 2>/dev/null",
+        "sed": "sed -n '32,32p' corpus/farmer-d/logistics/764."
+      }
+    },
+    {
+      "citation_id": "cit_2a00ab6ddeb5",
+      "source_path": "corpus/giron-d/sent/795.",
+      "source_sha256": "19a77aee66d55311a28f4320c44e5185a6e608eaaf2812594edbdd43b915e47c",
+      "message_id": "<40062915.3477498332665913.JavaMail.evans@thyme>",
+      "msg_uid": "m_88dfb22e6dcd",
+      "quote": "Confirmed on my end. Same volumes as yesterday, no changes to the path.",
+      "match_tier": "raw_exact",
+      "raw_start": 452,
+      "raw_end": 523,
+      "decoded_start": 0,
+      "decoded_end": 71,
+      "line_start": 16,
+      "line_end": 16,
+      "repaired": false,
+      "sender": "darron.giron@enron.com",
+      "sent_at": null,
+      "subject": "RE: Calpine Daily Gas Nomination",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=452 count=71 if=corpus/giron-d/sent/795. 2>/dev/null",
+        "sed": "sed -n '16,16p' corpus/giron-d/sent/795."
+      }
+    },
+    {
+      "citation_id": "cit_900f67bebeae",
+      "source_path": "corpus/farmer-d/logistics/2025.",
+      "source_sha256": "2ac6f5f908758d304ed908277048c70be864354cf8e20292d97a5d738812b4d1",
+      "message_id": "<13051665.1075854317981.JavaMail.evans@thyme>",
+      "msg_uid": "m_50ac7069e573",
+      "quote": "HPL Nom for January 4, 2001",
+      "match_tier": "raw_exact",
+      "raw_start": 313,
+      "raw_end": 340,
+      "decoded_start": 0,
+      "decoded_end": 0,
+      "line_start": 7,
+      "line_end": 7,
+      "repaired": false,
+      "sender": "mjones7@txu.com",
+      "sent_at": "2001-01-03T03:02:00-08:00",
+      "subject": "HPL Nom for January 4, 2001",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=313 count=27 if=corpus/farmer-d/logistics/2025. 2>/dev/null",
+        "sed": "sed -n '7,7p' corpus/farmer-d/logistics/2025."
+      }
+    },
+    {
+      "citation_id": "cit_a87364faf733",
+      "source_path": "corpus/farmer-d/logistics/1370.",
+      "source_sha256": "17d83e683619982e7ecd6a033b26d29287effc0067996c641a7a7e2497d72dee",
+      "message_id": "<29108072.1075854137442.JavaMail.evans@thyme>",
+      "msg_uid": "m_c97a0dd4d1d2",
+      "quote": "CALPINE MONTHLY GAS NOMINATION___.doc",
+      "match_tier": "raw_exact",
+      "raw_start": 996,
+      "raw_end": 1033,
+      "decoded_start": 155,
+      "decoded_end": 192,
+      "line_start": 31,
+      "line_end": 31,
+      "repaired": false,
+      "sender": "rickya@calpine.com",
+      "sent_at": "2000-08-28T00:28:00-07:00",
+      "subject": "Calpine Daily and Monthly Gas Nomination",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=996 count=37 if=corpus/farmer-d/logistics/1370. 2>/dev/null",
+        "sed": "sed -n '31,31p' corpus/farmer-d/logistics/1370."
+      }
+    },
+    {
+      "citation_id": "cit_ee53b41c4cf6",
+      "source_path": "corpus/farmer-d/logistics/653.",
+      "source_sha256": "46606c40c3851beabd8a0e2edda5ba903cd518d54de9611a913869187e4bbbfc",
+      "message_id": "<7940798.1075854120818.JavaMail.evans@thyme>",
+      "msg_uid": "m_71da384e3f63",
+      "quote": "and I remembered to send these to you.....",
+      "match_tier": "raw_exact",
+      "raw_start": 836,
+      "raw_end": 878,
+      "decoded_start": 126,
+      "decoded_end": 168,
+      "line_start": 32,
+      "line_end": 32,
+      "repaired": false,
+      "sender": "ami.chokshi@enron.com",
+      "sent_at": "2000-01-05T08:58:00-08:00",
+      "subject": "5th Noms",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=836 count=42 if=corpus/farmer-d/logistics/653. 2>/dev/null",
+        "sed": "sed -n '32,32p' corpus/farmer-d/logistics/653."
+      }
+    },
+    {
+      "citation_id": "cit_87bf115002e9",
+      "source_path": "corpus/farmer-d/logistics/767.",
+      "source_sha256": "61a5d7f8c5ef4c0f775aa09de1d1959c795383063460b78760e0a7514c84fa26",
+      "message_id": "<5553774.1075854123429.JavaMail.evans@thyme>",
+      "msg_uid": "m_a34689b01d9a",
+      "quote": "(See attached file: egmnom-Feb.xls)",
+      "match_tier": "raw_exact",
+      "raw_start": 840,
+      "raw_end": 875,
+      "decoded_start": 130,
+      "decoded_end": 165,
+      "line_start": 31,
+      "line_end": 31,
+      "repaired": false,
+      "sender": "ami.chokshi@enron.com",
+      "sent_at": "2000-02-08T06:09:00-08:00",
+      "subject": "9TH NOMS",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=840 count=35 if=corpus/farmer-d/logistics/767. 2>/dev/null",
+        "sed": "sed -n '31,31p' corpus/farmer-d/logistics/767."
+      }
+    }
+  ],
+  "quarantined_citations": [],
+  "member_count": 30,
+  "member_uids": [
+    "m_bf29d71f8000",
+    "m_adba02504b3c",
+    "m_5139867fb84a",
+    "m_144c96b5d68c",
+    "m_b256b49d0cfb",
+    "m_71da384e3f63",
+    "m_5ff1b3715982",
+    "m_a34689b01d9a",
+    "m_5cea8a02d685",
+    "m_8d67c83f76ae",
+    "m_8718990521e8",
+    "m_77d7ab7cff4a",
+    "m_ac5ef27f02c5",
+    "m_4f214af950e1",
+    "m_898318634ea9",
+    "m_46528b8afb09",
+    "m_53a6fb659739",
+    "m_3a424ff8c72b",
+    "m_2604f47ebc12",
+    "m_43f6704e4be3",
+    "m_5e456a12ba76",
+    "m_5b0c86d353b7",
+    "m_605464ee8de2",
+    "m_c97a0dd4d1d2",
+    "m_874b10236ff4",
+    "m_db1b1f2470dc",
+    "m_82debf6f3813",
+    "m_50ac7069e573",
+    "m_88dfb22e6dcd",
+    "m_e0862626717f"
+  ],
+  "flags": []
+}
