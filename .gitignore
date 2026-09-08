@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+.observe-cache/
+.pytest_cache/
+.hypothesis/
+.DS_Store
