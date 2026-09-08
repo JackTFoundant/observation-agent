@@ -255,6 +255,16 @@ def stage2(ctx: Context, corpus: Corpus, extractions: dict, *, method: str = "tf
             "folder": msg.path.rsplit("/", 1)[0],
         })
 
+    # Sort before clustering, so the run is reproducible.
+    #
+    # Extraction results arrive in thread-completion order on a cold run but in card order
+    # on a cached replay, so `records` had two different orderings for the same corpus.
+    # That shifted agglomerative tie-breaking, which changed a few cluster ids, which
+    # missed the characterization cache for five of twelve clusters on a replay that should
+    # have been a total cache hit. Order-independence is cheap here, and it is the
+    # difference between "reproducible" being true and being nearly true.
+    records.sort(key=lambda r: r["msg_uid"])
+
     clusters = cluster_mod.build_clusters(records, class_labels, method=method)
     promoted = [c for c in clusters if c.gate.passed]
     ctx.stats["stage2"] = {
@@ -412,11 +422,13 @@ def stage45(ctx: Context, corpus: Corpus, clusters, records: dict,
 # ---------------------------------------------------------------------------
 
 def stage7(ctx: Context, corpus: Corpus, opportunities, clusters, rejected_series,
-           artifacts: list[dict] | None = None) -> dict:
+           artifacts: list[dict] | None = None,
+           artifacts_skipped: list[dict] | None = None) -> dict:
     from observe.reduce import render as render_mod
     t0 = time.monotonic()
     summary = render_mod.write_all(
-        ctx, corpus, opportunities, clusters, rejected_series, artifacts or [])
+        ctx, corpus, opportunities, clusters, rejected_series, artifacts or [],
+        artifacts_skipped or [])
     ctx.stats["stage7"] = {"seconds": round(time.monotonic() - t0, 2)}
     ctx.log.event(stage="render", event="done", **ctx.stats["stage7"])
     return summary

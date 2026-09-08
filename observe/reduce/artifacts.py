@@ -5,9 +5,11 @@ opportunities above a threshold you choose and defend.
 
 **The threshold** (`config/thresholds.yml`), all of which must hold:
 
-* `dollars_per_month.base >= 250` — about 3 hours a month, roughly 45 minutes a week. Below
-  that, an SOP costs more attention to read, circulate and maintain than it returns.
-* at least 4 verified citations across at least 3 distinct messages — a document is a much
+* a low dollar floor that exists to exclude noise rather than to rank - see
+  `config/thresholds.yml` for why a company-sized floor cannot be applied to figures
+  deliberately scoped to four mailboxes.
+* at least 5 verified citations across at least 4 distinct messages, 6 task instances and
+  3 months of recurrence - the real gate — a document is a much
   stronger claim than a table row, and drafting one off thin evidence is exactly how a
   credible report becomes a discredited one.
 * status `counted` and confidence not `low` — we do not write procedures from findings we
@@ -66,9 +68,11 @@ _PREFIX = {"sop": "SOP", "runbook": "RUN", "checklist": "CHK",
 
 @dataclass
 class Thresholds:
-    min_dollars: float = 250.0
-    min_citations: int = 4
-    min_distinct_messages: int = 3
+    min_dollars: float = 55.0
+    min_citations: int = 5
+    min_distinct_messages: int = 4
+    min_instances: int = 6
+    min_months: int = 3
     max_artifacts: int = 6
     allow_one_judgment_exception: bool = True
     rationale: str = ""
@@ -80,9 +84,11 @@ class Thresholds:
         raw = yaml.safe_load(path.read_text()) or {}
         a = raw.get("artifacts", {})
         return cls(
-            min_dollars=float(a.get("min_dollars_per_month", 250.0)),
-            min_citations=int(a.get("min_verified_citations", 4)),
-            min_distinct_messages=int(a.get("min_distinct_messages", 3)),
+            min_dollars=float(a.get("min_dollars_per_month", 55.0)),
+            min_citations=int(a.get("min_verified_citations", 5)),
+            min_distinct_messages=int(a.get("min_distinct_messages", 4)),
+            min_instances=int(a.get("min_instances", 6)),
+            min_months=int(a.get("min_months", 3)),
             max_artifacts=int(a.get("max_artifacts", 6)),
             allow_one_judgment_exception=bool(a.get("allow_one_judgment_exception", True)),
             rationale=a.get("rationale", ""),
@@ -113,7 +119,15 @@ def select(opportunities, thresholds: Thresholds) -> tuple[list, list[dict]]:
         if len(o.citations) < thresholds.min_citations:
             reasons.append(f"{len(o.citations)} citations, {thresholds.min_citations} required")
         if len({c.msg_uid for c in o.citations}) < thresholds.min_distinct_messages:
-            reasons.append("evidence too concentrated in one message")
+            reasons.append(
+                f"evidence spread over {len({c.msg_uid for c in o.citations})} messages, "
+                f"{thresholds.min_distinct_messages} required")
+        if o.measured.instances < thresholds.min_instances:
+            reasons.append(f"{o.measured.instances} task instances, "
+                           f"{thresholds.min_instances} required to call it a routine")
+        if len(o.months) < thresholds.min_months:
+            reasons.append(f"spans {len(o.months)} month(s), {thresholds.min_months} "
+                           f"required: a burst in one month is a project, not a process")
 
         money_short = float(o.dollars) < thresholds.min_dollars
         if reasons:

@@ -174,10 +174,14 @@ def find_series(messages, address_to_person: dict[str, str]) -> list[RecurringSe
         series.append(RecurringSeries(
             series_id="ser_" + hashlib.sha256(f"{template}|{sender}".encode()).hexdigest()[:10],
             template=template,
-            example_subject=Counter(m.subject for m in members).most_common(1)[0][0],
+            # Deterministic tiebreak: Counter.most_common ties on insertion order,
+            # which is not stable across processes.
+            example_subject=sorted(
+                Counter(m.subject for m in members).items(),
+                key=lambda kv: (-kv[1], kv[0]))[0][0],
             msg_uids=[m.msg_uid for m in members],
             sender_person=sender,
-            recipients=[r for r, _ in recips.most_common()],
+            recipients=[r for r, _ in sorted(recips.items(), key=lambda kv: (-kv[1], str(kv[0])))],
             months=months,
             weeks=weeks,
             median_gap_days=med,

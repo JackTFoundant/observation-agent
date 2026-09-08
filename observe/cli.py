@@ -69,7 +69,7 @@ def cmd_run(args) -> int:
         print(f"[4/7] cite+cost   {stage_line(ctx, 'stage45')}")
         artifacts, skipped = stage6(ctx, opportunities, model=args.artifact_model)
         print(f"[5/7] act         {stage_line(ctx, 'stage6')}")
-        summary = stage7(ctx, corpus, opportunities, clusters, rejected, artifacts)
+        summary = stage7(ctx, corpus, opportunities, clusters, rejected, artifacts, skipped)
         print(f"[6/7] render      out/report.md, out/summary.json")
     except AuthenticationFailed as e:
         ctx.cache.finish_run(ctx.run_id, "auth_failed", str(e))

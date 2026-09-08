@@ -27,7 +27,8 @@ def _write(path: Path, payload) -> None:
     path.write_text(json.dumps(payload, indent=2, default=str) + "\n")
 
 
-def write_all(ctx, corpus, opportunities, clusters, rejected_series, artifacts) -> dict:
+def write_all(ctx, corpus, opportunities, clusters, rejected_series, artifacts,
+              artifacts_skipped=None) -> dict:
     out = ctx.root / "out"
     out.mkdir(parents=True, exist_ok=True)
 
@@ -143,6 +144,11 @@ def write_all(ctx, corpus, opportunities, clusters, rejected_series, artifacts) 
             {k: a[k] for k in ("artifact_id", "title", "artifact_type", "opportunity_id",
                                "filename", "review_status") if k in a}
             for a in artifacts
+        ],
+        "artifacts_not_written": [
+            {"opportunity_id": a.get("opportunity_id"), "title": a.get("title"),
+             "reasons": a.get("reasons", [])}
+            for a in (artifacts_skipped or [])
         ],
         "stages": ctx.stats,
         "residual": {
@@ -323,6 +329,11 @@ def _method(ctx, corpus_stats: dict) -> dict:
             "raw message view highlights the span by slicing the file the server just read",
         ],
         "corpus": corpus_stats,
+        "artifacts_not_written": [
+            {"opportunity_id": a.get("opportunity_id"), "title": a.get("title"),
+             "reasons": a.get("reasons", [])}
+            for a in (artifacts_skipped or [])
+        ],
         "stages": ctx.stats,
     }
 

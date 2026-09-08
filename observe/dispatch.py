@@ -45,11 +45,27 @@ class RunLog:
         self.path.parent.mkdir(parents=True, exist_ok=True)
 
     def event(self, **fields) -> None:
+        """Append one event. Never raises.
+
+        Logging must not be able to kill a run. It once did: the run directory was removed
+        while a run was in flight and the resulting `FileNotFoundError` propagated out of a
+        worker thread and took down twenty minutes of work. A run that cannot write its log
+        should carry on and lose the log, not the opposite.
+        """
         record = {"ts": round(time.time(), 3), **fields}
         line = json.dumps(record, separators=(",", ":"), default=str)
         with self._lock:
-            with self.path.open("a") as fh:
-                fh.write(line + "\n")
+            for attempt in (1, 2):
+                try:
+                    with self.path.open("a") as fh:
+                        fh.write(line + "\n")
+                    return
+                except FileNotFoundError:
+                    if attempt == 1:
+                        self.path.parent.mkdir(parents=True, exist_ok=True)
+                        continue
+                except OSError:
+                    return
 
 
 class AdaptiveSemaphore:

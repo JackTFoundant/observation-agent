@@ -255,6 +255,20 @@ def evaluate_gate(metrics: dict) -> GateResult:
     return GateResult(passed=not failed, metrics=metrics, failed_gates=failed)
 
 
+def _rank(counter: Counter, limit: int | None = None) -> list[tuple[str, int]]:
+    """`most_common` with a deterministic tiebreak.
+
+    `Counter.most_common` breaks ties by insertion order, and insertion order here came
+    from iterating a `set` of tokens — whose order Python randomizes per process via
+    PYTHONHASHSEED. That made the mechanical cluster label, and therefore the
+    characterization cache key, differ between two runs over an identical corpus: a replay
+    that should have been a total cache hit re-ran half the clusters. Sorting on
+    (-count, token) removes the whole class of problem.
+    """
+    ranked = sorted(counter.items(), key=lambda kv: (-kv[1], kv[0]))
+    return ranked[:limit] if limit else ranked
+
+
 def _mechanical_label(phrases: list[str], task_class: str, class_labels: dict) -> tuple[str, list[str]]:
     """Label from the most common terms plus the modal verb.
 
@@ -267,9 +281,9 @@ def _mechanical_label(phrases: list[str], task_class: str, class_labels: dict) -
         toks = _tokens(p)
         if toks:
             verbs[toks[0]] += 1
-        counts.update(set(toks))
-    top = [t for t, _ in counts.most_common(6)]
-    verb = verbs.most_common(1)[0][0] if verbs else ""
+        counts.update(sorted(set(toks)))
+    top = [t for t, _ in _rank(counts, 6)]
+    verb = _rank(verbs, 1)[0][0] if verbs else ""
     keywords = [t for t in top if t != verb][:3]
     base = class_labels.get(task_class, task_class.replace("_", " "))
     if verb and keywords:
@@ -290,7 +304,7 @@ def build_clusters(records, class_labels: dict, *, method: str = "tfidf") -> lis
     for lab, idxs in sorted(grouped.items()):
         members = [records[i] for i in idxs]
         phrases = [m["process_phrase"] for m in members]
-        task_class = Counter(m["task_class"] for m in members).most_common(1)[0][0]
+        task_class = _rank(Counter(m["task_class"] for m in members), 1)[0][0]
 
         senders = {m["sender_person"] for m in members if m["sender_person"]}
         threads = {m["thread_id"] for m in members if m["thread_id"]}
@@ -338,8 +352,8 @@ def build_clusters(records, class_labels: dict, *, method: str = "tfidf") -> lis
             gate=gate,
             exemplar_uids=choose_exemplars(members),
             signal_rates=signal_rates,
-            systems=dict(systems.most_common()),
-            roles=dict(Counter(m["role"] for m in members).most_common()),
+            systems=dict(_rank(systems)),
+            roles=dict(_rank(Counter(m["role"] for m in members))),
         ))
 
     clusters.sort(key=lambda c: (-c.size, c.cluster_id))

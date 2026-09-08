@@ -1,0 +1,6 @@
+{"ts":1788900172.038,"stage":"parse","event":"done","files":3240,"duplicates":16,"survivors":3224,"threads":2823,"people":2691,"duration_ms":2625}
+{"ts":1788900172.198,"stage":"extract","event":"message_cache_pass","total":2531,"cached":2531,"todo":0}
+{"ts":1788900172.199,"stage":"extract_batch","event":"cache_pass","cached":0,"pending":0}
+{"ts":1788900172.199,"stage":"extract","event":"stage_done","messages_eligible":2531,"cache_hits_messages":2531,"messages_extracted_now":0,"batches":0,"batches_ok":0,"model_calls":0,"extractions":2531,"failed_batches":0}
+{"ts":1788900173.167,"stage":"cluster","event":"done","records":1603,"clusters":965,"promoted":12,"residual":953,"seconds":0.97}
+{"ts":1788900173.17,"stage":"characterize","event":"cache_pass","cached":5,"pending":7}
