@@ -126,3 +126,26 @@ def test_method_page_publishes_the_assumptions_verbatim():
     assert "NOT measured" in method["assumptions_source_text"], (
         "the assumptions file must keep its own honesty note")
     assert method["assumptions"]["global"]["extrapolation_factor"] == 1.0
+
+def test_the_report_publishes_its_extraction_coverage(summary):
+    """A report claiming to read every message must state its actual coverage.
+
+    A cold run once lost two rate-limited batches and covered 2,483 of 2,531 messages while
+    still saying it had read them all. Coverage now travels with the report.
+    """
+    cov = summary["coverage"]
+    assert cov["messages_eligible"] > 0
+    assert 0.0 <= cov["coverage_share"] <= 1.0
+    assert cov["complete"] == (cov["messages_not_extracted"] == 0)
+    if not cov["complete"]:
+        assert cov["unextracted"], "an incomplete run must name what it missed"
+        assert "Incomplete coverage" in (OUT / "report.md").read_text()
+
+
+def test_the_shipped_run_has_complete_coverage(summary):
+    """The run we ship should have read everything; if it did not, say so loudly."""
+    cov = summary["coverage"]
+    assert cov["complete"], (
+        f"shipped run covered {cov['messages_extracted']}/{cov['messages_eligible']} "
+        f"messages; re-run to fill the gap before submitting"
+    )

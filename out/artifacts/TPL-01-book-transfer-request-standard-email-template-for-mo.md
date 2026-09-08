@@ -5,7 +5,7 @@ title: "Book Transfer Request \u2014 standard email template for moving deals be
 artifact_type: template
 opportunity_id: proc_121d13b6be
 opportunity_title: Moving deals between trading books by hand-run script requests
-generated_at: '2026-09-08T20:58:42.792599+00:00'
+generated_at: '2026-09-08T21:34:50.316572+00:00'
 generator: claude -p via .claude/agents/artifact-drafter.md
 review_status: draft-unreviewed
 evidence:

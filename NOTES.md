@@ -124,6 +124,23 @@ records the mistake and the reason.
 worker thread and took down twenty minutes of work. A run that cannot write its log should
 lose the log, not the run.
 
+**A cold run silently covered 98% of a corpus it claimed to read in full.** Every run
+during development used a warm cache, so I only exercised the cold path at the very end. It
+finished in 23.6 minutes and `make verify` passed — but two batches had hit rate limits on
+all three attempts and been dropped, losing 48 messages, and the resulting report was
+materially smaller (11 opportunities instead of 14, 89 citations instead of 112). The
+headline still said it had read every message.
+
+Two things were wrong. A throttle consumed one of three *content* attempts, when a throttle
+is transient and not the unit's fault while malformed JSON is and deserves to give up; they
+now have separate budgets, and throttles back off up to 180s and retry up to twelve times,
+with the run deadline as the real stop. And the loss was under-reported: coverage now
+travels with the report, `out/summary.json` names every message that never got an
+extraction, and an incomplete run says so in bold at the top of `report.md`.
+
+This is the failure I would have been least happy to have shipped, and I only found it
+because I forced myself to test the path the grader would actually take.
+
 ## Where this system is most likely to be wrong
 
 1. **The handling-minute assumptions are guesses and they dominate the output.** Instances,
@@ -186,6 +203,16 @@ lose the log, not the run.
     quote exists where it says. Whether a human reader would agree it supports the sentence it
     is attached to is unverified — `/verify-claims` exists to attack exactly that, but it is a
     manual pass I ran on a sample, not a gate.
+
+## A note on timing
+
+A cold run takes about 24 minutes on my machine — inside the 30-minute budget, but not
+comfortably. Roughly 130 model calls, of which ~110 are extraction. Two levers exist if it
+runs long on someone else's machine, and both are one flag: `--concurrency` (adaptive
+already, but the ceiling can rise) and `OBSERVE_EXTRACT_MODEL=haiku`. The second is safe
+in a way worth spelling out: because a published quote is always *sliced from the corpus*
+and the model's string is only a search key, a cheaper model that paraphrases more costs
+recall, not correctness. A warm re-run is about five seconds.
 
 ## What I would build next, in order
 

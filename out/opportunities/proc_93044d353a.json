@@ -1,0 +1,352 @@
+{
+  "opportunity_id": "proc_93044d353a",
+  "source": "content_cluster",
+  "title": "Calpine and HPL daily gas nominations mailed as attached documents",
+  "task_class": "gas_nomination",
+  "label_mechanical": "Gas nomination and scheduling: submit daily / nomination / gas",
+  "narrative": {
+    "what_happens": "On each flow day a nomination for the Calpine (and occasionally Hidalgo or HPL) gas volumes is prepared and sent on by mail, almost always as an attached document named \"CALPINE DAILY GAS NOMINATION 1.doc\" or a dated HPL nomination subject such as \"HPL Nom for January 4, 2001\". The message body carries little or no text; the attachment is the deliverable, and the mail is the transport. Most messages are requests to schedule or confirm the day's volumes, with a smaller number simply handing the same document onward to the next recipient. The work is spread over a small number of senders but reaches a wide set of recipients, and it repeats across many months of the archive. It ends when the document has been passed to whoever enters or confirms the nomination \u2014 that final step is not visible in these messages.",
+    "where_it_stalls": "The measured signal rates for rework, waiting, manual transfer and deadline are all zero, so this cluster shows no visible friction of its own. What it does show is a structural weak point: the nomination content lives inside a repeatedly reused attachment filename rather than in a system of record, and the handoff messages simply forward that same file. Nothing in the mail states who received, validated or entered the numbers, so a missed or superseded version would not be detectable from the trail. Any stall is therefore invisible here rather than absent.",
+    "why_it_recurs": "Nominations are per-flow-day for a standing counterparty relationship, so the same document is regenerated and remailed every gas day, across thirteen months of the archive.",
+    "automation_opportunity": "A scheduled job that builds the daily nomination from the source volume data and posts it directly to the scheduling system, mailing a dated, version-stamped copy to the standing distribution instead of reattaching an identically named document. At minimum, a template with the flow date in the filename and subject would make supersession and receipt checkable.",
+    "coherence": "tight"
+  },
+  "status": "counted",
+  "status_reason": "",
+  "confidence": "high",
+  "artifact_shape": "template",
+  "measured": {
+    "instances": 24,
+    "messages": 24,
+    "dated_messages": 24,
+    "undated_messages": 0,
+    "participants_median": 5,
+    "months": 13.0,
+    "rework_rate": 0.0,
+    "waiting_rate": 0.0,
+    "manual_transfer_rate": 0.0,
+    "senders": 3
+  },
+  "gate_metrics": {
+    "messages": 24,
+    "distinct_content": 24,
+    "senders": 3,
+    "threads": 24,
+    "months": 13,
+    "weeks": 21,
+    "folders": 2,
+    "people": 25
+  },
+  "signal_rates": {
+    "rework_signal": 0.0,
+    "waiting_signal": 0.0,
+    "manual_transfer_signal": 0.0,
+    "deadline_signal": 0.0
+  },
+  "systems": {
+    "email": 15,
+    "other_system": 11,
+    "spreadsheet": 3
+  },
+  "roles": {
+    "request": 17,
+    "handoff": 6,
+    "status_report": 1
+  },
+  "months": [
+    "1999-12",
+    "2000-01",
+    "2000-03",
+    "2000-04",
+    "2000-05",
+    "2000-06",
+    "2000-07",
+    "2000-08",
+    "2000-09",
+    "2000-11",
+    "2000-12",
+    "2001-01",
+    "2001-04"
+  ],
+  "people": 25,
+  "hours_per_month": {
+    "low": 0.2,
+    "base": 0.6,
+    "high": 1.5
+  },
+  "automatable_hours_per_month": {
+    "low": 0.1,
+    "base": 0.3,
+    "high": 1.1
+  },
+  "dollars_per_month": {
+    "low": 5.02,
+    "base": 27.62,
+    "high": 94.15
+  },
+  "derivation": {
+    "formula_id": "hours_v1",
+    "estimate_version": "1.0.0",
+    "measured": {
+      "instances": 24,
+      "messages": 24,
+      "dated_messages": 24,
+      "undated_messages": 0,
+      "participants_median": 5,
+      "months": 13.0,
+      "rework_rate": 0.0,
+      "waiting_rate": 0.0,
+      "manual_transfer_rate": 0.0,
+      "senders": 3
+    },
+    "assumed": {
+      "handle_min": 8.0,
+      "per_touch_min": 3.0,
+      "rework_min": 12.0,
+      "waiting_admin_min": 2.0,
+      "automatable_share": 0.55
+    },
+    "assumed_global": {
+      "blended_rate_usd_per_hour": 85.0,
+      "coordination_alpha": 0.35,
+      "extrapolation_factor": 1.0
+    },
+    "assumption_source": "config/estimation.yml#task_classes.gas_nomination",
+    "steps": [
+      "24.00 task instances / 13 months of coverage = 1.846 instances per month",
+      "minutes per instance = 8 handle + (1.00 touches - 1) x 3 + 0.00 rework rate x 12 + 0.00 waiting rate x 2 = 8.00 min",
+      "coordination multiplier = 1 + 0.35 x (5 median participants - 1) = 2.400",
+      "hours per month = 1.846 x 8.00 x 2.400 / 60 = 0.591",
+      "automatable hours = 0.591 x 0.55 automatable share = 0.325",
+      "dollars per month = 0.325 h x $85/h = $27.62"
+    ],
+    "result": {
+      "hours_per_month": 0.6,
+      "automatable_hours_per_month": 0.3,
+      "dollars_per_month": 27.62
+    }
+  },
+  "citations": [
+    {
+      "citation_id": "cit_d375b8b65357",
+      "source_path": "corpus/farmer-d/logistics/1245.",
+      "source_sha256": "553be0d481bb230759b6b3ef8dbd1e1ef2781ab9d3d042d46281b0769cc09788",
+      "message_id": "<19175080.1075854134444.JavaMail.evans@thyme>",
+      "msg_uid": "m_898318634ea9",
+      "quote": "CALPINE DAILY GAS NOMINATION 1.doc",
+      "match_tier": "raw_exact",
+      "raw_start": 697,
+      "raw_end": 731,
+      "decoded_start": 3,
+      "decoded_end": 37,
+      "line_start": 19,
+      "line_end": 19,
+      "repaired": false,
+      "sender": "rickya@calpine.com",
+      "sent_at": "2000-06-27T00:22:00-07:00",
+      "subject": "Calpine Daily Gas Nomination and Monthly (JULY) Nomination",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=697 count=34 if=corpus/farmer-d/logistics/1245. 2>/dev/null",
+        "sed": "sed -n '19,19p' corpus/farmer-d/logistics/1245."
+      }
+    },
+    {
+      "citation_id": "cit_900f67bebeae",
+      "source_path": "corpus/farmer-d/logistics/2025.",
+      "source_sha256": "2ac6f5f908758d304ed908277048c70be864354cf8e20292d97a5d738812b4d1",
+      "message_id": "<13051665.1075854317981.JavaMail.evans@thyme>",
+      "msg_uid": "m_50ac7069e573",
+      "quote": "HPL Nom for January 4, 2001",
+      "match_tier": "raw_exact",
+      "raw_start": 313,
+      "raw_end": 340,
+      "decoded_start": 0,
+      "decoded_end": 0,
+      "line_start": 7,
+      "line_end": 7,
+      "repaired": false,
+      "sender": "mjones7@txu.com",
+      "sent_at": "2001-01-03T03:02:00-08:00",
+      "subject": "HPL Nom for January 4, 2001",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=313 count=27 if=corpus/farmer-d/logistics/2025. 2>/dev/null",
+        "sed": "sed -n '7,7p' corpus/farmer-d/logistics/2025."
+      }
+    },
+    {
+      "citation_id": "cit_72fc6b58c4d5",
+      "source_path": "corpus/farmer-d/logistics/716.",
+      "source_sha256": "1f1cbcb6bf01816e3ed8c986d4334cd67d71763ad4da653c101214b3da77b762",
+      "message_id": "<27651611.1075854122289.JavaMail.evans@thyme>",
+      "msg_uid": "m_7e88a8e97a4a",
+      "quote": "HPL Nomination for January 26, 2000",
+      "match_tier": "raw_exact",
+      "raw_start": 263,
+      "raw_end": 298,
+      "decoded_start": 0,
+      "decoded_end": 0,
+      "line_start": 6,
+      "line_end": 6,
+      "repaired": false,
+      "sender": "timpowell@txu.com",
+      "sent_at": "2000-01-25T09:28:00-08:00",
+      "subject": "HPL Nomination for January 26, 2000",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=263 count=35 if=corpus/farmer-d/logistics/716. 2>/dev/null",
+        "sed": "sed -n '6,6p' corpus/farmer-d/logistics/716."
+      }
+    },
+    {
+      "citation_id": "cit_efa4bfbf2024",
+      "source_path": "corpus/farmer-d/logistics/1229.",
+      "source_sha256": "defe556aaaefedc735300575081c47c2afd516a7425272a6bd3602e432982180",
+      "message_id": "<13854143.1075854134066.JavaMail.evans@thyme>",
+      "msg_uid": "m_4f214af950e1",
+      "quote": "HIDALGO DAILY GAS NOMINATION.doc",
+      "match_tier": "raw_exact",
+      "raw_start": 667,
+      "raw_end": 699,
+      "decoded_start": 3,
+      "decoded_end": 35,
+      "line_start": 19,
+      "line_end": 19,
+      "repaired": false,
+      "sender": "rickya@calpine.com",
+      "sent_at": "2000-06-22T00:15:00-07:00",
+      "subject": "Calpine Daily Gas Nomination",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=667 count=32 if=corpus/farmer-d/logistics/1229. 2>/dev/null",
+        "sed": "sed -n '19,19p' corpus/farmer-d/logistics/1229."
+      }
+    },
+    {
+      "citation_id": "cit_05652e64715e",
+      "source_path": "corpus/farmer-d/logistics/1318.",
+      "source_sha256": "e192e17b58c3f8d6f5e988652827d131fcd8bc40514cbfdd402f979c2498a97e",
+      "message_id": "<5501740.1075854136252.JavaMail.evans@thyme>",
+      "msg_uid": "m_2604f47ebc12",
+      "quote": "CALPINE DAILY GAS NOMINATION 1.doc",
+      "match_tier": "raw_exact",
+      "raw_start": 746,
+      "raw_end": 780,
+      "decoded_start": 119,
+      "decoded_end": 153,
+      "line_start": 19,
+      "line_end": 19,
+      "repaired": false,
+      "sender": "rickya@calpine.com",
+      "sent_at": "2000-08-03T00:24:00-07:00",
+      "subject": "Calpine Daily Gas Nomination",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=746 count=34 if=corpus/farmer-d/logistics/1318. 2>/dev/null",
+        "sed": "sed -n '19,19p' corpus/farmer-d/logistics/1318."
+      }
+    },
+    {
+      "citation_id": "cit_58ff72e5261c",
+      "source_path": "corpus/farmer-d/logistics/1561.",
+      "source_sha256": "a8d5f4b81c21d776771e83bd30845f5ed272d0f153f7f51c48e52f53d5746583",
+      "message_id": "<16151264.1075854141824.JavaMail.evans@thyme>",
+      "msg_uid": "m_82debf6f3813",
+      "quote": "Calpine Daily Gas Nomination",
+      "match_tier": "raw_exact",
+      "raw_start": 167,
+      "raw_end": 195,
+      "decoded_start": 0,
+      "decoded_end": 0,
+      "line_start": 5,
+      "line_end": 5,
+      "repaired": false,
+      "sender": "rickya@calpine.com",
+      "sent_at": "2000-12-12T23:46:00-08:00",
+      "subject": "Calpine Daily Gas Nomination",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=167 count=28 if=corpus/farmer-d/logistics/1561. 2>/dev/null",
+        "sed": "sed -n '5,5p' corpus/farmer-d/logistics/1561."
+      }
+    },
+    {
+      "citation_id": "cit_ca7eaf5bf221",
+      "source_path": "corpus/farmer-d/logistics/1316.",
+      "source_sha256": "8a3839caacfc4dbb39211f1c2ee0a44878c15a610fd36fbc61da55d4a12f6c24",
+      "message_id": "<12704969.1075854136207.JavaMail.evans@thyme>",
+      "msg_uid": "m_3a424ff8c72b",
+      "quote": "CALPINE DAILY GAS NOMINATION 1.doc",
+      "match_tier": "raw_exact",
+      "raw_start": 747,
+      "raw_end": 781,
+      "decoded_start": 118,
+      "decoded_end": 152,
+      "line_start": 19,
+      "line_end": 19,
+      "repaired": false,
+      "sender": "rickya@calpine.com",
+      "sent_at": "2000-08-02T00:19:00-07:00",
+      "subject": "Calpine Daily Gas Nomination",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=747 count=34 if=corpus/farmer-d/logistics/1316. 2>/dev/null",
+        "sed": "sed -n '19,19p' corpus/farmer-d/logistics/1316."
+      }
+    },
+    {
+      "citation_id": "cit_bcb5ca97ae90",
+      "source_path": "corpus/farmer-d/logistics/1329.",
+      "source_sha256": "9a99cc809855a00ef158a4756673ada49d467f403941a7cbae76f3c3de98b7aa",
+      "message_id": "<27039435.1075854136498.JavaMail.evans@thyme>",
+      "msg_uid": "m_43f6704e4be3",
+      "quote": "CALPINE DAILY GAS NOMINATION 1.doc",
+      "match_tier": "raw_exact",
+      "raw_start": 748,
+      "raw_end": 782,
+      "decoded_start": 126,
+      "decoded_end": 160,
+      "line_start": 19,
+      "line_end": 19,
+      "repaired": false,
+      "sender": "rickya@calpine.com",
+      "sent_at": "2000-08-10T03:18:00-07:00",
+      "subject": "Calpine Daily Gas Nomination",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=748 count=34 if=corpus/farmer-d/logistics/1329. 2>/dev/null",
+        "sed": "sed -n '19,19p' corpus/farmer-d/logistics/1329."
+      }
+    }
+  ],
+  "quarantined_citations": [],
+  "member_count": 24,
+  "member_uids": [
+    "m_144c96b5d68c",
+    "m_2604f47ebc12",
+    "m_3a424ff8c72b",
+    "m_43f6704e4be3",
+    "m_46528b8afb09",
+    "m_4f214af950e1",
+    "m_50ac7069e573",
+    "m_5139867fb84a",
+    "m_53a6fb659739",
+    "m_5b0c86d353b7",
+    "m_5e456a12ba76",
+    "m_605464ee8de2",
+    "m_77d7ab7cff4a",
+    "m_7e88a8e97a4a",
+    "m_82debf6f3813",
+    "m_8718990521e8",
+    "m_874b10236ff4",
+    "m_898318634ea9",
+    "m_8d67c83f76ae",
+    "m_adba02504b3c",
+    "m_bf29d71f8000",
+    "m_c97a0dd4d1d2",
+    "m_db1b1f2470dc",
+    "m_e0862626717f"
+  ],
+  "flags": []
+}

@@ -65,6 +65,7 @@ class Context:
     deadline_s: float = 25 * 60
     concurrency: int = 8
     stats: dict = field(default_factory=dict)
+    unextracted: list = field(default_factory=list)
 
     @property
     def deadline_at(self) -> float:
@@ -197,6 +198,26 @@ def stage1(ctx: Context, corpus: Corpus, *, model: str = "sonnet") -> dict:
             ctx.cache.put(extract_mod.MESSAGE_STAGE, key_by_uid[uid], item, unit_id=uid,
                           model=model)
 
+    # Which messages never got an extraction, and why.
+    #
+    # A report that claims to read every message must say so only when it did. The first
+    # cold run lost two batches to rate limiting and covered 2,483 of 2,531 messages while
+    # the headline still said it had read all of them. That gap now travels with the
+    # report instead of living in a log line.
+    lost: list[dict] = []
+    for f in outcome.failed:
+        for uid in f.get("expected_ids") or []:
+            if uid not in extractions:
+                msg = corpus.by_uid.get(uid)
+                lost.append({
+                    "msg_uid": uid,
+                    "path": msg.path if msg else None,
+                    "subject": (msg.subject if msg else "")[:120],
+                    "batch": f.get("unit_id"),
+                    "reason": f.get("kind"),
+                    "detail": (f.get("detail") or "")[:200],
+                })
+
     ctx.stats["stage1"] = {
         "messages_eligible": len(cards),
         "cache_hits_messages": len(cards) - len(todo),
@@ -204,7 +225,10 @@ def stage1(ctx: Context, corpus: Corpus, *, model: str = "sonnet") -> dict:
         "batches": len(units), "batches_ok": len(outcome.results),
         "model_calls": outcome.model_calls,
         "extractions": len(extractions), "failed_batches": len(outcome.failed),
+        "messages_not_extracted": len(lost),
+        "coverage": round(len(extractions) / max(len(cards), 1), 4),
     }
+    ctx.unextracted = lost
     ctx.log.event(stage="extract", event="stage_done", **ctx.stats["stage1"])
     return extractions
 

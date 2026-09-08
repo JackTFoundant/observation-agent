@@ -1,0 +1,166 @@
+{
+  "opportunity_id": "proc_014aee5c24",
+  "source": "content_cluster",
+  "title": "Meter data questions and corrections raised by hand in logistics mail",
+  "task_class": "meter_data",
+  "label_mechanical": "Meter data requests and corrections: raise data / meter / question",
+  "narrative": {
+    "what_happens": "Someone in the logistics mailbox notices something about a meter \u2014 a number that does not look right, a flow with no matching deal, or a reading that needs passing on \u2014 and writes a one-off note about it. Most of these notes are informational: a meter figure is reported onward, or a question is put in front of whoever can answer it. A smaller number are explicit requests, such as asking whether a deal has to be entered to cover a flow, and at least one message closes a question out as confirmed. Each note is its own thread; there is no shared form, queue or tracking artefact visible in the messages, so the meter, the question and the answer live only in the mail. The evidence available here is thin \u2014 a single quoted line across fifteen messages \u2014 so what the answers were and who owned each step is not visible.",
+    "where_it_stalls": "No stall is measurable: the corpus shows no rework, waiting, manual-transfer or deadline signals on any of these messages, and only one confirmation is present. What the pattern does show is that meter questions arrive one at a time and are answered, if at all, off the record \u2014 the archive holds the question (\"Do we need to put in a deal for this flow?\") but not a visible resolution path. The exposure is that a meter query depends on the right person reading a personal mailbox rather than on any queue.",
+    "why_it_recurs": "Meters are the key on which flows and deals are matched, so every mismatch or unfamiliar flow generates a fresh question; nothing in the mail suggests a system that answers these automatically.",
+    "automation_opportunity": "A single intake form or shared queue for meter questions \u2014 meter id, flow date, question, owner, resolution \u2014 so each query is tracked to an answer instead of living in one person's inbox, and repeated questions about the same meter become visible.",
+    "coherence": "mixed"
+  },
+  "status": "quarantined",
+  "status_reason": "only 1 verified citation(s); 3 required",
+  "confidence": "medium",
+  "artifact_shape": "template",
+  "measured": {
+    "instances": 15,
+    "messages": 15,
+    "dated_messages": 15,
+    "undated_messages": 0,
+    "participants_median": 2,
+    "months": 4.0,
+    "rework_rate": 0.0,
+    "waiting_rate": 0.0,
+    "manual_transfer_rate": 0.0,
+    "senders": 3
+  },
+  "gate_metrics": {
+    "messages": 15,
+    "distinct_content": 15,
+    "senders": 3,
+    "threads": 15,
+    "months": 4,
+    "weeks": 9,
+    "folders": 1,
+    "people": 9
+  },
+  "signal_rates": {
+    "rework_signal": 0.0,
+    "waiting_signal": 0.0,
+    "manual_transfer_signal": 0.0,
+    "deadline_signal": 0.0
+  },
+  "systems": {
+    "other_system": 1
+  },
+  "roles": {
+    "fyi": 12,
+    "request": 2,
+    "confirmation": 1
+  },
+  "months": [
+    "2000-08",
+    "2001-01",
+    "2001-02",
+    "2001-03"
+  ],
+  "people": 9,
+  "hours_per_month": {
+    "low": 0.3,
+    "base": 0.8,
+    "high": 1.7
+  },
+  "automatable_hours_per_month": {
+    "low": 0.1,
+    "base": 0.5,
+    "high": 1.5
+  },
+  "dollars_per_month": {
+    "low": 9.78,
+    "base": 41.96,
+    "high": 125.99
+  },
+  "derivation": {
+    "formula_id": "hours_v1",
+    "estimate_version": "1.0.0",
+    "measured": {
+      "instances": 15,
+      "messages": 15,
+      "dated_messages": 15,
+      "undated_messages": 0,
+      "participants_median": 2,
+      "months": 4.0,
+      "rework_rate": 0.0,
+      "waiting_rate": 0.0,
+      "manual_transfer_rate": 0.0,
+      "senders": 3
+    },
+    "assumed": {
+      "handle_min": 9.0,
+      "per_touch_min": 4.0,
+      "rework_min": 12.0,
+      "waiting_admin_min": 3.0,
+      "automatable_share": 0.65
+    },
+    "assumed_global": {
+      "blended_rate_usd_per_hour": 85.0,
+      "coordination_alpha": 0.35,
+      "extrapolation_factor": 1.0
+    },
+    "assumption_source": "config/estimation.yml#task_classes.meter_data",
+    "steps": [
+      "15.00 task instances / 4 months of coverage = 3.750 instances per month",
+      "minutes per instance = 9 handle + (1.00 touches - 1) x 4 + 0.00 rework rate x 12 + 0.00 waiting rate x 3 = 9.00 min",
+      "coordination multiplier = 1 + 0.35 x (2 median participants - 1) = 1.350",
+      "hours per month = 3.750 x 9.00 x 1.350 / 60 = 0.759",
+      "automatable hours = 0.759 x 0.65 automatable share = 0.494",
+      "dollars per month = 0.494 h x $85/h = $41.96"
+    ],
+    "result": {
+      "hours_per_month": 0.8,
+      "automatable_hours_per_month": 0.5,
+      "dollars_per_month": 41.96
+    }
+  },
+  "citations": [
+    {
+      "citation_id": "cit_60ff712d0bd0",
+      "source_path": "corpus/farmer-d/logistics/2092.",
+      "source_sha256": "3549206d927f5ef3c387c083fe4a2411de4014e636022bc8d324e37615a171a7",
+      "message_id": "<19260398.1075854319495.JavaMail.evans@thyme>",
+      "msg_uid": "m_c729a0327cac",
+      "quote": "Do we need to \nput in a deal for this flow?",
+      "match_tier": "rewrapped",
+      "raw_start": 671,
+      "raw_end": 714,
+      "decoded_start": 214,
+      "decoded_end": 257,
+      "line_start": 21,
+      "line_end": 22,
+      "repaired": false,
+      "sender": "michael.olsen@enron.com",
+      "sent_at": "2001-02-23T03:19:00-08:00",
+      "subject": "meter 981318",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=671 count=43 if=corpus/farmer-d/logistics/2092. 2>/dev/null",
+        "sed": "sed -n '21,22p' corpus/farmer-d/logistics/2092."
+      }
+    }
+  ],
+  "quarantined_citations": [],
+  "member_count": 15,
+  "member_uids": [
+    "m_02e36572d793",
+    "m_042cbb1f42c4",
+    "m_04bacc21e37d",
+    "m_0b92f2c0507b",
+    "m_31d354b7d53e",
+    "m_57b045283d99",
+    "m_5b185b492243",
+    "m_7c0206d2b13d",
+    "m_7ec4e2cbea92",
+    "m_a35794a8a50c",
+    "m_b9e312bbb441",
+    "m_c729a0327cac",
+    "m_d1ccc5b5ecc4",
+    "m_fc6c4d693054",
+    "m_ffcb13be9d85"
+  ],
+  "flags": []
+}

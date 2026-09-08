@@ -481,7 +481,7 @@
       "task_instances": 2823,
       "people": 2691,
       "generated_tables": 1,
-      "seconds": 2.58
+      "seconds": 2.86
     },
     "stage1": {
       "messages_eligible": 2531,
@@ -491,14 +491,16 @@
       "batches_ok": 0,
       "model_calls": 0,
       "extractions": 2531,
-      "failed_batches": 0
+      "failed_batches": 0,
+      "messages_not_extracted": 0,
+      "coverage": 1.0
     },
     "stage2": {
       "records": 1603,
       "clusters": 965,
       "promoted": 12,
       "residual": 953,
-      "seconds": 0.95
+      "seconds": 1.06
     },
     "stage3": {
       "clusters": 12,
@@ -516,7 +518,7 @@
       "citations_quarantined": 0,
       "series_promoted": 3,
       "series_rejected": 19,
-      "seconds": 0.41
+      "seconds": 0.42
     },
     "stage6": {
       "selected": 7,

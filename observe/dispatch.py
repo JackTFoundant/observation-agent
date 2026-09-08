@@ -23,7 +23,12 @@ from typing import Callable
 
 from observe.claude_cli import WorkerError, resolve_cli, run_worker
 
-DISPATCH_VERSION = "1.0.0"
+DISPATCH_VERSION = "1.1.0"
+
+# How many times a single unit may be re-queued after a rate limit before we give up on it.
+# Generous on purpose: a throttle is transient and costs us nothing but time, whereas
+# dropping the unit costs us corpus coverage. The run deadline is the real stop.
+MAX_THROTTLE_RETRIES = 12
 
 
 class RunDeadlineExceeded(Exception):
@@ -190,12 +195,26 @@ def dispatch(
             return
 
         last: dict | None = None
-        for attempt in (1, 2, 3):
+        attempt = 0
+        throttles = 0
+        # A rate limit does not consume a content attempt.
+        #
+        # The first cold run lost two whole batches - 48 messages, 2% of the corpus - to
+        # rate limiting, because a throttle was counted as one of three attempts and the
+        # backoff was capped at 40s. But a throttle is transient and is not the unit's
+        # fault, whereas malformed JSON is and deserves to give up. Conflating them meant
+        # the run silently covered 98% of a corpus it claimed to read in full.
+        #
+        # So throttles get their own budget and a much longer backoff, and the only thing
+        # that finally stops them is the run deadline - at which point the coverage gap is
+        # reported loudly rather than absorbed.
+        while attempt < 3 and throttles <= MAX_THROTTLE_RETRIES:
             if stop.is_set():
                 return
             if deadline_at and time.monotonic() > deadline_at:
                 stop.set()
                 return
+            attempt += 1
             if not budget_ok():
                 failed.append({"unit_id": unit.unit_id, "kind": "budget",
                                "detail": f"max_model_calls={max_model_calls} reached"})
@@ -233,9 +252,13 @@ def dispatch(
                     return
                 if e.kind == "rate_limit":
                     sem.penalize()
+                    throttles += 1
+                    attempt -= 1          # a throttle is not a content failure
+                    backoff = min(180, 15 * (2 ** min(throttles, 4))) + random.uniform(0, 8)
                     log.event(stage=stage, unit_id=unit.unit_id, event="rate_limited",
-                              attempt=attempt, new_limit=sem.limit)
-                    time.sleep(min(60, 5 * (2 ** attempt)) + random.uniform(0, 4))
+                              throttle=throttles, new_limit=sem.limit,
+                              backoff_s=round(backoff, 1))
+                    time.sleep(backoff)
                     last = {"problems": [f"rate limited: {e.detail}"]}
                     continue
                 log.event(stage=stage, unit_id=unit.unit_id, event="worker_error",
@@ -278,9 +301,16 @@ def dispatch(
                         attempt_unit(h, depth + 1)
                     return
 
-        failed.append({"unit_id": unit.unit_id, "kind": "exhausted",
-                       "detail": "; ".join((last or {}).get("problems", ["unknown"]))[:500]})
-        log.event(stage=stage, unit_id=unit.unit_id, event="failed_permanently")
+        kind = "throttled_out" if throttles > MAX_THROTTLE_RETRIES else "exhausted"
+        failed.append({
+            "unit_id": unit.unit_id,
+            "kind": kind,
+            "throttles": throttles,
+            "expected_ids": sorted(unit.expected_ids),
+            "detail": "; ".join((last or {}).get("problems", ["unknown"]))[:500],
+        })
+        log.event(stage=stage, unit_id=unit.unit_id, event="failed_permanently",
+                  kind=kind, throttles=throttles, units_lost=len(unit.expected_ids))
 
     with ThreadPoolExecutor(max_workers=max(sem.ceiling, concurrency)) as pool:
         futures = [pool.submit(attempt_unit, u) for u in pending]

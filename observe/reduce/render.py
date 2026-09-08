@@ -115,12 +115,28 @@ def write_all(ctx, corpus, opportunities, clusters, rejected_series, artifacts,
         ),
     }
 
+    s1 = ctx.stats.get("stage1", {})
+    coverage = {
+        "messages_eligible": s1.get("messages_eligible", 0),
+        "messages_extracted": s1.get("extractions", 0),
+        "messages_not_extracted": s1.get("messages_not_extracted", 0),
+        "coverage_share": s1.get("coverage", 1.0),
+        "complete": s1.get("messages_not_extracted", 0) == 0,
+        "unextracted": getattr(ctx, "unextracted", [])[:100],
+        "note": (
+            "Messages that were eligible for extraction but never got one, usually because "
+            "a batch was rate-limited past its retry budget. They are listed here rather "
+            "than absorbed: a report that says it read the whole corpus has to mean it."
+        ),
+    }
+
     summary = {
         "run_id": ctx.run_id,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "corpus_digest": corpus.corpus_digest,
         "scope_line": _scope_line(corpus_stats),
         "attribution": attribution,
+        "coverage": coverage,
         "blended_rate_usd_per_hour": 85,
         "headline": {
             "dollars_per_month": totals,
@@ -369,6 +385,17 @@ def _report_md(summary: dict, opportunities, artifacts) -> str:
       f"deliberately left uncosted rather than estimated. Every rejected candidate is "
       f"published in `out/residual.json` with the gate it failed.")
     A("")
+
+    cov = summary["coverage"]
+    if not cov["complete"]:
+        A(f"> **Incomplete coverage on this run.** "
+          f"{cov['messages_extracted']:,} of {cov['messages_eligible']:,} eligible messages "
+          f"were classified ({cov['coverage_share']:.1%}); "
+          f"{cov['messages_not_extracted']:,} were not, because their batch exhausted its "
+          f"retry budget. Every one is listed in `out/summary.json` under `coverage`. The "
+          f"figures below therefore rest on slightly less than the whole corpus, and a "
+          f"re-run picks up exactly where this one stopped.")
+        A("")
 
     c = summary["corpus"]
     A("### What was read")
