@@ -1,6 +1,11 @@
-{"ts":1788900172.038,"stage":"parse","event":"done","files":3240,"duplicates":16,"survivors":3224,"threads":2823,"people":2691,"duration_ms":2625}
-{"ts":1788900172.198,"stage":"extract","event":"message_cache_pass","total":2531,"cached":2531,"todo":0}
-{"ts":1788900172.199,"stage":"extract_batch","event":"cache_pass","cached":0,"pending":0}
-{"ts":1788900172.199,"stage":"extract","event":"stage_done","messages_eligible":2531,"cache_hits_messages":2531,"messages_extracted_now":0,"batches":0,"batches_ok":0,"model_calls":0,"extractions":2531,"failed_batches":0}
-{"ts":1788900173.167,"stage":"cluster","event":"done","records":1603,"clusters":965,"promoted":12,"residual":953,"seconds":0.97}
-{"ts":1788900173.17,"stage":"characterize","event":"cache_pass","cached":5,"pending":7}
+{"ts":1788900991.791,"stage":"parse","event":"done","files":3240,"duplicates":16,"survivors":3224,"threads":2823,"people":2691,"duration_ms":2609}
+{"ts":1788900991.947,"stage":"extract","event":"message_cache_pass","total":2531,"cached":2531,"todo":0}
+{"ts":1788900991.948,"stage":"extract_batch","event":"cache_pass","cached":0,"pending":0}
+{"ts":1788900991.948,"stage":"extract","event":"stage_done","messages_eligible":2531,"cache_hits_messages":2531,"messages_extracted_now":0,"batches":0,"batches_ok":0,"model_calls":0,"extractions":2531,"failed_batches":0}
+{"ts":1788900992.922,"stage":"cluster","event":"done","records":1603,"clusters":965,"promoted":12,"residual":953,"seconds":0.97}
+{"ts":1788900992.924,"stage":"characterize","event":"cache_pass","cached":12,"pending":0}
+{"ts":1788900992.924,"stage":"characterize","event":"stage_done","clusters":12,"characterized":12,"model_calls":0,"cache_hits":12,"failed":0}
+{"ts":1788900993.365,"stage":"build","event":"done","opportunities":15,"counted":14,"low_confidence":0,"quarantined":1,"citations_verified":112,"citations_quarantined":0,"series_promoted":3,"series_rejected":19,"seconds":0.42}
+{"ts":1788900993.369,"stage":"artifact","event":"cache_pass","cached":7,"pending":0}
+{"ts":1788900993.374,"stage":"artifact","event":"stage_done","selected":7,"written":7,"skipped":8,"model_calls":0,"cache_hits":7,"failed":0,"threshold_dollars":55.0,"cap":6}
+{"ts":1788900993.402,"stage":"render","event":"done","seconds":0.03}

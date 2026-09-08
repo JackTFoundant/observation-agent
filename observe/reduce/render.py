@@ -329,11 +329,6 @@ def _method(ctx, corpus_stats: dict) -> dict:
             "raw message view highlights the span by slicing the file the server just read",
         ],
         "corpus": corpus_stats,
-        "artifacts_not_written": [
-            {"opportunity_id": a.get("opportunity_id"), "title": a.get("title"),
-             "reasons": a.get("reasons", [])}
-            for a in (artifacts_skipped or [])
-        ],
         "stages": ctx.stats,
     }
 

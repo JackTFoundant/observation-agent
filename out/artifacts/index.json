@@ -1,0 +1,156 @@
+[
+  {
+    "artifact_id": "TPL-01",
+    "title": "Book Transfer Request \u2014 standard email template for moving deals between trading books",
+    "artifact_type": "template",
+    "opportunity_id": "proc_121d13b6be",
+    "opportunity_title": "Moving deals between trading books by hand-run script requests",
+    "generated_at": "2026-09-08T20:56:37.696041+00:00",
+    "generator": "claude -p via .claude/agents/artifact-drafter.md",
+    "review_status": "draft-unreviewed",
+    "evidence": [
+      "cit_2cf730fe5eda",
+      "cit_7ae2224b6a77",
+      "cit_82ca9725c333",
+      "cit_8c1166964272",
+      "cit_9d702ae06db2",
+      "cit_ac1079e9161a",
+      "cit_f1ac3207b624",
+      "cit_fc5549a67a69"
+    ],
+    "below_threshold_judgment_call": false,
+    "filename": "TPL-01-book-transfer-request-standard-email-template-for-mo.md"
+  },
+  {
+    "artifact_id": "RUN-01",
+    "title": "Runbook: Extending an existing deal ticket to cover unbooked meter flow",
+    "artifact_type": "runbook",
+    "opportunity_id": "proc_7dd2a1eead",
+    "opportunity_title": "Extending existing deal tickets in Sitara/Unify to cover unbooked meter flow",
+    "generated_at": "2026-09-08T20:56:37.696876+00:00",
+    "generator": "claude -p via .claude/agents/artifact-drafter.md",
+    "review_status": "draft-unreviewed",
+    "evidence": [
+      "cit_4f3610f710eb",
+      "cit_79ccf0623d7f",
+      "cit_969179cf132d",
+      "cit_9e9ab1d61248",
+      "cit_9f0498ab829a",
+      "cit_d239579d3927",
+      "cit_d73baaf8565e",
+      "cit_e82f53b88502"
+    ],
+    "below_threshold_judgment_call": true,
+    "filename": "RUN-01-runbook-extending-an-existing-deal-ticket-to-cover-u.md"
+  },
+  {
+    "artifact_id": "RUN-02",
+    "title": "Runbook: Clearing Meter-Level Scheduled-vs-Actual Variances (Unify / Sitara / UA4)",
+    "artifact_type": "runbook",
+    "opportunity_id": "proc_8381da9a4e",
+    "opportunity_title": "Meter-level scheduled-vs-actual variance clearing across Unify, Sitara and UA4",
+    "generated_at": "2026-09-08T20:56:37.697562+00:00",
+    "generator": "claude -p via .claude/agents/artifact-drafter.md",
+    "review_status": "draft-unreviewed",
+    "evidence": [
+      "cit_209530865957",
+      "cit_4f38de347e69",
+      "cit_b4d145322843",
+      "cit_b797721182bf",
+      "cit_c5f04fa8a216",
+      "cit_d669d2b2ccdd",
+      "cit_db35c6ff71bc",
+      "cit_dcfae4792d49"
+    ],
+    "below_threshold_judgment_call": false,
+    "filename": "RUN-02-runbook-clearing-meter-level-scheduled-vs-actual-var.md"
+  },
+  {
+    "artifact_id": "TPL-02",
+    "title": "Weekly California Interstate Capacity Report \u2014 mail template",
+    "artifact_type": "template",
+    "opportunity_id": "proc_a58e286bd5",
+    "opportunity_title": "Weekly California Capacity Report, assembled and mailed by hand",
+    "generated_at": "2026-09-08T20:56:37.698206+00:00",
+    "generator": "claude -p via .claude/agents/artifact-drafter.md",
+    "review_status": "draft-unreviewed",
+    "evidence": [
+      "cit_45a6c764f509",
+      "cit_646d6e14a0ad",
+      "cit_7959cb571714",
+      "cit_a7a837f366fb",
+      "cit_c772a2736ae1",
+      "cit_cd0f539df211",
+      "cit_e142f4dedf42",
+      "cit_feeabdbb4ec3"
+    ],
+    "below_threshold_judgment_call": false,
+    "filename": "TPL-02-weekly-california-interstate-capacity-report-mail-te.md"
+  },
+  {
+    "artifact_id": "EML-01",
+    "title": "Daily Credit Report \u2014 standing distribution email (draft)",
+    "artifact_type": "email",
+    "opportunity_id": "ser_06b1e12574",
+    "opportunity_title": "\"Credit Report - 1/30/01\" produced daily",
+    "generated_at": "2026-09-08T20:56:37.698829+00:00",
+    "generator": "claude -p via .claude/agents/artifact-drafter.md",
+    "review_status": "draft-unreviewed",
+    "evidence": [
+      "cit_07c8f8ec932e",
+      "cit_24e03b2028aa",
+      "cit_31f1fd31b136",
+      "cit_58a2ebb7bf10",
+      "cit_78c3855c5db6",
+      "cit_9b4f19be6efa",
+      "cit_a99a1638e422",
+      "cit_e6d8a34749a1"
+    ],
+    "below_threshold_judgment_call": false,
+    "filename": "EML-01-daily-credit-report-standing-distribution-email-draf.md"
+  },
+  {
+    "artifact_id": "EML-02",
+    "title": "Weekly California Capacity Report \u2014 standing email template and send procedure",
+    "artifact_type": "email",
+    "opportunity_id": "ser_4d4f0b156e",
+    "opportunity_title": "\"California Capacity Report for Week of 01/14-01/18\" produced weekly",
+    "generated_at": "2026-09-08T20:56:37.699458+00:00",
+    "generator": "claude -p via .claude/agents/artifact-drafter.md",
+    "review_status": "draft-unreviewed",
+    "evidence": [
+      "cit_281cdb8ece7c",
+      "cit_6e2d9c893a5d",
+      "cit_73c45be674b7",
+      "cit_7e9d6a9437c9",
+      "cit_97236985661c",
+      "cit_c955cf19fffb",
+      "cit_e04d7226f87c",
+      "cit_e474f470ba47"
+    ],
+    "below_threshold_judgment_call": false,
+    "filename": "EML-02-weekly-california-capacity-report-standing-email-tem.md"
+  },
+  {
+    "artifact_id": "EML-03",
+    "title": "Standing email template: Calpine Daily Gas Nomination notice",
+    "artifact_type": "email",
+    "opportunity_id": "ser_c103eb437b",
+    "opportunity_title": "\"Calpine Daily Gas Nomination\" produced monthly",
+    "generated_at": "2026-09-08T20:56:37.700064+00:00",
+    "generator": "claude -p via .claude/agents/artifact-drafter.md",
+    "review_status": "draft-unreviewed",
+    "evidence": [
+      "cit_4cccefa9b11b",
+      "cit_4e2ac2d3f0d4",
+      "cit_61f81d3ab9f5",
+      "cit_70d1c123124d",
+      "cit_8eaeeb47890d",
+      "cit_afa39320fe4b",
+      "cit_b843b41c8654",
+      "cit_ba466aea576b"
+    ],
+    "below_threshold_judgment_call": false,
+    "filename": "EML-03-standing-email-template-calpine-daily-gas-nomination.md"
+  }
+]
