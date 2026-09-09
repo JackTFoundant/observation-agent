@@ -1,6 +1,6 @@
 # Where this company is losing time
 
-*Run `cold5` · generated 2026-09-09T15:11:36Z · corpus digest `c94acc4b08cb`*
+*Run `cold5` · generated 2026-09-09T15:14:10Z · corpus digest `c94acc4b08cb`*
 
 ## $1,439 per month
 

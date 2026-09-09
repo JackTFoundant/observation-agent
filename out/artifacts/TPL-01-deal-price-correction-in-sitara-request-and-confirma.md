@@ -4,7 +4,7 @@ title: 'Deal price correction in Sitara: request and confirmation mail template'
 artifact_type: template
 opportunity_id: proc_7039a92ef2
 opportunity_title: Correcting mispriced deals by hand in Sitara after the fact
-generated_at: '2026-09-09T15:11:36.821228+00:00'
+generated_at: '2026-09-09T15:14:10.180110+00:00'
 generator: claude -p via .claude/agents/artifact-drafter.md
 review_status: draft-unreviewed
 evidence:

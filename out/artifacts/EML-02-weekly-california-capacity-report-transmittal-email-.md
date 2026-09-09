@@ -5,7 +5,7 @@ artifact_type: email
 opportunity_id: ser_4d4f0b156e
 opportunity_title: '"California Capacity Report for Week of 01/14-01/18" produced
   weekly'
-generated_at: '2026-09-09T15:11:36.824994+00:00'
+generated_at: '2026-09-09T15:14:10.182446+00:00'
 generator: claude -p via .claude/agents/artifact-drafter.md
 review_status: draft-unreviewed
 evidence:

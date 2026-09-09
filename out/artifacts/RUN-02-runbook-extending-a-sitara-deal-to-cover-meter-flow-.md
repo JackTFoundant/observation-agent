@@ -4,7 +4,7 @@ title: 'Runbook: Extending a Sitara deal to cover meter flow outside the deal te
 artifact_type: runbook
 opportunity_id: proc_f416357f1e
 opportunity_title: Extending Sitara deals by request to cover unallocated meter flow
-generated_at: '2026-09-09T15:11:36.823498+00:00'
+generated_at: '2026-09-09T15:14:10.181354+00:00'
 generator: claude -p via .claude/agents/artifact-drafter.md
 review_status: draft-unreviewed
 evidence:

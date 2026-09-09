@@ -2,7 +2,7 @@
   "run_id": "cold5",
   "complete_run": true,
   "degraded_stages": [],
-  "generated_at": "2026-09-09T15:11:36.842118+00:00",
+  "generated_at": "2026-09-09T15:14:10.193867+00:00",
   "corpus_digest": "c94acc4b08cb62348a8aba9361e40e59a6bc5e13942e0d86d7029495adb5f79b",
   "scope_line": "Observed across 4 mailboxes and 3,240 messages, 1999-12-13 to 2002-03-25 (28 months). Not extrapolated beyond what was observed.",
   "attribution": {
@@ -574,15 +574,15 @@
       "task_instances": 2823,
       "people": 2691,
       "generated_tables": 1,
-      "seconds": 2.58
+      "seconds": 2.61
     },
     "stage1": {
       "messages_eligible": 2531,
-      "cache_hits_messages": 0,
-      "messages_extracted_now": 2531,
-      "batches": 80,
-      "batches_ok": 80,
-      "model_calls": 83,
+      "cache_hits_messages": 2531,
+      "messages_extracted_now": 0,
+      "batches": 0,
+      "batches_ok": 0,
+      "model_calls": 0,
       "extractions": 2531,
       "failed_batches": 0,
       "messages_not_extracted": 0,
@@ -593,13 +593,13 @@
       "clusters": 977,
       "promoted": 10,
       "residual": 967,
-      "seconds": 1.43
+      "seconds": 1.0
     },
     "stage3": {
       "clusters": 10,
       "characterized": 10,
-      "model_calls": 10,
-      "cache_hits": 0,
+      "model_calls": 0,
+      "cache_hits": 10,
       "failed": 0
     },
     "stage45": {
@@ -611,14 +611,14 @@
       "citations_quarantined": 2,
       "series_promoted": 3,
       "series_rejected": 19,
-      "seconds": 0.4
+      "seconds": 0.38
     },
     "stage6": {
       "selected": 7,
       "written": 7,
       "skipped": 6,
-      "model_calls": 7,
-      "cache_hits": 0,
+      "model_calls": 0,
+      "cache_hits": 7,
       "failed": 0,
       "threshold_dollars": 55.0,
       "cap": 6

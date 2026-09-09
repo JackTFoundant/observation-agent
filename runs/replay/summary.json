@@ -1,28 +1,39 @@
 {
   "run_id": "replay",
-  "generated_at": "2026-09-08T20:56:37.709457+00:00",
+  "complete_run": true,
+  "degraded_stages": [],
+  "generated_at": "2026-09-09T15:13:44.416429+00:00",
   "corpus_digest": "c94acc4b08cb62348a8aba9361e40e59a6bc5e13942e0d86d7029495adb5f79b",
   "scope_line": "Observed across 4 mailboxes and 3,240 messages, 1999-12-13 to 2002-03-25 (28 months). Not extrapolated beyond what was observed.",
   "attribution": {
     "operational_messages": 2531,
-    "attributed_to_counted_opportunities": 202,
-    "share_attributed": 0.0798,
-    "unattributed_long_tail": 2329,
+    "attributed_to_counted_opportunities": 178,
+    "share_attributed": 0.0703,
+    "unattributed_long_tail": 2353,
     "note": "The headline counts only work attributed to an identified recurring process. The remaining operational messages are a long tail that failed the promotion gate - too few repetitions, too short a window, or too few people to call it a process. That work is real and is deliberately not costed, which makes the headline a floor rather than an estimate of total waste."
+  },
+  "coverage": {
+    "messages_eligible": 2531,
+    "messages_extracted": 2531,
+    "messages_not_extracted": 0,
+    "coverage_share": 1.0,
+    "complete": true,
+    "unextracted": [],
+    "note": "Messages that were eligible for extraction but never got one, usually because a batch was rate-limited past its retry budget. They are listed here rather than absorbed: a report that says it read the whole corpus has to mean it."
   },
   "blended_rate_usd_per_hour": 85,
   "headline": {
     "dollars_per_month": {
-      "low": 372.7,
-      "base": 1609.96,
-      "high": 5216.45
+      "low": 335.38,
+      "base": 1439.1,
+      "high": 4622.56
     },
     "automatable_hours_per_month": {
-      "low": 4.4,
-      "base": 18.9,
-      "high": 61.4
+      "low": 3.9,
+      "base": 16.9,
+      "high": 54.4
     },
-    "counted_opportunities": 14
+    "counted_opportunities": 11
   },
   "not_counted": {
     "low_confidence": {
@@ -30,16 +41,16 @@
       "dollars_per_month_base": 0.0
     },
     "quarantined": {
-      "count": 1,
-      "dollars_per_month_base": 33.5
+      "count": 2,
+      "dollars_per_month_base": 47.5
     }
   },
   "evidence": {
-    "citations_verified": 112,
-    "citations_quarantined": 0,
+    "citations_verified": 89,
+    "citations_quarantined": 2,
     "tiers": {
-      "raw_exact": 85,
-      "rewrapped": 26,
+      "raw_exact": 60,
+      "rewrapped": 28,
       "decoded_exact": 1
     },
     "repaired": 1
@@ -184,27 +195,27 @@
       "flags": []
     },
     {
-      "opportunity_id": "proc_8381da9a4e",
-      "title": "Meter-level scheduled-vs-actual variance clearing across Unify, Sitara and UA4",
+      "opportunity_id": "proc_6b088700a9",
+      "title": "Meter-level scheduled-vs-actual volume reconciliation, chased by email",
       "task_class": "volume_imbalance_reconciliation",
       "source": "content_cluster",
       "status": "counted",
       "status_reason": "",
       "confidence": "high",
       "dollars_per_month": {
-        "low": 24.13,
-        "base": 107.68,
-        "high": 368.86
+        "low": 19.48,
+        "base": 87.0,
+        "high": 299.02
       },
       "automatable_hours_per_month": {
-        "low": 0.3,
-        "base": 1.3,
-        "high": 4.3
+        "low": 0.2,
+        "base": 1.0,
+        "high": 3.5
       },
-      "messages": 47,
-      "instances": 41,
-      "months": 17,
-      "people": 81,
+      "messages": 38,
+      "instances": 34,
+      "months": 18,
+      "people": 75,
       "citations": 8,
       "artifact_shape": "runbook",
       "flags": []
@@ -238,304 +249,252 @@
       ]
     },
     {
-      "opportunity_id": "proc_121d13b6be",
-      "title": "Moving deals between trading books by hand-run script requests",
-      "task_class": "deal_entry_correction",
-      "source": "content_cluster",
-      "status": "counted",
-      "status_reason": "",
-      "confidence": "medium",
-      "dollars_per_month": {
-        "low": 15.17,
-        "base": 83.06,
-        "high": 339.56
-      },
-      "automatable_hours_per_month": {
-        "low": 0.2,
-        "base": 1.0,
-        "high": 4.0
-      },
-      "messages": 14,
-      "instances": 10,
-      "months": 3,
-      "people": 24,
-      "citations": 8,
-      "artifact_shape": "template",
-      "flags": []
-    },
-    {
-      "opportunity_id": "proc_7dd2a1eead",
-      "title": "Extending existing deal tickets in Sitara/Unify to cover unbooked meter flow",
+      "opportunity_id": "proc_f416357f1e",
+      "title": "Extending Sitara deals by request to cover unallocated meter flow",
       "task_class": "deal_entry_correction",
       "source": "content_cluster",
       "status": "counted",
       "status_reason": "",
       "confidence": "high",
       "dollars_per_month": {
-        "low": 12.49,
-        "base": 54.65,
-        "high": 182.22
+        "low": 11.64,
+        "base": 56.12,
+        "high": 202.97
       },
       "automatable_hours_per_month": {
         "low": 0.1,
-        "base": 0.6,
-        "high": 2.1
+        "base": 0.7,
+        "high": 2.4
       },
-      "messages": 12,
-      "instances": 8,
-      "months": 4,
-      "people": 13,
+      "messages": 20,
+      "instances": 15,
+      "months": 7,
+      "people": 19,
       "citations": 8,
       "artifact_shape": "runbook",
+      "flags": []
+    },
+    {
+      "opportunity_id": "proc_7039a92ef2",
+      "title": "Correcting mispriced deals by hand in Sitara after the fact",
+      "task_class": "deal_entry_correction",
+      "source": "content_cluster",
+      "status": "counted",
+      "status_reason": "",
+      "confidence": "high",
+      "dollars_per_month": {
+        "low": 8.37,
+        "base": 37.46,
+        "high": 124.5
+      },
+      "automatable_hours_per_month": {
+        "low": 0.1,
+        "base": 0.4,
+        "high": 1.5
+      },
+      "messages": 8,
+      "instances": 7,
+      "months": 5,
+      "people": 12,
+      "citations": 8,
+      "artifact_shape": "template",
       "flags": [
         "artifact_below_threshold_included_on_judgment"
       ]
     },
     {
-      "opportunity_id": "proc_6b58c81bf9",
-      "title": "Mid-month nomination revisions re-keyed by hand for Josey, Katy and El Paso",
+      "opportunity_id": "proc_40527811ad",
+      "title": "Daily gas nominations mailed as attached Word and Excel files",
       "task_class": "gas_nomination",
       "source": "content_cluster",
       "status": "counted",
       "status_reason": "",
       "confidence": "high",
       "dollars_per_month": {
-        "low": 9.16,
-        "base": 43.65,
-        "high": 147.46
-      },
-      "automatable_hours_per_month": {
-        "low": 0.1,
-        "base": 0.5,
-        "high": 1.7
-      },
-      "messages": 9,
-      "instances": 8,
-      "months": 5,
-      "people": 7,
-      "citations": 8,
-      "artifact_shape": "sop",
-      "flags": []
-    },
-    {
-      "opportunity_id": "proc_dd00148537",
-      "title": "Monthly gas nominations mailed in by counterparties, then revised by hand",
-      "task_class": "gas_nomination",
-      "source": "content_cluster",
-      "status": "counted",
-      "status_reason": "",
-      "confidence": "high",
-      "dollars_per_month": {
-        "low": 6.91,
-        "base": 38.02,
-        "high": 133.17
+        "low": 6.03,
+        "base": 33.16,
+        "high": 113.05
       },
       "automatable_hours_per_month": {
         "low": 0.1,
         "base": 0.4,
-        "high": 1.6
+        "high": 1.3
       },
-      "messages": 12,
-      "instances": 12,
-      "months": 6,
+      "messages": 30,
+      "instances": 30,
+      "months": 14,
+      "people": 32,
+      "citations": 8,
+      "artifact_shape": "template",
+      "flags": []
+    },
+    {
+      "opportunity_id": "proc_fe47fbe469",
+      "title": "Monthly first-of-month gas nominations mailed in by plant customers",
+      "task_class": "gas_nomination",
+      "source": "content_cluster",
+      "status": "counted",
+      "status_reason": "",
+      "confidence": "high",
+      "dollars_per_month": {
+        "low": 5.21,
+        "base": 28.67,
+        "high": 100.11
+      },
+      "automatable_hours_per_month": {
+        "low": 0.1,
+        "base": 0.3,
+        "high": 1.2
+      },
+      "messages": 14,
+      "instances": 14,
+      "months": 9,
       "people": 31,
       "citations": 8,
       "artifact_shape": "template",
       "flags": []
     },
     {
-      "opportunity_id": "proc_9e0cc52ad6",
-      "title": "Sitara deal price corrections requested by email",
+      "opportunity_id": "proc_b5fea9509d",
+      "title": "Fixing miskeyed Sitara deal entries after the fact",
       "task_class": "deal_entry_correction",
       "source": "content_cluster",
       "status": "counted",
       "status_reason": "",
-      "confidence": "high",
+      "confidence": "medium",
       "dollars_per_month": {
-        "low": 8.05,
-        "base": 35.91,
-        "high": 119.52
+        "low": 6.09,
+        "base": 26.09,
+        "high": 88.38
       },
       "automatable_hours_per_month": {
         "low": 0.1,
-        "base": 0.4,
-        "high": 1.4
+        "base": 0.3,
+        "high": 1.0
       },
-      "messages": 9,
+      "messages": 10,
       "instances": 8,
-      "months": 6,
-      "people": 14,
-      "citations": 8,
-      "artifact_shape": "template",
+      "months": 5,
+      "people": 12,
+      "citations": 4,
+      "artifact_shape": "checklist",
       "flags": []
     },
     {
-      "opportunity_id": "proc_a969c62cd0",
-      "title": "Daily gas nominations mailed as Word attachments (Calpine, HPL)",
+      "opportunity_id": "proc_a0dc6a4cda",
+      "title": "Nomination changes confirmed by hand with pipelines and counterparties",
       "task_class": "gas_nomination",
       "source": "content_cluster",
       "status": "counted",
       "status_reason": "",
       "confidence": "high",
       "dollars_per_month": {
-        "low": 5.98,
-        "base": 32.91,
-        "high": 112.88
+        "low": 5.18,
+        "base": 24.84,
+        "high": 82.28
       },
       "automatable_hours_per_month": {
         "low": 0.1,
-        "base": 0.4,
-        "high": 1.3
+        "base": 0.3,
+        "high": 1.0
       },
-      "messages": 26,
-      "instances": 26,
-      "months": 13,
-      "people": 27,
+      "messages": 11,
+      "instances": 11,
+      "months": 8,
+      "people": 28,
       "citations": 8,
       "artifact_shape": "runbook",
       "flags": []
     },
     {
-      "opportunity_id": "proc_4208125591",
-      "title": "Real-time West power desk shift handoff and booking instructions by email",
-      "task_class": "gas_nomination",
+      "opportunity_id": "proc_8a80a4058a",
+      "title": "Enovate daily position report (DPR), circulated by hand for approval",
+      "task_class": "pnl_reporting",
       "source": "content_cluster",
-      "status": "counted",
-      "status_reason": "",
+      "status": "quarantined",
+      "status_reason": "evidence from 1 sender and only 8 messages",
       "confidence": "high",
       "dollars_per_month": {
-        "low": 5.62,
-        "base": 24.19,
-        "high": 72.05
+        "low": 7.21,
+        "base": 25.36,
+        "high": 72.79
       },
       "automatable_hours_per_month": {
         "low": 0.1,
         "base": 0.3,
-        "high": 0.8
-      },
-      "messages": 10,
-      "instances": 10,
-      "months": 4,
-      "people": 19,
-      "citations": 8,
-      "artifact_shape": "template",
-      "flags": []
-    },
-    {
-      "opportunity_id": "proc_2fe1948f21",
-      "title": "Monthly nomination volume estimates agreed by email before month start",
-      "task_class": "gas_nomination",
-      "source": "content_cluster",
-      "status": "counted",
-      "status_reason": "",
-      "confidence": "medium",
-      "dollars_per_month": {
-        "low": 5.21,
-        "base": 22.44,
-        "high": 65.87
-      },
-      "automatable_hours_per_month": {
-        "low": 0.1,
-        "base": 0.3,
-        "high": 0.8
-      },
-      "messages": 8,
-      "instances": 8,
-      "months": 3,
-      "people": 6,
-      "citations": 8,
-      "artifact_shape": "worksheet",
-      "flags": []
-    },
-    {
-      "opportunity_id": "proc_023cec8fb2",
-      "title": "Ad-hoc requests for system and deal-book access, by email",
-      "task_class": "access_provisioning",
-      "source": "content_cluster",
-      "status": "counted",
-      "status_reason": "",
-      "confidence": "medium",
-      "dollars_per_month": {
-        "low": 6.6,
-        "base": 21.69,
-        "high": 62.61
-      },
-      "automatable_hours_per_month": {
-        "low": 0.1,
-        "base": 0.3,
-        "high": 0.7
+        "high": 0.9
       },
       "messages": 8,
       "instances": 7,
-      "months": 5,
-      "people": 16,
-      "citations": 7,
-      "artifact_shape": "template",
+      "months": 6,
+      "people": 9,
+      "citations": 5,
+      "artifact_shape": "runbook",
       "flags": []
     },
     {
-      "opportunity_id": "proc_e08a3f7fc5",
-      "title": "Monthly meter volume figures passed by hand to schedulers",
+      "opportunity_id": "proc_f4f84c33f9",
+      "title": "Ad-hoc meter data questions and corrections in gas logistics mail",
       "task_class": "meter_data",
       "source": "content_cluster",
       "status": "quarantined",
-      "status_reason": "only 1 verified citation(s); 3 required",
-      "confidence": "medium",
+      "status_reason": "only 0 verified citation(s); 3 required",
+      "confidence": "low",
       "dollars_per_month": {
-        "low": 7.07,
-        "base": 33.5,
-        "high": 108.23
+        "low": 4.63,
+        "base": 22.14,
+        "high": 71.53
       },
       "automatable_hours_per_month": {
         "low": 0.1,
-        "base": 0.4,
-        "high": 1.3
+        "base": 0.3,
+        "high": 0.8
       },
-      "messages": 13,
+      "messages": 11,
       "instances": 11,
-      "months": 5,
-      "people": 11,
-      "citations": 1,
+      "months": 7,
+      "people": 13,
+      "citations": 0,
       "artifact_shape": "none",
       "flags": []
     }
   ],
   "artifacts": [
     {
-      "artifact_id": "TPL-01",
-      "title": "Book Transfer Request \u2014 standard email template for moving deals between trading books",
-      "artifact_type": "template",
-      "opportunity_id": "proc_121d13b6be",
-      "filename": "TPL-01-book-transfer-request-standard-email-template-for-mo.md",
-      "review_status": "draft-unreviewed"
-    },
-    {
       "artifact_id": "RUN-01",
-      "title": "Runbook: Extending an existing deal ticket to cover unbooked meter flow",
+      "title": "Runbook: Meter-Level Scheduled-vs-Actual Volume Reconciliation",
       "artifact_type": "runbook",
-      "opportunity_id": "proc_7dd2a1eead",
-      "filename": "RUN-01-runbook-extending-an-existing-deal-ticket-to-cover-u.md",
+      "opportunity_id": "proc_6b088700a9",
+      "filename": "RUN-01-runbook-meter-level-scheduled-vs-actual-volume-recon.md",
       "review_status": "draft-unreviewed"
     },
     {
-      "artifact_id": "RUN-02",
-      "title": "Runbook: Clearing Meter-Level Scheduled-vs-Actual Variances (Unify / Sitara / UA4)",
-      "artifact_type": "runbook",
-      "opportunity_id": "proc_8381da9a4e",
-      "filename": "RUN-02-runbook-clearing-meter-level-scheduled-vs-actual-var.md",
+      "artifact_id": "TPL-01",
+      "title": "Deal price correction in Sitara: request and confirmation mail template",
+      "artifact_type": "template",
+      "opportunity_id": "proc_7039a92ef2",
+      "filename": "TPL-01-deal-price-correction-in-sitara-request-and-confirma.md",
       "review_status": "draft-unreviewed"
     },
     {
       "artifact_id": "TPL-02",
-      "title": "Weekly California Interstate Capacity Report \u2014 mail template",
+      "title": "Template: Weekly California Capacity Report",
       "artifact_type": "template",
       "opportunity_id": "proc_a58e286bd5",
-      "filename": "TPL-02-weekly-california-interstate-capacity-report-mail-te.md",
+      "filename": "TPL-02-template-weekly-california-capacity-report.md",
+      "review_status": "draft-unreviewed"
+    },
+    {
+      "artifact_id": "RUN-02",
+      "title": "Runbook: Extending a Sitara deal to cover meter flow outside the deal term",
+      "artifact_type": "runbook",
+      "opportunity_id": "proc_f416357f1e",
+      "filename": "RUN-02-runbook-extending-a-sitara-deal-to-cover-meter-flow-.md",
       "review_status": "draft-unreviewed"
     },
     {
       "artifact_id": "EML-01",
-      "title": "Daily Credit Report \u2014 standing distribution email (draft)",
+      "title": "Daily Credit Report: standing distribution email (draft)",
       "artifact_type": "email",
       "opportunity_id": "ser_06b1e12574",
       "filename": "EML-01-daily-credit-report-standing-distribution-email-draf.md",
@@ -543,77 +502,64 @@
     },
     {
       "artifact_id": "EML-02",
-      "title": "Weekly California Capacity Report \u2014 standing email template and send procedure",
+      "title": "Weekly California Capacity Report \u2014 transmittal email draft",
       "artifact_type": "email",
       "opportunity_id": "ser_4d4f0b156e",
-      "filename": "EML-02-weekly-california-capacity-report-standing-email-tem.md",
+      "filename": "EML-02-weekly-california-capacity-report-transmittal-email-.md",
       "review_status": "draft-unreviewed"
     },
     {
       "artifact_id": "EML-03",
-      "title": "Standing email template: Calpine Daily Gas Nomination notice",
+      "title": "Standing email: Calpine Daily Gas Nomination notice",
       "artifact_type": "email",
       "opportunity_id": "ser_c103eb437b",
-      "filename": "EML-03-standing-email-template-calpine-daily-gas-nomination.md",
+      "filename": "EML-03-standing-email-calpine-daily-gas-nomination-notice.md",
       "review_status": "draft-unreviewed"
     }
   ],
   "artifacts_not_written": [
     {
-      "opportunity_id": "proc_e08a3f7fc5",
-      "title": "Monthly meter volume figures passed by hand to schedulers",
+      "opportunity_id": "proc_b5fea9509d",
+      "title": "Fixing miskeyed Sitara deal entries after the fact",
+      "reasons": [
+        "4 citations, 5 required"
+      ]
+    },
+    {
+      "opportunity_id": "proc_8a80a4058a",
+      "title": "Enovate daily position report (DPR), circulated by hand for approval",
+      "reasons": [
+        "status is quarantined"
+      ]
+    },
+    {
+      "opportunity_id": "proc_f4f84c33f9",
+      "title": "Ad-hoc meter data questions and corrections in gas logistics mail",
       "reasons": [
         "status is quarantined",
+        "confidence is low",
         "no artifact shape: writing one would be busywork",
-        "1 citations, 5 required",
-        "evidence spread over 1 messages, 4 required"
+        "0 citations, 5 required",
+        "evidence spread over 0 messages, 4 required"
       ]
     },
     {
-      "opportunity_id": "proc_6b58c81bf9",
-      "title": "Mid-month nomination revisions re-keyed by hand for Josey, Katy and El Paso",
+      "opportunity_id": "proc_40527811ad",
+      "title": "Daily gas nominations mailed as attached Word and Excel files",
       "reasons": [
         "below $55/month"
       ]
     },
     {
-      "opportunity_id": "proc_dd00148537",
-      "title": "Monthly gas nominations mailed in by counterparties, then revised by hand",
+      "opportunity_id": "proc_fe47fbe469",
+      "title": "Monthly first-of-month gas nominations mailed in by plant customers",
       "reasons": [
         "below $55/month"
       ]
     },
     {
-      "opportunity_id": "proc_9e0cc52ad6",
-      "title": "Sitara deal price corrections requested by email",
-      "reasons": [
-        "below $55/month"
-      ]
-    },
-    {
-      "opportunity_id": "proc_a969c62cd0",
-      "title": "Daily gas nominations mailed as Word attachments (Calpine, HPL)",
-      "reasons": [
-        "below $55/month"
-      ]
-    },
-    {
-      "opportunity_id": "proc_4208125591",
-      "title": "Real-time West power desk shift handoff and booking instructions by email",
-      "reasons": [
-        "below $55/month"
-      ]
-    },
-    {
-      "opportunity_id": "proc_2fe1948f21",
-      "title": "Monthly nomination volume estimates agreed by email before month start",
-      "reasons": [
-        "below $55/month"
-      ]
-    },
-    {
-      "opportunity_id": "proc_023cec8fb2",
-      "title": "Ad-hoc requests for system and deal-book access, by email",
+      "opportunity_id": "proc_a0dc6a4cda",
+      "title": "Nomination changes confirmed by hand with pipelines and counterparties",
       "reasons": [
         "below $55/month"
       ]
@@ -628,7 +574,7 @@
       "task_instances": 2823,
       "people": 2691,
       "generated_tables": 1,
-      "seconds": 2.56
+      "seconds": 3.08
     },
     "stage1": {
       "messages_eligible": 2531,
@@ -638,37 +584,39 @@
       "batches_ok": 0,
       "model_calls": 0,
       "extractions": 2531,
-      "failed_batches": 0
+      "failed_batches": 0,
+      "messages_not_extracted": 0,
+      "coverage": 1.0
     },
     "stage2": {
-      "records": 1603,
-      "clusters": 965,
-      "promoted": 12,
-      "residual": 953,
-      "seconds": 0.94
+      "records": 1640,
+      "clusters": 977,
+      "promoted": 10,
+      "residual": 967,
+      "seconds": 1.02
     },
     "stage3": {
-      "clusters": 12,
-      "characterized": 12,
+      "clusters": 10,
+      "characterized": 10,
       "model_calls": 0,
-      "cache_hits": 12,
+      "cache_hits": 10,
       "failed": 0
     },
     "stage45": {
-      "opportunities": 15,
-      "counted": 14,
+      "opportunities": 13,
+      "counted": 11,
       "low_confidence": 0,
-      "quarantined": 1,
-      "citations_verified": 112,
-      "citations_quarantined": 0,
+      "quarantined": 2,
+      "citations_verified": 89,
+      "citations_quarantined": 2,
       "series_promoted": 3,
       "series_rejected": 19,
-      "seconds": 0.41
+      "seconds": 0.38
     },
     "stage6": {
       "selected": 7,
       "written": 7,
-      "skipped": 8,
+      "skipped": 6,
       "model_calls": 0,
       "cache_hits": 7,
       "failed": 0,
@@ -677,7 +625,7 @@
     }
   },
   "residual": {
-    "content_clusters_not_promoted": 953,
+    "content_clusters_not_promoted": 967,
     "series_not_promoted": 19
   }
 }
