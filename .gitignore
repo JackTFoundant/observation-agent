@@ -10,3 +10,7 @@ __pycache__/
 # roughly 120 model calls and about ten minutes, well inside the assignment's 30-minute
 # budget, and shipping the cache would let the report be reproduced without the pipeline
 # ever running — which is the opposite of what should be demonstrable.
+# Working backups taken while validating cold runs; never part of the deliverable.
+out.SHIPPED/
+out.*.backup/
+.observe-cache.*
