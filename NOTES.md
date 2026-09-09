@@ -58,7 +58,7 @@ costs two extra calls rather than 32 lost extractions. An auth error fails the r
 
 ## What I chose to produce, and why
 
-Artifacts are gated on **evidence and recurrence, not money**: five verified citations
+My artifact threshold is **evidence and recurrence, not money**: five verified citations
 across four messages, six task instances, three months, and a shape worth writing (`none`
 is a real answer and disqualifies). The dollar floor is deliberately low at $55/month,
 which needs explaining, because my first attempt set it at $250 on the reasoning that below
