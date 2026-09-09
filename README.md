@@ -8,23 +8,40 @@ morning.
 Built to run inside Claude Code on a subscription. No API keys, no API spend, everything
 local.
 
-## Quick start
+## Look at the finished run first — no model calls, no auth
+
+A complete run is already committed, so you can read everything before running anything.
+None of this makes a model call or needs the CLI authenticated:
 
 ```bash
-uv sync --extra dev          # Python 3.12, pinned by uv.lock
-make doctor                  # one real model call, to fail fast with a specific remedy
-make run                     # the whole pipeline
-make serve                   # dashboard on http://localhost:8787
+uv sync --extra dev     # Python 3.12, pinned by uv.lock
+make serve              # dashboard on http://localhost:8787 (opens your browser)
+make verify             # re-anchors every citation from scratch; PASS, 133 checks
+make test               # 169 tests, zero model calls
+```
+
+In the dashboard: click the headline dollar figure to see what sums into it, click any
+opportunity for its derivation (**measured** and **assumed** in two columns), then click a
+file path under any quote — the raw message opens with the quote highlighted, sliced at the
+published byte offsets rather than found by searching. `out/report.md` is the same content
+as a document, and `docs/AUDIT.md` has 25 random citations with paste-able `dd` and `sed`
+commands if you want to check the evidence by hand.
+
+## Running it yourself
+
+```bash
+make doctor             # one real model call, fails fast with a specific remedy
+make run                # the whole pipeline: ~12 minutes from an empty cache
 ```
 
 `make run` is safe to re-run. Everything is content-addressed, so an unchanged corpus
-replays from cache in about five seconds with zero model calls, and an interrupted run
-resumes by running it again — filling a 32-message gap left by a partial run took 79
-seconds and touched nothing else.
+replays in about five seconds with zero model calls, and an interrupted run resumes by
+running it again — filling a 32-message gap left by a partial run took 79 seconds and
+touched nothing else.
 
 The run in `out/` and its log in `runs/final/` are the same execution: 3,240 files read,
 2,531 messages classified (100% coverage), 11 opportunities, 88 citations all anchored to
-exact byte ranges, 7 drafted artifacts, `make verify` clean.
+exact byte ranges, 7 drafted artifacts, 97 model calls, 12 minutes 2 seconds.
 
 If the `claude` CLI is not on your `PATH`, the runner finds it anyway (including inside a
 VS Code extension directory). Set `CLAUDE_BIN` to override. If it is not authenticated,
