@@ -1,0 +1,389 @@
+{
+  "opportunity_id": "proc_df90b91705",
+  "source": "content_cluster",
+  "title": "Scheduled-versus-actual meter volume reconciliation across Unify, Sitara and HPL",
+  "task_class": "volume_imbalance_reconciliation",
+  "label_mechanical": "Volume and imbalance reconciliation: reconcile against / scheduled / volumes",
+  "narrative": {
+    "what_happens": "An exception surfaces on a meter \u2014 a nomination that does not match what flowed, an interconnect variance, a missing allocation, or numbers that a downstream system shows differently from the pipeline's own statement. Whoever spots it (a scheduler, a volume-management or accounting contact, or a counterparty) mails the logistics desk with the meter number, the flow days and the two figures that disagree, and asks how it should be handled. The desk then chases the source data \u2014 meter statements, daily volume statements, sometimes by fax \u2014 and either explains the difference (a measurement or pressure-base adjustment, a liquidation booked on the wrong side) or asks someone to go back into Unify or Sitara and restate the estimated volumes so they agree with what was allocated. Threads close with a correction being entered by hand, a handoff to another person, or a note that the prior month has been revised and re-posted. Many run for weeks and get re-opened when the next month shows the same gap at the same meter.",
+    "where_it_stalls": "The desk cannot close a variance from its own records: it needs the counterparty's or the pipeline's statement to say which side is wrong, and those arrive by mail or fax after the month has already been actualized. That produces the pattern visible in the roles \u2014 escalations restating an unanswered question (\"I sent Jackie Young an email back showing her TETCO's numbers and I haven't received a response\", \"We need to revisit this issue again\") alongside requests to retro-adjust a whole month of estimated volumes in Unify by hand to match what HPL shows. Where two systems hold the same volume (ENA and ENA Upstream, CPR versus OSS, POPS feeds), no reconciliation runs between them, so the mismatch is only found when a person reads an exception report.",
+    "why_it_recurs": "Volumes are actualized every month against meters whose measured figures arrive later and from a different party, and the deal and volume systems are not reconciled to each other automatically, so each month's close reproduces the same class of exception at the same meters.",
+    "automation_opportunity": "A scheduled comparison that pulls scheduled/confirmed volumes and posted actuals per meter from Sitara, Unify and the pipeline statements, and emits a dated exception list naming the meter, the flow days and the disagreeing figures \u2014 so the desk starts from a variance record rather than an inbound mail. Pair it with a standing request for counterparty daily volume statements in a fixed electronic format instead of fax, and a logged adjustment path so month-end restatements in Unify are entered once and traceable.",
+    "coherence": "tight"
+  },
+  "status": "counted",
+  "status_reason": "",
+  "confidence": "high",
+  "artifact_shape": "runbook",
+  "measured": {
+    "instances": 33,
+    "messages": 39,
+    "dated_messages": 39,
+    "undated_messages": 0,
+    "participants_median": 3,
+    "months": 18.0,
+    "rework_rate": 0.46153846153846156,
+    "waiting_rate": 0.20512820512820512,
+    "manual_transfer_rate": 0.28205128205128205,
+    "senders": 23
+  },
+  "gate_metrics": {
+    "messages": 39,
+    "distinct_content": 39,
+    "senders": 23,
+    "threads": 33,
+    "months": 18,
+    "weeks": 29,
+    "folders": 4,
+    "people": 76
+  },
+  "signal_rates": {
+    "rework_signal": 0.4615,
+    "waiting_signal": 0.2051,
+    "manual_transfer_signal": 0.2821,
+    "deadline_signal": 0.0513
+  },
+  "systems": {
+    "email": 12,
+    "other_system": 12,
+    "spreadsheet": 7,
+    "sitara": 4,
+    "unify": 2,
+    "fax": 1,
+    "pipeline_website": 1
+  },
+  "roles": {
+    "request": 11,
+    "response": 9,
+    "escalation": 7,
+    "status_report": 4,
+    "confirmation": 2,
+    "correction": 2,
+    "fyi": 2,
+    "handoff": 2
+  },
+  "months": [
+    "1999-12",
+    "2000-01",
+    "2000-02",
+    "2000-03",
+    "2000-05",
+    "2000-06",
+    "2000-09",
+    "2000-10",
+    "2000-11",
+    "2000-12",
+    "2001-02",
+    "2001-04",
+    "2001-07",
+    "2001-08",
+    "2001-11",
+    "2002-01",
+    "2002-02",
+    "2002-03"
+  ],
+  "people": 76,
+  "hours_per_month": {
+    "low": 0.6,
+    "base": 1.6,
+    "high": 4.2
+  },
+  "automatable_hours_per_month": {
+    "low": 0.2,
+    "base": 1.0,
+    "high": 3.3
+  },
+  "dollars_per_month": {
+    "low": 18.62,
+    "base": 82.98,
+    "high": 284.32
+  },
+  "derivation": {
+    "formula_id": "hours_v1",
+    "estimate_version": "1.0.0",
+    "measured": {
+      "instances": 33,
+      "messages": 39,
+      "dated_messages": 39,
+      "undated_messages": 0,
+      "participants_median": 3,
+      "months": 18.0,
+      "rework_rate": 0.46153846153846156,
+      "waiting_rate": 0.20512820512820512,
+      "manual_transfer_rate": 0.28205128205128205,
+      "senders": 23
+    },
+    "assumed": {
+      "handle_min": 20.0,
+      "per_touch_min": 7.0,
+      "rework_min": 20.0,
+      "waiting_admin_min": 4.0,
+      "automatable_share": 0.6
+    },
+    "assumed_global": {
+      "blended_rate_usd_per_hour": 85.0,
+      "coordination_alpha": 0.35,
+      "extrapolation_factor": 1.0
+    },
+    "assumption_source": "config/estimation.yml#task_classes.volume_imbalance_reconciliation",
+    "steps": [
+      "33.00 task instances / 18 months of coverage = 1.833 instances per month",
+      "minutes per instance = 20 handle + (1.18 touches - 1) x 7 + 0.46 rework rate x 20 + 0.21 waiting rate x 4 = 31.32 min",
+      "coordination multiplier = 1 + 0.35 x (3 median participants - 1) = 1.700",
+      "hours per month = 1.833 x 31.32 x 1.700 / 60 = 1.627",
+      "automatable hours = 1.627 x 0.6 automatable share = 0.976",
+      "dollars per month = 0.976 h x $85/h = $82.98"
+    ],
+    "result": {
+      "hours_per_month": 1.6,
+      "automatable_hours_per_month": 1.0,
+      "dollars_per_month": 82.98
+    }
+  },
+  "citations": [
+    {
+      "citation_id": "cit_100761050290",
+      "source_path": "corpus/farmer-d/logistics/1972.",
+      "source_sha256": "18a466c96b95c802b20d5834a2d79fd4ed26a9ef28dc8714bc8b33dfb086eea9",
+      "message_id": "<14509960.1075854316762.JavaMail.evans@thyme>",
+      "msg_uid": "m_15dd0b1bddb6",
+      "quote": "asking me to go in for the \nmonth of October and adjust all of my estimated volumes in Unify to match \nwhat HPL shows that we were allocated",
+      "match_tier": "rewrapped",
+      "raw_start": 2913,
+      "raw_end": 3053,
+      "decoded_start": 1048,
+      "decoded_end": 1188,
+      "line_start": 56,
+      "line_end": 58,
+      "repaired": false,
+      "sender": "victor.lamadrid@enron.com",
+      "sent_at": "2000-12-14T02:37:00-08:00",
+      "subject": "Re: HPL discrepancy",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=2913 count=140 if=corpus/farmer-d/logistics/1972. 2>/dev/null",
+        "sed": "sed -n '56,58p' corpus/farmer-d/logistics/1972."
+      }
+    },
+    {
+      "citation_id": "cit_209530865957",
+      "source_path": "corpus/farmer-d/logistics/1972.",
+      "source_sha256": "18a466c96b95c802b20d5834a2d79fd4ed26a9ef28dc8714bc8b33dfb086eea9",
+      "message_id": "<14509960.1075854316762.JavaMail.evans@thyme>",
+      "msg_uid": "m_15dd0b1bddb6",
+      "quote": "I sent Jackie Young an email \nback showing her TETCO's numbers and I haven't received a response.",
+      "match_tier": "rewrapped",
+      "raw_start": 3360,
+      "raw_end": 3457,
+      "decoded_start": 1495,
+      "decoded_end": 1592,
+      "line_start": 62,
+      "line_end": 63,
+      "repaired": false,
+      "sender": "victor.lamadrid@enron.com",
+      "sent_at": "2000-12-14T02:37:00-08:00",
+      "subject": "Re: HPL discrepancy",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=3360 count=97 if=corpus/farmer-d/logistics/1972. 2>/dev/null",
+        "sed": "sed -n '62,63p' corpus/farmer-d/logistics/1972."
+      }
+    },
+    {
+      "citation_id": "cit_0c3312966342",
+      "source_path": "corpus/farmer-d/logistics/2100.",
+      "source_sha256": "1d28f683aee57e628b94b3402d1ffe8c1d9c585ea9c6f9523f8dc4fcbd383088",
+      "message_id": "<19382936.1075854319677.JavaMail.evans@thyme>",
+      "msg_uid": "m_e004b7298150",
+      "quote": "it seems odd to me that scheduling had 8,928 \nMMBtu confirmed at this point and only 646 MMBtu flowed.",
+      "match_tier": "rewrapped",
+      "raw_start": 1436,
+      "raw_end": 1538,
+      "decoded_start": 577,
+      "decoded_end": 679,
+      "line_start": 36,
+      "line_end": 37,
+      "repaired": false,
+      "sender": "fred.boas@enron.com",
+      "sent_at": "2001-02-25T01:27:00-08:00",
+      "subject": "Re: Meter 5892",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1436 count=102 if=corpus/farmer-d/logistics/2100. 2>/dev/null",
+        "sed": "sed -n '36,37p' corpus/farmer-d/logistics/2100."
+      }
+    },
+    {
+      "citation_id": "cit_3251de1464be",
+      "source_path": "corpus/farmer-d/logistics/2100.",
+      "source_sha256": "1d28f683aee57e628b94b3402d1ffe8c1d9c585ea9c6f9523f8dc4fcbd383088",
+      "message_id": "<19382936.1075854319677.JavaMail.evans@thyme>",
+      "msg_uid": "m_e004b7298150",
+      "quote": "Why is nothing being allocated to Alpine?  This is a good deal we have in \nplace with them and I really need the problem resolved.",
+      "match_tier": "rewrapped",
+      "raw_start": 3046,
+      "raw_end": 3176,
+      "decoded_start": 2187,
+      "decoded_end": 2317,
+      "line_start": 78,
+      "line_end": 79,
+      "repaired": false,
+      "sender": "fred.boas@enron.com",
+      "sent_at": "2001-02-25T01:27:00-08:00",
+      "subject": "Re: Meter 5892",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=3046 count=130 if=corpus/farmer-d/logistics/2100. 2>/dev/null",
+        "sed": "sed -n '78,79p' corpus/farmer-d/logistics/2100."
+      }
+    },
+    {
+      "citation_id": "cit_6798dfc1be32",
+      "source_path": "corpus/farmer-d/logistics/160.",
+      "source_sha256": "d210c36c0e8d6d6dc0026b3801cc8049b259d293198bd0d8c1e359caf0598159",
+      "message_id": "<29408075.1075840435999.JavaMail.evans@thyme>",
+      "msg_uid": "m_82e14d5c22dc",
+      "quote": "We have an ongoing issue every month between what we nominate from GEPL into HGPL and on to King Ranch (flows into HGPL at meter 8284) and what is in the system as purchase gas upstream of the meter.",
+      "match_tier": "raw_exact",
+      "raw_start": 1277,
+      "raw_end": 1476,
+      "decoded_start": 0,
+      "decoded_end": 199,
+      "line_start": 23,
+      "line_end": 23,
+      "repaired": false,
+      "sender": "mary.poorman@enron.com",
+      "sent_at": "2001-04-25T07:57:59-07:00",
+      "subject": "Big Cowboy/GEPL Actuals for February",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1277 count=199 if=corpus/farmer-d/logistics/160. 2>/dev/null",
+        "sed": "sed -n '23,23p' corpus/farmer-d/logistics/160."
+      }
+    },
+    {
+      "citation_id": "cit_db35c6ff71bc",
+      "source_path": "corpus/farmer-d/logistics/160.",
+      "source_sha256": "d210c36c0e8d6d6dc0026b3801cc8049b259d293198bd0d8c1e359caf0598159",
+      "message_id": "<29408075.1075840435999.JavaMail.evans@thyme>",
+      "msg_uid": "m_82e14d5c22dc",
+      "quote": "Would you please fax the meter statements from GEPL for February so that I can try to determine which meters are flowing over what is nominated",
+      "match_tier": "raw_exact",
+      "raw_start": 1587,
+      "raw_end": 1730,
+      "decoded_start": 310,
+      "decoded_end": 453,
+      "line_start": 23,
+      "line_end": 23,
+      "repaired": false,
+      "sender": "mary.poorman@enron.com",
+      "sent_at": "2001-04-25T07:57:59-07:00",
+      "subject": "Big Cowboy/GEPL Actuals for February",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1587 count=143 if=corpus/farmer-d/logistics/160. 2>/dev/null",
+        "sed": "sed -n '23,23p' corpus/farmer-d/logistics/160."
+      }
+    },
+    {
+      "citation_id": "cit_8083160ef7e3",
+      "source_path": "corpus/farmer-d/logistics/1105.",
+      "source_sha256": "ff6696b2901fc6e010c147828b5943f2c8907d67772c844c51a945a1056cfa69",
+      "message_id": "<8717815.1075854131234.JavaMail.evans@thyme>",
+      "msg_uid": "m_256380ad8351",
+      "quote": "There is an interconnect variance at meter 980071 for 2/99.",
+      "match_tier": "raw_exact",
+      "raw_start": 1166,
+      "raw_end": 1225,
+      "decoded_start": 643,
+      "decoded_end": 702,
+      "line_start": 51,
+      "line_end": 51,
+      "repaired": false,
+      "sender": "stacey.neuweiler@enron.com",
+      "sent_at": "2000-05-11T05:24:00-07:00",
+      "subject": "Re: I/C variance for deal 72893",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1166 count=59 if=corpus/farmer-d/logistics/1105. 2>/dev/null",
+        "sed": "sed -n '51,51p' corpus/farmer-d/logistics/1105."
+      }
+    },
+    {
+      "citation_id": "cit_410f90f80c03",
+      "source_path": "corpus/farmer-d/logistics/1105.",
+      "source_sha256": "ff6696b2901fc6e010c147828b5943f2c8907d67772c844c51a945a1056cfa69",
+      "message_id": "<8717815.1075854131234.JavaMail.evans@thyme>",
+      "msg_uid": "m_256380ad8351",
+      "quote": "but HPL does not show a receipt of this volume.",
+      "match_tier": "raw_exact",
+      "raw_start": 1428,
+      "raw_end": 1475,
+      "decoded_start": 905,
+      "decoded_end": 952,
+      "line_start": 54,
+      "line_end": 54,
+      "repaired": false,
+      "sender": "stacey.neuweiler@enron.com",
+      "sent_at": "2000-05-11T05:24:00-07:00",
+      "subject": "Re: I/C variance for deal 72893",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1428 count=47 if=corpus/farmer-d/logistics/1105. 2>/dev/null",
+        "sed": "sed -n '54,54p' corpus/farmer-d/logistics/1105."
+      }
+    }
+  ],
+  "quarantined_citations": [],
+  "member_count": 39,
+  "member_uids": [
+    "m_003206e45a4d",
+    "m_0a502296d777",
+    "m_0ccd9cd29969",
+    "m_0db670ef980a",
+    "m_15dd0b1bddb6",
+    "m_15ee36fa0081",
+    "m_165deef2ec85",
+    "m_256380ad8351",
+    "m_28dbf0923aae",
+    "m_30af73d0151f",
+    "m_337543e4a74e",
+    "m_3bfa0f43eb63",
+    "m_430f479b8a99",
+    "m_49074f6f0b57",
+    "m_529ca658b2e3",
+    "m_57eba40e48c9",
+    "m_64986ad066ad",
+    "m_6c213bb4e4ea",
+    "m_6e490c25e357",
+    "m_75c4c51413ef",
+    "m_7e51e8d20d7c",
+    "m_7ff4ed64b365",
+    "m_82e14d5c22dc",
+    "m_888d3a3f48fc",
+    "m_88cedfc795ae",
+    "m_94be5e2546d5",
+    "m_9584546c7afc",
+    "m_b515d8f4009a",
+    "m_bec21e3e2e6a",
+    "m_c3f4ca69b709",
+    "m_c4c03996de59",
+    "m_cdd2c19ad2b9",
+    "m_e004b7298150",
+    "m_e2ac855e5633",
+    "m_e396bf364386",
+    "m_f9672537e118",
+    "m_fc3b15c6667d",
+    "m_fe868740b750",
+    "m_ff8fc8d4911c"
+  ],
+  "flags": []
+}

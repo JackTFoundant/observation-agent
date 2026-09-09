@@ -35,7 +35,23 @@ from pathlib import Path
 
 CLI_VERSION_TESTED = "2.1.263"
 
-_RATE_LIMIT = re.compile(r"rate.?limit|429|too many requests|usage limit|overloaded", re.I)
+# Rate limiting is detected *structurally* — a non-zero exit, or an error envelope — and
+# only falls back to text matching when the CLI returned prose instead of parseable JSON.
+#
+# It used to scan the assistant's answer for these patterns, which was badly wrong: a
+# message uid is a hex hash, and `m_64293e33900a` contains "429". A worker would return a
+# perfectly valid batch, this regex would match its own message id, the response would be
+# thrown away as a rate limit, and the batch would retry until the stage deadline killed
+# it. Deterministic, because uids are content hashes - every cold run lost exactly the one
+# batch that happened to contain that message. Never pattern-match a successful payload.
+_RATE_LIMIT = re.compile(
+    r"\brate.?limit(ed|ing)?\b|\btoo many requests\b|\busage limit\b"
+    r"|\boverloaded\b|\bstatus (code )?429\b|\bhttp/?[\d.]* ?429\b"
+    # A bare 429 only counts next to error vocabulary. `\b429 \w` was too loose: it fired
+    # on ordinary corpus prose like "deal 429 was rebooked in Sitara".
+    r"|\b429\s+(too many|rate|error|client error|status|response)\b",
+    re.I,
+)
 _AUTH_FAIL = re.compile(r"not authenticated|please (run )?(claude )?(auth )?login|invalid api key"
                         r"|unauthorized|401|no credentials", re.I)
 
@@ -215,9 +231,17 @@ def run_worker(
         raise WorkerError("nonzero", f"exit {proc.returncode}: {stderr[:300]}", stderr)
 
     text = _extract_result_text(proc.stdout)
-    if _RATE_LIMIT.search(text[:500]):
-        raise WorkerError("rate_limit", text[:200], stderr)
-    parsed = _parse_json_payload(text)
+
+    # Parse first. A payload that parses is an answer, whatever words it contains.
+    try:
+        parsed = _parse_json_payload(text)
+    except WorkerError:
+        # Not JSON: now it is fair to ask whether the CLI handed us an error in prose.
+        if _RATE_LIMIT.search(text[:2000]):
+            raise WorkerError("rate_limit", text[:200], stderr)
+        if _AUTH_FAIL.search(text[:2000]):
+            raise WorkerError("auth", "CLI is not authenticated", stderr)
+        raise
     return WorkerResult(parsed=parsed, raw_stdout=proc.stdout, duration_ms=duration_ms,
                         model=model, attempt=attempt)
 

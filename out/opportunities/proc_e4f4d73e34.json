@@ -1,0 +1,183 @@
+{
+  "opportunity_id": "proc_e4f4d73e34",
+  "source": "content_cluster",
+  "title": "Meter volume figures circulated by hand as email tables",
+  "task_class": "meter_data",
+  "label_mechanical": "Meter data requests and corrections: report data / meter / volume",
+  "narrative": {
+    "what_happens": "Someone in the logistics mailbox pulls current meter volume figures and mails them out, either as the latest numbers for a single meter or as a set covering a period. The body carries the numbers themselves \u2014 a day-by-day line of point, counterparty and volume, as in \"Day PG&E HPL 12-05 145833 120000\" \u2014 rather than a link to the system the figures came from. Recipients are simply informed: almost every message in this group is labelled fyi, with one framed as a status report. There is no visible request, approval or confirmation step closing the loop, and the sender's own words end at the numbers. Where the figures originate is not visible in these messages beyond a spreadsheet being referenced once.",
+    "where_it_stalls": "There is no stall visible in the evidence: rework, waiting and deadline signals are all absent and no message shows anyone chasing or correcting. The friction that is visible is transfer rather than delay \u2014 figures are retyped or pasted into mail bodies so that each recipient reads numbers out of prose instead of receiving a file or a query result, and one message carries a manual-transfer signal. With only a handful of messages across three separated months, any stronger claim about a failure mode would go beyond what these messages show.",
+    "why_it_recurs": "Meter volumes change every flow day, and the people who need them are on a distribution by mail rather than reading the source system, so the numbers get re-sent whenever a period closes or someone asks.",
+    "automation_opportunity": "A scheduled extract that pulls the meter volume figures for the requested period straight from the accounting source and mails a formatted table to the standing recipients, removing the hand-assembly of numbers into mail bodies. Even short of that, a fixed table layout with named columns would make the pasted figures machine-readable by the recipients.",
+    "coherence": "mixed"
+  },
+  "status": "quarantined",
+  "status_reason": "only 2 verified citation(s); 3 required",
+  "confidence": "medium",
+  "artifact_shape": "template",
+  "measured": {
+    "instances": 9,
+    "messages": 11,
+    "dated_messages": 11,
+    "undated_messages": 0,
+    "participants_median": 4,
+    "months": 3.0,
+    "rework_rate": 0.0,
+    "waiting_rate": 0.0,
+    "manual_transfer_rate": 0.09090909090909091,
+    "senders": 6
+  },
+  "gate_metrics": {
+    "messages": 11,
+    "distinct_content": 11,
+    "senders": 6,
+    "threads": 9,
+    "months": 3,
+    "weeks": 6,
+    "folders": 1,
+    "people": 16
+  },
+  "signal_rates": {
+    "rework_signal": 0.0,
+    "waiting_signal": 0.0,
+    "manual_transfer_signal": 0.0909,
+    "deadline_signal": 0.0
+  },
+  "systems": {
+    "email": 3,
+    "spreadsheet": 1
+  },
+  "roles": {
+    "fyi": 10,
+    "status_report": 1
+  },
+  "months": [
+    "2000-01",
+    "2000-07",
+    "2000-09"
+  ],
+  "people": 16,
+  "hours_per_month": {
+    "low": 0.3,
+    "base": 1.0,
+    "high": 2.6
+  },
+  "automatable_hours_per_month": {
+    "low": 0.1,
+    "base": 0.7,
+    "high": 2.2
+  },
+  "dollars_per_month": {
+    "low": 10.96,
+    "base": 56.0,
+    "high": 189.34
+  },
+  "derivation": {
+    "formula_id": "hours_v1",
+    "estimate_version": "1.0.0",
+    "measured": {
+      "instances": 9,
+      "messages": 11,
+      "dated_messages": 11,
+      "undated_messages": 0,
+      "participants_median": 4,
+      "months": 3.0,
+      "rework_rate": 0.0,
+      "waiting_rate": 0.0,
+      "manual_transfer_rate": 0.09090909090909091,
+      "senders": 6
+    },
+    "assumed": {
+      "handle_min": 9.0,
+      "per_touch_min": 4.0,
+      "rework_min": 12.0,
+      "waiting_admin_min": 3.0,
+      "automatable_share": 0.65
+    },
+    "assumed_global": {
+      "blended_rate_usd_per_hour": 85.0,
+      "coordination_alpha": 0.35,
+      "extrapolation_factor": 1.0
+    },
+    "assumption_source": "config/estimation.yml#task_classes.meter_data",
+    "steps": [
+      "9.00 task instances / 3 months of coverage = 3.000 instances per month",
+      "minutes per instance = 9 handle + (1.22 touches - 1) x 4 + 0.00 rework rate x 12 + 0.00 waiting rate x 3 = 9.89 min",
+      "coordination multiplier = 1 + 0.35 x (4 median participants - 1) = 2.050",
+      "hours per month = 3.000 x 9.89 x 2.050 / 60 = 1.014",
+      "automatable hours = 1.014 x 0.65 automatable share = 0.659",
+      "dollars per month = 0.659 h x $85/h = $56.00"
+    ],
+    "result": {
+      "hours_per_month": 1.0,
+      "automatable_hours_per_month": 0.7,
+      "dollars_per_month": 56.0
+    }
+  },
+  "citations": [
+    {
+      "citation_id": "cit_bd09ca7208fe",
+      "source_path": "corpus/farmer-d/logistics/680.",
+      "source_sha256": "5f7114eac81b6e5e0c2622efbcfd21b1649c651fbbad88049b97a9ba88723875",
+      "message_id": "<27186706.1075854121426.JavaMail.evans@thyme>",
+      "msg_uid": "m_f65712371af7",
+      "quote": "Day PG&E HPL\n 12-05 145833 120000",
+      "match_tier": "raw_exact",
+      "raw_start": 682,
+      "raw_end": 715,
+      "decoded_start": 15,
+      "decoded_end": 48,
+      "line_start": 25,
+      "line_end": 26,
+      "repaired": false,
+      "sender": "thu.nguyen@enron.com",
+      "sent_at": "2000-01-12T03:08:00-08:00",
+      "subject": "Meter 8743 Dec 99",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=682 count=33 if=corpus/farmer-d/logistics/680. 2>/dev/null",
+        "sed": "sed -n '25,26p' corpus/farmer-d/logistics/680."
+      }
+    },
+    {
+      "citation_id": "cit_9819d398d125",
+      "source_path": "corpus/farmer-d/logistics/678.",
+      "source_sha256": "f6c3190e9eb73b55e619e7c18113e8f023f4fc3e16c3e8f1542e97b0b032443c",
+      "message_id": "<12161313.1075854121381.JavaMail.evans@thyme>",
+      "msg_uid": "m_92dfa4a916cd",
+      "quote": "Here are the most recent numbers.",
+      "match_tier": "raw_exact",
+      "raw_start": 582,
+      "raw_end": 615,
+      "decoded_start": 0,
+      "decoded_end": 33,
+      "line_start": 19,
+      "line_end": 19,
+      "repaired": false,
+      "sender": "kimberly.vaughn@enron.com",
+      "sent_at": "2000-01-12T02:15:00-08:00",
+      "subject": "HL&P flow",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=582 count=33 if=corpus/farmer-d/logistics/678. 2>/dev/null",
+        "sed": "sed -n '19,19p' corpus/farmer-d/logistics/678."
+      }
+    }
+  ],
+  "quarantined_citations": [],
+  "member_count": 11,
+  "member_uids": [
+    "m_07d80154ef29",
+    "m_09504d72151c",
+    "m_2e10e2f0996e",
+    "m_7eda026c71fb",
+    "m_86c2c28fab00",
+    "m_92dfa4a916cd",
+    "m_a84d54b96851",
+    "m_ad1b54e0f08c",
+    "m_e3101d94356b",
+    "m_f5c96ac8f303",
+    "m_f65712371af7"
+  ],
+  "flags": []
+}

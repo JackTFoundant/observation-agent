@@ -1,0 +1,306 @@
+{
+  "opportunity_id": "proc_023cec8fb2",
+  "source": "content_cluster",
+  "title": "Ad-hoc requests for system and deal-book access, by email",
+  "task_class": "access_provisioning",
+  "label_mechanical": "System access and account provisioning: request access / system / staff",
+  "narrative": {
+    "what_happens": "When someone cannot see a deal book or run a report, they email a colleague or administrator asking to be granted access \u2014 to West and Chicago/Midwest deals in Sitara, to EOL, to a supervisor review role in PEP, or to a set of Netco books across regions. The request is written in free prose rather than on a form, and the sender often has to guess what the approver needs: which book, which region, whose cost center it should be charged to, and which groups belong on the request. Some messages are on behalf of the sender, others on behalf of a new or transferring staff member. The thread ends when the requester is told access has been set up, or when a confirmation email from the system is expected to arrive. Most of these messages carry the request role; only one is a notification that access is coming.",
+    "where_it_stalls": "The requester does not know the approval path or the required fields, so the mail goes out incomplete and comes back as a question \u2014 one sender asks whether a second request had to be filed and put on a different cost center, another asks how a supervisor role gets changed in PEP, and a third has to remind the recipient to add the Financial and Control group to book requests that were missing it. A quarter of the messages show waiting: the requester is blocked from running a book and asking someone else to obtain authorization on their behalf. Who owns provisioning for each system is not visible in these messages.",
+    "why_it_recurs": "Access is tied to people moving between desks, regions and books (including a whole new set of Netco books), and each system \u2014 Sitara, EOL, PEP \u2014 has its own separate request path with no shared intake.",
+    "automation_opportunity": "A single structured intake that captures person, system, book or region, role, approver and cost center up front, routes to the owner of that system, and returns a confirmation \u2014 so requests cannot be submitted missing the fields that currently generate a round trip.",
+    "coherence": "mixed"
+  },
+  "status": "counted",
+  "status_reason": "",
+  "confidence": "medium",
+  "artifact_shape": "template",
+  "measured": {
+    "instances": 7,
+    "messages": 8,
+    "dated_messages": 8,
+    "undated_messages": 0,
+    "participants_median": 2,
+    "months": 5.0,
+    "rework_rate": 0.0,
+    "waiting_rate": 0.25,
+    "manual_transfer_rate": 0.0,
+    "senders": 6
+  },
+  "gate_metrics": {
+    "messages": 8,
+    "distinct_content": 8,
+    "senders": 6,
+    "threads": 7,
+    "months": 5,
+    "weeks": 6,
+    "folders": 4,
+    "people": 16
+  },
+  "signal_rates": {
+    "rework_signal": 0.0,
+    "waiting_signal": 0.25,
+    "manual_transfer_signal": 0.0,
+    "deadline_signal": 0.0
+  },
+  "systems": {
+    "other_system": 7,
+    "sitara": 1
+  },
+  "roles": {
+    "request": 7,
+    "fyi": 1
+  },
+  "months": [
+    "2000-10",
+    "2000-11",
+    "2000-12",
+    "2001-09",
+    "2002-01"
+  ],
+  "people": 16,
+  "hours_per_month": {
+    "low": 0.2,
+    "base": 0.4,
+    "high": 0.8
+  },
+  "automatable_hours_per_month": {
+    "low": 0.1,
+    "base": 0.3,
+    "high": 0.7
+  },
+  "dollars_per_month": {
+    "low": 6.6,
+    "base": 21.69,
+    "high": 62.61
+  },
+  "derivation": {
+    "formula_id": "hours_v1",
+    "estimate_version": "1.0.0",
+    "measured": {
+      "instances": 7,
+      "messages": 8,
+      "dated_messages": 8,
+      "undated_messages": 0,
+      "participants_median": 2,
+      "months": 5.0,
+      "rework_rate": 0.0,
+      "waiting_rate": 0.25,
+      "manual_transfer_rate": 0.0,
+      "senders": 6
+    },
+    "assumed": {
+      "handle_min": 10.0,
+      "per_touch_min": 4.0,
+      "rework_min": 10.0,
+      "waiting_admin_min": 4.0,
+      "automatable_share": 0.7
+    },
+    "assumed_global": {
+      "blended_rate_usd_per_hour": 85.0,
+      "coordination_alpha": 0.35,
+      "extrapolation_factor": 1.0
+    },
+    "assumption_source": "config/estimation.yml#task_classes.access_provisioning",
+    "steps": [
+      "7.00 task instances / 5 months of coverage = 1.400 instances per month",
+      "minutes per instance = 10 handle + (1.14 touches - 1) x 4 + 0.00 rework rate x 10 + 0.25 waiting rate x 4 = 11.57 min",
+      "coordination multiplier = 1 + 0.35 x (2 median participants - 1) = 1.350",
+      "hours per month = 1.400 x 11.57 x 1.350 / 60 = 0.364",
+      "automatable hours = 0.364 x 0.7 automatable share = 0.255",
+      "dollars per month = 0.255 h x $85/h = $21.69"
+    ],
+    "result": {
+      "hours_per_month": 0.4,
+      "automatable_hours_per_month": 0.3,
+      "dollars_per_month": 21.69
+    }
+  },
+  "citations": [
+    {
+      "citation_id": "cit_b6eda4df1d5a",
+      "source_path": "corpus/giron-d/sent/618.",
+      "source_sha256": "c0c1fec3768db2426d608161f23624ae9223bd01b120504221a2bbfe50451eb7",
+      "message_id": "<1667950.1075854406336.JavaMail.evans@thyme>",
+      "msg_uid": "m_6b0b8106330f",
+      "quote": "I need access to West deals in Sitara.  At a \nmininum I still need access to all Chicago/Midwest deals also.",
+      "match_tier": "rewrapped",
+      "raw_start": 486,
+      "raw_end": 594,
+      "decoded_start": 27,
+      "decoded_end": 135,
+      "line_start": 19,
+      "line_end": 20,
+      "repaired": false,
+      "sender": "darron.giron@enron.com",
+      "sent_at": "2000-10-04T01:38:00-07:00",
+      "subject": "West Access in Sitara",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=486 count=108 if=corpus/giron-d/sent/618. 2>/dev/null",
+        "sed": "sed -n '19,20p' corpus/giron-d/sent/618."
+      }
+    },
+    {
+      "citation_id": "cit_3f58b6fe11de",
+      "source_path": "corpus/giron-d/sent/532.",
+      "source_sha256": "e627f8d2c66e225f2eeb2fe11273e48013aeacf31425f8558f9bd7deca306b61",
+      "message_id": "<28920536.1075854404380.JavaMail.evans@thyme>",
+      "msg_uid": "m_b39c25a5d11e",
+      "quote": "I don't have access to run this book.  Will you please get me authorization?",
+      "match_tier": "raw_exact",
+      "raw_start": 445,
+      "raw_end": 521,
+      "decoded_start": 0,
+      "decoded_end": 76,
+      "line_start": 19,
+      "line_end": 19,
+      "repaired": false,
+      "sender": "darron.giron@enron.com",
+      "sent_at": "2000-11-02T02:41:00-08:00",
+      "subject": "FT-Northwest",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=445 count=76 if=corpus/giron-d/sent/532. 2>/dev/null",
+        "sed": "sed -n '19,19p' corpus/giron-d/sent/532."
+      }
+    },
+    {
+      "citation_id": "cit_f5accb55f956",
+      "source_path": "corpus/farmer-d/logistics/1992.",
+      "source_sha256": "d94d8eb567ea2cd0821fa2517de14971de91e1e48c39d9c5dd68d91c14257464",
+      "message_id": "<11177270.1075854317219.JavaMail.evans@thyme>",
+      "msg_uid": "m_c95c2faa3107",
+      "quote": "was I supposed to send in \nanother request for her and put it on Tom's Cost Center",
+      "match_tier": "rewrapped",
+      "raw_start": 503,
+      "raw_end": 585,
+      "decoded_start": 50,
+      "decoded_end": 132,
+      "line_start": 17,
+      "line_end": 18,
+      "repaired": false,
+      "sender": "laura.vuittonet@enron.com",
+      "sent_at": "2000-12-20T00:50:00-08:00",
+      "subject": "Stacey - CQG",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=503 count=82 if=corpus/farmer-d/logistics/1992. 2>/dev/null",
+        "sed": "sed -n '17,18p' corpus/farmer-d/logistics/1992."
+      }
+    },
+    {
+      "citation_id": "cit_482f64e828b4",
+      "source_path": "corpus/giron-d/inbox/159.",
+      "source_sha256": "4ef86baeb460ff60ab5a5e0a40f0e4d6b2276becbd1cccaeb58f4758d2928ff2",
+      "message_id": "<31635616.1075840557890.JavaMail.evans@thyme>",
+      "msg_uid": "m_54195b74391d",
+      "quote": "Please add Financial and Control group to these book requests if they are missing.",
+      "match_tier": "raw_exact",
+      "raw_start": 1056,
+      "raw_end": 1138,
+      "decoded_start": 0,
+      "decoded_end": 82,
+      "line_start": 22,
+      "line_end": 22,
+      "repaired": false,
+      "sender": "m.love@enron.com",
+      "sent_at": "2002-01-04T11:26:15-08:00",
+      "subject": "RE: new book req",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1056 count=82 if=corpus/giron-d/inbox/159. 2>/dev/null",
+        "sed": "sed -n '22,22p' corpus/giron-d/inbox/159."
+      }
+    },
+    {
+      "citation_id": "cit_35837153d4d3",
+      "source_path": "corpus/giron-d/sent/789.",
+      "source_sha256": "a5b8f3a0d27037f8238bc03848ad3c49f2f2b325c2bb6870c0fbf66e8181f41b",
+      "message_id": "<7232581.1075863672438.JavaMail.evans@thyme>",
+      "msg_uid": "m_e6eb977c9069",
+      "quote": "I don't believe I am set up to review as a supervisor in the PEP system.  How \ndo I get this changed in the system?",
+      "match_tier": "raw_exact",
+      "raw_start": 447,
+      "raw_end": 562,
+      "decoded_start": 8,
+      "decoded_end": 123,
+      "line_start": 18,
+      "line_end": 19,
+      "repaired": false,
+      "sender": "darron.giron@enron.com",
+      "sent_at": "2000-10-31T01:02:00-08:00",
+      "subject": "PEP",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=447 count=115 if=corpus/giron-d/sent/789. 2>/dev/null",
+        "sed": "sed -n '18,19p' corpus/giron-d/sent/789."
+      }
+    },
+    {
+      "citation_id": "cit_adc844180d13",
+      "source_path": "corpus/giron-d/inbox/161.",
+      "source_sha256": "2043cdecb6abae2b06d5d38bbd2c819ad3625fc88c9dd13eb123323ea366db67",
+      "message_id": "<10595816.1075840557938.JavaMail.evans@thyme>",
+      "msg_uid": "m_69d2ecd8527c",
+      "quote": "These are book requests for the Netco books for all regions.",
+      "match_tier": "raw_exact",
+      "raw_start": 1078,
+      "raw_end": 1138,
+      "decoded_start": 0,
+      "decoded_end": 60,
+      "line_start": 23,
+      "line_end": 23,
+      "repaired": false,
+      "sender": "kam.keiser@enron.com",
+      "sent_at": "2002-01-04T11:00:43-08:00",
+      "subject": "new book req",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1078 count=60 if=corpus/giron-d/inbox/161. 2>/dev/null",
+        "sed": "sed -n '23,23p' corpus/giron-d/inbox/161."
+      }
+    },
+    {
+      "citation_id": "cit_6cb25c8a51f4",
+      "source_path": "corpus/williams-w3/sent_items/224.",
+      "source_sha256": "8ae3793266e9491cc9de7b14231deb89b0fec176815723ff14b5fdc2d32c4091",
+      "message_id": "<31346136.1075839997684.JavaMail.evans@thyme>",
+      "msg_uid": "m_9e911ba1a862",
+      "quote": "You should be receiving an email regarding access to EOL.",
+      "match_tier": "raw_exact",
+      "raw_start": 528,
+      "raw_end": 585,
+      "decoded_start": 6,
+      "decoded_end": 63,
+      "line_start": 18,
+      "line_end": 18,
+      "repaired": false,
+      "sender": "bill.williams@enron.com",
+      "sent_at": "2001-09-21T13:25:31-07:00",
+      "subject": "EOL access",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=528 count=57 if=corpus/williams-w3/sent_items/224. 2>/dev/null",
+        "sed": "sed -n '18,18p' corpus/williams-w3/sent_items/224."
+      }
+    }
+  ],
+  "quarantined_citations": [],
+  "member_count": 8,
+  "member_uids": [
+    "m_54195b74391d",
+    "m_69d2ecd8527c",
+    "m_6b0b8106330f",
+    "m_9e911ba1a862",
+    "m_b39c25a5d11e",
+    "m_c95c2faa3107",
+    "m_dc555e256cb6",
+    "m_e6eb977c9069"
+  ],
+  "flags": []
+}

@@ -2,13 +2,22 @@
   "explanation": "Claims and citations excluded from the report. Nothing here is counted in any dollar total. Published rather than deleted: a report with no visible exclusions is one whose exclusions you cannot check.",
   "opportunities": [
     {
-      "opportunity_id": "proc_e08a3f7fc5",
-      "title": "Monthly meter volume figures passed by hand to schedulers",
+      "opportunity_id": "proc_e4f4d73e34",
+      "title": "Meter volume figures circulated by hand as email tables",
       "status": "quarantined",
-      "reason": "only 1 verified citation(s); 3 required",
+      "reason": "only 2 verified citation(s); 3 required",
       "flags": [],
-      "would_have_been_dollars_per_month": 33.5,
-      "verified_citations": 1
+      "would_have_been_dollars_per_month": 56.0,
+      "verified_citations": 2
+    },
+    {
+      "opportunity_id": "proc_8c6d4d183a",
+      "title": "Residual bucket: one-off meter and deal fixes in gas logistics",
+      "status": "quarantined",
+      "reason": "only 0 verified citation(s); 3 required",
+      "flags": [],
+      "would_have_been_dollars_per_month": 2.58,
+      "verified_citations": 0
     }
   ],
   "citations": []

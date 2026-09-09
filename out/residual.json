@@ -27,54 +27,34 @@
   },
   "content_clusters": [
     {
-      "cluster_id": "proc_bb497eed1a",
+      "cluster_id": "proc_9a8bd82585",
       "label": "Recurring report production and distribution: distribute credit / daily / report",
       "task_class": "recurring_report",
-      "messages": 22,
+      "messages": 21,
       "metrics": {
-        "messages": 22,
-        "distinct_content": 22,
+        "messages": 21,
+        "distinct_content": 21,
         "senders": 1,
-        "threads": 22,
-        "months": 2,
-        "weeks": 6,
+        "threads": 21,
+        "months": 1,
+        "weeks": 5,
         "folders": 1,
         "people": 2
       },
       "failed_gates": [
-        "spans 2 month(s) (need 3)"
+        "spans 1 month(s) (need 3)"
       ]
     },
     {
-      "cluster_id": "proc_705c43f093",
-      "label": "Volume and imbalance reconciliation: reconcile against / deal / flow",
+      "cluster_id": "proc_5dec8addc6",
+      "label": "Volume and imbalance reconciliation: reconcile against / deals / flow",
       "task_class": "volume_imbalance_reconciliation",
-      "messages": 10,
+      "messages": 13,
       "metrics": {
-        "messages": 10,
-        "distinct_content": 10,
+        "messages": 13,
+        "distinct_content": 13,
         "senders": 2,
-        "threads": 10,
-        "months": 1,
-        "weeks": 2,
-        "folders": 1,
-        "people": 10
-      },
-      "failed_gates": [
-        "spans 1 month(s) (need 3)",
-        "spans 2 distinct week(s) (need 3)"
-      ]
-    },
-    {
-      "cluster_id": "proc_e05fc3f09e",
-      "label": "Volume and imbalance reconciliation: write meter / off / unaccounted",
-      "task_class": "volume_imbalance_reconciliation",
-      "messages": 10,
-      "metrics": {
-        "messages": 10,
-        "distinct_content": 10,
-        "senders": 3,
-        "threads": 9,
+        "threads": 12,
         "months": 2,
         "weeks": 3,
         "folders": 1,
@@ -85,36 +65,77 @@
       ]
     },
     {
-      "cluster_id": "proc_78cd174737",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: resolve against / deal / expired",
-      "task_class": "deal_entry_correction",
-      "messages": 8,
+      "cluster_id": "proc_1b3cb4f64e",
+      "label": "Volume and imbalance reconciliation: resolve deal / meter / unmatched",
+      "task_class": "volume_imbalance_reconciliation",
+      "messages": 10,
       "metrics": {
-        "messages": 8,
-        "distinct_content": 8,
-        "senders": 2,
-        "threads": 7,
-        "months": 2,
-        "weeks": 3,
+        "messages": 10,
+        "distinct_content": 10,
+        "senders": 1,
+        "threads": 10,
+        "months": 1,
+        "weeks": 2,
         "folders": 1,
         "people": 8
       },
       "failed_gates": [
-        "spans 2 month(s) (need 3)"
+        "1 sender and only 10 messages (need 2 senders, or 15 messages from one)",
+        "spans 1 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)"
       ]
     },
     {
-      "cluster_id": "proc_0c5de81d49",
-      "label": "Gas nomination and scheduling: confirm change / nomination / pipeline",
-      "task_class": "gas_nomination",
+      "cluster_id": "proc_0159d8592a",
+      "label": "Counterparty setup and change: distribute credit / rebook / report",
+      "task_class": "counterparty_admin",
+      "messages": 8,
+      "metrics": {
+        "messages": 8,
+        "distinct_content": 8,
+        "senders": 1,
+        "threads": 8,
+        "months": 3,
+        "weeks": 4,
+        "folders": 1,
+        "people": 2
+      },
+      "failed_gates": [
+        "1 sender and only 8 messages (need 2 senders, or 15 messages from one)"
+      ]
+    },
+    {
+      "cluster_id": "proc_292c7c6908",
+      "label": "P&L and position reporting requests: distribute daily / position / report",
+      "task_class": "pnl_reporting",
       "messages": 7,
       "metrics": {
         "messages": 7,
         "distinct_content": 7,
-        "senders": 6,
+        "senders": 1,
+        "threads": 6,
+        "months": 4,
+        "weeks": 5,
+        "folders": 1,
+        "people": 4
+      },
+      "failed_gates": [
+        "only 7 distinct messages (need 8)",
+        "1 sender and only 7 messages (need 2 senders, or 15 messages from one)"
+      ]
+    },
+    {
+      "cluster_id": "proc_5c1a3ae831",
+      "label": "Meter data requests and corrections: report issue / meter / discuss",
+      "task_class": "meter_data",
+      "messages": 7,
+      "metrics": {
+        "messages": 7,
+        "distinct_content": 7,
+        "senders": 4,
         "threads": 7,
-        "months": 6,
-        "weeks": 7,
+        "months": 5,
+        "weeks": 6,
         "folders": 1,
         "people": 15
       },
@@ -123,60 +144,18 @@
       ]
     },
     {
-      "cluster_id": "proc_1eb4e52df6",
-      "label": "Recurring report production and distribution: distribute daily / energy / market",
-      "task_class": "recurring_report",
-      "messages": 7,
-      "metrics": {
-        "messages": 7,
-        "distinct_content": 7,
-        "senders": 1,
-        "threads": 1,
-        "months": 2,
-        "weeks": 2,
-        "folders": 1,
-        "people": 13
-      },
-      "failed_gates": [
-        "only 7 distinct messages (need 8)",
-        "1 sender and only 7 messages (need 2 senders, or 15 messages from one)",
-        "spans 2 month(s) (need 3)",
-        "spans 2 distinct week(s) (need 3)",
-        "only 1 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_398097f1bd",
-      "label": "Meter data requests and corrections: raise correction / meter / issue",
+      "cluster_id": "proc_c7f8f2ea4d",
+      "label": "Meter data requests and corrections: resolve meter / volume / request",
       "task_class": "meter_data",
       "messages": 7,
       "metrics": {
         "messages": 7,
         "distinct_content": 7,
-        "senders": 2,
+        "senders": 3,
         "threads": 7,
         "months": 4,
         "weeks": 5,
         "folders": 1,
-        "people": 5
-      },
-      "failed_gates": [
-        "only 7 distinct messages (need 8)"
-      ]
-    },
-    {
-      "cluster_id": "proc_460c2e2c70",
-      "label": "P&L and position reporting requests: distribute daily / report / curves",
-      "task_class": "pnl_reporting",
-      "messages": 7,
-      "metrics": {
-        "messages": 7,
-        "distinct_content": 7,
-        "senders": 3,
-        "threads": 6,
-        "months": 3,
-        "weeks": 5,
-        "folders": 3,
         "people": 12
       },
       "failed_gates": [
@@ -184,28 +163,7 @@
       ]
     },
     {
-      "cluster_id": "proc_4b8533641d",
-      "label": "System access and account provisioning: set book / new / counterparty",
-      "task_class": "access_provisioning",
-      "messages": 7,
-      "metrics": {
-        "messages": 7,
-        "distinct_content": 7,
-        "senders": 1,
-        "threads": 7,
-        "months": 2,
-        "weeks": 3,
-        "folders": 1,
-        "people": 9
-      },
-      "failed_gates": [
-        "only 7 distinct messages (need 8)",
-        "1 sender and only 7 messages (need 2 senders, or 15 messages from one)",
-        "spans 2 month(s) (need 3)"
-      ]
-    },
-    {
-      "cluster_id": "proc_0c41e071f9",
+      "cluster_id": "proc_421b7d56c7",
       "label": "Deal entry and correction in Sitara / Unify / TAGG: correct deal / price / sitara",
       "task_class": "deal_entry_correction",
       "messages": 6,
@@ -214,70 +172,29 @@
         "distinct_content": 6,
         "senders": 3,
         "threads": 5,
-        "months": 4,
+        "months": 3,
         "weeks": 5,
         "folders": 3,
-        "people": 8
+        "people": 9
       },
       "failed_gates": [
         "only 6 distinct messages (need 8)"
       ]
     },
     {
-      "cluster_id": "proc_2869b2aafd",
-      "label": "Meter data requests and corrections: resolve data / meter / error",
-      "task_class": "meter_data",
-      "messages": 6,
-      "metrics": {
-        "messages": 6,
-        "distinct_content": 6,
-        "senders": 5,
-        "threads": 6,
-        "months": 4,
-        "weeks": 4,
-        "folders": 1,
-        "people": 14
-      },
-      "failed_gates": [
-        "only 6 distinct messages (need 8)"
-      ]
-    },
-    {
-      "cluster_id": "proc_5d45b776ef",
-      "label": "Counterparty setup and change: resolve contract / counterparty / terms",
-      "task_class": "counterparty_admin",
+      "cluster_id": "proc_66994db478",
+      "label": "Gas nomination and scheduling: revise nomination / volumes / gas",
+      "task_class": "gas_nomination",
       "messages": 6,
       "metrics": {
         "messages": 6,
         "distinct_content": 6,
         "senders": 3,
-        "threads": 2,
-        "months": 1,
-        "weeks": 1,
-        "folders": 1,
-        "people": 5
-      },
-      "failed_gates": [
-        "only 6 distinct messages (need 8)",
-        "spans 1 month(s) (need 3)",
-        "spans 1 distinct week(s) (need 3)",
-        "only 2 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_6b1782e273",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: enter deal / sitara / ticket",
-      "task_class": "deal_entry_correction",
-      "messages": 6,
-      "metrics": {
-        "messages": 6,
-        "distinct_content": 6,
-        "senders": 4,
         "threads": 5,
-        "months": 3,
+        "months": 4,
         "weeks": 4,
-        "folders": 2,
-        "people": 18
+        "folders": 1,
+        "people": 7
       },
       "failed_gates": [
         "only 6 distinct messages (need 8)"
@@ -285,7 +202,7 @@
     },
     {
       "cluster_id": "proc_6c66f50d0f",
-      "label": "P&L and position reporting requests: assemble gas / monthly / natural",
+      "label": "P&L and position reporting requests: respond gas / monthly / natural",
       "task_class": "pnl_reporting",
       "messages": 6,
       "metrics": {
@@ -307,57 +224,57 @@
       ]
     },
     {
-      "cluster_id": "proc_89800487b5",
-      "label": "Recurring report production and distribution: distribute daily / position / report",
-      "task_class": "recurring_report",
+      "cluster_id": "proc_aff7959239",
+      "label": "Meter data requests and corrections: send meter / volume / numbers",
+      "task_class": "meter_data",
       "messages": 6,
       "metrics": {
         "messages": 6,
         "distinct_content": 6,
         "senders": 2,
-        "threads": 5,
-        "months": 3,
+        "threads": 6,
+        "months": 4,
         "weeks": 4,
-        "folders": 2,
-        "people": 18
+        "folders": 1,
+        "people": 7
       },
       "failed_gates": [
         "only 6 distinct messages (need 8)"
       ]
     },
     {
-      "cluster_id": "proc_a44e2bcb82",
-      "label": "Meter data requests and corrections: investigate allocation / discrepancy / flow",
+      "cluster_id": "proc_c3ba5242ee",
+      "label": "P&L and position reporting requests: validate curve / monthly / price",
+      "task_class": "pnl_reporting",
+      "messages": 6,
+      "metrics": {
+        "messages": 6,
+        "distinct_content": 6,
+        "senders": 1,
+        "threads": 4,
+        "months": 2,
+        "weeks": 3,
+        "folders": 1,
+        "people": 4
+      },
+      "failed_gates": [
+        "only 6 distinct messages (need 8)",
+        "1 sender and only 6 messages (need 2 senders, or 15 messages from one)",
+        "spans 2 month(s) (need 3)"
+      ]
+    },
+    {
+      "cluster_id": "proc_d201409cfb",
+      "label": "Meter data requests and corrections: correct meter / data / estimate",
       "task_class": "meter_data",
       "messages": 6,
       "metrics": {
         "messages": 6,
         "distinct_content": 6,
         "senders": 4,
-        "threads": 4,
-        "months": 1,
-        "weeks": 2,
-        "folders": 1,
-        "people": 11
-      },
-      "failed_gates": [
-        "only 6 distinct messages (need 8)",
-        "spans 1 month(s) (need 3)",
-        "spans 2 distinct week(s) (need 3)"
-      ]
-    },
-    {
-      "cluster_id": "proc_c25a5ae151",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: change delivery / point / deals",
-      "task_class": "deal_entry_correction",
-      "messages": 6,
-      "metrics": {
-        "messages": 6,
-        "distinct_content": 6,
-        "senders": 3,
         "threads": 6,
         "months": 3,
-        "weeks": 3,
+        "weeks": 4,
         "folders": 1,
         "people": 13
       },
@@ -366,29 +283,70 @@
       ]
     },
     {
-      "cluster_id": "proc_e1a751118e",
-      "label": "P&L and position reporting requests: approve daily / enovate / position",
-      "task_class": "pnl_reporting",
+      "cluster_id": "proc_e5a1c24c5b",
+      "label": "Pipeline capacity, maintenance and OFO notices: notify maintenance / pipeline / affected",
+      "task_class": "capacity_notice",
       "messages": 6,
       "metrics": {
         "messages": 6,
         "distinct_content": 6,
-        "senders": 1,
-        "threads": 5,
-        "months": 4,
-        "weeks": 4,
+        "senders": 2,
+        "threads": 6,
+        "months": 3,
+        "weeks": 5,
         "folders": 1,
-        "people": 5
+        "people": 30
       },
       "failed_gates": [
-        "only 6 distinct messages (need 8)",
-        "1 sender and only 6 messages (need 2 senders, or 15 messages from one)"
+        "only 6 distinct messages (need 8)"
       ]
     },
     {
-      "cluster_id": "proc_0263cdbf6b",
-      "label": "Pipeline capacity, maintenance and OFO notices: notify affecting / gas / plant",
+      "cluster_id": "proc_f5eeb2ee76",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: extend cover / deal / ticket",
+      "task_class": "deal_entry_correction",
+      "messages": 6,
+      "metrics": {
+        "messages": 6,
+        "distinct_content": 6,
+        "senders": 3,
+        "threads": 5,
+        "months": 2,
+        "weeks": 2,
+        "folders": 1,
+        "people": 4
+      },
+      "failed_gates": [
+        "only 6 distinct messages (need 8)",
+        "spans 2 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)"
+      ]
+    },
+    {
+      "cluster_id": "proc_05de65934d",
+      "label": "Pipeline capacity, maintenance and OFO notices: distribute capacity / iso / market",
       "task_class": "capacity_notice",
+      "messages": 5,
+      "metrics": {
+        "messages": 5,
+        "distinct_content": 5,
+        "senders": 2,
+        "threads": 5,
+        "months": 2,
+        "weeks": 2,
+        "folders": 1,
+        "people": 6
+      },
+      "failed_gates": [
+        "only 5 distinct messages (need 8)",
+        "spans 2 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)"
+      ]
+    },
+    {
+      "cluster_id": "proc_07ae9ae206",
+      "label": "Unclassified: notify counterparties / plant / production",
+      "task_class": "other",
       "messages": 5,
       "metrics": {
         "messages": 5,
@@ -408,71 +366,31 @@
       ]
     },
     {
-      "cluster_id": "proc_1cab2fe02d",
-      "label": "Meter data requests and corrections: distribute flow / numbers / meter",
-      "task_class": "meter_data",
+      "cluster_id": "proc_1c7aeea5e1",
+      "label": "Recurring report production and distribution: distribute daily / energy / market",
+      "task_class": "recurring_report",
       "messages": 5,
       "metrics": {
         "messages": 5,
         "distinct_content": 5,
         "senders": 1,
-        "threads": 5,
-        "months": 3,
-        "weeks": 5,
+        "threads": 1,
+        "months": 2,
+        "weeks": 2,
         "folders": 1,
-        "people": 5
-      },
-      "failed_gates": [
-        "only 5 distinct messages (need 8)",
-        "1 sender and only 5 messages (need 2 senders, or 15 messages from one)"
-      ]
-    },
-    {
-      "cluster_id": "proc_21e60d7dbc",
-      "label": "Pipeline capacity, maintenance and OFO notices: notify available / bid / capacity",
-      "task_class": "capacity_notice",
-      "messages": 5,
-      "metrics": {
-        "messages": 5,
-        "distinct_content": 5,
-        "senders": 1,
-        "threads": 5,
-        "months": 1,
-        "weeks": 1,
-        "folders": 1,
-        "people": 10
+        "people": 13
       },
       "failed_gates": [
         "only 5 distinct messages (need 8)",
         "1 sender and only 5 messages (need 2 senders, or 15 messages from one)",
-        "spans 1 month(s) (need 3)",
-        "spans 1 distinct week(s) (need 3)"
+        "spans 2 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 1 task instance(s) (need 4)"
       ]
     },
     {
-      "cluster_id": "proc_63f0cc9e2f",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: move bankruptcy / deals / books",
-      "task_class": "deal_entry_correction",
-      "messages": 5,
-      "metrics": {
-        "messages": 5,
-        "distinct_content": 5,
-        "senders": 3,
-        "threads": 4,
-        "months": 1,
-        "weeks": 2,
-        "folders": 1,
-        "people": 14
-      },
-      "failed_gates": [
-        "only 5 distinct messages (need 8)",
-        "spans 1 month(s) (need 3)",
-        "spans 2 distinct week(s) (need 3)"
-      ]
-    },
-    {
-      "cluster_id": "proc_7fd518c56d",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: enter deal / into / system",
+      "cluster_id": "proc_24755fc327",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: enter deal / new / sitara",
       "task_class": "deal_entry_correction",
       "messages": 5,
       "metrics": {
@@ -480,19 +398,41 @@
         "distinct_content": 5,
         "senders": 5,
         "threads": 5,
-        "months": 5,
-        "weeks": 5,
+        "months": 2,
+        "weeks": 4,
         "folders": 1,
-        "people": 18
+        "people": 19
       },
       "failed_gates": [
-        "only 5 distinct messages (need 8)"
+        "only 5 distinct messages (need 8)",
+        "spans 2 month(s) (need 3)"
       ]
     },
     {
-      "cluster_id": "proc_9cec38d531",
-      "label": "Counterparty setup and change: produce credit / daily / report",
-      "task_class": "counterparty_admin",
+      "cluster_id": "proc_3a53f7bfe3",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: change deal / point / delivery",
+      "task_class": "deal_entry_correction",
+      "messages": 5,
+      "metrics": {
+        "messages": 5,
+        "distinct_content": 5,
+        "senders": 2,
+        "threads": 5,
+        "months": 2,
+        "weeks": 2,
+        "folders": 1,
+        "people": 8
+      },
+      "failed_gates": [
+        "only 5 distinct messages (need 8)",
+        "spans 2 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)"
+      ]
+    },
+    {
+      "cluster_id": "proc_3e000d4215",
+      "label": "Unclassified: report daily / desk / energy",
+      "task_class": "other",
       "messages": 5,
       "metrics": {
         "messages": 5,
@@ -502,7 +442,7 @@
         "months": 2,
         "weeks": 2,
         "folders": 1,
-        "people": 2
+        "people": 17
       },
       "failed_gates": [
         "only 5 distinct messages (need 8)",
@@ -512,71 +452,301 @@
       ]
     },
     {
-      "cluster_id": "proc_f93aa621a8",
-      "label": "Unclassified: report plant / outage / status",
-      "task_class": "other",
+      "cluster_id": "proc_79a7922082",
+      "label": "Meter data requests and corrections: report meter / shut / status",
+      "task_class": "meter_data",
+      "messages": 5,
+      "metrics": {
+        "messages": 5,
+        "distinct_content": 5,
+        "senders": 2,
+        "threads": 4,
+        "months": 3,
+        "weeks": 3,
+        "folders": 1,
+        "people": 14
+      },
+      "failed_gates": [
+        "only 5 distinct messages (need 8)"
+      ]
+    },
+    {
+      "cluster_id": "proc_baf0d7c645",
+      "label": "Gas nomination and scheduling: submit nomination / pipeline / spreadsheet",
+      "task_class": "gas_nomination",
       "messages": 5,
       "metrics": {
         "messages": 5,
         "distinct_content": 5,
         "senders": 1,
         "threads": 5,
-        "months": 3,
-        "weeks": 5,
+        "months": 2,
+        "weeks": 4,
         "folders": 1,
-        "people": 25
-      },
-      "failed_gates": [
-        "only 5 distinct messages (need 8)",
-        "1 sender and only 5 messages (need 2 senders, or 15 messages from one)"
-      ]
-    },
-    {
-      "cluster_id": "proc_fe1470ece9",
-      "label": "Volume and imbalance reconciliation: report congestion / relief / volumes",
-      "task_class": "volume_imbalance_reconciliation",
-      "messages": 5,
-      "metrics": {
-        "messages": 5,
-        "distinct_content": 5,
-        "senders": 1,
-        "threads": 4,
-        "months": 1,
-        "weeks": 2,
-        "folders": 1,
-        "people": 16
+        "people": 7
       },
       "failed_gates": [
         "only 5 distinct messages (need 8)",
         "1 sender and only 5 messages (need 2 senders, or 15 messages from one)",
+        "spans 2 month(s) (need 3)"
+      ]
+    },
+    {
+      "cluster_id": "proc_e6ef9791ea",
+      "label": "Meter data requests and corrections: reconcile against / meter / scheduled",
+      "task_class": "meter_data",
+      "messages": 5,
+      "metrics": {
+        "messages": 5,
+        "distinct_content": 5,
+        "senders": 4,
+        "threads": 5,
+        "months": 1,
+        "weeks": 2,
+        "folders": 2,
+        "people": 10
+      },
+      "failed_gates": [
+        "only 5 distinct messages (need 8)",
         "spans 1 month(s) (need 3)",
         "spans 2 distinct week(s) (need 3)"
       ]
     },
     {
-      "cluster_id": "proc_0b073a085f",
-      "label": "Recurring report production and distribution: complete activity / monthly / survey",
-      "task_class": "recurring_report",
+      "cluster_id": "proc_f7d997445f",
+      "label": "P&L and position reporting requests: distribute congestion / report / revenue",
+      "task_class": "pnl_reporting",
+      "messages": 5,
+      "metrics": {
+        "messages": 5,
+        "distinct_content": 5,
+        "senders": 1,
+        "threads": 3,
+        "months": 3,
+        "weeks": 3,
+        "folders": 1,
+        "people": 13
+      },
+      "failed_gates": [
+        "only 5 distinct messages (need 8)",
+        "1 sender and only 5 messages (need 2 senders, or 15 messages from one)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_04453d86e7",
+      "label": "Staffing, coverage and work assignment: schedule coverage / holiday / staffing",
+      "task_class": "staffing_coverage",
+      "messages": 4,
+      "metrics": {
+        "messages": 4,
+        "distinct_content": 4,
+        "senders": 4,
+        "threads": 2,
+        "months": 1,
+        "weeks": 1,
+        "folders": 1,
+        "people": 14
+      },
+      "failed_gates": [
+        "only 4 distinct messages (need 8)",
+        "spans 1 month(s) (need 3)",
+        "spans 1 distinct week(s) (need 3)",
+        "only 2 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_11dc7e4266",
+      "label": "Staffing, coverage and work assignment: transition account / between / industrial",
+      "task_class": "staffing_coverage",
+      "messages": 4,
+      "metrics": {
+        "messages": 4,
+        "distinct_content": 4,
+        "senders": 2,
+        "threads": 3,
+        "months": 1,
+        "weeks": 2,
+        "folders": 1,
+        "people": 6
+      },
+      "failed_gates": [
+        "only 4 distinct messages (need 8)",
+        "spans 1 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_1e10f2cb73",
+      "label": "Counterparty setup and change: request book / setup",
+      "task_class": "counterparty_admin",
+      "messages": 4,
+      "metrics": {
+        "messages": 4,
+        "distinct_content": 4,
+        "senders": 1,
+        "threads": 4,
+        "months": 1,
+        "weeks": 2,
+        "folders": 1,
+        "people": 5
+      },
+      "failed_gates": [
+        "only 4 distinct messages (need 8)",
+        "1 sender and only 4 messages (need 2 senders, or 15 messages from one)",
+        "spans 1 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)"
+      ]
+    },
+    {
+      "cluster_id": "proc_1e77dc736a",
+      "label": "Unclassified: distribute data / source / updated",
+      "task_class": "other",
       "messages": 4,
       "metrics": {
         "messages": 4,
         "distinct_content": 4,
         "senders": 2,
         "threads": 4,
-        "months": 2,
-        "weeks": 3,
+        "months": 1,
+        "weeks": 2,
         "folders": 1,
-        "people": 63
+        "people": 3
       },
       "failed_gates": [
         "only 4 distinct messages (need 8)",
-        "spans 2 month(s) (need 3)"
+        "spans 1 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)"
       ]
     },
     {
-      "cluster_id": "proc_12e9b33fc9",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: activate counterparty / deal / path",
+      "cluster_id": "proc_3e04451297",
+      "label": "Meter data requests and corrections: forward meter / data / volume",
+      "task_class": "meter_data",
+      "messages": 4,
+      "metrics": {
+        "messages": 4,
+        "distinct_content": 4,
+        "senders": 4,
+        "threads": 4,
+        "months": 4,
+        "weeks": 4,
+        "folders": 1,
+        "people": 7
+      },
+      "failed_gates": [
+        "only 4 distinct messages (need 8)"
+      ]
+    },
+    {
+      "cluster_id": "proc_49fc5e1a02",
+      "label": "System access and account provisioning: disable accounts / during / staff",
+      "task_class": "access_provisioning",
+      "messages": 4,
+      "metrics": {
+        "messages": 4,
+        "distinct_content": 4,
+        "senders": 2,
+        "threads": 1,
+        "months": 1,
+        "weeks": 1,
+        "folders": 1,
+        "people": 5
+      },
+      "failed_gates": [
+        "only 4 distinct messages (need 8)",
+        "spans 1 month(s) (need 3)",
+        "spans 1 distinct week(s) (need 3)",
+        "only 1 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_4ea9f2d825",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: extend deal / expired / redraft",
       "task_class": "deal_entry_correction",
+      "messages": 4,
+      "metrics": {
+        "messages": 4,
+        "distinct_content": 4,
+        "senders": 2,
+        "threads": 2,
+        "months": 1,
+        "weeks": 1,
+        "folders": 1,
+        "people": 4
+      },
+      "failed_gates": [
+        "only 4 distinct messages (need 8)",
+        "spans 1 month(s) (need 3)",
+        "spans 1 distinct week(s) (need 3)",
+        "only 2 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_5bf7f6c1bb",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: zero deals / out / compatibility",
+      "task_class": "deal_entry_correction",
+      "messages": 4,
+      "metrics": {
+        "messages": 4,
+        "distinct_content": 4,
+        "senders": 4,
+        "threads": 2,
+        "months": 2,
+        "weeks": 2,
+        "folders": 2,
+        "people": 26
+      },
+      "failed_gates": [
+        "only 4 distinct messages (need 8)",
+        "spans 2 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 2 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_6a674e1b37",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: enter deal / into / sale",
+      "task_class": "deal_entry_correction",
+      "messages": 4,
+      "metrics": {
+        "messages": 4,
+        "distinct_content": 4,
+        "senders": 4,
+        "threads": 4,
+        "months": 3,
+        "weeks": 3,
+        "folders": 1,
+        "people": 15
+      },
+      "failed_gates": [
+        "only 4 distinct messages (need 8)"
+      ]
+    },
+    {
+      "cluster_id": "proc_7630f18790",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: correct counterparty / deal / entry",
+      "task_class": "deal_entry_correction",
+      "messages": 4,
+      "metrics": {
+        "messages": 4,
+        "distinct_content": 4,
+        "senders": 3,
+        "threads": 4,
+        "months": 3,
+        "weeks": 3,
+        "folders": 3,
+        "people": 11
+      },
+      "failed_gates": [
+        "only 4 distinct messages (need 8)"
+      ]
+    },
+    {
+      "cluster_id": "proc_979137b279",
+      "label": "Counterparty setup and change: verify contract / terms / contracts",
+      "task_class": "counterparty_admin",
       "messages": 4,
       "metrics": {
         "messages": 4,
@@ -596,54 +766,112 @@
       ]
     },
     {
-      "cluster_id": "proc_37a109404f",
-      "label": "Invoice, payment and settlement handling: track discrepancy / down / outstanding",
-      "task_class": "invoice_settlement",
+      "cluster_id": "proc_aa6145de9d",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: confirm deal / discrepancy / price",
+      "task_class": "deal_entry_correction",
       "messages": 4,
       "metrics": {
         "messages": 4,
         "distinct_content": 4,
-        "senders": 1,
-        "threads": 3,
-        "months": 1,
-        "weeks": 1,
+        "senders": 4,
+        "threads": 4,
+        "months": 4,
+        "weeks": 4,
         "folders": 1,
-        "people": 4
+        "people": 5
       },
       "failed_gates": [
-        "only 4 distinct messages (need 8)",
-        "1 sender and only 4 messages (need 2 senders, or 15 messages from one)",
-        "spans 1 month(s) (need 3)",
-        "spans 1 distinct week(s) (need 3)",
-        "only 3 task instance(s) (need 4)"
+        "only 4 distinct messages (need 8)"
       ]
     },
     {
-      "cluster_id": "proc_3bb5de8955",
-      "label": "Meter data requests and corrections: report meter / shut / change",
-      "task_class": "meter_data",
+      "cluster_id": "proc_aeef4358c0",
+      "label": "Volume and imbalance reconciliation: reconcile against / confirmed / dates",
+      "task_class": "volume_imbalance_reconciliation",
       "messages": 4,
       "metrics": {
         "messages": 4,
         "distinct_content": 4,
         "senders": 2,
         "threads": 3,
-        "months": 2,
-        "weeks": 2,
+        "months": 1,
+        "weeks": 1,
         "folders": 1,
-        "people": 11
+        "people": 5
       },
       "failed_gates": [
         "only 4 distinct messages (need 8)",
-        "spans 2 month(s) (need 3)",
+        "spans 1 month(s) (need 3)",
+        "spans 1 distinct week(s) (need 3)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_b467a57e81",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: correct allocation / meter / across",
+      "task_class": "deal_entry_correction",
+      "messages": 4,
+      "metrics": {
+        "messages": 4,
+        "distinct_content": 4,
+        "senders": 3,
+        "threads": 3,
+        "months": 1,
+        "weeks": 2,
+        "folders": 1,
+        "people": 15
+      },
+      "failed_gates": [
+        "only 4 distinct messages (need 8)",
+        "spans 1 month(s) (need 3)",
         "spans 2 distinct week(s) (need 3)",
         "only 3 task instance(s) (need 4)"
       ]
     },
     {
-      "cluster_id": "proc_4ce17b9de6",
-      "label": "Gas nomination and scheduling: forward nomination / daily / gas",
-      "task_class": "gas_nomination",
+      "cluster_id": "proc_b5fc97253b",
+      "label": "Pipeline capacity, maintenance and OFO notices: post available / capacity / bid",
+      "task_class": "capacity_notice",
+      "messages": 4,
+      "metrics": {
+        "messages": 4,
+        "distinct_content": 4,
+        "senders": 2,
+        "threads": 4,
+        "months": 1,
+        "weeks": 2,
+        "folders": 2,
+        "people": 7
+      },
+      "failed_gates": [
+        "only 4 distinct messages (need 8)",
+        "spans 1 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)"
+      ]
+    },
+    {
+      "cluster_id": "proc_b7f7b41b4c",
+      "label": "Staffing, coverage and work assignment: assign backup / coverage / desks",
+      "task_class": "staffing_coverage",
+      "messages": 4,
+      "metrics": {
+        "messages": 4,
+        "distinct_content": 4,
+        "senders": 3,
+        "threads": 4,
+        "months": 3,
+        "weeks": 3,
+        "folders": 1,
+        "people": 31
+      },
+      "failed_gates": [
+        "only 4 distinct messages (need 8)"
+      ]
+    },
+    {
+      "cluster_id": "proc_b94cbb1558",
+      "label": "Staffing, coverage and work assignment: coordinate candidate / interview / scheduling",
+      "task_class": "staffing_coverage",
       "messages": 4,
       "metrics": {
         "messages": 4,
@@ -653,7 +881,7 @@
         "months": 2,
         "weeks": 3,
         "folders": 1,
-        "people": 7
+        "people": 9
       },
       "failed_gates": [
         "only 4 distinct messages (need 8)",
@@ -662,166 +890,37 @@
       ]
     },
     {
-      "cluster_id": "proc_4dc9cba5a8",
-      "label": "P&L and position reporting requests: report congestion / revenue / management",
-      "task_class": "pnl_reporting",
-      "messages": 4,
-      "metrics": {
-        "messages": 4,
-        "distinct_content": 4,
-        "senders": 1,
-        "threads": 3,
-        "months": 3,
-        "weeks": 3,
-        "folders": 1,
-        "people": 12
-      },
-      "failed_gates": [
-        "only 4 distinct messages (need 8)",
-        "1 sender and only 4 messages (need 2 senders, or 15 messages from one)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_59025269c9",
-      "label": "Unclassified: list books / nightly / trading",
-      "task_class": "other",
-      "messages": 4,
-      "metrics": {
-        "messages": 4,
-        "distinct_content": 4,
-        "senders": 1,
-        "threads": 4,
-        "months": 2,
-        "weeks": 2,
-        "folders": 1,
-        "people": 9
-      },
-      "failed_gates": [
-        "only 4 distinct messages (need 8)",
-        "1 sender and only 4 messages (need 2 senders, or 15 messages from one)",
-        "spans 2 month(s) (need 3)",
-        "spans 2 distinct week(s) (need 3)"
-      ]
-    },
-    {
-      "cluster_id": "proc_671eaa3d68",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: correct deal / details / entry",
-      "task_class": "deal_entry_correction",
-      "messages": 4,
-      "metrics": {
-        "messages": 4,
-        "distinct_content": 4,
-        "senders": 2,
-        "threads": 4,
-        "months": 1,
-        "weeks": 3,
-        "folders": 1,
-        "people": 2
-      },
-      "failed_gates": [
-        "only 4 distinct messages (need 8)",
-        "spans 1 month(s) (need 3)"
-      ]
-    },
-    {
-      "cluster_id": "proc_692aa5c24b",
-      "label": "Unclassified: report daily / length / position",
-      "task_class": "other",
-      "messages": 4,
-      "metrics": {
-        "messages": 4,
-        "distinct_content": 4,
-        "senders": 1,
-        "threads": 4,
-        "months": 1,
-        "weeks": 1,
-        "folders": 1,
-        "people": 13
-      },
-      "failed_gates": [
-        "only 4 distinct messages (need 8)",
-        "1 sender and only 4 messages (need 2 senders, or 15 messages from one)",
-        "spans 1 month(s) (need 3)",
-        "spans 1 distinct week(s) (need 3)"
-      ]
-    },
-    {
-      "cluster_id": "proc_7b0c1102f9",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: zero cut / out / system",
-      "task_class": "deal_entry_correction",
-      "messages": 4,
-      "metrics": {
-        "messages": 4,
-        "distinct_content": 4,
-        "senders": 1,
-        "threads": 4,
-        "months": 3,
-        "weeks": 3,
-        "folders": 1,
-        "people": 14
-      },
-      "failed_gates": [
-        "only 4 distinct messages (need 8)",
-        "1 sender and only 4 messages (need 2 senders, or 15 messages from one)"
-      ]
-    },
-    {
-      "cluster_id": "proc_8168a69f6d",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: correct across / records / systems",
-      "task_class": "deal_entry_correction",
+      "cluster_id": "proc_bff6a3e279",
+      "label": "Meter data requests and corrections: resolve data / issue / meter",
+      "task_class": "meter_data",
       "messages": 4,
       "metrics": {
         "messages": 4,
         "distinct_content": 4,
         "senders": 3,
-        "threads": 2,
+        "threads": 4,
+        "months": 4,
+        "weeks": 4,
+        "folders": 1,
+        "people": 8
+      },
+      "failed_gates": [
+        "only 4 distinct messages (need 8)"
+      ]
+    },
+    {
+      "cluster_id": "proc_ce40b53b2d",
+      "label": "System access and account provisioning: provision credentials / system / access",
+      "task_class": "access_provisioning",
+      "messages": 4,
+      "metrics": {
+        "messages": 4,
+        "distinct_content": 4,
+        "senders": 4,
+        "threads": 4,
         "months": 2,
         "weeks": 2,
         "folders": 2,
-        "people": 15
-      },
-      "failed_gates": [
-        "only 4 distinct messages (need 8)",
-        "spans 2 month(s) (need 3)",
-        "spans 2 distinct week(s) (need 3)",
-        "only 2 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_8e19e64581",
-      "label": "Staffing, coverage and work assignment: transition account / new / responsibility",
-      "task_class": "staffing_coverage",
-      "messages": 4,
-      "metrics": {
-        "messages": 4,
-        "distinct_content": 4,
-        "senders": 2,
-        "threads": 4,
-        "months": 1,
-        "weeks": 2,
-        "folders": 1,
-        "people": 6
-      },
-      "failed_gates": [
-        "only 4 distinct messages (need 8)",
-        "spans 1 month(s) (need 3)",
-        "spans 2 distinct week(s) (need 3)"
-      ]
-    },
-    {
-      "cluster_id": "proc_9c3e153086",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: set accounting / arrangement / deal",
-      "task_class": "deal_entry_correction",
-      "messages": 4,
-      "metrics": {
-        "messages": 4,
-        "distinct_content": 4,
-        "senders": 3,
-        "threads": 4,
-        "months": 2,
-        "weeks": 2,
-        "folders": 1,
         "people": 10
       },
       "failed_gates": [
@@ -831,9 +930,110 @@
       ]
     },
     {
-      "cluster_id": "proc_aa406c8aee",
-      "label": "Staffing, coverage and work assignment: update admin / assignment / book",
-      "task_class": "staffing_coverage",
+      "cluster_id": "proc_ced389ff43",
+      "label": "Unclassified: manage energy / real / time",
+      "task_class": "other",
+      "messages": 4,
+      "metrics": {
+        "messages": 4,
+        "distinct_content": 4,
+        "senders": 1,
+        "threads": 4,
+        "months": 1,
+        "weeks": 2,
+        "folders": 1,
+        "people": 16
+      },
+      "failed_gates": [
+        "only 4 distinct messages (need 8)",
+        "1 sender and only 4 messages (need 2 senders, or 15 messages from one)",
+        "spans 1 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)"
+      ]
+    },
+    {
+      "cluster_id": "proc_cf8ffbcba6",
+      "label": "Gas nomination and scheduling: submit monthly / nomination / volumes",
+      "task_class": "gas_nomination",
+      "messages": 4,
+      "metrics": {
+        "messages": 4,
+        "distinct_content": 4,
+        "senders": 3,
+        "threads": 4,
+        "months": 3,
+        "weeks": 3,
+        "folders": 1,
+        "people": 13
+      },
+      "failed_gates": [
+        "only 4 distinct messages (need 8)"
+      ]
+    },
+    {
+      "cluster_id": "proc_cfe2c92d5e",
+      "label": "Recurring report production and distribution: distribute daily / enovate / position",
+      "task_class": "recurring_report",
+      "messages": 4,
+      "metrics": {
+        "messages": 4,
+        "distinct_content": 4,
+        "senders": 1,
+        "threads": 4,
+        "months": 3,
+        "weeks": 3,
+        "folders": 1,
+        "people": 4
+      },
+      "failed_gates": [
+        "only 4 distinct messages (need 8)",
+        "1 sender and only 4 messages (need 2 senders, or 15 messages from one)"
+      ]
+    },
+    {
+      "cluster_id": "proc_d1409104a7",
+      "label": "Meter data requests and corrections: assign meter / new / number",
+      "task_class": "meter_data",
+      "messages": 4,
+      "metrics": {
+        "messages": 4,
+        "distinct_content": 4,
+        "senders": 4,
+        "threads": 4,
+        "months": 3,
+        "weeks": 4,
+        "folders": 1,
+        "people": 49
+      },
+      "failed_gates": [
+        "only 4 distinct messages (need 8)"
+      ]
+    },
+    {
+      "cluster_id": "proc_db17ebb103",
+      "label": "Counterparty setup and change: move bankruptcy / book / counterparty",
+      "task_class": "counterparty_admin",
+      "messages": 4,
+      "metrics": {
+        "messages": 4,
+        "distinct_content": 4,
+        "senders": 2,
+        "threads": 4,
+        "months": 1,
+        "weeks": 1,
+        "folders": 1,
+        "people": 11
+      },
+      "failed_gates": [
+        "only 4 distinct messages (need 8)",
+        "spans 1 month(s) (need 3)",
+        "spans 1 distinct week(s) (need 3)"
+      ]
+    },
+    {
+      "cluster_id": "proc_db220266fd",
+      "label": "Counterparty setup and change: update admin / assignments / book",
+      "task_class": "counterparty_admin",
       "messages": 4,
       "metrics": {
         "messages": 4,
@@ -854,36 +1054,140 @@
       ]
     },
     {
-      "cluster_id": "proc_b2a9533ce2",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: zero deal / out / allocation",
-      "task_class": "deal_entry_correction",
+      "cluster_id": "proc_dd0ec7500b",
+      "label": "Month-end close and allocations: coordinate close / end / month",
+      "task_class": "month_end_close",
       "messages": 4,
       "metrics": {
         "messages": 4,
         "distinct_content": 4,
         "senders": 2,
-        "threads": 2,
-        "months": 2,
-        "weeks": 2,
+        "threads": 4,
+        "months": 4,
+        "weeks": 4,
+        "folders": 1,
+        "people": 72
+      },
+      "failed_gates": [
+        "only 4 distinct messages (need 8)"
+      ]
+    },
+    {
+      "cluster_id": "proc_f1c725703c",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: set deal / meter / extend",
+      "task_class": "deal_entry_correction",
+      "messages": 4,
+      "metrics": {
+        "messages": 4,
+        "distinct_content": 4,
+        "senders": 3,
+        "threads": 4,
+        "months": 3,
+        "weeks": 3,
         "folders": 1,
         "people": 7
       },
       "failed_gates": [
-        "only 4 distinct messages (need 8)",
+        "only 4 distinct messages (need 8)"
+      ]
+    },
+    {
+      "cluster_id": "proc_f41e383dcc",
+      "label": "Meter data requests and corrections: report meter / volumes / actual",
+      "task_class": "meter_data",
+      "messages": 4,
+      "metrics": {
+        "messages": 4,
+        "distinct_content": 4,
+        "senders": 3,
+        "threads": 4,
+        "months": 4,
+        "weeks": 4,
+        "folders": 1,
+        "people": 18
+      },
+      "failed_gates": [
+        "only 4 distinct messages (need 8)"
+      ]
+    },
+    {
+      "cluster_id": "proc_0214da8851",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: roll cover / days / deal",
+      "task_class": "deal_entry_correction",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 1,
+        "threads": 3,
+        "months": 1,
+        "weeks": 2,
+        "folders": 1,
+        "people": 2
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
+        "spans 1 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_0b27beb267",
+      "label": "Unclassified: add curves / new / price",
+      "task_class": "other",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 1,
+        "threads": 2,
+        "months": 2,
+        "weeks": 2,
+        "folders": 1,
+        "people": 3
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
         "spans 2 month(s) (need 3)",
         "spans 2 distinct week(s) (need 3)",
         "only 2 task instance(s) (need 4)"
       ]
     },
     {
-      "cluster_id": "proc_ba6ad50b69",
-      "label": "Unclassified: add new / system / tagg",
-      "task_class": "other",
-      "messages": 4,
+      "cluster_id": "proc_138f927248",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: book real / time / position",
+      "task_class": "deal_entry_correction",
+      "messages": 3,
       "metrics": {
-        "messages": 4,
-        "distinct_content": 4,
+        "messages": 3,
+        "distinct_content": 3,
         "senders": 1,
+        "threads": 3,
+        "months": 1,
+        "weeks": 1,
+        "folders": 1,
+        "people": 15
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
+        "spans 1 month(s) (need 3)",
+        "spans 1 distinct week(s) (need 3)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_18b65b1356",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: zero deal / out / ticket",
+      "task_class": "deal_entry_correction",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 2,
         "threads": 2,
         "months": 2,
         "weeks": 2,
@@ -891,58 +1195,146 @@
         "people": 6
       },
       "failed_gates": [
-        "only 4 distinct messages (need 8)",
-        "1 sender and only 4 messages (need 2 senders, or 15 messages from one)",
+        "only 3 distinct messages (need 8)",
         "spans 2 month(s) (need 3)",
         "spans 2 distinct week(s) (need 3)",
         "only 2 task instance(s) (need 4)"
       ]
     },
     {
-      "cluster_id": "proc_c8f94f06dc",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: roll dates / deal / sitara",
-      "task_class": "deal_entry_correction",
-      "messages": 4,
+      "cluster_id": "proc_1c40df0f4c",
+      "label": "System access and account provisioning: correct address / email / book",
+      "task_class": "access_provisioning",
+      "messages": 3,
       "metrics": {
-        "messages": 4,
-        "distinct_content": 4,
-        "senders": 2,
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 1,
         "threads": 3,
         "months": 2,
         "weeks": 2,
         "folders": 1,
-        "people": 7
+        "people": 4
       },
       "failed_gates": [
-        "only 4 distinct messages (need 8)",
+        "only 3 distinct messages (need 8)",
+        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
         "spans 2 month(s) (need 3)",
         "spans 2 distinct week(s) (need 3)",
         "only 3 task instance(s) (need 4)"
       ]
     },
     {
-      "cluster_id": "proc_ff89fc3a08",
-      "label": "Pipeline capacity, maintenance and OFO notices: forward maintenance / pipeline / nomination",
-      "task_class": "capacity_notice",
-      "messages": 4,
+      "cluster_id": "proc_1cd61f9248",
+      "label": "Unclassified: schedule call / conference / business",
+      "task_class": "other",
+      "messages": 3,
       "metrics": {
-        "messages": 4,
-        "distinct_content": 4,
+        "messages": 3,
+        "distinct_content": 3,
         "senders": 2,
-        "threads": 4,
-        "months": 3,
-        "weeks": 4,
+        "threads": 3,
+        "months": 2,
+        "weeks": 2,
         "folders": 2,
-        "people": 24
+        "people": 6
       },
       "failed_gates": [
-        "only 4 distinct messages (need 8)"
+        "only 3 distinct messages (need 8)",
+        "spans 2 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 3 task instance(s) (need 4)"
       ]
     },
     {
-      "cluster_id": "proc_145c6765de",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: reconcile between / deal / entry",
+      "cluster_id": "proc_1d7c705e84",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: investigate deal / meter / discrepancy",
       "task_class": "deal_entry_correction",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 2,
+        "threads": 2,
+        "months": 2,
+        "weeks": 3,
+        "folders": 1,
+        "people": 6
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "spans 2 month(s) (need 3)",
+        "only 2 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_1d99ebf6de",
+      "label": "Counterparty setup and change: set books / new / pipeline",
+      "task_class": "counterparty_admin",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 1,
+        "threads": 3,
+        "months": 3,
+        "weeks": 3,
+        "folders": 1,
+        "people": 5
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_2602a03384",
+      "label": "Unclassified: report outage / plant / status",
+      "task_class": "other",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 1,
+        "threads": 3,
+        "months": 2,
+        "weeks": 3,
+        "folders": 1,
+        "people": 19
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
+        "spans 2 month(s) (need 3)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_26d8cef499",
+      "label": "System access and account provisioning: submit access / request / system",
+      "task_class": "access_provisioning",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 3,
+        "threads": 3,
+        "months": 2,
+        "weeks": 3,
+        "folders": 1,
+        "people": 5
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "spans 2 month(s) (need 3)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_2ed2ab445e",
+      "label": "Recurring report production and distribution: distribute curves / daily / price",
+      "task_class": "recurring_report",
       "messages": 3,
       "metrics": {
         "messages": 3,
@@ -962,7 +1354,1107 @@
       ]
     },
     {
-      "cluster_id": "proc_15386372c4",
+      "cluster_id": "proc_3d39c8a0fd",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: extend dates / deal / system",
+      "task_class": "deal_entry_correction",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 1,
+        "threads": 2,
+        "months": 1,
+        "weeks": 1,
+        "folders": 1,
+        "people": 2
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
+        "spans 1 month(s) (need 3)",
+        "spans 1 distinct week(s) (need 3)",
+        "only 2 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_4203feb0c0",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: correct deal / entry / issue",
+      "task_class": "deal_entry_correction",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 3,
+        "threads": 3,
+        "months": 3,
+        "weeks": 3,
+        "folders": 1,
+        "people": 5
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_432fd0f0e7",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: assign cover / days / deal",
+      "task_class": "deal_entry_correction",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 1,
+        "threads": 1,
+        "months": 1,
+        "weeks": 2,
+        "folders": 1,
+        "people": 3
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
+        "spans 1 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 1 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_435f060144",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: enter capture / deal / into",
+      "task_class": "deal_entry_correction",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 1,
+        "threads": 2,
+        "months": 2,
+        "weeks": 2,
+        "folders": 1,
+        "people": 15
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
+        "spans 2 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 2 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_4761ccc710",
+      "label": "Meter data requests and corrections: report data / meter / monthly",
+      "task_class": "meter_data",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 1,
+        "threads": 3,
+        "months": 1,
+        "weeks": 2,
+        "folders": 1,
+        "people": 3
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
+        "spans 1 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_4c61c62659",
+      "label": "Invoice, payment and settlement handling: finalize invoices / unfinaled / production",
+      "task_class": "invoice_settlement",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 2,
+        "threads": 3,
+        "months": 1,
+        "weeks": 2,
+        "folders": 1,
+        "people": 10
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "spans 1 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_54c8acabf3",
+      "label": "Pipeline capacity, maintenance and OFO notices: forward operating / caiso / notice",
+      "task_class": "capacity_notice",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 2,
+        "threads": 3,
+        "months": 2,
+        "weeks": 2,
+        "folders": 1,
+        "people": 4
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "spans 2 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_5915b72052",
+      "label": "Volume and imbalance reconciliation: reconcile against / counterparty / internal",
+      "task_class": "volume_imbalance_reconciliation",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 3,
+        "threads": 3,
+        "months": 2,
+        "weeks": 3,
+        "folders": 1,
+        "people": 8
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "spans 2 month(s) (need 3)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_5aa9a3a868",
+      "label": "Counterparty setup and change: activate counterparty / deal / pathing",
+      "task_class": "counterparty_admin",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 2,
+        "threads": 1,
+        "months": 1,
+        "weeks": 1,
+        "folders": 1,
+        "people": 5
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "spans 1 month(s) (need 3)",
+        "spans 1 distinct week(s) (need 3)",
+        "only 1 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_5d623a2e07",
+      "label": "Unclassified: advise pipeline / delivery / issue",
+      "task_class": "other",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 2,
+        "threads": 3,
+        "months": 2,
+        "weeks": 3,
+        "folders": 2,
+        "people": 10
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "spans 2 month(s) (need 3)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_5e0bc271d7",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: resolve deal / discrepancy / path",
+      "task_class": "deal_entry_correction",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 3,
+        "threads": 2,
+        "months": 2,
+        "weeks": 2,
+        "folders": 1,
+        "people": 4
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "spans 2 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 2 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_5e819d6b97",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: set allocation / exceptions / accounting",
+      "task_class": "deal_entry_correction",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 3,
+        "threads": 3,
+        "months": 2,
+        "weeks": 2,
+        "folders": 1,
+        "people": 9
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "spans 2 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_5f7b20aee5",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: set accounting / arrangement / between",
+      "task_class": "deal_entry_correction",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 3,
+        "threads": 3,
+        "months": 3,
+        "weeks": 3,
+        "folders": 1,
+        "people": 12
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_6506522a71",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: correct deal / meter / track",
+      "task_class": "deal_entry_correction",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 2,
+        "threads": 2,
+        "months": 2,
+        "weeks": 2,
+        "folders": 1,
+        "people": 7
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "spans 2 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 2 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_6eaa7e7e59",
+      "label": "System access and account provisioning: set books / new / region",
+      "task_class": "access_provisioning",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 1,
+        "threads": 3,
+        "months": 1,
+        "weeks": 2,
+        "folders": 1,
+        "people": 5
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
+        "spans 1 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_7161436217",
+      "label": "Gas nomination and scheduling: resolve nominations / unassigned / unpathed",
+      "task_class": "gas_nomination",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 2,
+        "threads": 2,
+        "months": 2,
+        "weeks": 2,
+        "folders": 1,
+        "people": 14
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "spans 2 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 2 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_7a12a8a22a",
+      "label": "System access and account provisioning: request book / new / setup",
+      "task_class": "access_provisioning",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 1,
+        "threads": 3,
+        "months": 2,
+        "weeks": 2,
+        "folders": 1,
+        "people": 4
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
+        "spans 2 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_7e9ee85cec",
+      "label": "Unclassified: study capacity / interconnect / project",
+      "task_class": "other",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 1,
+        "threads": 3,
+        "months": 2,
+        "weeks": 2,
+        "folders": 1,
+        "people": 8
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
+        "spans 2 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_8003fce199",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: manually bridge / deals / enter",
+      "task_class": "deal_entry_correction",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 2,
+        "threads": 3,
+        "months": 2,
+        "weeks": 2,
+        "folders": 1,
+        "people": 17
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "spans 2 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_8476fec3f6",
+      "label": "Gas nomination and scheduling: compile gas / monthly / nomination",
+      "task_class": "gas_nomination",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 3,
+        "threads": 3,
+        "months": 3,
+        "weeks": 3,
+        "folders": 1,
+        "people": 7
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_88dcddff8c",
+      "label": "Unclassified: coordinate real / time / power",
+      "task_class": "other",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 1,
+        "threads": 3,
+        "months": 2,
+        "weeks": 3,
+        "folders": 1,
+        "people": 15
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
+        "spans 2 month(s) (need 3)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_893ca875cf",
+      "label": "Gas nomination and scheduling: call real / schedule / time",
+      "task_class": "gas_nomination",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 2,
+        "threads": 3,
+        "months": 2,
+        "weeks": 3,
+        "folders": 2,
+        "people": 16
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "spans 2 month(s) (need 3)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_933fe2f14d",
+      "label": "Counterparty setup and change: retain real / time / customers",
+      "task_class": "counterparty_admin",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 1,
+        "threads": 3,
+        "months": 2,
+        "weeks": 3,
+        "folders": 1,
+        "people": 5
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
+        "spans 2 month(s) (need 3)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_940edb12f8",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: investigate deal / volumes / reversed",
+      "task_class": "deal_entry_correction",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 3,
+        "threads": 2,
+        "months": 2,
+        "weeks": 2,
+        "folders": 1,
+        "people": 10
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "spans 2 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 2 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_945376624e",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: extend cover / deal / flow",
+      "task_class": "deal_entry_correction",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 1,
+        "threads": 2,
+        "months": 2,
+        "weeks": 2,
+        "folders": 1,
+        "people": 7
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
+        "spans 2 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 2 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_95cb1bd705",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: rebook credit / deal / instruction",
+      "task_class": "deal_entry_correction",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 1,
+        "threads": 3,
+        "months": 1,
+        "weeks": 1,
+        "folders": 1,
+        "people": 5
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
+        "spans 1 month(s) (need 3)",
+        "spans 1 distinct week(s) (need 3)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_96251bb8a5",
+      "label": "Unclassified: instruct adjustment / team / bid",
+      "task_class": "other",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 1,
+        "threads": 3,
+        "months": 1,
+        "weeks": 2,
+        "folders": 1,
+        "people": 15
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
+        "spans 1 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_97b354f622",
+      "label": "Unclassified: log call / notes / adjustments",
+      "task_class": "other",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 3,
+        "threads": 3,
+        "months": 2,
+        "weeks": 3,
+        "folders": 1,
+        "people": 16
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "spans 2 month(s) (need 3)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_9895e086ad",
+      "label": "Counterparty setup and change: negotiate payment / subcontractor / terms",
+      "task_class": "counterparty_admin",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 1,
+        "threads": 1,
+        "months": 1,
+        "weeks": 1,
+        "folders": 1,
+        "people": 2
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
+        "spans 1 month(s) (need 3)",
+        "spans 1 distinct week(s) (need 3)",
+        "only 1 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_99e9ab2e8c",
+      "label": "Unclassified: manage credit / release / schedule",
+      "task_class": "other",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 1,
+        "threads": 3,
+        "months": 1,
+        "weeks": 2,
+        "folders": 1,
+        "people": 3
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
+        "spans 1 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_9c6e0f86f1",
+      "label": "Unclassified: notify staff / system / change",
+      "task_class": "other",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 2,
+        "threads": 3,
+        "months": 2,
+        "weeks": 3,
+        "folders": 2,
+        "people": 17
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "spans 2 month(s) (need 3)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_a0841c30c0",
+      "label": "Unclassified: exchange deal / documentation",
+      "task_class": "other",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 3,
+        "threads": 2,
+        "months": 1,
+        "weeks": 2,
+        "folders": 1,
+        "people": 4
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "spans 1 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 2 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_b135c36ca3",
+      "label": "Month-end close and allocations: respond detail / gas / monthly",
+      "task_class": "month_end_close",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 1,
+        "threads": 2,
+        "months": 2,
+        "weeks": 2,
+        "folders": 1,
+        "people": 4
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
+        "spans 2 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 2 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_ba7706dce4",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: correct missing / contract / sitara",
+      "task_class": "deal_entry_correction",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 2,
+        "threads": 2,
+        "months": 2,
+        "weeks": 2,
+        "folders": 1,
+        "people": 9
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "spans 2 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 2 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_bfd66b7fc4",
+      "label": "Volume and imbalance reconciliation: correct allocation / errors / meter",
+      "task_class": "volume_imbalance_reconciliation",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 2,
+        "threads": 2,
+        "months": 1,
+        "weeks": 2,
+        "folders": 1,
+        "people": 7
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "spans 1 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 2 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_c2966c5635",
+      "label": "Counterparty setup and change: update counterparty / records / change",
+      "task_class": "counterparty_admin",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 2,
+        "threads": 3,
+        "months": 3,
+        "weeks": 3,
+        "folders": 1,
+        "people": 175
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_c4848f258e",
+      "label": "Unclassified: design new / product / eol",
+      "task_class": "other",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 2,
+        "threads": 2,
+        "months": 1,
+        "weeks": 2,
+        "folders": 1,
+        "people": 19
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "spans 1 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 2 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_c92ec07f53",
+      "label": "Gas nomination and scheduling: arrange buyback / nomination / underage",
+      "task_class": "gas_nomination",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 2,
+        "threads": 2,
+        "months": 1,
+        "weeks": 1,
+        "folders": 1,
+        "people": 7
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "spans 1 month(s) (need 3)",
+        "spans 1 distinct week(s) (need 3)",
+        "only 2 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_cfd1a4a747",
+      "label": "Recurring report production and distribution: distribute daily / model / report",
+      "task_class": "recurring_report",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 2,
+        "threads": 3,
+        "months": 2,
+        "weeks": 3,
+        "folders": 2,
+        "people": 4
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "spans 2 month(s) (need 3)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_d5153f9d1f",
+      "label": "Month-end close and allocations: officialize books / nightly / trading",
+      "task_class": "month_end_close",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 1,
+        "threads": 2,
+        "months": 1,
+        "weeks": 1,
+        "folders": 1,
+        "people": 8
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
+        "spans 1 month(s) (need 3)",
+        "spans 1 distinct week(s) (need 3)",
+        "only 2 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_db67574e83",
+      "label": "Counterparty setup and change: maintain books / list / officialized",
+      "task_class": "counterparty_admin",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 1,
+        "threads": 3,
+        "months": 1,
+        "weeks": 1,
+        "folders": 1,
+        "people": 3
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
+        "spans 1 month(s) (need 3)",
+        "spans 1 distinct week(s) (need 3)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_debfa24c14",
+      "label": "Staffing, coverage and work assignment: announce class / training / arrange",
+      "task_class": "staffing_coverage",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 2,
+        "threads": 3,
+        "months": 3,
+        "weeks": 3,
+        "folders": 2,
+        "people": 21
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_e0da4bb6fd",
+      "label": "Gas nomination and scheduling: negotiate around / changes / nomination",
+      "task_class": "gas_nomination",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 3,
+        "threads": 2,
+        "months": 1,
+        "weeks": 1,
+        "folders": 1,
+        "people": 8
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "spans 1 month(s) (need 3)",
+        "spans 1 distinct week(s) (need 3)",
+        "only 2 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_e1099aabae",
+      "label": "Gas nomination and scheduling: approve amendment / quantity / transportation",
+      "task_class": "gas_nomination",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 1,
+        "threads": 2,
+        "months": 1,
+        "weeks": 2,
+        "folders": 1,
+        "people": 4
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
+        "spans 1 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 2 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_e2b47348c8",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: create deal / new / ticket",
+      "task_class": "deal_entry_correction",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 1,
+        "threads": 2,
+        "months": 2,
+        "weeks": 2,
+        "folders": 1,
+        "people": 10
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
+        "spans 2 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 2 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_e85c1fbcb8",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: confirm deal / number / sitara",
+      "task_class": "deal_entry_correction",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 2,
+        "threads": 3,
+        "months": 3,
+        "weeks": 3,
+        "folders": 2,
+        "people": 12
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_e9b7c86e79",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: enter back / buy / counterpart",
+      "task_class": "deal_entry_correction",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 2,
+        "threads": 1,
+        "months": 1,
+        "weeks": 1,
+        "folders": 1,
+        "people": 4
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "spans 1 month(s) (need 3)",
+        "spans 1 distinct week(s) (need 3)",
+        "only 1 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_ea162c7b6c",
+      "label": "Unclassified: maintain book / trading / naming",
+      "task_class": "other",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 1,
+        "threads": 3,
+        "months": 2,
+        "weeks": 2,
+        "folders": 1,
+        "people": 4
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
+        "spans 2 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_f00ac779e4",
+      "label": "Volume and imbalance reconciliation: reconcile imbalance / pipeline / across",
+      "task_class": "volume_imbalance_reconciliation",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 2,
+        "threads": 3,
+        "months": 2,
+        "weeks": 2,
+        "folders": 1,
+        "people": 12
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "spans 2 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 3 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_f6ee1963c6",
+      "label": "Deal entry and correction in Sitara / Unify / TAGG: resolve coverage / deal / gap",
+      "task_class": "deal_entry_correction",
+      "messages": 3,
+      "metrics": {
+        "messages": 3,
+        "distinct_content": 3,
+        "senders": 2,
+        "threads": 2,
+        "months": 2,
+        "weeks": 2,
+        "folders": 1,
+        "people": 4
+      },
+      "failed_gates": [
+        "only 3 distinct messages (need 8)",
+        "spans 2 month(s) (need 3)",
+        "spans 2 distinct week(s) (need 3)",
+        "only 2 task instance(s) (need 4)"
+      ]
+    },
+    {
+      "cluster_id": "proc_fd92c4bfbf",
       "label": "Meter data requests and corrections: chase correction / meter / request",
       "task_class": "meter_data",
       "messages": 3,
@@ -979,997 +2471,6 @@
       "failed_gates": [
         "only 3 distinct messages (need 8)",
         "only 2 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_2400366141",
-      "label": "Gas nomination and scheduling: adjust nomination / volume / customer",
-      "task_class": "gas_nomination",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 2,
-        "threads": 3,
-        "months": 2,
-        "weeks": 3,
-        "folders": 1,
-        "people": 6
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "spans 2 month(s) (need 3)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_26d8cef499",
-      "label": "System access and account provisioning: process access / request / system",
-      "task_class": "access_provisioning",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 3,
-        "threads": 3,
-        "months": 2,
-        "weeks": 3,
-        "folders": 1,
-        "people": 5
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "spans 2 month(s) (need 3)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_27de2ed49c",
-      "label": "Staffing, coverage and work assignment: distribute call / notes / schedule",
-      "task_class": "staffing_coverage",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 2,
-        "threads": 3,
-        "months": 3,
-        "weeks": 3,
-        "folders": 2,
-        "people": 22
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_2a1ddbf5cd",
-      "label": "Pipeline capacity, maintenance and OFO notices: forward operating / procedure / notice",
-      "task_class": "capacity_notice",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 1,
-        "threads": 3,
-        "months": 2,
-        "weeks": 2,
-        "folders": 1,
-        "people": 2
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
-        "spans 2 month(s) (need 3)",
-        "spans 2 distinct week(s) (need 3)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_2ebc6909a2",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: standardize deal / entry / across",
-      "task_class": "deal_entry_correction",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 2,
-        "threads": 3,
-        "months": 2,
-        "weeks": 2,
-        "folders": 2,
-        "people": 22
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "spans 2 month(s) (need 3)",
-        "spans 2 distinct week(s) (need 3)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_3d39c8a0fd",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: extend correct / date / deal",
-      "task_class": "deal_entry_correction",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 1,
-        "threads": 2,
-        "months": 1,
-        "weeks": 1,
-        "folders": 1,
-        "people": 2
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
-        "spans 1 month(s) (need 3)",
-        "spans 1 distinct week(s) (need 3)",
-        "only 2 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_4214066a13",
-      "label": "Volume and imbalance reconciliation: reconcile allocation / meter / between",
-      "task_class": "volume_imbalance_reconciliation",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 2,
-        "threads": 3,
-        "months": 2,
-        "weeks": 3,
-        "folders": 1,
-        "people": 17
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "spans 2 month(s) (need 3)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_46a7dc01b8",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: forward deal / sheet / loan",
-      "task_class": "deal_entry_correction",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 1,
-        "threads": 3,
-        "months": 1,
-        "weeks": 2,
-        "folders": 1,
-        "people": 4
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
-        "spans 1 month(s) (need 3)",
-        "spans 2 distinct week(s) (need 3)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_4ae32300ee",
-      "label": "Gas nomination and scheduling: coordinate real / time / changes",
-      "task_class": "gas_nomination",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 2,
-        "threads": 3,
-        "months": 3,
-        "weeks": 3,
-        "folders": 2,
-        "people": 6
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_583b39f649",
-      "label": "Month-end close and allocations: coordinate close / schedule / end",
-      "task_class": "month_end_close",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 2,
-        "threads": 3,
-        "months": 3,
-        "weeks": 3,
-        "folders": 1,
-        "people": 67
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_64bf733f74",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: resolve deal / discrepancy / counterparty",
-      "task_class": "deal_entry_correction",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 2,
-        "threads": 3,
-        "months": 3,
-        "weeks": 3,
-        "folders": 1,
-        "people": 4
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_6fa5d261b8",
-      "label": "Gas nomination and scheduling: reconcile actual / against / scheduled",
-      "task_class": "gas_nomination",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 3,
-        "threads": 3,
-        "months": 2,
-        "weeks": 3,
-        "folders": 2,
-        "people": 6
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "spans 2 month(s) (need 3)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_7161436217",
-      "label": "Gas nomination and scheduling: resolve nominations / unpathed / unassigned",
-      "task_class": "gas_nomination",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 2,
-        "threads": 2,
-        "months": 2,
-        "weeks": 2,
-        "folders": 1,
-        "people": 14
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "spans 2 month(s) (need 3)",
-        "spans 2 distinct week(s) (need 3)",
-        "only 2 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_736216c42f",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: extend cover / deal / flowed",
-      "task_class": "deal_entry_correction",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 2,
-        "threads": 2,
-        "months": 1,
-        "weeks": 2,
-        "folders": 1,
-        "people": 3
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "spans 1 month(s) (need 3)",
-        "spans 2 distinct week(s) (need 3)",
-        "only 2 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_7c3174b65a",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: correct deal / type / system",
-      "task_class": "deal_entry_correction",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 2,
-        "threads": 3,
-        "months": 3,
-        "weeks": 3,
-        "folders": 2,
-        "people": 5
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_8003fce199",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: manually deals / enter / bridged",
-      "task_class": "deal_entry_correction",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 2,
-        "threads": 3,
-        "months": 2,
-        "weeks": 2,
-        "folders": 1,
-        "people": 17
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "spans 2 month(s) (need 3)",
-        "spans 2 distinct week(s) (need 3)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_8d214c612c",
-      "label": "Counterparty setup and change: update counterparty / name / change",
-      "task_class": "counterparty_admin",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 2,
-        "threads": 3,
-        "months": 3,
-        "weeks": 3,
-        "folders": 2,
-        "people": 176
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_9683fbb513",
-      "label": "Invoice, payment and settlement handling: finalize invoices / production / monthly",
-      "task_class": "invoice_settlement",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 3,
-        "threads": 3,
-        "months": 2,
-        "weeks": 2,
-        "folders": 1,
-        "people": 11
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "spans 2 month(s) (need 3)",
-        "spans 2 distinct week(s) (need 3)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_9895e086ad",
-      "label": "Counterparty setup and change: negotiate payment / rate / subcontractor",
-      "task_class": "counterparty_admin",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 1,
-        "threads": 1,
-        "months": 1,
-        "weeks": 1,
-        "folders": 1,
-        "people": 2
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
-        "spans 1 month(s) (need 3)",
-        "spans 1 distinct week(s) (need 3)",
-        "only 1 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_9aa82144e2",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: rebook deal / meter / volumes",
-      "task_class": "deal_entry_correction",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 3,
-        "threads": 3,
-        "months": 2,
-        "weeks": 2,
-        "folders": 1,
-        "people": 8
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "spans 2 month(s) (need 3)",
-        "spans 2 distinct week(s) (need 3)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_a5295c0ead",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: identify deal / meter / number",
-      "task_class": "deal_entry_correction",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 3,
-        "threads": 3,
-        "months": 3,
-        "weeks": 3,
-        "folders": 1,
-        "people": 7
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_a731cebf51",
-      "label": "Recurring report production and distribution: distribute date / month / report",
-      "task_class": "recurring_report",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 1,
-        "threads": 3,
-        "months": 2,
-        "weeks": 2,
-        "folders": 1,
-        "people": 5
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
-        "spans 2 month(s) (need 3)",
-        "spans 2 distinct week(s) (need 3)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_ad174a8f96",
-      "label": "Counterparty setup and change: coordinate contract / transport / status",
-      "task_class": "counterparty_admin",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 2,
-        "threads": 2,
-        "months": 2,
-        "weeks": 2,
-        "folders": 1,
-        "people": 9
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "spans 2 month(s) (need 3)",
-        "spans 2 distinct week(s) (need 3)",
-        "only 2 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_affe0a9120",
-      "label": "System access and account provisioning: update matrix / trader / access",
-      "task_class": "access_provisioning",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 2,
-        "threads": 2,
-        "months": 2,
-        "weeks": 2,
-        "folders": 2,
-        "people": 6
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "spans 2 month(s) (need 3)",
-        "spans 2 distinct week(s) (need 3)",
-        "only 2 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_bb50ca5046",
-      "label": "Staffing, coverage and work assignment: schedule holiday / office / staffing",
-      "task_class": "staffing_coverage",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 3,
-        "threads": 2,
-        "months": 1,
-        "weeks": 1,
-        "folders": 1,
-        "people": 14
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "spans 1 month(s) (need 3)",
-        "spans 1 distinct week(s) (need 3)",
-        "only 2 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_bfd66b7fc4",
-      "label": "Volume and imbalance reconciliation: verify allocation / correct / errors",
-      "task_class": "volume_imbalance_reconciliation",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 2,
-        "threads": 2,
-        "months": 1,
-        "weeks": 2,
-        "folders": 1,
-        "people": 7
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "spans 1 month(s) (need 3)",
-        "spans 2 distinct week(s) (need 3)",
-        "only 2 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_c4848f258e",
-      "label": "Unclassified: discuss eol / new / product",
-      "task_class": "other",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 2,
-        "threads": 2,
-        "months": 1,
-        "weeks": 2,
-        "folders": 1,
-        "people": 19
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "spans 1 month(s) (need 3)",
-        "spans 2 distinct week(s) (need 3)",
-        "only 2 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_c4877ecff6",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: rebook deal / number / sitara",
-      "task_class": "deal_entry_correction",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 2,
-        "threads": 3,
-        "months": 2,
-        "weeks": 3,
-        "folders": 1,
-        "people": 12
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "spans 2 month(s) (need 3)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_c92ec07f53",
-      "label": "Gas nomination and scheduling: arrange buyback / nomination / unpulled",
-      "task_class": "gas_nomination",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 2,
-        "threads": 2,
-        "months": 1,
-        "weeks": 1,
-        "folders": 1,
-        "people": 7
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "spans 1 month(s) (need 3)",
-        "spans 1 distinct week(s) (need 3)",
-        "only 2 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_cbb08f6ef9",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: reconcile counterparty / deal / discrepancy",
-      "task_class": "deal_entry_correction",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 2,
-        "threads": 3,
-        "months": 2,
-        "weeks": 3,
-        "folders": 2,
-        "people": 4
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "spans 2 month(s) (need 3)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_cc10ce1c21",
-      "label": "System access and account provisioning: draft access / counterparty / procedures",
-      "task_class": "access_provisioning",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 1,
-        "threads": 3,
-        "months": 2,
-        "weeks": 3,
-        "folders": 1,
-        "people": 21
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
-        "spans 2 month(s) (need 3)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_cde00b210e",
-      "label": "Counterparty setup and change: schedule call / conference / counterparty",
-      "task_class": "counterparty_admin",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 2,
-        "threads": 3,
-        "months": 2,
-        "weeks": 2,
-        "folders": 2,
-        "people": 6
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "spans 2 month(s) (need 3)",
-        "spans 2 distinct week(s) (need 3)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_d0c7be47a5",
-      "label": "System access and account provisioning: disable accounts / employee / estate",
-      "task_class": "access_provisioning",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 2,
-        "threads": 1,
-        "months": 1,
-        "weeks": 1,
-        "folders": 1,
-        "people": 5
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "spans 1 month(s) (need 3)",
-        "spans 1 distinct week(s) (need 3)",
-        "only 1 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_d8d8cfc679",
-      "label": "Unclassified: evaluate project / interconnect / pipeline",
-      "task_class": "other",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 2,
-        "threads": 3,
-        "months": 2,
-        "weeks": 2,
-        "folders": 1,
-        "people": 9
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "spans 2 month(s) (need 3)",
-        "spans 2 distinct week(s) (need 3)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_db23196f38",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: create deal / extend / meter",
-      "task_class": "deal_entry_correction",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 3,
-        "threads": 3,
-        "months": 2,
-        "weeks": 2,
-        "folders": 1,
-        "people": 7
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "spans 2 month(s) (need 3)",
-        "spans 2 distinct week(s) (need 3)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_e0da4bb6fd",
-      "label": "Gas nomination and scheduling: negotiate around / change / nomination",
-      "task_class": "gas_nomination",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 3,
-        "threads": 2,
-        "months": 1,
-        "weeks": 1,
-        "folders": 1,
-        "people": 8
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "spans 1 month(s) (need 3)",
-        "spans 1 distinct week(s) (need 3)",
-        "only 2 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_e8d71d5037",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: extend cover / deal / expired",
-      "task_class": "deal_entry_correction",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 2,
-        "threads": 3,
-        "months": 2,
-        "weeks": 2,
-        "folders": 1,
-        "people": 4
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "spans 2 month(s) (need 3)",
-        "spans 2 distinct week(s) (need 3)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_e9b7c86e79",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: verify back / buy / deal",
-      "task_class": "deal_entry_correction",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 2,
-        "threads": 1,
-        "months": 1,
-        "weeks": 1,
-        "folders": 1,
-        "people": 4
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "spans 1 month(s) (need 3)",
-        "spans 1 distinct week(s) (need 3)",
-        "only 1 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_e9c5d1c689",
-      "label": "Meter data requests and corrections: forward meter / allocation / correction",
-      "task_class": "meter_data",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 3,
-        "threads": 3,
-        "months": 3,
-        "weeks": 3,
-        "folders": 1,
-        "people": 7
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_ea137bd7c8",
-      "label": "Gas nomination and scheduling: submit nomination / pipeline / gas",
-      "task_class": "gas_nomination",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 1,
-        "threads": 3,
-        "months": 1,
-        "weeks": 3,
-        "folders": 1,
-        "people": 7
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
-        "spans 1 month(s) (need 3)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_ea68bfd8ce",
-      "label": "Meter data requests and corrections: report daily / volumes / actual",
-      "task_class": "meter_data",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 3,
-        "threads": 3,
-        "months": 2,
-        "weeks": 3,
-        "folders": 1,
-        "people": 19
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "spans 2 month(s) (need 3)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_f225ec91f0",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: request contract / cover / day",
-      "task_class": "deal_entry_correction",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 2,
-        "threads": 3,
-        "months": 2,
-        "weeks": 2,
-        "folders": 1,
-        "people": 4
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "spans 2 month(s) (need 3)",
-        "spans 2 distinct week(s) (need 3)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_f371779247",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: zero avoid / deals / errors",
-      "task_class": "deal_entry_correction",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 3,
-        "threads": 1,
-        "months": 1,
-        "weeks": 1,
-        "folders": 1,
-        "people": 13
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "spans 1 month(s) (need 3)",
-        "spans 1 distinct week(s) (need 3)",
-        "only 1 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_f77f197a5b",
-      "label": "Counterparty setup and change: submit audit / book / desk",
-      "task_class": "counterparty_admin",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 1,
-        "threads": 3,
-        "months": 1,
-        "weeks": 1,
-        "folders": 1,
-        "people": 3
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "1 sender and only 3 messages (need 2 senders, or 15 messages from one)",
-        "spans 1 month(s) (need 3)",
-        "spans 1 distinct week(s) (need 3)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_f835011e62",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: correct month / prior / calculation",
-      "task_class": "deal_entry_correction",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 3,
-        "threads": 3,
-        "months": 3,
-        "weeks": 3,
-        "folders": 2,
-        "people": 7
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "only 3 task instance(s) (need 4)"
-      ]
-    },
-    {
-      "cluster_id": "proc_ffad5134d0",
-      "label": "Deal entry and correction in Sitara / Unify / TAGG: discuss deal / terms / counterparty",
-      "task_class": "deal_entry_correction",
-      "messages": 3,
-      "metrics": {
-        "messages": 3,
-        "distinct_content": 3,
-        "senders": 3,
-        "threads": 3,
-        "months": 3,
-        "weeks": 3,
-        "folders": 3,
-        "people": 14
-      },
-      "failed_gates": [
-        "only 3 distinct messages (need 8)",
-        "only 3 task instance(s) (need 4)"
       ]
     }
   ],

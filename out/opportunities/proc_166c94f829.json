@@ -1,0 +1,336 @@
+{
+  "opportunity_id": "proc_166c94f829",
+  "source": "content_cluster",
+  "title": "Moving deals between trading books by hand-listed request",
+  "task_class": "deal_entry_correction",
+  "label_mechanical": "Deal entry and correction in Sitara / Unify / TAGG: move between / books / deals",
+  "narrative": {
+    "what_happens": "Someone who owns a book emails whoever can edit the trading system asking that a named set of deals be re-pointed from one book to another \u2014 INTRA-EMWMEH into FT-IM-ENOV, everything to GD-NEW, FT-TERMIN-GD deals into the bankruptcy book. The request arrives as prose plus a list of deals rather than a structured job, and the receiving side either runs a script or moves them individually. Follow-up mail supplies stragglers, answers questions about which book is correct (\"the book is ENA-FT-WT-SOCAL\"), and confirms when the move is done. In the 2002 bankruptcy-book instances the moved deals are also copied by hand into a cumulative spreadsheet on a shared drive so the list stays current. A minority of the traffic is not a request at all but a correction after the fact, restating revenue that ended up in the wrong desk and describing how it was split back.",
+    "where_it_stalls": "Two distinct stalls show up. First, the mover cannot start until the requester answers which target book applies and whether particular deals are in scope \u2014 one message ties completion to getting answers back (\"If I can have all the answers soon then I think the deals move can be completed around 3:00p.m.\"), and requests arrive in waves with \"a few more stragglers\" after the first batch. Second, when the book was wrong at entry the fix is a manual revenue reallocation after the fact: \"All deals should have been made under the ST-NW desk... (I recognize this did not happen\" and a 70/30 revenue re-split between books. The same lists are then retyped into a master spreadsheet, so the system of record and the tracking file are maintained separately.",
+    "why_it_recurs": "Book structure keeps changing \u2014 new books, desk reorganisations, and bankruptcy books in 2002 \u2014 while deals are booked one at a time, so each change creates a fresh batch of deals sitting in the wrong place and a fresh round of list-and-move mail.",
+    "automation_opportunity": "A standing request form that captures deal ids, source book, target book and effective date, feeding a scripted bulk re-book that writes its own completion log; the log then becomes the cumulative deal report instead of someone retyping moved deals into a shared spreadsheet.",
+    "coherence": "tight"
+  },
+  "status": "counted",
+  "status_reason": "",
+  "confidence": "medium",
+  "artifact_shape": "template",
+  "measured": {
+    "instances": 10,
+    "messages": 11,
+    "dated_messages": 11,
+    "undated_messages": 0,
+    "participants_median": 4,
+    "months": 3.0,
+    "rework_rate": 0.18181818181818182,
+    "waiting_rate": 0.09090909090909091,
+    "manual_transfer_rate": 0.2727272727272727,
+    "senders": 6
+  },
+  "gate_metrics": {
+    "messages": 11,
+    "distinct_content": 11,
+    "senders": 6,
+    "threads": 10,
+    "months": 3,
+    "weeks": 5,
+    "folders": 3,
+    "people": 18
+  },
+  "signal_rates": {
+    "rework_signal": 0.1818,
+    "waiting_signal": 0.0909,
+    "manual_transfer_signal": 0.2727,
+    "deadline_signal": 0.1818
+  },
+  "systems": {
+    "other_system": 10,
+    "sitara": 1,
+    "spreadsheet": 1
+  },
+  "roles": {
+    "request": 6,
+    "correction": 2,
+    "fyi": 2,
+    "response": 1
+  },
+  "months": [
+    "2000-10",
+    "2001-08",
+    "2002-01"
+  ],
+  "people": 18,
+  "hours_per_month": {
+    "low": 0.6,
+    "base": 1.8,
+    "high": 4.9
+  },
+  "automatable_hours_per_month": {
+    "low": 0.2,
+    "base": 0.8,
+    "high": 3.2
+  },
+  "dollars_per_month": {
+    "low": 13.59,
+    "base": 69.9,
+    "high": 268.42
+  },
+  "derivation": {
+    "formula_id": "hours_v1",
+    "estimate_version": "1.0.0",
+    "measured": {
+      "instances": 10,
+      "messages": 11,
+      "dated_messages": 11,
+      "undated_messages": 0,
+      "participants_median": 4,
+      "months": 3.0,
+      "rework_rate": 0.18181818181818182,
+      "waiting_rate": 0.09090909090909091,
+      "manual_transfer_rate": 0.2727272727272727,
+      "senders": 6
+    },
+    "assumed": {
+      "handle_min": 12.0,
+      "per_touch_min": 5.0,
+      "rework_min": 18.0,
+      "waiting_admin_min": 3.0,
+      "automatable_share": 0.45
+    },
+    "assumed_global": {
+      "blended_rate_usd_per_hour": 85.0,
+      "coordination_alpha": 0.35,
+      "extrapolation_factor": 1.0
+    },
+    "assumption_source": "config/estimation.yml#task_classes.deal_entry_correction",
+    "steps": [
+      "10.00 task instances / 3 months of coverage = 3.333 instances per month",
+      "minutes per instance = 12 handle + (1.10 touches - 1) x 5 + 0.18 rework rate x 18 + 0.09 waiting rate x 3 = 16.05 min",
+      "coordination multiplier = 1 + 0.35 x (4 median participants - 1) = 2.050",
+      "hours per month = 3.333 x 16.05 x 2.050 / 60 = 1.827",
+      "automatable hours = 1.827 x 0.45 automatable share = 0.822",
+      "dollars per month = 0.822 h x $85/h = $69.90"
+    ],
+    "result": {
+      "hours_per_month": 1.8,
+      "automatable_hours_per_month": 0.8,
+      "dollars_per_month": 69.9
+    }
+  },
+  "citations": [
+    {
+      "citation_id": "cit_2cf730fe5eda",
+      "source_path": "corpus/giron-d/sent/619.",
+      "source_sha256": "294baaaed349556492bb26a075751bbe3b8968326fff1145e6b3060bd0f261a2",
+      "message_id": "<15285993.1075854406357.JavaMail.evans@thyme>",
+      "msg_uid": "m_ede31f47e090",
+      "quote": "I want to move all deals currently in the INTRA-EMWMEH book into the \nFT-IM-ENOV book.",
+      "match_tier": "rewrapped",
+      "raw_start": 445,
+      "raw_end": 531,
+      "decoded_start": 0,
+      "decoded_end": 86,
+      "line_start": 19,
+      "line_end": 20,
+      "repaired": false,
+      "sender": "darron.giron@enron.com",
+      "sent_at": "2000-10-03T10:13:00-07:00",
+      "subject": "Change Books",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=445 count=86 if=corpus/giron-d/sent/619. 2>/dev/null",
+        "sed": "sed -n '19,20p' corpus/giron-d/sent/619."
+      }
+    },
+    {
+      "citation_id": "cit_82ca9725c333",
+      "source_path": "corpus/giron-d/sent/619.",
+      "source_sha256": "294baaaed349556492bb26a075751bbe3b8968326fff1145e6b3060bd0f261a2",
+      "message_id": "<15285993.1075854406357.JavaMail.evans@thyme>",
+      "msg_uid": "m_ede31f47e090",
+      "quote": "I need this done \nthis week if possible.",
+      "match_tier": "rewrapped",
+      "raw_start": 647,
+      "raw_end": 687,
+      "decoded_start": 202,
+      "decoded_end": 242,
+      "line_start": 21,
+      "line_end": 22,
+      "repaired": false,
+      "sender": "darron.giron@enron.com",
+      "sent_at": "2000-10-03T10:13:00-07:00",
+      "subject": "Change Books",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=647 count=40 if=corpus/giron-d/sent/619. 2>/dev/null",
+        "sed": "sed -n '21,22p' corpus/giron-d/sent/619."
+      }
+    },
+    {
+      "citation_id": "cit_13b77360138d",
+      "source_path": "corpus/giron-d/inbox/72.",
+      "source_sha256": "8b6590128a1a22f4aa2e897fb5c8948559cc49fd24965a40b9f388f7e6b9e937",
+      "message_id": "<10217295.1075840555767.JavaMail.evans@thyme>",
+      "msg_uid": "m_cf2eb46fd8c5",
+      "quote": "These deals have also been added to the cumulative deal report saved on the O:\\_Dropbox\\Global Contracts - Estate Research (CYN'S)\\Deals Reported to Risk (Phy) Master Cumulative List.xls.",
+      "match_tier": "raw_exact",
+      "raw_start": 1367,
+      "raw_end": 1554,
+      "decoded_start": 86,
+      "decoded_end": 273,
+      "line_start": 24,
+      "line_end": 24,
+      "repaired": false,
+      "sender": "stacey.richardson@enron.com",
+      "sent_at": "2002-01-25T15:08:00-08:00",
+      "subject": "more deals to move to bankruptcy books",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1367 count=187 if=corpus/giron-d/inbox/72. 2>/dev/null",
+        "sed": "sed -n '24,24p' corpus/giron-d/inbox/72."
+      }
+    },
+    {
+      "citation_id": "cit_ac1079e9161a",
+      "source_path": "corpus/giron-d/inbox/67.",
+      "source_sha256": "628dcead6774143e03a0cd58458b93f3ffaf725351066d0e5f99556db5c50a48",
+      "message_id": "<15816624.1075840555538.JavaMail.evans@thyme>",
+      "msg_uid": "m_7f29f913892f",
+      "quote": "If I can have all the answers soon then I think the deals move can be completed around 3:00p.m.",
+      "match_tier": "raw_exact",
+      "raw_start": 1166,
+      "raw_end": 1261,
+      "decoded_start": 415,
+      "decoded_end": 510,
+      "line_start": 29,
+      "line_end": 29,
+      "repaired": false,
+      "sender": "cecilia.cheung@enron.com",
+      "sent_at": "2002-01-28T08:51:17-08:00",
+      "subject": "RE: Additional Book to Move",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1166 count=95 if=corpus/giron-d/inbox/67. 2>/dev/null",
+        "sed": "sed -n '29,29p' corpus/giron-d/inbox/67."
+      }
+    },
+    {
+      "citation_id": "cit_7882d24b6e38",
+      "source_path": "corpus/williams-w3/sent_items/272.",
+      "source_sha256": "0f832e68e2d9e808ae1a05513cfece9c245521cce40719d5ed8e2ff8f6673a49",
+      "message_id": "<9383078.1075839998878.JavaMail.evans@thyme>",
+      "msg_uid": "m_35dc0fa0a766",
+      "quote": "All deals should have been made under the ST-NW desk to route with the PGE =\r\ndeal-buy tranny-etc. (I recognize this did not happen",
+      "match_tier": "decoded_exact",
+      "raw_start": 627,
+      "raw_end": 758,
+      "decoded_start": 80,
+      "decoded_end": 208,
+      "line_start": 19,
+      "line_end": 20,
+      "repaired": false,
+      "sender": "bill.williams@enron.com",
+      "sent_at": "2001-08-30T11:59:12-07:00",
+      "subject": "RE: LP deal",
+      "flags": [
+        "tier_decoded_exact"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=627 count=131 if=corpus/williams-w3/sent_items/272. 2>/dev/null",
+        "sed": "sed -n '19,20p' corpus/williams-w3/sent_items/272."
+      }
+    },
+    {
+      "citation_id": "cit_72224f7dfa69",
+      "source_path": "corpus/williams-w3/sent_items/271.",
+      "source_sha256": "b94e789693d545279baf700f77bc30b21b66846ac7383ba2032430122a153f56",
+      "message_id": "<13320911.1075839998855.JavaMail.evans@thyme>",
+      "msg_uid": "m_c0ee4a5b7846",
+      "quote": "Revenue was moved from ST-NW to ST-Whourly for 70/30 split between LP and ST-Whourly",
+      "match_tier": "raw_exact",
+      "raw_start": 581,
+      "raw_end": 665,
+      "decoded_start": 47,
+      "decoded_end": 131,
+      "line_start": 19,
+      "line_end": 19,
+      "repaired": false,
+      "sender": "bill.williams@enron.com",
+      "sent_at": "2001-08-30T12:31:58-07:00",
+      "subject": "",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=581 count=84 if=corpus/williams-w3/sent_items/271. 2>/dev/null",
+        "sed": "sed -n '19,19p' corpus/williams-w3/sent_items/271."
+      }
+    },
+    {
+      "citation_id": "cit_fc5549a67a69",
+      "source_path": "corpus/giron-d/inbox/57.",
+      "source_sha256": "ef28fb4f72497ed358e9650d0c4c5243f43a39e892aa3731850d75081f5daece",
+      "message_id": "<28739776.1075840555300.JavaMail.evans@thyme>",
+      "msg_uid": "m_5fe32a55540c",
+      "quote": "Here are a few more stragglers to move into the bankruptcy books:",
+      "match_tier": "raw_exact",
+      "raw_start": 1171,
+      "raw_end": 1236,
+      "decoded_start": 0,
+      "decoded_end": 65,
+      "line_start": 23,
+      "line_end": 23,
+      "repaired": false,
+      "sender": "stacey.richardson@enron.com",
+      "sent_at": "2002-01-28T15:12:58-08:00",
+      "subject": "bankruptcy book deals",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1171 count=65 if=corpus/giron-d/inbox/57. 2>/dev/null",
+        "sed": "sed -n '23,23p' corpus/giron-d/inbox/57."
+      }
+    },
+    {
+      "citation_id": "cit_07186744ec2f",
+      "source_path": "corpus/giron-d/inbox/44.",
+      "source_sha256": "5661634d2ea805a46075aa1269527480d0e570a1661a5d193148c218664f4a36",
+      "message_id": "<2391234.1075840554948.JavaMail.evans@thyme>",
+      "msg_uid": "m_bcbfead13f10",
+      "quote": "move any deals with the FT-TERMIN-GD book to the bankruptcy book from NG-Price",
+      "match_tier": "raw_exact",
+      "raw_start": 1057,
+      "raw_end": 1135,
+      "decoded_start": 98,
+      "decoded_end": 176,
+      "line_start": 22,
+      "line_end": 22,
+      "repaired": false,
+      "sender": "m.love@enron.com",
+      "sent_at": "2002-01-31T06:29:02-08:00",
+      "subject": "RE: new script for moving books",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1057 count=78 if=corpus/giron-d/inbox/44. 2>/dev/null",
+        "sed": "sed -n '22,22p' corpus/giron-d/inbox/44."
+      }
+    }
+  ],
+  "quarantined_citations": [],
+  "member_count": 11,
+  "member_uids": [
+    "m_1150aa1ee3da",
+    "m_35dc0fa0a766",
+    "m_3cfd884db4ac",
+    "m_53047756822d",
+    "m_5fe32a55540c",
+    "m_7f29f913892f",
+    "m_bcbfead13f10",
+    "m_be7e1964e56c",
+    "m_c0ee4a5b7846",
+    "m_cf2eb46fd8c5",
+    "m_ede31f47e090"
+  ],
+  "flags": []
+}

@@ -1,20 +1,20 @@
 {
   "opportunity_id": "proc_2fe1948f21",
   "source": "content_cluster",
-  "title": "Monthly estimated nomination volumes agreed by email (Josey Ranch, Calpine, Midcon)",
+  "title": "Monthly nomination volume estimates agreed by email before month start",
   "task_class": "gas_nomination",
   "label_mechanical": "Gas nomination and scheduling: estimate monthly / nomination / volume",
   "narrative": {
-    "what_happens": "Ahead of a new flow month, someone circulates an estimate of how much gas is expected to be nominated at a given point or for a given counterparty. In two instances this is a standing note stating \"the estimated Josey Ranch nomination\" for the following month. In the remainder, a question is asked about whether an average is a reasonable basis for next month's number (\"Does this average represent a good estimate of the Calpine May nom?\") and colleagues reply with per-counterparty figures \u2014 Midcon, Southern Union, a Tville point, an IFERC daily rate and a monthly total. The output is an agreed number carried in the body of an email rather than in a system; the thread ends once someone states the assumption plainly, e.g. \"So, 5000 total is a safe assumption.\"",
-    "where_it_stalls": "No waiting, rework or deadline signals were measured here, so the evidence does not show chasing or redoing. The visible weakness is different: the monthly estimate is derived by judgment (\"I would assume 40000 for Midcon\") and settled in free-text mail, with no artefact showing what source the average came from or where the agreed figure is recorded afterwards. Who owns the number once the thread closes is not visible in these messages.",
-    "why_it_recurs": "Nominations are set per flow month, so a fresh estimate is needed for each upcoming month and for each point or counterparty on the list.",
-    "automation_opportunity": "A scheduled pre-month query that pulls recent actual volumes per meter and counterparty, computes the trailing average, and mails a pre-filled estimate sheet for confirmation would replace the ad-hoc \"does this average look right\" exchange and leave the agreed figure written down in one place.",
+    "what_happens": "Ahead of each new gas month, someone needs a volume figure to nominate for a given point or counterparty \u2014 Josey Ranch, Calpine, Midcon, Southern Union, T-Ville \u2014 and the figure is settled in email rather than pulled from a system. In one pattern a sender simply forwards the estimated monthly nomination for a named point (\"This is the estimated Josey Ranch nomination for the month of February 2000\") to whoever needs it, with no reply expected. In the other pattern someone asks whether a figure looks right (\"Does this average represent a good estimate of the Calpine May nom?\") and a colleague answers with a per-day or total number and a rationale (\"So, 5000 total is a safe assumption\", \"I would assume 40000 for Midcon\"). The exchange ends when the estimate is stated plainly enough for the recipient to nominate against it; no confirmation back into a system is visible in these messages. Most of the traffic here is the answering half of that exchange.",
+    "where_it_stalls": "Nothing in these eight messages shows chasing, rework or a missed cutoff \u2014 the signal rates measured across them are flat. The weakness is instead that the number of record lives only in the mail body: the estimate is derived from an average or an assumption held by one of two people, stated in prose, and never written back anywhere the next person could look it up. Who owns the estimate for a given point, and what source the average was taken from, is not visible in the evidence.",
+    "why_it_recurs": "Nominations are set per gas month, so a fresh estimate is needed for every point and counterparty each month; the figures are judgement calls carried in a person's head rather than output by a system.",
+    "automation_opportunity": "A standing per-point estimate sheet, refreshed before each month rolls, that shows the prior months' scheduled and actual volumes for Josey Ranch, Calpine, Midcon and the other named points so the estimate is read off a computed average rather than recalled \u2014 with the agreed figure recorded next to it instead of only in a reply.",
     "coherence": "mixed"
   },
   "status": "counted",
   "status_reason": "",
   "confidence": "medium",
-  "artifact_shape": "template",
+  "artifact_shape": "worksheet",
   "measured": {
     "instances": 8,
     "messages": 8,
@@ -44,12 +44,12 @@
     "deadline_signal": 0.0
   },
   "systems": {
-    "email": 1
+    "email": 2
   },
   "roles": {
     "response": 5,
-    "request": 2,
-    "fyi": 1
+    "fyi": 2,
+    "request": 1
   },
   "months": [
     "2000-01",
@@ -164,6 +164,32 @@
       }
     },
     {
+      "citation_id": "cit_eca368cc9d03",
+      "source_path": "corpus/farmer-d/logistics/724.",
+      "source_sha256": "ad28e6c38fc75cb0add286c6119863bf26e383d4e42f46bb1da901de39fe5371",
+      "message_id": "<30276712.1075854122465.JavaMail.evans@thyme>",
+      "msg_uid": "m_d9ea062c2924",
+      "quote": "This is the estimated Josey Ranch nomination for the month of\nFebruary 2000",
+      "match_tier": "rewrapped",
+      "raw_start": 1009,
+      "raw_end": 1084,
+      "decoded_start": 412,
+      "decoded_end": 487,
+      "line_start": 34,
+      "line_end": 35,
+      "repaired": false,
+      "sender": "susan.trevino@enron.com",
+      "sent_at": "2000-01-27T09:09:00-08:00",
+      "subject": "Josey Ranch Est. -- Feb. 2000",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1009 count=75 if=corpus/farmer-d/logistics/724. 2>/dev/null",
+        "sed": "sed -n '34,35p' corpus/farmer-d/logistics/724."
+      }
+    },
+    {
       "citation_id": "cit_c358fb490ec3",
       "source_path": "corpus/farmer-d/logistics/1051.",
       "source_sha256": "b70a353a11f1fa322b6e2b46a45c3e4771f00a609abadfb10ce7f7cb7898ba8e",
@@ -188,55 +214,27 @@
       }
     },
     {
-      "citation_id": "cit_150322906844",
-      "source_path": "corpus/farmer-d/logistics/724.",
-      "source_sha256": "ad28e6c38fc75cb0add286c6119863bf26e383d4e42f46bb1da901de39fe5371",
-      "message_id": "<30276712.1075854122465.JavaMail.evans@thyme>",
-      "msg_uid": "m_d9ea062c2924",
-      "quote": "This is the estimated Josey Ranch nomination for the month of\nFebruary 2000.",
-      "match_tier": "rewrapped",
-      "raw_start": 1009,
-      "raw_end": 1085,
-      "decoded_start": 412,
-      "decoded_end": 488,
-      "line_start": 34,
-      "line_end": 35,
-      "repaired": false,
-      "sender": "susan.trevino@enron.com",
-      "sent_at": "2000-01-27T09:09:00-08:00",
-      "subject": "Josey Ranch Est. -- Feb. 2000",
-      "flags": [
-        "tier_rewrapped"
-      ],
-      "check_commands": {
-        "dd": "dd bs=1 skip=1009 count=76 if=corpus/farmer-d/logistics/724. 2>/dev/null",
-        "sed": "sed -n '34,35p' corpus/farmer-d/logistics/724."
-      }
-    },
-    {
-      "citation_id": "cit_1007ec5a0876",
+      "citation_id": "cit_f98009cb1c81",
       "source_path": "corpus/farmer-d/logistics/850.",
       "source_sha256": "59a804c0d5cd7079611ba0aec7a2be74383e04d632077ab392d421a3fa5514e5",
       "message_id": "<26166823.1075854125331.JavaMail.evans@thyme>",
       "msg_uid": "m_b93736e73a21",
-      "quote": "This is the estimated Josey Ranch nomination for the month of March\n2000.",
-      "match_tier": "rewrapped",
+      "quote": "This is the estimated Josey Ranch nomination for the month of March",
+      "match_tier": "raw_exact",
       "raw_start": 980,
-      "raw_end": 1053,
+      "raw_end": 1047,
       "decoded_start": 280,
-      "decoded_end": 353,
+      "decoded_end": 347,
       "line_start": 31,
-      "line_end": 32,
+      "line_end": 31,
       "repaired": false,
       "sender": "susan.trevino@enron.com",
       "sent_at": "2000-02-28T04:25:00-08:00",
       "subject": "Josey Ranch Est. -- Mar. 2000",
-      "flags": [
-        "tier_rewrapped"
-      ],
+      "flags": [],
       "check_commands": {
-        "dd": "dd bs=1 skip=980 count=73 if=corpus/farmer-d/logistics/850. 2>/dev/null",
-        "sed": "sed -n '31,32p' corpus/farmer-d/logistics/850."
+        "dd": "dd bs=1 skip=980 count=67 if=corpus/farmer-d/logistics/850. 2>/dev/null",
+        "sed": "sed -n '31,31p' corpus/farmer-d/logistics/850."
       }
     },
     {
@@ -294,7 +292,7 @@
       "message_id": "<2691871.1075854130083.JavaMail.evans@thyme>",
       "msg_uid": "m_b80a2bfbb2c2",
       "quote": "Southern Union for May\n2100 83 st\n2100 Port Arthur",
-      "match_tier": "raw_exact",
+      "match_tier": "rewrapped",
       "raw_start": 770,
       "raw_end": 820,
       "decoded_start": 292,
@@ -305,7 +303,9 @@
       "sender": "ami.chokshi@enron.com",
       "sent_at": "2000-04-19T08:54:00-07:00",
       "subject": "So Union",
-      "flags": [],
+      "flags": [
+        "tier_rewrapped"
+      ],
       "check_commands": {
         "dd": "dd bs=1 skip=770 count=50 if=corpus/farmer-d/logistics/1056. 2>/dev/null",
         "sed": "sed -n '37,39p' corpus/farmer-d/logistics/1056."

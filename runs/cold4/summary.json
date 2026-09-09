@@ -1,8 +1,15 @@
 {
-  "run_id": "resume4",
-  "complete_run": true,
-  "degraded_stages": [],
-  "generated_at": "2026-09-09T14:58:30.400238+00:00",
+  "run_id": "cold4",
+  "complete_run": false,
+  "degraded_stages": [
+    {
+      "stage": "extract",
+      "completed": 79,
+      "total": 80,
+      "effect": "some messages were never classified"
+    }
+  ],
+  "generated_at": "2026-09-09T14:54:36.520555+00:00",
   "corpus_digest": "c94acc4b08cb62348a8aba9361e40e59a6bc5e13942e0d86d7029495adb5f79b",
   "scope_line": "Observed across 4 mailboxes and 3,240 messages, 1999-12-13 to 2002-03-25 (28 months). Not extrapolated beyond what was observed.",
   "attribution": {
@@ -14,11 +21,268 @@
   },
   "coverage": {
     "messages_eligible": 2531,
-    "messages_extracted": 2531,
-    "messages_not_extracted": 0,
-    "coverage_share": 1.0,
-    "complete": true,
-    "unextracted": [],
+    "messages_extracted": 2499,
+    "messages_not_extracted": 32,
+    "coverage_share": 0.9874,
+    "complete": false,
+    "unextracted": [
+      {
+        "msg_uid": "m_a08704eff79b",
+        "path": "corpus/giron-d/sent/757.",
+        "subject": "Fourth of July party!",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_64293e33900a",
+        "path": "corpus/giron-d/sent/758.",
+        "subject": "NSS Narrative",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_a6f3d6799c76",
+        "path": "corpus/giron-d/sent/759.",
+        "subject": "New Sitara Books for EOL",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_ad3c3157d5f8",
+        "path": "corpus/giron-d/sent/760.",
+        "subject": "Fw: Can I Finish?",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_536342b62d78",
+        "path": "corpus/giron-d/sent/761.",
+        "subject": "Fw: Monkey Shines",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_8fe72c942036",
+        "path": "corpus/giron-d/sent/762.",
+        "subject": "Re: Finalized Transport Invoices - May, 2000",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_cf1cd4d23d80",
+        "path": "corpus/giron-d/sent/764.",
+        "subject": "FW:",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_b35f78a6b955",
+        "path": "corpus/giron-d/sent/765.",
+        "subject": "Re: ORIG 0615",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_94d00acb5691",
+        "path": "corpus/giron-d/sent/766.",
+        "subject": "My Homepage",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_ebc2abc5546c",
+        "path": "corpus/giron-d/sent/767.",
+        "subject": "Re: GCP New Portfolio Request - Complete",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_95b5d55aba1a",
+        "path": "corpus/giron-d/sent/768.",
+        "subject": "Re: GCP New Portfolio Request - Complete",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_71b068be7ed3",
+        "path": "corpus/giron-d/sent/769.",
+        "subject": "Re: New Tagg Book",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_beaef18f04dd",
+        "path": "corpus/giron-d/sent/770.",
+        "subject": "Fw: Meaning of Life",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_e3655a30e7aa",
+        "path": "corpus/giron-d/sent/771.",
+        "subject": "RE: Account",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_73961a2dac60",
+        "path": "corpus/giron-d/sent/772.",
+        "subject": "New Tagg Book",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_fb1de84d144e",
+        "path": "corpus/giron-d/sent/773.",
+        "subject": "Curve Mappings",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_5c3528118c05",
+        "path": "corpus/giron-d/sent/774.",
+        "subject": "Account",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_61722973cc41",
+        "path": "corpus/giron-d/sent/775.",
+        "subject": "ANR ML5",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_4f7634c99392",
+        "path": "corpus/giron-d/sent/776.",
+        "subject": "Re: New ENA - IM Mid Business Units",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_f104ff8951b9",
+        "path": "corpus/giron-d/sent/777.",
+        "subject": "Re: New ENA - IM Mid Business Units",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_c86b71038ad4",
+        "path": "corpus/giron-d/sent/778.",
+        "subject": "New Central Region Books",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_416ff4a766a4",
+        "path": "corpus/giron-d/sent/779.",
+        "subject": "Fwd: FW: fish story",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_ccc59ec97ffd",
+        "path": "corpus/giron-d/sent/781.",
+        "subject": "Survey",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_48aa211b49d7",
+        "path": "corpus/giron-d/sent/782.",
+        "subject": "",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_6fbd25c4aee1",
+        "path": "corpus/giron-d/sent/783.",
+        "subject": "Re: Accomplishments",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_146463cf6442",
+        "path": "corpus/giron-d/sent/784.",
+        "subject": "Central Books",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_5e38be55eb29",
+        "path": "corpus/giron-d/sent/785.",
+        "subject": "Seinfeld Classic",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_51dc92aecfc8",
+        "path": "corpus/giron-d/sent/786.",
+        "subject": "Re: Financial Cash Desk Deals",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_905e26dd9025",
+        "path": "corpus/giron-d/sent/787.",
+        "subject": "Survey",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_4c24ed89304b",
+        "path": "corpus/giron-d/sent/788.",
+        "subject": "Fw: Priceless Series .........",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_e6eb977c9069",
+        "path": "corpus/giron-d/sent/789.",
+        "subject": "PEP",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      },
+      {
+        "msg_uid": "m_bb3e7355d67b",
+        "path": "corpus/giron-d/sent/790.",
+        "subject": "Re: PRC",
+        "batch": null,
+        "reason": "stage_deadline",
+        "detail": "the stage ran out of time before this batch was dispatched or completed"
+      }
+    ],
     "note": "Messages that were eligible for extraction but never got one, usually because a batch was rate-limited past its retry budget. They are listed here rather than absorbed: a report that says it read the whole corpus has to mean it."
   },
   "blended_rate_usd_per_hour": 85,
@@ -609,32 +873,32 @@
       "task_instances": 2823,
       "people": 2691,
       "generated_tables": 1,
-      "seconds": 2.56
+      "seconds": 2.85
     },
     "stage1": {
       "messages_eligible": 2531,
-      "cache_hits_messages": 2499,
-      "messages_extracted_now": 32,
-      "batches": 1,
-      "batches_ok": 1,
-      "model_calls": 1,
-      "extractions": 2531,
+      "cache_hits_messages": 0,
+      "messages_extracted_now": 2531,
+      "batches": 80,
+      "batches_ok": 79,
+      "model_calls": 86,
+      "extractions": 2499,
       "failed_batches": 0,
-      "messages_not_extracted": 0,
-      "coverage": 1.0
+      "messages_not_extracted": 32,
+      "coverage": 0.9874
     },
     "stage2": {
-      "records": 1624,
-      "clusters": 937,
+      "records": 1605,
+      "clusters": 925,
       "promoted": 11,
-      "residual": 926,
-      "seconds": 0.96
+      "residual": 914,
+      "seconds": 1.29
     },
     "stage3": {
       "clusters": 11,
       "characterized": 11,
-      "model_calls": 0,
-      "cache_hits": 11,
+      "model_calls": 11,
+      "cache_hits": 0,
       "failed": 0
     },
     "stage45": {
@@ -646,21 +910,21 @@
       "citations_quarantined": 0,
       "series_promoted": 3,
       "series_rejected": 19,
-      "seconds": 0.38
+      "seconds": 0.44
     },
     "stage6": {
       "selected": 7,
       "written": 7,
       "skipped": 7,
-      "model_calls": 0,
-      "cache_hits": 7,
+      "model_calls": 7,
+      "cache_hits": 0,
       "failed": 0,
       "threshold_dollars": 55.0,
       "cap": 6
     }
   },
   "residual": {
-    "content_clusters_not_promoted": 926,
+    "content_clusters_not_promoted": 914,
     "series_not_promoted": 19
   }
 }
