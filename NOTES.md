@@ -24,10 +24,10 @@ dozens of MCP servers; without these every worker pays their schemas), and a ful
 `--system-prompt` replacement so a worker's context is exactly the bytes I chose regardless
 of whose laptop it runs on.
 
-`.claude/` is in the build graph, not the appendix: every worker prompt is assembled from the
-agent and skill files on disk, and their sha256 is part of the cache key, so editing a rubric
+`.claude/` is in the build graph, not the appendix: worker prompts are assembled from the
+agent and skill files on disk and their sha256 is part of the cache key, so editing a rubric
 invalidates the work downstream of it. A `PreToolUse` hook denies hand-edits to `out/`, so
-"no model holds the arithmetic" is enforced by configuration rather than asserted.
+"no model holds the arithmetic" is enforced rather than asserted.
 
 ## What went to subagents, and the context budget
 
@@ -50,12 +50,34 @@ conjure. Everything declined is published in `out/residual.json` with the gate i
 
 ## What ran in parallel
 
-Adaptive concurrency from 8, halving on a rate-limit signal and recovering after a minute of
-clean completions. Per-call kill at 240s; a 28-minute deadline split into reserved per-stage
-shares so no one stage can starve the rest, after which the run drains and **still emits a
-complete report** that says what it cut. Three content attempts with jittered backoff, and a
-batch failing validation twice is **bisected** so one pathological message costs two extra
-calls rather than 32 lost extractions. An auth error fails the run immediately.
+Adaptive concurrency from 8, halving on a rate-limit signal and recovering after clean
+completions. A 28-minute deadline split into reserved per-stage shares so no one stage can
+starve the rest, after which the run drains and **still emits a complete report that says
+what it cut**. A batch failing validation twice is **bisected**, so one pathological message
+costs two extra calls rather than 32 lost extractions. An auth error fails the run at once.
+
+## What I chose to produce, and why
+
+Artifacts are gated on **evidence and recurrence, not money**: five verified citations
+across four messages, six task instances, three months, and a shape worth writing (`none`
+is a real answer and disqualifies). The dollar floor is deliberately low at $55/month,
+which needs explaining, because my first attempt set it at $250 on the reasoning that below
+about an hour a week a written procedure costs more attention to maintain than it returns.
+That is sound in the abstract and wrong here: it ignored my own `extrapolation_factor: 1.0`.
+Applied to four-mailbox figures, a company-sized floor cleared exactly three items — all of
+them "send this recurring report on a schedule" — and excluded every operational finding in
+the archive. So the floor now excludes noise rather than ranks, and the evidence bar does
+the work.
+
+Capped at six, because six documents is what a team adopts in a quarter and twelve is
+shelfware, plus one slot for the best-evidenced item that fails *only* the dollar test,
+labelled in its front matter as a judgment call. A purely numeric cutoff is not a strategy.
+Seven shipped; five opportunities are recorded as not warranting one, with reasons.
+
+Every artifact follows one convention that makes it checkable: **any sentence asserting
+current practice ends with a citation id, recommendations carry none and sit under their own
+heading**, and a linter withholds any document whose markers do not resolve. A reader can
+always tell what was observed from what is being proposed.
 
 ## Where it went wrong, and what caught it
 
