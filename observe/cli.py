@@ -69,8 +69,15 @@ def cmd_run(args) -> int:
         print(f"[4/7] cite+cost   {stage_line(ctx, 'stage45')}")
         artifacts, skipped = stage6(ctx, opportunities, model=args.artifact_model)
         print(f"[5/7] act         {stage_line(ctx, 'stage6')}")
-        summary = stage7(ctx, corpus, opportunities, clusters, rejected, artifacts, skipped)
-        print(f"[6/7] render      out/report.md, out/summary.json")
+        if args.no_render:
+            # A replay run exists to prove that finished work is not repeated. Letting it
+            # rewrite out/ would overwrite the shipped report with an identical one whose
+            # metadata describes the replay rather than the run that did the work.
+            summary = json.loads((root / "out" / "summary.json").read_text())
+            print("[6/7] render      skipped (--no-render); out/ left as published")
+        else:
+            summary = stage7(ctx, corpus, opportunities, clusters, rejected, artifacts, skipped)
+            print("[6/7] render      out/report.md, out/summary.json")
     except AuthenticationFailed as e:
         ctx.cache.finish_run(ctx.run_id, "auth_failed", str(e))
         print(f"\nAUTHENTICATION FAILED: {e}\nRun `claude auth login`.", file=sys.stderr)
@@ -147,6 +154,9 @@ def main(argv: list[str] | None = None) -> int:
     r.add_argument("--cluster-method", default="tfidf", choices=["tfidf", "components"])
     r.add_argument("--skip-doctor", action="store_true")
     r.add_argument("--no-verify", action="store_true")
+    r.add_argument("--no-render", action="store_true",
+                   help="run every stage but leave out/ alone; for proving a replay does no "
+                        "work without overwriting the published report")
     r.set_defaults(func=cmd_run)
 
     v = sub.add_parser("verify", help="re-verify the published report; no model calls")

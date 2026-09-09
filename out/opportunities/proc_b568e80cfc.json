@@ -1,0 +1,344 @@
+{
+  "opportunity_id": "proc_b568e80cfc",
+  "source": "content_cluster",
+  "title": "Monthly first-of-month gas nominations emailed in by counterparties",
+  "task_class": "gas_nomination",
+  "label_mechanical": "Gas nomination and scheduling: submit monthly / gas / nomination",
+  "narrative": {
+    "what_happens": "Each month, counterparties and plant schedulers email the logistics desk their gas volumes for the coming month. The dominant form is a recurring note from EGPFC nominating natural gas requirements for the MTBE Plant at Morgan's Point, sent with near-identical wording month after month (\"EGPFC nominates the following natural gas requirements for the MTBE Plant at Morgan's Point for October 2000\"). The same pattern appears for other parties and points \u2014 a Calpine January 2000 nomination, an estimated Josey Ranch nomination, and Forest's \"first of the month noms\". The volumes arrive as free text in the mail body rather than through a system, and the recipient is expected to pick them up and carry them into scheduling; occasionally a revision follows, keyed to a named approver (\"revision PER JOHN KJELMYR, 12/26 am\"). Nothing in these messages shows the downstream entry step, so where the numbers go after the mail is not visible here.",
+    "where_it_stalls": "Two failure modes are visible, both in a minority of the messages. First, the nomination is sometimes an estimate rather than a firm number (\"This is the estimated Josey Ranch nomination\"), so it must be revisited and superseded \u2014 the one correction-role message is an explicit month-end revision authorised verbally by a named person. Second, a nomination cannot be completed because a required input is held by someone else: \"I am still waiting on a transport number from lori Allen in your shop.\" That leaves the desk holding an incomplete nomination and chasing an internal colleague for the missing field.",
+    "why_it_recurs": "The monthly nomination cycle: every counterparty must restate volumes for the coming month before it begins, so the same near-identical mail is composed and re-keyed each month for each plant and delivery point.",
+    "automation_opportunity": "A fixed submission form or structured template per counterparty and delivery point \u2014 same fields every month, with the transport number as a required field \u2014 feeding a monthly nomination sheet automatically, so volumes arrive parseable rather than as prose and revisions supersede rather than append.",
+    "coherence": "tight"
+  },
+  "status": "counted",
+  "status_reason": "",
+  "confidence": "high",
+  "artifact_shape": "template",
+  "measured": {
+    "instances": 13,
+    "messages": 13,
+    "dated_messages": 13,
+    "undated_messages": 0,
+    "participants_median": 17,
+    "months": 9.0,
+    "rework_rate": 0.07692307692307693,
+    "waiting_rate": 0.07692307692307693,
+    "manual_transfer_rate": 0.0,
+    "senders": 6
+  },
+  "gate_metrics": {
+    "messages": 13,
+    "distinct_content": 13,
+    "senders": 6,
+    "threads": 13,
+    "months": 9,
+    "weeks": 10,
+    "folders": 1,
+    "people": 33
+  },
+  "signal_rates": {
+    "rework_signal": 0.0769,
+    "waiting_signal": 0.0769,
+    "manual_transfer_signal": 0.0,
+    "deadline_signal": 0.0
+  },
+  "systems": {
+    "email": 9
+  },
+  "roles": {
+    "request": 10,
+    "correction": 1,
+    "fyi": 1,
+    "handoff": 1
+  },
+  "months": [
+    "1999-12",
+    "2000-01",
+    "2000-02",
+    "2000-03",
+    "2000-06",
+    "2000-08",
+    "2000-09",
+    "2000-11",
+    "2000-12"
+  ],
+  "people": 33,
+  "hours_per_month": {
+    "low": 0.4,
+    "base": 1.4,
+    "high": 4.1
+  },
+  "automatable_hours_per_month": {
+    "low": 0.1,
+    "base": 0.8,
+    "high": 3.1
+  },
+  "dollars_per_month": {
+    "low": 9.47,
+    "base": 67.42,
+    "high": 260.31
+  },
+  "derivation": {
+    "formula_id": "hours_v1",
+    "estimate_version": "1.0.0",
+    "measured": {
+      "instances": 13,
+      "messages": 13,
+      "dated_messages": 13,
+      "undated_messages": 0,
+      "participants_median": 17,
+      "months": 9.0,
+      "rework_rate": 0.07692307692307693,
+      "waiting_rate": 0.07692307692307693,
+      "manual_transfer_rate": 0.0,
+      "senders": 6
+    },
+    "assumed": {
+      "handle_min": 8.0,
+      "per_touch_min": 3.0,
+      "rework_min": 12.0,
+      "waiting_admin_min": 2.0,
+      "automatable_share": 0.55
+    },
+    "assumed_global": {
+      "blended_rate_usd_per_hour": 85.0,
+      "coordination_alpha": 0.35,
+      "extrapolation_factor": 1.0
+    },
+    "assumption_source": "config/estimation.yml#task_classes.gas_nomination",
+    "steps": [
+      "13.00 task instances / 9 months of coverage = 1.444 instances per month",
+      "minutes per instance = 8 handle + (1.00 touches - 1) x 3 + 0.08 rework rate x 12 + 0.08 waiting rate x 2 = 9.08 min",
+      "coordination multiplier = 1 + 0.35 x (17 median participants - 1) = 6.600",
+      "hours per month = 1.444 x 9.08 x 6.600 / 60 = 1.442",
+      "automatable hours = 1.442 x 0.55 automatable share = 0.793",
+      "dollars per month = 0.793 h x $85/h = $67.42"
+    ],
+    "result": {
+      "hours_per_month": 1.4,
+      "automatable_hours_per_month": 0.8,
+      "dollars_per_month": 67.42
+    }
+  },
+  "citations": [
+    {
+      "citation_id": "cit_7ad0647816c0",
+      "source_path": "corpus/farmer-d/logistics/1423.",
+      "source_sha256": "d0e7656aafde92f69c8f1811349e12e6f1039a46848113034eac02ed5393c1a6",
+      "message_id": "<16560401.1075854138657.JavaMail.evans@thyme>",
+      "msg_uid": "m_00857f4d844a",
+      "quote": "EGPFC nominates the following natural gas requirements for the MTBE Plant at \nMorgan's Point for October 2000",
+      "match_tier": "rewrapped",
+      "raw_start": 1192,
+      "raw_end": 1301,
+      "decoded_start": 22,
+      "decoded_end": 131,
+      "line_start": 28,
+      "line_end": 29,
+      "repaired": false,
+      "sender": "michael.mitcham@enron.com",
+      "sent_at": "2000-09-25T07:23:00-07:00",
+      "subject": "NATURAL GAS NOMINATION FOR 10/00",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1192 count=109 if=corpus/farmer-d/logistics/1423. 2>/dev/null",
+        "sed": "sed -n '28,29p' corpus/farmer-d/logistics/1423."
+      }
+    },
+    {
+      "citation_id": "cit_d7d7daa00d35",
+      "source_path": "corpus/farmer-d/logistics/2008.",
+      "source_sha256": "8fa24c6327cc34226704b6240fcd91cc29139c2a37962b95e8d7f6246bf8f801",
+      "message_id": "<15898033.1075854317588.JavaMail.evans@thyme>",
+      "msg_uid": "m_4fe318a7ac53",
+      "quote": "Below are Forest's first of the month noms:",
+      "match_tier": "raw_exact",
+      "raw_start": 815,
+      "raw_end": 858,
+      "decoded_start": 2,
+      "decoded_end": 45,
+      "line_start": 27,
+      "line_end": 27,
+      "repaired": false,
+      "sender": "elsa.villarreal@enron.com",
+      "sent_at": "2000-12-26T05:07:00-08:00",
+      "subject": "REVISION - Forest Oil's JANUARY 2001 Gas Volumes",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=815 count=43 if=corpus/farmer-d/logistics/2008. 2>/dev/null",
+        "sed": "sed -n '27,27p' corpus/farmer-d/logistics/2008."
+      }
+    },
+    {
+      "citation_id": "cit_d0a4a6dca279",
+      "source_path": "corpus/farmer-d/logistics/2008.",
+      "source_sha256": "8fa24c6327cc34226704b6240fcd91cc29139c2a37962b95e8d7f6246bf8f801",
+      "message_id": "<15898033.1075854317588.JavaMail.evans@thyme>",
+      "msg_uid": "m_4fe318a7ac53",
+      "quote": "revision PER JOHN KJELMYR, 12/26 am.",
+      "match_tier": "raw_exact",
+      "raw_start": 964,
+      "raw_end": 1000,
+      "decoded_start": 151,
+      "decoded_end": 187,
+      "line_start": 34,
+      "line_end": 34,
+      "repaired": false,
+      "sender": "elsa.villarreal@enron.com",
+      "sent_at": "2000-12-26T05:07:00-08:00",
+      "subject": "REVISION - Forest Oil's JANUARY 2001 Gas Volumes",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=964 count=36 if=corpus/farmer-d/logistics/2008. 2>/dev/null",
+        "sed": "sed -n '34,34p' corpus/farmer-d/logistics/2008."
+      }
+    },
+    {
+      "citation_id": "cit_5ed878358f01",
+      "source_path": "corpus/farmer-d/logistics/1539.",
+      "source_sha256": "da8ee2f49b0f87e2699f99640f8f6dd1e14a3438ab7340dae36cb80adbffac5e",
+      "message_id": "<16830125.1075854141335.JavaMail.evans@thyme>",
+      "msg_uid": "m_7845adfb104f",
+      "quote": "I am still waiting on a transport number from lori Allen in your\nshop",
+      "match_tier": "rewrapped",
+      "raw_start": 823,
+      "raw_end": 892,
+      "decoded_start": 7,
+      "decoded_end": 76,
+      "line_start": 21,
+      "line_end": 22,
+      "repaired": false,
+      "sender": "rickya@calpine.com",
+      "sent_at": "2000-11-27T01:34:00-08:00",
+      "subject": "Calpine Monthly Nomination (December)",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=823 count=69 if=corpus/farmer-d/logistics/1539. 2>/dev/null",
+        "sed": "sed -n '21,22p' corpus/farmer-d/logistics/1539."
+      }
+    },
+    {
+      "citation_id": "cit_04eb86a692b1",
+      "source_path": "corpus/farmer-d/logistics/993.",
+      "source_sha256": "d7b8416d277103142983eec74e46dbcca81d6c710e575b291bb140672800a6df",
+      "message_id": "<3654589.1075854128631.JavaMail.evans@thyme>",
+      "msg_uid": "m_a33db2e1aea2",
+      "quote": "This is the estimated Josey Ranch nomination for the month of April\n2000.",
+      "match_tier": "rewrapped",
+      "raw_start": 1013,
+      "raw_end": 1086,
+      "decoded_start": 322,
+      "decoded_end": 395,
+      "line_start": 30,
+      "line_end": 31,
+      "repaired": false,
+      "sender": "susan.trevino@enron.com",
+      "sent_at": "2000-03-29T07:54:00-08:00",
+      "subject": "Josey Ranch Est. -- Apr. 2000",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1013 count=73 if=corpus/farmer-d/logistics/993. 2>/dev/null",
+        "sed": "sed -n '30,31p' corpus/farmer-d/logistics/993."
+      }
+    },
+    {
+      "citation_id": "cit_d9554236673a",
+      "source_path": "corpus/farmer-d/logistics/834.",
+      "source_sha256": "9f230fc064fd0aa889811ae4575964e42c39bd6017f7e357ca63924e159f58ef",
+      "message_id": "<20915534.1075854124953.JavaMail.evans@thyme>",
+      "msg_uid": "m_12a40fde47f4",
+      "quote": "NATURAL GAS NOMINATION FOR 03/00",
+      "match_tier": "raw_exact",
+      "raw_start": 547,
+      "raw_end": 579,
+      "decoded_start": 0,
+      "decoded_end": 0,
+      "line_start": 11,
+      "line_end": 11,
+      "repaired": false,
+      "sender": "michael.mitcham@enron.com",
+      "sent_at": "2000-02-24T02:02:00-08:00",
+      "subject": "NATURAL GAS NOMINATION FOR 03/00",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=547 count=32 if=corpus/farmer-d/logistics/834. 2>/dev/null",
+        "sed": "sed -n '11,11p' corpus/farmer-d/logistics/834."
+      }
+    },
+    {
+      "citation_id": "cit_607989d33ece",
+      "source_path": "corpus/farmer-d/logistics/834.",
+      "source_sha256": "9f230fc064fd0aa889811ae4575964e42c39bd6017f7e357ca63924e159f58ef",
+      "message_id": "<20915534.1075854124953.JavaMail.evans@thyme>",
+      "msg_uid": "m_12a40fde47f4",
+      "quote": "EGPFC nominates the following for the MTBE Plant at Morgan's Point for March \n2000",
+      "match_tier": "rewrapped",
+      "raw_start": 1468,
+      "raw_end": 1550,
+      "decoded_start": 316,
+      "decoded_end": 398,
+      "line_start": 33,
+      "line_end": 34,
+      "repaired": false,
+      "sender": "michael.mitcham@enron.com",
+      "sent_at": "2000-02-24T02:02:00-08:00",
+      "subject": "NATURAL GAS NOMINATION FOR 03/00",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1468 count=82 if=corpus/farmer-d/logistics/834. 2>/dev/null",
+        "sed": "sed -n '33,34p' corpus/farmer-d/logistics/834."
+      }
+    },
+    {
+      "citation_id": "cit_8ce5472cc445",
+      "source_path": "corpus/farmer-d/logistics/619.",
+      "source_sha256": "17eab6959f1aee6e1cd36e0ce552138d14b3fe7df30bd8ce4ee85ccb26b4b323",
+      "message_id": "<2391860.1075854120067.JavaMail.evans@thyme>",
+      "msg_uid": "m_01475421c8e9",
+      "quote": "Calpine January 2000 Nomination",
+      "match_tier": "raw_exact",
+      "raw_start": 166,
+      "raw_end": 197,
+      "decoded_start": 0,
+      "decoded_end": 0,
+      "line_start": 5,
+      "line_end": 5,
+      "repaired": false,
+      "sender": "rickya@calpine.com",
+      "sent_at": "1999-12-28T07:18:00-08:00",
+      "subject": "Calpine January 2000 Nomination",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=166 count=31 if=corpus/farmer-d/logistics/619. 2>/dev/null",
+        "sed": "sed -n '5,5p' corpus/farmer-d/logistics/619."
+      }
+    }
+  ],
+  "quarantined_citations": [],
+  "member_count": 13,
+  "member_uids": [
+    "m_00857f4d844a",
+    "m_01475421c8e9",
+    "m_0a83578d6754",
+    "m_12a40fde47f4",
+    "m_1617b5ada663",
+    "m_4fe318a7ac53",
+    "m_7845adfb104f",
+    "m_a273483d403b",
+    "m_a33db2e1aea2",
+    "m_a5e6203ce131",
+    "m_c27e157c65bc",
+    "m_dfe804f0cc01",
+    "m_ebfd03ec7079"
+  ],
+  "flags": []
+}

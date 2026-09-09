@@ -1,0 +1,332 @@
+{
+  "opportunity_id": "proc_f2bc1be999",
+  "source": "content_cluster",
+  "title": "Fixing deal prices in Sitara by hand before invoices go out",
+  "task_class": "deal_entry_correction",
+  "label_mechanical": "Deal entry and correction in Sitara / Unify / TAGG: correct deal / pricing / system",
+  "narrative": {
+    "what_happens": "Someone preparing an invoice or reviewing a deal notices that the price recorded against a deal ticket in Sitara does not match what was agreed \u2014 an index formula instead of a fixed price, a wrong commodity price, or a spot volume sitting on the same ticket as an exchange deal. They email the person with edit rights, quoting the deal number and the corrected price, and ask for the change to be made. That person edits the ticket, and in some threads confirms back or is asked to notify when the change has come across. The exchange ends when the requester sees the corrected price flow through and can issue the invoice or move on.",
+    "where_it_stalls": "The requester cannot make the edit themselves, so the correction waits on a second person: one message shows an attempted self-service fix (\"I tried to get into the Sitara ticket # 373590 to correct the swing pricing\") that turned into an escalation, and another asks to be notified once the change lands rather than being able to see it. The request also travels by relay \u2014 one sender asks a colleague to \"forward this to Daren\" \u2014 and it collides with a same-day invoicing deadline (\"I need to send out my invoice this afternoon\"). Most messages in this cluster carry rework signals, which fits work being redone in the system after it was first captured.",
+    "why_it_recurs": "Prices are captured at deal entry but only checked at invoicing, so every billing cycle surfaces another batch of tickets whose Sitara price does not match the agreed price, and edit rights sit with someone other than the person who spots the mismatch.",
+    "automation_opportunity": "A pre-invoice exception report that compares the price on each Sitara ticket against the confirmed deal terms and lists mismatches by deal number before the billing run, plus a standing change-request form that captures deal number, corrected price, affected days and requester so the edit can be applied and confirmed back without a relay email.",
+    "coherence": "tight"
+  },
+  "status": "counted",
+  "status_reason": "",
+  "confidence": "high",
+  "artifact_shape": "template",
+  "measured": {
+    "instances": 7,
+    "messages": 8,
+    "dated_messages": 8,
+    "undated_messages": 0,
+    "participants_median": 3,
+    "months": 5.0,
+    "rework_rate": 0.75,
+    "waiting_rate": 0.375,
+    "manual_transfer_rate": 0.375,
+    "senders": 5
+  },
+  "gate_metrics": {
+    "messages": 8,
+    "distinct_content": 8,
+    "senders": 5,
+    "threads": 7,
+    "months": 5,
+    "weeks": 5,
+    "folders": 2,
+    "people": 13
+  },
+  "signal_rates": {
+    "rework_signal": 0.75,
+    "waiting_signal": 0.375,
+    "manual_transfer_signal": 0.375,
+    "deadline_signal": 0.25
+  },
+  "systems": {
+    "other_system": 5,
+    "sitara": 3,
+    "spreadsheet": 1
+  },
+  "roles": {
+    "request": 3,
+    "correction": 2,
+    "confirmation": 1,
+    "escalation": 1,
+    "handoff": 1
+  },
+  "months": [
+    "2000-06",
+    "2001-01",
+    "2001-04",
+    "2001-06",
+    "2001-08"
+  ],
+  "people": 13,
+  "hours_per_month": {
+    "low": 0.4,
+    "base": 1.1,
+    "high": 2.7
+  },
+  "automatable_hours_per_month": {
+    "low": 0.1,
+    "base": 0.5,
+    "high": 1.8
+  },
+  "dollars_per_month": {
+    "low": 8.49,
+    "base": 41.48,
+    "high": 149.72
+  },
+  "derivation": {
+    "formula_id": "hours_v1",
+    "estimate_version": "1.0.0",
+    "measured": {
+      "instances": 7,
+      "messages": 8,
+      "dated_messages": 8,
+      "undated_messages": 0,
+      "participants_median": 3,
+      "months": 5.0,
+      "rework_rate": 0.75,
+      "waiting_rate": 0.375,
+      "manual_transfer_rate": 0.375,
+      "senders": 5
+    },
+    "assumed": {
+      "handle_min": 12.0,
+      "per_touch_min": 5.0,
+      "rework_min": 18.0,
+      "waiting_admin_min": 3.0,
+      "automatable_share": 0.45
+    },
+    "assumed_global": {
+      "blended_rate_usd_per_hour": 85.0,
+      "coordination_alpha": 0.35,
+      "extrapolation_factor": 1.0
+    },
+    "assumption_source": "config/estimation.yml#task_classes.deal_entry_correction",
+    "steps": [
+      "7.00 task instances / 5 months of coverage = 1.400 instances per month",
+      "minutes per instance = 12 handle + (1.14 touches - 1) x 5 + 0.75 rework rate x 18 + 0.38 waiting rate x 3 = 27.34 min",
+      "coordination multiplier = 1 + 0.35 x (3 median participants - 1) = 1.700",
+      "hours per month = 1.400 x 27.34 x 1.700 / 60 = 1.084",
+      "automatable hours = 1.084 x 0.45 automatable share = 0.488",
+      "dollars per month = 0.488 h x $85/h = $41.48"
+    ],
+    "result": {
+      "hours_per_month": 1.1,
+      "automatable_hours_per_month": 0.5,
+      "dollars_per_month": 41.48
+    }
+  },
+  "citations": [
+    {
+      "citation_id": "cit_0f8385967b03",
+      "source_path": "corpus/farmer-d/logistics/179.",
+      "source_sha256": "ce7cdfb25e0c90a4da680f920e7b1eaaea6c01b799fe3c8741fc5b8dd0ecf7d6",
+      "message_id": "<28169043.1075840436494.JavaMail.evans@thyme>",
+      "msg_uid": "m_c23a6052cbdd",
+      "quote": "Currently, Sitara is showing a price of  HSC GDP +.05.",
+      "match_tier": "raw_exact",
+      "raw_start": 791,
+      "raw_end": 845,
+      "decoded_start": 178,
+      "decoded_end": 232,
+      "line_start": 18,
+      "line_end": 18,
+      "repaired": false,
+      "sender": "katherine.herrera@enron.com",
+      "sent_at": "2001-04-16T10:43:13-07:00",
+      "subject": "Southern Union- 03/01 prod- Austin Spot deal # 690249 (sale)",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=791 count=54 if=corpus/farmer-d/logistics/179. 2>/dev/null",
+        "sed": "sed -n '18,18p' corpus/farmer-d/logistics/179."
+      }
+    },
+    {
+      "citation_id": "cit_ecee0749008d",
+      "source_path": "corpus/farmer-d/logistics/179.",
+      "source_sha256": "ce7cdfb25e0c90a4da680f920e7b1eaaea6c01b799fe3c8741fc5b8dd0ecf7d6",
+      "message_id": "<28169043.1075840436494.JavaMail.evans@thyme>",
+      "msg_uid": "m_c23a6052cbdd",
+      "quote": "pls forward this to Daren so that he can change the price in Sitara to $ 5.235 +.05",
+      "match_tier": "raw_exact",
+      "raw_start": 889,
+      "raw_end": 972,
+      "decoded_start": 276,
+      "decoded_end": 359,
+      "line_start": 20,
+      "line_end": 20,
+      "repaired": false,
+      "sender": "katherine.herrera@enron.com",
+      "sent_at": "2001-04-16T10:43:13-07:00",
+      "subject": "Southern Union- 03/01 prod- Austin Spot deal # 690249 (sale)",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=889 count=83 if=corpus/farmer-d/logistics/179. 2>/dev/null",
+        "sed": "sed -n '20,20p' corpus/farmer-d/logistics/179."
+      }
+    },
+    {
+      "citation_id": "cit_a1667ea29fa2",
+      "source_path": "corpus/farmer-d/logistics/74.",
+      "source_sha256": "b515a10023a1f8df198e76c2a9fcd27ad5dfd4fea51b0a03591e8b32e46db41c",
+      "message_id": "<7610879.1075840433798.JavaMail.evans@thyme>",
+      "msg_uid": "m_68eff2156fb2",
+      "quote": "Deal 819592 - the commodity price needs to be 3.6318",
+      "match_tier": "raw_exact",
+      "raw_start": 708,
+      "raw_end": 760,
+      "decoded_start": 56,
+      "decoded_end": 108,
+      "line_start": 22,
+      "line_end": 22,
+      "repaired": false,
+      "sender": "valerie.vela@enron.com",
+      "sent_at": "2001-08-17T12:54:45-07:00",
+      "subject": "RE: error repairs",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=708 count=52 if=corpus/farmer-d/logistics/74. 2>/dev/null",
+        "sed": "sed -n '22,22p' corpus/farmer-d/logistics/74."
+      }
+    },
+    {
+      "citation_id": "cit_228d2225d561",
+      "source_path": "corpus/farmer-d/logistics/74.",
+      "source_sha256": "b515a10023a1f8df198e76c2a9fcd27ad5dfd4fea51b0a03591e8b32e46db41c",
+      "message_id": "<7610879.1075840433798.JavaMail.evans@thyme>",
+      "msg_uid": "m_68eff2156fb2",
+      "quote": "I'll wait to see how these changes come across. Please notify me when these changes have been made.",
+      "match_tier": "raw_exact",
+      "raw_start": 1338,
+      "raw_end": 1437,
+      "decoded_start": 686,
+      "decoded_end": 785,
+      "line_start": 32,
+      "line_end": 32,
+      "repaired": false,
+      "sender": "valerie.vela@enron.com",
+      "sent_at": "2001-08-17T12:54:45-07:00",
+      "subject": "RE: error repairs",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1338 count=99 if=corpus/farmer-d/logistics/74. 2>/dev/null",
+        "sed": "sed -n '32,32p' corpus/farmer-d/logistics/74."
+      }
+    },
+    {
+      "citation_id": "cit_b317a748a55a",
+      "source_path": "corpus/farmer-d/logistics/106.",
+      "source_sha256": "1708d12eba855c80c716c0d34de36141378b6c930afb18f6a5c55ebc80f931ae",
+      "message_id": "<24078977.1075840434656.JavaMail.evans@thyme>",
+      "msg_uid": "m_e1ca3ba99b6b",
+      "quote": "I tried to get into the Sitara ticket # 373590 to correct the swing pricing",
+      "match_tier": "raw_exact",
+      "raw_start": 1341,
+      "raw_end": 1416,
+      "decoded_start": 256,
+      "decoded_end": 331,
+      "line_start": 39,
+      "line_end": 39,
+      "repaired": false,
+      "sender": "aepin@aep.com",
+      "sent_at": "2001-06-25T12:56:01-07:00",
+      "subject": "Global Octanes",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1341 count=75 if=corpus/farmer-d/logistics/106. 2>/dev/null",
+        "sed": "sed -n '39,39p' corpus/farmer-d/logistics/106."
+      }
+    },
+    {
+      "citation_id": "cit_98bfe91399ac",
+      "source_path": "corpus/farmer-d/logistics/176.",
+      "source_sha256": "a883904d78d5480964d4185dee0e17e07adf98d1bb9df6c6f22debdfc3652c8c",
+      "message_id": "<10883955.1075840436420.JavaMail.evans@thyme>",
+      "msg_uid": "m_f2eb02b7cc75",
+      "quote": "Could you pls the pricing on this deal for March 2001 Production for days 25 & 26 to  $ 5.285?",
+      "match_tier": "raw_exact",
+      "raw_start": 1231,
+      "raw_end": 1325,
+      "decoded_start": 246,
+      "decoded_end": 340,
+      "line_start": 36,
+      "line_end": 36,
+      "repaired": false,
+      "sender": "elizabeth.hernandez@enron.com",
+      "sent_at": "2001-04-17T05:49:37-07:00",
+      "subject": "Re: Southern Union- 03/01 prod- Austin Spot deal # 690249 (sale)",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1231 count=94 if=corpus/farmer-d/logistics/176. 2>/dev/null",
+        "sed": "sed -n '36,36p' corpus/farmer-d/logistics/176."
+      }
+    },
+    {
+      "citation_id": "cit_98d6adf4a42c",
+      "source_path": "corpus/farmer-d/logistics/176.",
+      "source_sha256": "a883904d78d5480964d4185dee0e17e07adf98d1bb9df6c6f22debdfc3652c8c",
+      "message_id": "<10883955.1075840436420.JavaMail.evans@thyme>",
+      "msg_uid": "m_f2eb02b7cc75",
+      "quote": "I need to send out my invoice this afternoon",
+      "match_tier": "raw_exact",
+      "raw_start": 1381,
+      "raw_end": 1425,
+      "decoded_start": 396,
+      "decoded_end": 440,
+      "line_start": 38,
+      "line_end": 38,
+      "repaired": false,
+      "sender": "elizabeth.hernandez@enron.com",
+      "sent_at": "2001-04-17T05:49:37-07:00",
+      "subject": "Re: Southern Union- 03/01 prod- Austin Spot deal # 690249 (sale)",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1381 count=44 if=corpus/farmer-d/logistics/176. 2>/dev/null",
+        "sed": "sed -n '38,38p' corpus/farmer-d/logistics/176."
+      }
+    },
+    {
+      "citation_id": "cit_970c5d3b49c1",
+      "source_path": "corpus/farmer-d/logistics/1238.",
+      "source_sha256": "a84230b368166acfed5a55fa2be2e500b1eba571dc4044ccd5160826ae87ff65",
+      "message_id": "<9914520.1075854134273.JavaMail.evans@thyme>",
+      "msg_uid": "m_05dcb8df4e0c",
+      "quote": "I need to have the spot deal placed on a different deal ticket than the \nexchange deal (#157288).",
+      "match_tier": "rewrapped",
+      "raw_start": 595,
+      "raw_end": 692,
+      "decoded_start": 98,
+      "decoded_end": 195,
+      "line_start": 23,
+      "line_end": 24,
+      "repaired": false,
+      "sender": "katherine.herrera@enron.com",
+      "sent_at": "2000-06-23T04:43:00-07:00",
+      "subject": "Re: PanEnergy Marketing March 2000 Production",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=595 count=97 if=corpus/farmer-d/logistics/1238. 2>/dev/null",
+        "sed": "sed -n '23,24p' corpus/farmer-d/logistics/1238."
+      }
+    }
+  ],
+  "quarantined_citations": [],
+  "member_count": 8,
+  "member_uids": [
+    "m_031c03b4ea38",
+    "m_05dcb8df4e0c",
+    "m_68ef7cbd85ae",
+    "m_68eff2156fb2",
+    "m_c23a6052cbdd",
+    "m_c9915ac63d18",
+    "m_e1ca3ba99b6b",
+    "m_f2eb02b7cc75"
+  ],
+  "flags": []
+}

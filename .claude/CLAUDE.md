@@ -54,7 +54,12 @@ Those three, and nothing else.
 per-stage lists are in `observe/cache.py`.
 
 Extractions are cached **per message**, not per batch, so re-batching invalidates nothing
-and an interrupted run resumes by simply running again.
+and an interrupted run resumes by simply running again. Batch size (`OBSERVE_BATCH_SIZE`,
+default 32) is deliberately not part of any cache key for that reason.
+
+The run deadline (28 min) is a safety net, not the expected duration — a cold run is about
+12 minutes — and it is split into reserved per-stage shares (`Context.STAGE_BUDGET`) so no
+single stage can consume the whole budget. Artifact drafting is the slowest stage per call.
 
 ## Commands
 

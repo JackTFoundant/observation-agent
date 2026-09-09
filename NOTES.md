@@ -46,25 +46,26 @@ and a hard per-message character cap. 3,240 files → 3,224 unique → 2,531 mes
 model's attention → about 445K tokens of novel text. The median novel span is 171
 characters; most real operational mail is very short.
 
-Extraction ran in batches of 24 with a ~2,800-token system prompt, ~100 calls at
-concurrency 8, about nine minutes. Characterization is one call per promoted cluster, and it
-receives **measured counts plus a deterministic spread of exemplars** — never the cluster's
-raw messages. Artifact drafting is one call each. Roughly 120 model calls for a cold run.
+Extraction ran in batches of 32 with a ~2,800-token system prompt: 80 calls at concurrency
+8, median 65s each, about ten minutes. Characterization is one call per promoted cluster,
+and it receives **measured counts plus a deterministic spread of exemplars** — never the
+cluster's raw messages. Artifact drafting is one call each. **97 model calls for the whole
+cold run**, of which 80 are extraction.
 
 The hardest design question was making processes *emerge* rather than be authored. No model
 sees the whole corpus, so the temptation at the reduce step is to let one name a few
 plausible processes and back-fill citations. The defence is structural: **the model never
 names a process.** By the time it sees a cluster, the cluster exists, carries a mechanically
-generated label, and has passed a numeric gate that 953 of 965 candidates failed. It can
-describe; it cannot conjure. Everything declined is published in `out/residual.json` with
-the gate it failed.
+generated label, and has passed a numeric gate that **909 of 918 candidates failed**. It
+can describe; it cannot conjure. Everything declined is published in `out/residual.json`
+with the gate it failed.
 
 ## What ran in parallel
 
 Adaptive concurrency, starting at 8, halving on any rate-limit signal to a floor of 2 and
 recovering after a minute of clean completions. Per-call hard kill at 240s, global deadline
-at 25 minutes after which the run stops dispatching, drains, and **still emits a complete
-report** with a coverage block — degraded and honest beats crashed at minute 29. Three
+at 28 minutes, divided into reserved per-stage shares so no one stage can consume the run,
+after which it stops dispatching, drains, and **still emits a complete report** with a coverage block — degraded and honest beats crashed at minute 29. Three
 attempts with jittered backoff; a batch that fails validation twice is **bisected** so one
 pathological message costs two extra calls instead of twenty-four lost extractions. An auth
 error fails the whole run immediately rather than retrying a hundred times.
@@ -74,11 +75,11 @@ error fails the whole run immediately rather than retrying a hundred times.
 **Paraphrased quotes — caught by design, not by luck.** The invariant is that every
 published quote is *sliced from the corpus*: the model's string is only a search key, and
 the citation's `quote` field is assigned from `raw_text[start:end]`. A hallucinated quote
-cannot reach the report because there is nothing to assign. Measured on this run: 112 of 112
-proposed quotes anchored, 86 byte-exact, 25 whitespace-rewrapped, 1 quoted-printable-decoded,
-1 repaired from a paraphrase to the file's own wording. On an early three-batch slice it was
-61 of 61. The instruction to copy characters exactly works better than I expected — but the
-system does not depend on it working.
+cannot reach the report because there is nothing to assign. Measured on the shipped run:
+**88 of 88 published quotes anchored — 65 byte-exact, 23 whitespace-rewrapped, none
+repaired**. An early three-batch slice was 61 of 61, and a batch-size experiment 72 of 72.
+The instruction to copy characters exactly works better than I expected — but the system
+does not depend on it working, which is the point.
 
 **A guard that ate its own most important field.** My schema guard rejects any response
 containing a duration or an amount. Its first version matched substrings, so the pattern
@@ -175,10 +176,11 @@ when the CLI hands back prose instead of JSON. One of the new tests immediately 
 replacement regex still firing on ordinary corpus prose ("deal 429 was rebooked in
 Sitara").
 
-**The fourth cold run is the one that shipped:** 12 minutes 20 seconds, 80 of 80 batches,
-coverage 2,531 of 2,531, no throttles, no deadline pressure, `make verify` clean. The
-progression was 28.8 min with nothing but numbers, then 25.0 with narratives and artifacts
-but a hidden gap, then 17.1 with the gap correctly reported, then 12.3 clean.
+**The run that shipped:** 12 minutes 2 seconds, 80 of 80 batches, **80 extraction calls
+with no retries at all**, coverage 2,531 of 2,531, no throttles, no deadline pressure on any
+stage, `make verify` clean. The progression across cold runs was 28.8 min with nothing but
+numbers, then 25.0 with narratives and artifacts but a hidden coverage gap, then 17.1 with
+the gap correctly reported, then 12.3 and 12.0 clean.
 
 I am reporting all four rather than only the last because the pattern is the interesting
 part. The first fix was right in isolation and wrong in the system. The second exposed a
@@ -252,8 +254,8 @@ against - every one of these failures was invisible from a cached run.
 
 ## A note on timing
 
-The shipped cold run took **12 minutes 20 seconds** on an unthrottled account: 100 model
-calls, of which 83 are extraction, against a 28-minute deadline that never came close to
+The shipped cold run took **12 minutes 2 seconds** on an unthrottled account: 97 model
+calls, of which 80 are extraction, against a 28-minute deadline that never came close to
 firing. A warm re-run over the unchanged corpus takes about **5 seconds** with zero model
 calls, and a resume that fills a partial run does only the missing work - filling one
 32-message gap took 79 seconds.

@@ -1,0 +1,388 @@
+{
+  "opportunity_id": "proc_4a1bc6bb6f",
+  "source": "content_cluster",
+  "title": "Scheduled-versus-actual volume exceptions, reconciled by hand in Unify",
+  "task_class": "volume_imbalance_reconciliation",
+  "label_mechanical": "Volume and imbalance reconciliation: reconcile actual / against / scheduled",
+  "narrative": {
+    "what_happens": "A meter, contract or deal shows actual measured volume that does not match what was scheduled or nominated, and someone flags it by mail \u2014 often off a meter exception report or after month-end allocations arrive from a pipeline counterparty. The finder describes the discrepancy in plain text, naming the meter, deal number or contract and the volumes on each side, and asks a named colleague to decide what to do: cut or extend a deal, insert a path, adjust estimated volumes, or re-actualize. Whoever owns the record then goes back into the system of record \u2014 Unify, Sitara, MOPS or the ENA books are all named in these messages \u2014 and edits the prior period's numbers to match. The thread closes with a status note that the volumes were corrected or the month re-posted, or it simply stops. Volumes already booked in an earlier month are frequently reopened and revised.",
+    "where_it_stalls": "The discrepancy is visible to the person reading the exception report but the correction must be made by someone else, in a different system, for a month that is already closed \u2014 so most messages are requests or escalations rather than completions. Nearly two thirds carry rework signals: the same volumes are entered, then re-entered to match what the pipeline says it allocated. Chasing is visible where a counterparty or internal group does not answer (\"I sent Jackie Young an email back showing her TETCO's numbers and I haven't received a response\"), and where scheduling and allocation disagree with no arbiter named (\"scheduling had 8,928 MMBtu confirmed... and only 646 MMBtu flowed\"). Who owns the final adjustment is not visible in the mail; it is negotiated thread by thread.",
+    "why_it_recurs": "Measured volumes never equal scheduled volumes, and allocations arrive after the fact, so every month's close produces a fresh exception list. Systems that hold the same volume \u2014 Unify, Sitara, MOPS, the ENA books, and the counterparty's own allocation \u2014 do not agree with each other automatically, so agreement is reached by mail.",
+    "automation_opportunity": "A scheduled comparison that pulls scheduled, confirmed and actualized volumes per meter and deal from each system, flags the breaks above a tolerance, and routes each break to a named owner with the counterparty's allocation attached \u2014 so the mail carries a decision rather than a discovery. Logging the resulting adjustment against the deal number would remove the re-keying that shows up as rework here.",
+    "coherence": "tight"
+  },
+  "status": "counted",
+  "status_reason": "",
+  "confidence": "high",
+  "artifact_shape": "runbook",
+  "measured": {
+    "instances": 33,
+    "messages": 38,
+    "dated_messages": 38,
+    "undated_messages": 0,
+    "participants_median": 3,
+    "months": 18.0,
+    "rework_rate": 0.6052631578947368,
+    "waiting_rate": 0.2894736842105263,
+    "manual_transfer_rate": 0.3157894736842105,
+    "senders": 26
+  },
+  "gate_metrics": {
+    "messages": 38,
+    "distinct_content": 38,
+    "senders": 26,
+    "threads": 33,
+    "months": 18,
+    "weeks": 27,
+    "folders": 4,
+    "people": 67
+  },
+  "signal_rates": {
+    "rework_signal": 0.6053,
+    "waiting_signal": 0.2895,
+    "manual_transfer_signal": 0.3158,
+    "deadline_signal": 0.0263
+  },
+  "systems": {
+    "other_system": 15,
+    "email": 8,
+    "spreadsheet": 6,
+    "phone": 2,
+    "sitara": 2,
+    "unify": 2,
+    "pipeline_website": 1
+  },
+  "roles": {
+    "request": 11,
+    "status_report": 9,
+    "escalation": 6,
+    "handoff": 3,
+    "response": 3,
+    "confirmation": 2,
+    "correction": 2,
+    "fyi": 2
+  },
+  "months": [
+    "1999-12",
+    "2000-01",
+    "2000-02",
+    "2000-03",
+    "2000-04",
+    "2000-05",
+    "2000-06",
+    "2000-07",
+    "2000-09",
+    "2000-11",
+    "2000-12",
+    "2001-02",
+    "2001-03",
+    "2001-07",
+    "2001-08",
+    "2002-01",
+    "2002-02",
+    "2002-03"
+  ],
+  "people": 67,
+  "hours_per_month": {
+    "low": 0.7,
+    "base": 1.8,
+    "high": 4.6
+  },
+  "automatable_hours_per_month": {
+    "low": 0.2,
+    "base": 1.1,
+    "high": 3.7
+  },
+  "dollars_per_month": {
+    "low": 20.37,
+    "base": 90.93,
+    "high": 314.0
+  },
+  "derivation": {
+    "formula_id": "hours_v1",
+    "estimate_version": "1.0.0",
+    "measured": {
+      "instances": 33,
+      "messages": 38,
+      "dated_messages": 38,
+      "undated_messages": 0,
+      "participants_median": 3,
+      "months": 18.0,
+      "rework_rate": 0.6052631578947368,
+      "waiting_rate": 0.2894736842105263,
+      "manual_transfer_rate": 0.3157894736842105,
+      "senders": 26
+    },
+    "assumed": {
+      "handle_min": 20.0,
+      "per_touch_min": 7.0,
+      "rework_min": 20.0,
+      "waiting_admin_min": 4.0,
+      "automatable_share": 0.6
+    },
+    "assumed_global": {
+      "blended_rate_usd_per_hour": 85.0,
+      "coordination_alpha": 0.35,
+      "extrapolation_factor": 1.0
+    },
+    "assumption_source": "config/estimation.yml#task_classes.volume_imbalance_reconciliation",
+    "steps": [
+      "33.00 task instances / 18 months of coverage = 1.833 instances per month",
+      "minutes per instance = 20 handle + (1.15 touches - 1) x 7 + 0.61 rework rate x 20 + 0.29 waiting rate x 4 = 34.32 min",
+      "coordination multiplier = 1 + 0.35 x (3 median participants - 1) = 1.700",
+      "hours per month = 1.833 x 34.32 x 1.700 / 60 = 1.783",
+      "automatable hours = 1.783 x 0.6 automatable share = 1.070",
+      "dollars per month = 1.070 h x $85/h = $90.93"
+    ],
+    "result": {
+      "hours_per_month": 1.8,
+      "automatable_hours_per_month": 1.1,
+      "dollars_per_month": 90.93
+    }
+  },
+  "citations": [
+    {
+      "citation_id": "cit_100761050290",
+      "source_path": "corpus/farmer-d/logistics/1972.",
+      "source_sha256": "18a466c96b95c802b20d5834a2d79fd4ed26a9ef28dc8714bc8b33dfb086eea9",
+      "message_id": "<14509960.1075854316762.JavaMail.evans@thyme>",
+      "msg_uid": "m_15dd0b1bddb6",
+      "quote": "asking me to go in for the \nmonth of October and adjust all of my estimated volumes in Unify to match \nwhat HPL shows that we were allocated",
+      "match_tier": "rewrapped",
+      "raw_start": 2913,
+      "raw_end": 3053,
+      "decoded_start": 1048,
+      "decoded_end": 1188,
+      "line_start": 56,
+      "line_end": 58,
+      "repaired": false,
+      "sender": "victor.lamadrid@enron.com",
+      "sent_at": "2000-12-14T02:37:00-08:00",
+      "subject": "Re: HPL discrepancy",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=2913 count=140 if=corpus/farmer-d/logistics/1972. 2>/dev/null",
+        "sed": "sed -n '56,58p' corpus/farmer-d/logistics/1972."
+      }
+    },
+    {
+      "citation_id": "cit_dcc1e1ea7478",
+      "source_path": "corpus/farmer-d/logistics/1972.",
+      "source_sha256": "18a466c96b95c802b20d5834a2d79fd4ed26a9ef28dc8714bc8b33dfb086eea9",
+      "message_id": "<14509960.1075854316762.JavaMail.evans@thyme>",
+      "msg_uid": "m_15dd0b1bddb6",
+      "quote": "I sent Jackie Young an email \nback showing her TETCO's numbers and I haven't received a response",
+      "match_tier": "rewrapped",
+      "raw_start": 3360,
+      "raw_end": 3456,
+      "decoded_start": 1495,
+      "decoded_end": 1591,
+      "line_start": 62,
+      "line_end": 63,
+      "repaired": false,
+      "sender": "victor.lamadrid@enron.com",
+      "sent_at": "2000-12-14T02:37:00-08:00",
+      "subject": "Re: HPL discrepancy",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=3360 count=96 if=corpus/farmer-d/logistics/1972. 2>/dev/null",
+        "sed": "sed -n '62,63p' corpus/farmer-d/logistics/1972."
+      }
+    },
+    {
+      "citation_id": "cit_30fedd9d1441",
+      "source_path": "corpus/farmer-d/logistics/972.",
+      "source_sha256": "9a7d00582a26585a300ec80105ae7ca71a96bfe5dd5f1f4ac0d7f07348a7c29a",
+      "message_id": "<7618027.1075854128154.JavaMail.evans@thyme>",
+      "msg_uid": "m_fe868740b750",
+      "quote": "The actuals on this contract did not come in as scheduled.",
+      "match_tier": "raw_exact",
+      "raw_start": 1522,
+      "raw_end": 1580,
+      "decoded_start": 294,
+      "decoded_end": 352,
+      "line_start": 44,
+      "line_end": 44,
+      "repaired": false,
+      "sender": "sherlyn.schumack@enron.com",
+      "sent_at": "2000-03-28T01:19:00-08:00",
+      "subject": "PG&E Texas contract 5095-037 for 2/00",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1522 count=58 if=corpus/farmer-d/logistics/972. 2>/dev/null",
+        "sed": "sed -n '44,44p' corpus/farmer-d/logistics/972."
+      }
+    },
+    {
+      "citation_id": "cit_7650ee9d60f9",
+      "source_path": "corpus/farmer-d/logistics/972.",
+      "source_sha256": "9a7d00582a26585a300ec80105ae7ca71a96bfe5dd5f1f4ac0d7f07348a7c29a",
+      "message_id": "<7618027.1075854128154.JavaMail.evans@thyme>",
+      "msg_uid": "m_fe868740b750",
+      "quote": "will you please make the \nnecessary changes in unify",
+      "match_tier": "rewrapped",
+      "raw_start": 1884,
+      "raw_end": 1936,
+      "decoded_start": 656,
+      "decoded_end": 708,
+      "line_start": 48,
+      "line_end": 49,
+      "repaired": false,
+      "sender": "sherlyn.schumack@enron.com",
+      "sent_at": "2000-03-28T01:19:00-08:00",
+      "subject": "PG&E Texas contract 5095-037 for 2/00",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1884 count=52 if=corpus/farmer-d/logistics/972. 2>/dev/null",
+        "sed": "sed -n '48,49p' corpus/farmer-d/logistics/972."
+      }
+    },
+    {
+      "citation_id": "cit_0c3312966342",
+      "source_path": "corpus/farmer-d/logistics/2100.",
+      "source_sha256": "1d28f683aee57e628b94b3402d1ffe8c1d9c585ea9c6f9523f8dc4fcbd383088",
+      "message_id": "<19382936.1075854319677.JavaMail.evans@thyme>",
+      "msg_uid": "m_e004b7298150",
+      "quote": "it seems odd to me that scheduling had 8,928 \nMMBtu confirmed at this point and only 646 MMBtu flowed.",
+      "match_tier": "raw_exact",
+      "raw_start": 1436,
+      "raw_end": 1538,
+      "decoded_start": 577,
+      "decoded_end": 679,
+      "line_start": 36,
+      "line_end": 37,
+      "repaired": false,
+      "sender": "fred.boas@enron.com",
+      "sent_at": "2001-02-25T01:27:00-08:00",
+      "subject": "Re: Meter 5892",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1436 count=102 if=corpus/farmer-d/logistics/2100. 2>/dev/null",
+        "sed": "sed -n '36,37p' corpus/farmer-d/logistics/2100."
+      }
+    },
+    {
+      "citation_id": "cit_3251de1464be",
+      "source_path": "corpus/farmer-d/logistics/2100.",
+      "source_sha256": "1d28f683aee57e628b94b3402d1ffe8c1d9c585ea9c6f9523f8dc4fcbd383088",
+      "message_id": "<19382936.1075854319677.JavaMail.evans@thyme>",
+      "msg_uid": "m_e004b7298150",
+      "quote": "Why is nothing being allocated to Alpine?  This is a good deal we have in \nplace with them and I really need the problem resolved.",
+      "match_tier": "raw_exact",
+      "raw_start": 3046,
+      "raw_end": 3176,
+      "decoded_start": 2187,
+      "decoded_end": 2317,
+      "line_start": 78,
+      "line_end": 79,
+      "repaired": false,
+      "sender": "fred.boas@enron.com",
+      "sent_at": "2001-02-25T01:27:00-08:00",
+      "subject": "Re: Meter 5892",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=3046 count=130 if=corpus/farmer-d/logistics/2100. 2>/dev/null",
+        "sed": "sed -n '78,79p' corpus/farmer-d/logistics/2100."
+      }
+    },
+    {
+      "citation_id": "cit_2bf3be959cdb",
+      "source_path": "corpus/farmer-d/logistics/77.",
+      "source_sha256": "f8e45b7c566da6ea8aa9d07f37fa3817647eda85a04dfa420d1951105274e89b",
+      "message_id": "<10147006.1075840433872.JavaMail.evans@thyme>",
+      "msg_uid": "m_000e44173990",
+      "quote": "there was around 20,000 MMBTU scheduled, but when it was actualized, it was actualized at 0.  He thinks this is incorrect.",
+      "match_tier": "raw_exact",
+      "raw_start": 736,
+      "raw_end": 858,
+      "decoded_start": 82,
+      "decoded_end": 204,
+      "line_start": 19,
+      "line_end": 19,
+      "repaired": false,
+      "sender": "bryce.baxter@enron.com",
+      "sent_at": "2001-08-14T15:25:03-07:00",
+      "subject": "TUFCO Deal 108058",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=736 count=122 if=corpus/farmer-d/logistics/77. 2>/dev/null",
+        "sed": "sed -n '19,19p' corpus/farmer-d/logistics/77."
+      }
+    },
+    {
+      "citation_id": "cit_96657bd2123f",
+      "source_path": "corpus/farmer-d/logistics/1141.",
+      "source_sha256": "347d858a803f8635da1dafb82674d0b8b2293941d34ae49646f158df89b96374",
+      "message_id": "<8045010.1075854132041.JavaMail.evans@thyme>",
+      "msg_uid": "m_cdd2c19ad2b9",
+      "quote": "I have gone back into MOPS and \ncorrected these volumes.",
+      "match_tier": "rewrapped",
+      "raw_start": 1026,
+      "raw_end": 1082,
+      "decoded_start": 344,
+      "decoded_end": 400,
+      "line_start": 32,
+      "line_end": 33,
+      "repaired": false,
+      "sender": "aimee.lannou@enron.com",
+      "sent_at": "2000-05-24T09:08:00-07:00",
+      "subject": "MidTex",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1026 count=56 if=corpus/farmer-d/logistics/1141. 2>/dev/null",
+        "sed": "sed -n '32,33p' corpus/farmer-d/logistics/1141."
+      }
+    }
+  ],
+  "quarantined_citations": [],
+  "member_count": 38,
+  "member_uids": [
+    "m_000e44173990",
+    "m_003206e45a4d",
+    "m_0ccd9cd29969",
+    "m_15dd0b1bddb6",
+    "m_15ee36fa0081",
+    "m_165deef2ec85",
+    "m_28dbf0923aae",
+    "m_30af73d0151f",
+    "m_3bfa0f43eb63",
+    "m_3d16a02d3d4d",
+    "m_430f479b8a99",
+    "m_49074f6f0b57",
+    "m_57eba40e48c9",
+    "m_58c0001da3ff",
+    "m_5bc136fdcc5e",
+    "m_6c213bb4e4ea",
+    "m_6e490c25e357",
+    "m_72a506b41cb6",
+    "m_75c4c51413ef",
+    "m_76ad4e892208",
+    "m_804c01f881d9",
+    "m_82f083606617",
+    "m_94be5e2546d5",
+    "m_c4362f9da496",
+    "m_c4c03996de59",
+    "m_cdd2c19ad2b9",
+    "m_d9c1b78e18fa",
+    "m_dfd7a2bebb46",
+    "m_e004b7298150",
+    "m_e24b46be5752",
+    "m_ecc7c48c74d6",
+    "m_f01965c1497f",
+    "m_f09ac24ba950",
+    "m_f963f857b97c",
+    "m_f9672537e118",
+    "m_fc3b15c6667d",
+    "m_fe868740b750",
+    "m_ff8fc8d4911c"
+  ],
+  "flags": []
+}

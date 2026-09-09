@@ -1,99 +1,99 @@
 [
   {
+    "artifact_id": "CHK-01",
+    "title": "Checklist: Correcting a Wrong Deal Price in Sitara",
+    "artifact_type": "checklist",
+    "opportunity_id": "proc_04f796a5b2",
+    "opportunity_title": "Fixing wrong deal prices in Sitara after the fact",
+    "generated_at": "2026-09-09T19:21:26.108509+00:00",
+    "generator": "claude -p via .claude/agents/artifact-drafter.md",
+    "review_status": "draft-unreviewed",
+    "evidence": [
+      "cit_2874902d6601",
+      "cit_2d3930fbcf82",
+      "cit_5160f9a064ab",
+      "cit_52db8ac62baa",
+      "cit_5a1f86c95a68",
+      "cit_9fed7efcaa12",
+      "cit_d3a8d3df7638",
+      "cit_f7716817d54d"
+    ],
+    "below_threshold_judgment_call": true,
+    "filename": "CHK-01-checklist-correcting-a-wrong-deal-price-in-sitara.md"
+  },
+  {
     "artifact_id": "RUN-01",
-    "title": "Runbook: Meter-Level Scheduled-vs-Actual Volume Reconciliation",
+    "title": "Runbook: Scheduled-versus-Actual Volume Exceptions",
     "artifact_type": "runbook",
-    "opportunity_id": "proc_6b088700a9",
-    "opportunity_title": "Meter-level scheduled-vs-actual volume reconciliation, chased by email",
-    "generated_at": "2026-09-09T15:14:10.179349+00:00",
+    "opportunity_id": "proc_4a1bc6bb6f",
+    "opportunity_title": "Scheduled-versus-actual volume exceptions, reconciled by hand in Unify",
+    "generated_at": "2026-09-09T19:21:26.109287+00:00",
     "generator": "claude -p via .claude/agents/artifact-drafter.md",
     "review_status": "draft-unreviewed",
     "evidence": [
       "cit_0c3312966342",
       "cit_100761050290",
-      "cit_209530865957",
+      "cit_2bf3be959cdb",
+      "cit_30fedd9d1441",
       "cit_3251de1464be",
-      "cit_6832f6dbe2bd",
-      "cit_787c9faab285",
-      "cit_a0639d71e038",
-      "cit_bcdc65d67989"
+      "cit_7650ee9d60f9",
+      "cit_96657bd2123f",
+      "cit_dcc1e1ea7478"
     ],
     "below_threshold_judgment_call": false,
-    "filename": "RUN-01-runbook-meter-level-scheduled-vs-actual-volume-recon.md"
+    "filename": "RUN-01-runbook-scheduled-versus-actual-volume-exceptions.md"
   },
   {
     "artifact_id": "TPL-01",
-    "title": "Deal price correction in Sitara: request and confirmation mail template",
-    "artifact_type": "template",
-    "opportunity_id": "proc_7039a92ef2",
-    "opportunity_title": "Correcting mispriced deals by hand in Sitara after the fact",
-    "generated_at": "2026-09-09T15:14:10.180110+00:00",
-    "generator": "claude -p via .claude/agents/artifact-drafter.md",
-    "review_status": "draft-unreviewed",
-    "evidence": [
-      "cit_228d2225d561",
-      "cit_34b923ccd566",
-      "cit_5160f9a064ab",
-      "cit_52db8ac62baa",
-      "cit_a1667ea29fa2",
-      "cit_b72a6d852e79",
-      "cit_d2ac21d4fc0f",
-      "cit_f7716817d54d"
-    ],
-    "below_threshold_judgment_call": true,
-    "filename": "TPL-01-deal-price-correction-in-sitara-request-and-confirma.md"
-  },
-  {
-    "artifact_id": "TPL-02",
-    "title": "Template: Weekly California Capacity Report",
+    "title": "Weekly California Capacity Report \u2014 standing email template",
     "artifact_type": "template",
     "opportunity_id": "proc_a58e286bd5",
     "opportunity_title": "Weekly California Capacity Report, assembled and mailed by hand",
-    "generated_at": "2026-09-09T15:14:10.180743+00:00",
+    "generated_at": "2026-09-09T19:21:26.109950+00:00",
     "generator": "claude -p via .claude/agents/artifact-drafter.md",
     "review_status": "draft-unreviewed",
     "evidence": [
       "cit_45a6c764f509",
       "cit_5f7261c0f77a",
+      "cit_646d6e14a0ad",
+      "cit_7959cb571714",
       "cit_88fbca232748",
       "cit_c772a2736ae1",
-      "cit_d6681d88e310",
-      "cit_e2066f723f8d",
-      "cit_f22673c230de",
+      "cit_cd0f539df211",
       "cit_feeabdbb4ec3"
     ],
     "below_threshold_judgment_call": false,
-    "filename": "TPL-02-template-weekly-california-capacity-report.md"
+    "filename": "TPL-01-weekly-california-capacity-report-standing-email-tem.md"
   },
   {
-    "artifact_id": "RUN-02",
-    "title": "Runbook: Extending a Sitara deal to cover meter flow outside the deal term",
-    "artifact_type": "runbook",
-    "opportunity_id": "proc_f416357f1e",
-    "opportunity_title": "Extending Sitara deals by request to cover unallocated meter flow",
-    "generated_at": "2026-09-09T15:14:10.181354+00:00",
+    "artifact_id": "TPL-02",
+    "title": "Monthly First-of-Month Gas Nomination \u2014 Standard Submission Template",
+    "artifact_type": "template",
+    "opportunity_id": "proc_b568e80cfc",
+    "opportunity_title": "Monthly first-of-month gas nominations emailed in by counterparties",
+    "generated_at": "2026-09-09T19:21:26.110563+00:00",
     "generator": "claude -p via .claude/agents/artifact-drafter.md",
     "review_status": "draft-unreviewed",
     "evidence": [
-      "cit_23ba30ad80ce",
-      "cit_4bfbff6103a8",
-      "cit_6a0022ab9d63",
-      "cit_9f0498ab829a",
-      "cit_d1512f9b2bae",
-      "cit_d73baaf8565e",
-      "cit_da672f3158ef",
-      "cit_f79c9932ff41"
+      "cit_04eb86a692b1",
+      "cit_5ed878358f01",
+      "cit_607989d33ece",
+      "cit_7ad0647816c0",
+      "cit_8ce5472cc445",
+      "cit_d0a4a6dca279",
+      "cit_d7d7daa00d35",
+      "cit_d9554236673a"
     ],
     "below_threshold_judgment_call": false,
-    "filename": "RUN-02-runbook-extending-a-sitara-deal-to-cover-meter-flow-.md"
+    "filename": "TPL-02-monthly-first-of-month-gas-nomination-standard-submi.md"
   },
   {
     "artifact_id": "EML-01",
-    "title": "Daily Credit Report: standing distribution email (draft)",
+    "title": "Standing Daily Credit Report \u2014 Distribution Email Template",
     "artifact_type": "email",
     "opportunity_id": "ser_06b1e12574",
     "opportunity_title": "\"Credit Report - 1/30/01\" produced daily",
-    "generated_at": "2026-09-09T15:14:10.181839+00:00",
+    "generated_at": "2026-09-09T19:21:26.111207+00:00",
     "generator": "claude -p via .claude/agents/artifact-drafter.md",
     "review_status": "draft-unreviewed",
     "evidence": [
@@ -107,15 +107,15 @@
       "cit_e6d8a34749a1"
     ],
     "below_threshold_judgment_call": false,
-    "filename": "EML-01-daily-credit-report-standing-distribution-email-draf.md"
+    "filename": "EML-01-standing-daily-credit-report-distribution-email-temp.md"
   },
   {
     "artifact_id": "EML-02",
-    "title": "Weekly California Capacity Report \u2014 transmittal email draft",
+    "title": "Weekly California Capacity Report \u2014 standing cover email (draft)",
     "artifact_type": "email",
     "opportunity_id": "ser_4d4f0b156e",
     "opportunity_title": "\"California Capacity Report for Week of 01/14-01/18\" produced weekly",
-    "generated_at": "2026-09-09T15:14:10.182446+00:00",
+    "generated_at": "2026-09-09T19:21:26.111827+00:00",
     "generator": "claude -p via .claude/agents/artifact-drafter.md",
     "review_status": "draft-unreviewed",
     "evidence": [
@@ -129,15 +129,15 @@
       "cit_e474f470ba47"
     ],
     "below_threshold_judgment_call": false,
-    "filename": "EML-02-weekly-california-capacity-report-transmittal-email-.md"
+    "filename": "EML-02-weekly-california-capacity-report-standing-cover-ema.md"
   },
   {
     "artifact_id": "EML-03",
-    "title": "Standing email: Calpine Daily Gas Nomination notice",
+    "title": "Standing email template: Calpine Daily Gas Nomination",
     "artifact_type": "email",
     "opportunity_id": "ser_c103eb437b",
     "opportunity_title": "\"Calpine Daily Gas Nomination\" produced monthly",
-    "generated_at": "2026-09-09T15:14:10.183172+00:00",
+    "generated_at": "2026-09-09T19:21:26.112473+00:00",
     "generator": "claude -p via .claude/agents/artifact-drafter.md",
     "review_status": "draft-unreviewed",
     "evidence": [
@@ -151,6 +151,6 @@
       "cit_ba466aea576b"
     ],
     "below_threshold_judgment_call": false,
-    "filename": "EML-03-standing-email-calpine-daily-gas-nomination-notice.md"
+    "filename": "EML-03-standing-email-template-calpine-daily-gas-nomination.md"
   }
 ]

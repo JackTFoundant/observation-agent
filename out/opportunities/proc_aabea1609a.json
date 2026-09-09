@@ -1,0 +1,131 @@
+{
+  "opportunity_id": "proc_aabea1609a",
+  "source": "content_cluster",
+  "title": "Meter data updates circulated by email in Farmer's logistics folder",
+  "task_class": "meter_data",
+  "label_mechanical": "Meter data requests and corrections: report data / meter / update",
+  "narrative": {
+    "what_happens": "A small number of messages in one logistics mailbox folder pass along meter data \u2014 readings or volumes for a period, changes to a meter's recorded data, and occasionally a meter data problem someone has spotted. Every message in the group was classified as informational: the sender is telling recipients what a meter now shows rather than asking anyone to act, and no reply or confirmation step is visible in what was captured. Email is the only system named in the exemplars; no deal-capture or volume-accounting system is referenced by name in this group. The messages come from a handful of senders and reach a wider set of recipients, and they are scattered across four separate months over roughly two years rather than following a visible weekly or monthly cadence. Where the work goes after the mail is sent is not visible in the evidence.",
+    "where_it_stalls": "No stall is actually evidenced here. The measured signal rates for rework, waiting, manual transfer and deadline pressure are all zero and every message carries the informational role, so there is no chasing, no correction round and no cutoff in this group. The only thing the evidence supports is that meter data is moved between people as free-text email rather than through a named system, which leaves no record that a recipient read or applied it \u2014 but the archive does not show that failing.",
+    "why_it_recurs": "Meter values change and someone has to tell the people downstream. Because the channel is email in one folder rather than a shared data source, each change is announced again by hand.",
+    "automation_opportunity": "If meter values live in a system of record, a change-notification hook on that record could publish updates to the interested parties, removing the hand-written announcement. On this evidence base the payoff is unproven and the group is too thin to justify building anything on its own.",
+    "coherence": "mixed"
+  },
+  "status": "quarantined",
+  "status_reason": "only 0 verified citation(s); 3 required",
+  "confidence": "low",
+  "artifact_shape": "none",
+  "measured": {
+    "instances": 9,
+    "messages": 9,
+    "dated_messages": 9,
+    "undated_messages": 0,
+    "participants_median": 3,
+    "months": 4.0,
+    "rework_rate": 0.0,
+    "waiting_rate": 0.0,
+    "manual_transfer_rate": 0.0,
+    "senders": 3
+  },
+  "gate_metrics": {
+    "messages": 9,
+    "distinct_content": 9,
+    "senders": 3,
+    "threads": 9,
+    "months": 4,
+    "weeks": 6,
+    "folders": 1,
+    "people": 11
+  },
+  "signal_rates": {
+    "rework_signal": 0.0,
+    "waiting_signal": 0.0,
+    "manual_transfer_signal": 0.0,
+    "deadline_signal": 0.0
+  },
+  "systems": {
+    "email": 5
+  },
+  "roles": {
+    "fyi": 9
+  },
+  "months": [
+    "2000-01",
+    "2000-06",
+    "2001-01",
+    "2001-05"
+  ],
+  "people": 11,
+  "hours_per_month": {
+    "low": 0.2,
+    "base": 0.6,
+    "high": 1.4
+  },
+  "automatable_hours_per_month": {
+    "low": 0.1,
+    "base": 0.4,
+    "high": 1.2
+  },
+  "dollars_per_month": {
+    "low": 6.63,
+    "base": 31.7,
+    "high": 102.41
+  },
+  "derivation": {
+    "formula_id": "hours_v1",
+    "estimate_version": "1.0.0",
+    "measured": {
+      "instances": 9,
+      "messages": 9,
+      "dated_messages": 9,
+      "undated_messages": 0,
+      "participants_median": 3,
+      "months": 4.0,
+      "rework_rate": 0.0,
+      "waiting_rate": 0.0,
+      "manual_transfer_rate": 0.0,
+      "senders": 3
+    },
+    "assumed": {
+      "handle_min": 9.0,
+      "per_touch_min": 4.0,
+      "rework_min": 12.0,
+      "waiting_admin_min": 3.0,
+      "automatable_share": 0.65
+    },
+    "assumed_global": {
+      "blended_rate_usd_per_hour": 85.0,
+      "coordination_alpha": 0.35,
+      "extrapolation_factor": 1.0
+    },
+    "assumption_source": "config/estimation.yml#task_classes.meter_data",
+    "steps": [
+      "9.00 task instances / 4 months of coverage = 2.250 instances per month",
+      "minutes per instance = 9 handle + (1.00 touches - 1) x 4 + 0.00 rework rate x 12 + 0.00 waiting rate x 3 = 9.00 min",
+      "coordination multiplier = 1 + 0.35 x (3 median participants - 1) = 1.700",
+      "hours per month = 2.250 x 9.00 x 1.700 / 60 = 0.574",
+      "automatable hours = 0.574 x 0.65 automatable share = 0.373",
+      "dollars per month = 0.373 h x $85/h = $31.70"
+    ],
+    "result": {
+      "hours_per_month": 0.6,
+      "automatable_hours_per_month": 0.4,
+      "dollars_per_month": 31.7
+    }
+  },
+  "citations": [],
+  "quarantined_citations": [],
+  "member_count": 9,
+  "member_uids": [
+    "m_04bacc21e37d",
+    "m_1ccae32b2788",
+    "m_6039ae0c8416",
+    "m_7ec4e2cbea92",
+    "m_86c2c28fab00",
+    "m_a35794a8a50c",
+    "m_b9e312bbb441",
+    "m_d1ccc5b5ecc4",
+    "m_f5c96ac8f303"
+  ],
+  "flags": []
+}

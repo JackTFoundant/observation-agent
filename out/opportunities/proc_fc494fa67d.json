@@ -1,0 +1,358 @@
+{
+  "opportunity_id": "proc_fc494fa67d",
+  "source": "content_cluster",
+  "title": "Extending deal tickets by hand to cover unallocated meter flow",
+  "task_class": "deal_entry_correction",
+  "label_mechanical": "Deal entry and correction in Sitara / Unify / TAGG: extend deal / flow / cover",
+  "narrative": {
+    "what_happens": "Gas flows at a meter for days that no live deal ticket covers, so the volume cannot be allocated or booked. Whoever spots the gap \u2014 usually someone reconciling allocations or chasing volumes that Volume Management cannot arrange accounting for \u2014 emails the deal owner with the meter number, the prior deal number and the specific flow dates, asking that the existing deal be extended rather than a new one written. The deal owner amends the ticket, and the requester checks whether the change has appeared downstream in Unify before the volume can be allocated; if it has not, they ask whether the same deal ticket was used. Where no extension is possible, the fallback is to allocate the gas off to \"Strangers\" until someone decides what to do.",
+    "where_it_stalls": "The request is a one-off email naming a deal number and dates, so nothing tracks it: the requester must come back later and confirm the amendment surfaced in Unify (\"This has not yet shown up in Unify. Did you use the same deal ticket?\"). Some requests cannot be honoured at all \u2014 one thread stalls on the East Desk not having been on Unify for the flow period in question \u2014 and those messages escalate rather than resolve. Two-thirds of the messages carry rework signals: the same meters and deals come back for repeated extension, including one request explicitly asking \"one more time\".",
+    "why_it_recurs": "Physical flow keeps running past the end date of the deal that covers it (valves not shut, months rolling over), and nothing reconciles deal end dates against measured meter volumes, so each gap is discovered after the fact and fixed by hand.",
+    "automation_opportunity": "A scheduled reconciliation that compares measured meter volumes against deal coverage dates and raises a ticketed extension request naming the meter, last deal number and uncovered dates, then confirms automatically when the amendment appears in Unify \u2014 removing both the discovery step and the manual follow-up chase.",
+    "coherence": "tight"
+  },
+  "status": "counted",
+  "status_reason": "",
+  "confidence": "high",
+  "artifact_shape": "runbook",
+  "measured": {
+    "instances": 15,
+    "messages": 22,
+    "dated_messages": 22,
+    "undated_messages": 0,
+    "participants_median": 2,
+    "months": 6.0,
+    "rework_rate": 0.6818181818181818,
+    "waiting_rate": 0.13636363636363635,
+    "manual_transfer_rate": 0.045454545454545456,
+    "senders": 8
+  },
+  "gate_metrics": {
+    "messages": 22,
+    "distinct_content": 22,
+    "senders": 8,
+    "threads": 15,
+    "months": 6,
+    "weeks": 9,
+    "folders": 1,
+    "people": 18
+  },
+  "signal_rates": {
+    "rework_signal": 0.6818,
+    "waiting_signal": 0.1364,
+    "manual_transfer_signal": 0.0455,
+    "deadline_signal": 0.0455
+  },
+  "systems": {
+    "other_system": 10,
+    "unify": 4,
+    "email": 2,
+    "sitara": 1
+  },
+  "roles": {
+    "request": 15,
+    "confirmation": 2,
+    "escalation": 2,
+    "response": 2,
+    "correction": 1
+  },
+  "months": [
+    "2000-06",
+    "2000-07",
+    "2000-10",
+    "2000-11",
+    "2000-12",
+    "2001-03"
+  ],
+  "people": 18,
+  "hours_per_month": {
+    "low": 0.6,
+    "base": 1.5,
+    "high": 3.5
+  },
+  "automatable_hours_per_month": {
+    "low": 0.2,
+    "base": 0.7,
+    "high": 2.3
+  },
+  "dollars_per_month": {
+    "low": 13.37,
+    "base": 58.12,
+    "high": 194.41
+  },
+  "derivation": {
+    "formula_id": "hours_v1",
+    "estimate_version": "1.0.0",
+    "measured": {
+      "instances": 15,
+      "messages": 22,
+      "dated_messages": 22,
+      "undated_messages": 0,
+      "participants_median": 2,
+      "months": 6.0,
+      "rework_rate": 0.6818181818181818,
+      "waiting_rate": 0.13636363636363635,
+      "manual_transfer_rate": 0.045454545454545456,
+      "senders": 8
+    },
+    "assumed": {
+      "handle_min": 12.0,
+      "per_touch_min": 5.0,
+      "rework_min": 18.0,
+      "waiting_admin_min": 3.0,
+      "automatable_share": 0.45
+    },
+    "assumed_global": {
+      "blended_rate_usd_per_hour": 85.0,
+      "coordination_alpha": 0.35,
+      "extrapolation_factor": 1.0
+    },
+    "assumption_source": "config/estimation.yml#task_classes.deal_entry_correction",
+    "steps": [
+      "15.00 task instances / 6 months of coverage = 2.500 instances per month",
+      "minutes per instance = 12 handle + (1.47 touches - 1) x 5 + 0.68 rework rate x 18 + 0.14 waiting rate x 3 = 27.02 min",
+      "coordination multiplier = 1 + 0.35 x (2 median participants - 1) = 1.350",
+      "hours per month = 2.500 x 27.02 x 1.350 / 60 = 1.520",
+      "automatable hours = 1.520 x 0.45 automatable share = 0.684",
+      "dollars per month = 0.684 h x $85/h = $58.12"
+    ],
+    "result": {
+      "hours_per_month": 1.5,
+      "automatable_hours_per_month": 0.7,
+      "dollars_per_month": 58.12
+    }
+  },
+  "citations": [
+    {
+      "citation_id": "cit_f14c30a3c31e",
+      "source_path": "corpus/farmer-d/logistics/221.",
+      "source_sha256": "b9de30af0a3766c7a7855b067274749de118151aadc92a6fb51fd3abe5cfb9a7",
+      "message_id": "<16461593.1075840437525.JavaMail.evans@thyme>",
+      "msg_uid": "m_431dbe3f4f87",
+      "quote": "This has not yet shown up in Unify.  Did you use the same deal ticket?",
+      "match_tier": "raw_exact",
+      "raw_start": 536,
+      "raw_end": 606,
+      "decoded_start": 0,
+      "decoded_end": 70,
+      "line_start": 19,
+      "line_end": 19,
+      "repaired": false,
+      "sender": "michael.olsen@enron.com",
+      "sent_at": "2001-03-20T15:55:00-08:00",
+      "subject": "Re: Deal 338634 Meter 985077",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=536 count=70 if=corpus/farmer-d/logistics/221. 2>/dev/null",
+        "sed": "sed -n '19,19p' corpus/farmer-d/logistics/221."
+      }
+    },
+    {
+      "citation_id": "cit_da672f3158ef",
+      "source_path": "corpus/farmer-d/logistics/1502.",
+      "source_sha256": "4719b761c35534f34e0c0d0c964087ef92cd0c021ed731dad3460bfc65442408",
+      "message_id": "<8662527.1075854140459.JavaMail.evans@thyme>",
+      "msg_uid": "m_32ab1d66dd8e",
+      "quote": "I think that the deal needs to be extended, it looks like the valve \nwas not completely shut by 9 am.",
+      "match_tier": "rewrapped",
+      "raw_start": 701,
+      "raw_end": 802,
+      "decoded_start": 235,
+      "decoded_end": 336,
+      "line_start": 22,
+      "line_end": 23,
+      "repaired": false,
+      "sender": "mary.poorman@enron.com",
+      "sent_at": "2000-11-08T05:39:00-08:00",
+      "subject": "Meter 986899 For November",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=701 count=101 if=corpus/farmer-d/logistics/1502. 2>/dev/null",
+        "sed": "sed -n '22,23p' corpus/farmer-d/logistics/1502."
+      }
+    },
+    {
+      "citation_id": "cit_6a0022ab9d63",
+      "source_path": "corpus/farmer-d/logistics/1502.",
+      "source_sha256": "4719b761c35534f34e0c0d0c964087ef92cd0c021ed731dad3460bfc65442408",
+      "message_id": "<8662527.1075854140459.JavaMail.evans@thyme>",
+      "msg_uid": "m_32ab1d66dd8e",
+      "quote": "Pat has asked that this issue be resolved \ntoday, so, your assistance would be greatly appreciated.",
+      "match_tier": "rewrapped",
+      "raw_start": 804,
+      "raw_end": 903,
+      "decoded_start": 338,
+      "decoded_end": 437,
+      "line_start": 23,
+      "line_end": 24,
+      "repaired": false,
+      "sender": "mary.poorman@enron.com",
+      "sent_at": "2000-11-08T05:39:00-08:00",
+      "subject": "Meter 986899 For November",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=804 count=99 if=corpus/farmer-d/logistics/1502. 2>/dev/null",
+        "sed": "sed -n '23,24p' corpus/farmer-d/logistics/1502."
+      }
+    },
+    {
+      "citation_id": "cit_bd0c496a71cc",
+      "source_path": "corpus/farmer-d/logistics/1520.",
+      "source_sha256": "20d2b0d8c3260a98f779465cee73cdcedb57f6c4e38358c84a36946473308cb0",
+      "message_id": "<25277301.1075854140902.JavaMail.evans@thyme>",
+      "msg_uid": "m_e09e872ae252",
+      "quote": "Please let me know if we want to extend this deal (85% \nof hsc - lg, etc) or if I should put this gas on Strangers until we determine \nwhat to do.",
+      "match_tier": "rewrapped",
+      "raw_start": 738,
+      "raw_end": 884,
+      "decoded_start": 252,
+      "decoded_end": 398,
+      "line_start": 22,
+      "line_end": 24,
+      "repaired": false,
+      "sender": "mary.poorman@enron.com",
+      "sent_at": "2000-11-15T06:55:00-08:00",
+      "subject": "Meter 6315, purch from Torch/Rally, October",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=738 count=146 if=corpus/farmer-d/logistics/1520. 2>/dev/null",
+        "sed": "sed -n '22,24p' corpus/farmer-d/logistics/1520."
+      }
+    },
+    {
+      "citation_id": "cit_c0504de3a61e",
+      "source_path": "corpus/farmer-d/logistics/1520.",
+      "source_sha256": "20d2b0d8c3260a98f779465cee73cdcedb57f6c4e38358c84a36946473308cb0",
+      "message_id": "<25277301.1075854140902.JavaMail.evans@thyme>",
+      "msg_uid": "m_e09e872ae252",
+      "quote": "I am now on the dreaded ua4 list from Vol. Mgmt.",
+      "match_tier": "raw_exact",
+      "raw_start": 886,
+      "raw_end": 934,
+      "decoded_start": 400,
+      "decoded_end": 448,
+      "line_start": 24,
+      "line_end": 24,
+      "repaired": false,
+      "sender": "mary.poorman@enron.com",
+      "sent_at": "2000-11-15T06:55:00-08:00",
+      "subject": "Meter 6315, purch from Torch/Rally, October",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=886 count=48 if=corpus/farmer-d/logistics/1520. 2>/dev/null",
+        "sed": "sed -n '24,24p' corpus/farmer-d/logistics/1520."
+      }
+    },
+    {
+      "citation_id": "cit_f79c9932ff41",
+      "source_path": "corpus/farmer-d/logistics/1486.",
+      "source_sha256": "8a028f0dcb0d01817f2541645a2eb4e1f4dc45d6fb5145b92a191fe7a0b6a6ca",
+      "message_id": "<24954200.1075854140096.JavaMail.evans@thyme>",
+      "msg_uid": "m_8c369f5cfab6",
+      "quote": "Can the deal be extended \nfor 6/4 (548 dec.) and 6/9 (40 dec.) to cover this flow so that Volume \nManagement can create an accounting arrangement for these two days?",
+      "match_tier": "rewrapped",
+      "raw_start": 759,
+      "raw_end": 924,
+      "decoded_start": 130,
+      "decoded_end": 295,
+      "line_start": 23,
+      "line_end": 25,
+      "repaired": false,
+      "sender": "jackie.young@enron.com",
+      "sent_at": "2000-11-01T02:03:00-08:00",
+      "subject": "6/4/99 and 6/9/99 (98-0439) Enerfin TETCO",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=759 count=165 if=corpus/farmer-d/logistics/1486. 2>/dev/null",
+        "sed": "sed -n '23,25p' corpus/farmer-d/logistics/1486."
+      }
+    },
+    {
+      "citation_id": "cit_6d2e2162f896",
+      "source_path": "corpus/farmer-d/logistics/1492.",
+      "source_sha256": "d7f3cbe83db9a637318bfce3015244bdaaba461c905d58314174d8e97ff49ebc",
+      "message_id": "<9342518.1075854140234.JavaMail.evans@thyme>",
+      "msg_uid": "m_35f18d7ffa79",
+      "quote": "I don't think we can even process this request.  The East Desk was not up and \nrunning on Unify in June of 1999.",
+      "match_tier": "rewrapped",
+      "raw_start": 1443,
+      "raw_end": 1555,
+      "decoded_start": 464,
+      "decoded_end": 576,
+      "line_start": 41,
+      "line_end": 42,
+      "repaired": false,
+      "sender": "jackie.young@enron.com",
+      "sent_at": "2000-11-02T06:06:00-08:00",
+      "subject": "Re: 6/4/99 and 6/9/99 (98-0439) Enerfin TETCO",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1443 count=112 if=corpus/farmer-d/logistics/1492. 2>/dev/null",
+        "sed": "sed -n '41,42p' corpus/farmer-d/logistics/1492."
+      }
+    },
+    {
+      "citation_id": "cit_23ba30ad80ce",
+      "source_path": "corpus/farmer-d/logistics/1174.",
+      "source_sha256": "24f2a988a08626bd869f8028fdc272eeebe9aaab21f0e895bd854d717cf9f9d1",
+      "message_id": "<17903928.1075854132788.JavaMail.evans@thyme>",
+      "msg_uid": "m_49a1e719549e",
+      "quote": ".16 decatherms allocated at this meter for 5/31/2000.  Can you please extend \ndeal (one more time for me) for 5/31/2000.",
+      "match_tier": "rewrapped",
+      "raw_start": 524,
+      "raw_end": 644,
+      "decoded_start": 0,
+      "decoded_end": 120,
+      "line_start": 21,
+      "line_end": 22,
+      "repaired": false,
+      "sender": "jackie.young@enron.com",
+      "sent_at": "2000-06-05T04:30:00-07:00",
+      "subject": "Re: 98-1601",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=524 count=120 if=corpus/farmer-d/logistics/1174. 2>/dev/null",
+        "sed": "sed -n '21,22p' corpus/farmer-d/logistics/1174."
+      }
+    }
+  ],
+  "quarantined_citations": [],
+  "member_count": 22,
+  "member_uids": [
+    "m_17e13b7eee2f",
+    "m_2be972643353",
+    "m_32ab1d66dd8e",
+    "m_35f18d7ffa79",
+    "m_3653f9dad124",
+    "m_3903bde3a265",
+    "m_431dbe3f4f87",
+    "m_49a1e719549e",
+    "m_4ef7096f14a3",
+    "m_52d31b91fde5",
+    "m_65905c696755",
+    "m_6d06be35afb0",
+    "m_6eeb62050aea",
+    "m_7fa5f7e115be",
+    "m_8b980889aa8f",
+    "m_8c369f5cfab6",
+    "m_985a8138db57",
+    "m_b0713657ebb3",
+    "m_be7c7a50e28b",
+    "m_d3b18e0f9709",
+    "m_e09e872ae252",
+    "m_e6d021ed44b8"
+  ],
+  "flags": []
+}

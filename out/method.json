@@ -481,7 +481,7 @@
       "task_instances": 2823,
       "people": 2691,
       "generated_tables": 1,
-      "seconds": 2.61
+      "seconds": 3.21
     },
     "stage1": {
       "messages_eligible": 2531,
@@ -496,34 +496,34 @@
       "coverage": 1.0
     },
     "stage2": {
-      "records": 1640,
-      "clusters": 977,
-      "promoted": 10,
-      "residual": 967,
-      "seconds": 1.0
+      "records": 1625,
+      "clusters": 918,
+      "promoted": 9,
+      "residual": 909,
+      "seconds": 1.06
     },
     "stage3": {
-      "clusters": 10,
-      "characterized": 10,
+      "clusters": 9,
+      "characterized": 9,
       "model_calls": 0,
-      "cache_hits": 10,
+      "cache_hits": 9,
       "failed": 0
     },
     "stage45": {
-      "opportunities": 13,
+      "opportunities": 12,
       "counted": 11,
       "low_confidence": 0,
-      "quarantined": 2,
-      "citations_verified": 89,
-      "citations_quarantined": 2,
+      "quarantined": 1,
+      "citations_verified": 88,
+      "citations_quarantined": 0,
       "series_promoted": 3,
       "series_rejected": 19,
-      "seconds": 0.38
+      "seconds": 0.35
     },
     "stage6": {
       "selected": 7,
       "written": 7,
-      "skipped": 6,
+      "skipped": 5,
       "model_calls": 0,
       "cache_hits": 7,
       "failed": 0,

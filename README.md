@@ -18,7 +18,13 @@ make serve                   # dashboard on http://localhost:8787
 ```
 
 `make run` is safe to re-run. Everything is content-addressed, so an unchanged corpus
-replays from cache in seconds and an interrupted run resumes by running it again.
+replays from cache in about five seconds with zero model calls, and an interrupted run
+resumes by running it again — filling a 32-message gap left by a partial run took 79
+seconds and touched nothing else.
+
+The run in `out/` and its log in `runs/final/` are the same execution: 3,240 files read,
+2,531 messages classified (100% coverage), 11 opportunities, 88 citations all anchored to
+exact byte ranges, 7 drafted artifacts, `make verify` clean.
 
 If the `claude` CLI is not on your `PATH`, the runner finds it anyway (including inside a
 VS Code extension directory). Set `CLAUDE_BIN` to override. If it is not authenticated,
@@ -44,16 +50,19 @@ reproduce each one. Every citation in the dashboard shows both.
 
 A deterministic conductor whose entire workforce is Claude Code.
 
-| Stage | Kind |
-|---|---|
-| parse, decode, resolve identity, dedupe, thread, triage | deterministic |
-| classify each message | **model**, ~100 batched calls |
-| block, cluster, gate, label | deterministic |
-| describe each promoted cluster | **model**, one call each |
-| measure, cost, rank | deterministic |
-| anchor every quote to raw bytes, gate claims | deterministic |
-| draft artifacts above the threshold | **model**, up to 7 calls |
-| render report and dashboard data | deterministic |
+| Stage | Kind | Cost on the shipped run |
+|---|---|---|
+| parse, decode, resolve identity, dedupe, thread, triage | deterministic | 3s |
+| classify each message | **model** | 80 batched calls |
+| block, cluster, gate, label | deterministic | 1.5s |
+| describe each promoted cluster | **model** | 9 calls, one per cluster |
+| measure, cost, rank | deterministic | <1s |
+| anchor every quote to raw bytes, gate claims | deterministic | <1s |
+| draft artifacts above the threshold | **model** | 8 calls |
+| render report and dashboard data | deterministic | <1s |
+
+**97 model calls, 12 minutes 2 seconds, from an empty cache.** A re-run over the unchanged
+corpus takes about five seconds and makes no model calls at all.
 
 The split is not arbitrary. *Promises about control flow* — finishes unattended, inside a
 time budget, resumable, arithmetic exact, tests pass with no model — cannot be delegated to

@@ -1,23 +1,23 @@
 # Where this company is losing time
 
-*Run `cold5` · generated 2026-09-09T15:14:10Z · corpus digest `c94acc4b08cb`*
+*Run `replay` · generated 2026-09-09T19:20:27Z · corpus digest `c94acc4b08cb`*
 
-## $1,439 per month
+## $1,501 per month
 
-Range $335 – $4,623. 17 automatable hours per month at a blended $85/hour, across 11 opportunities.
+Range $346 – $4,850. 18 automatable hours per month at a blended $85/hour, across 11 opportunities.
 
 Observed across 4 mailboxes and 3,240 messages, 1999-12-13 to 2002-03-25 (28 months). Not extrapolated beyond what was observed.
 
 The range is not decoration. The counts behind these figures are measured from the corpus; the minutes-per-task are estimates nobody was able to verify, so the base number should be read as the middle of a band, not as a measurement.
 
-**This is a floor, not a total.** 178 of 2,531 operational messages (7%) could be attributed to an identified recurring process. The other 2,353 are a long tail that failed the promotion gate - too few repetitions, too short a window, or too few people to call it a process. That work is real and is deliberately left uncosted rather than estimated. Every rejected candidate is published in `out/residual.json` with the gate it failed.
+**This is a floor, not a total.** 172 of 2,531 operational messages (7%) could be attributed to an identified recurring process. The other 2,359 are a long tail that failed the promotion gate - too few repetitions, too short a window, or too few people to call it a process. That work is real and is deliberately left uncosted rather than estimated. Every rejected candidate is published in `out/residual.json` with the gate it failed.
 
 ### What was read
 
 - **3,240 files**, every one of them, 3,224 unique after removing 16 duplicates in 16 groups
 - grouped into **2,823 task instances**, because a forty-message argument about one nomination is one task
 - **2,531 messages** were shown to a model; 596 were acknowledgements with no new text and were counted deterministically instead
-- **89 citations** verified against raw bytes, 2 rejected and published in `out/quarantine.json`
+- **88 citations** verified against raw bytes, 0 rejected and published in `out/quarantine.json`
 
 > **A note on `corpus/farmer-d/logistics/3221.`.** This message is 5% of the corpus in one file. Its 3,600-row table is machine-generated placeholder content, not business data, and **no quantity in this report is derived from it**. The proof is arithmetic:
 >
@@ -39,18 +39,18 @@ The range is not decoration. The counts behind these figures are measured from t
 | 1 | "Credit Report - 1/30/01" produced daily | $544 | $155–$1,534 | 6.4 | 69 | 4 | 8 | medium |
 | 2 | "California Capacity Report for Week of 01/14-01/18" produced weekly | $266 | $51–$929 | 3.1 | 15 | 5 | 8 | medium |
 | 3 | Weekly California Capacity Report, assembled and mailed by hand | $248 | $48–$865 | 2.9 | 16 | 6 | 8 | high |
-| 4 | Meter-level scheduled-vs-actual volume reconciliation, chased by email | $87 | $19–$299 | 1.0 | 34 | 18 | 8 | high |
+| 4 | Scheduled-versus-actual volume exceptions, reconciled by hand in Unify | $91 | $20–$314 | 1.1 | 33 | 18 | 8 | high |
 | 5 | "Calpine Daily Gas Nomination" produced monthly | $87 | $19–$284 | 1.0 | 17 | 11 | 8 | medium |
-| 6 | Extending Sitara deals by request to cover unallocated meter flow | $56 | $12–$203 | 0.7 | 15 | 7 | 8 | high |
-| 7 | Correcting mispriced deals by hand in Sitara after the fact | $37 | $8–$124 | 0.4 | 7 | 5 | 8 | high |
-| 8 | Daily gas nominations mailed as attached Word and Excel files | $33 | $6–$113 | 0.4 | 30 | 14 | 8 | high |
-| 9 | Monthly first-of-month gas nominations mailed in by plant customers | $29 | $5–$100 | 0.3 | 14 | 9 | 8 | high |
-| 10 | Fixing miskeyed Sitara deal entries after the fact | $26 | $6–$88 | 0.3 | 8 | 5 | 4 | medium |
-| 11 | Nomination changes confirmed by hand with pipelines and counterparties | $25 | $5–$82 | 0.3 | 11 | 8 | 8 | high |
+| 6 | Monthly first-of-month gas nominations emailed in by counterparties | $67 | $9–$260 | 0.8 | 13 | 9 | 8 | high |
+| 7 | Extending deal tickets by hand to cover unallocated meter flow | $58 | $13–$194 | 0.7 | 15 | 6 | 8 | high |
+| 8 | Fixing wrong deal prices in Sitara after the fact | $46 | $10–$153 | 0.5 | 7 | 4 | 8 | high |
+| 9 | Fixing deal prices in Sitara by hand before invoices go out | $41 | $8–$150 | 0.5 | 7 | 5 | 8 | high |
+| 10 | Daily gas nominations mailed as Word and Excel attachments | $31 | $6–$106 | 0.4 | 28 | 14 | 8 | high |
+| 11 | Nomination changes confirmed by hand across Sitara, Unify and counterparties | $20 | $5–$60 | 0.2 | 8 | 6 | 8 | high |
 
 ### Not counted
 
-0 opportunities were demoted to low confidence ($0/month not included in the headline) and 2 were quarantined for insufficient evidence ($48/month excluded). See `out/quarantine.json`.
+0 opportunities were demoted to low confidence ($0/month not included in the headline) and 1 were quarantined for insufficient evidence ($32/month excluded). See `out/quarantine.json`.
 
 ---
 
@@ -204,13 +204,13 @@ Assumptions from `config/estimation.yml#task_classes.recurring_report`.
 
 *Measured:* 18 messages in 16 task instances, 2 sender(s), 10 people, 6 months. rework 6%, manual_transfer 89%.
 
-**What happens.** Each week a Transwestern commercial analyst compiles a California capacity summary and mails it to a fixed distribution list. The body follows the same structure every time: average Transwestern deliveries to California against capacity, San Juan lateral throughput, El Paso deliveries broken out by delivery point, and posted Gas Daily prices. The figures are pulled from other sources — spreadsheets appear alongside email in most of these messages — and retyped into the mail body rather than generated by the reporting system itself. The output is the mail itself; the thread ends when it is sent, with no reply expected. One message in the set is a backup handoff, where a colleague forwards their last version of the Interstate Capacity Report so the series can continue.
+**What happens.** Each week a Transwestern commercial analyst compiles a California capacity summary and mails it to a fixed distribution list. The body follows the same structure every time: average Transwestern deliveries to California with San Juan lateral throughput, El Paso deliveries broken out by delivery point, and posted Gas Daily prices. The figures are pulled together from separate sources — spreadsheets are referenced on about half the messages — and then retyped into the mail body rather than generated by a system. The report is sent as a plain status message with no reply expected; the cycle closes when the next week's edition goes out. One message in the set is a correction issuing the right effective week for a report already sent, and one marks the end of a related "California Interstate Capacity Report" series.
 
-**Where it stalls.** There is no waiting and no deadline pressure visible here — nobody is chased and nothing is blocked. The friction is entirely in assembly: nearly every message carries a manual-transfer signal, meaning numbers are moved by hand out of spreadsheets into a prose email that reads identically week to week. Because the header and the numbers are hand-keyed together, the labelling can drift from the data: one message is a correction issued purely to restate the report's effective week ("Sorry, the effective date for this new report is 01/07-01/11"), which means the recipients had already read a report stamped with the wrong period.
+**Where it stalls.** The failure mode is not chasing — there are no waiting signals and no deadline language. It is manual transfer: nearly every message carries the signal of numbers being moved by hand from a spreadsheet into an email body, so the report exists only as prose in a mailbox and never as data anyone can query. That hand-keying is what produced the observed correction, where the effective date range on a distributed report had to be restated after the fact. Production also rests on a very small number of senders, so the series simply stops when that person stops sending.
 
-**Why it recurs.** A fixed weekly reporting obligation to a standing distribution list. The report period rolls forward every week and the source figures live in spreadsheets that do not themselves mail anything, so a person regenerates the same document each cycle.
+**Why it recurs.** A fixed weekly cadence and a standing distribution list: the same figures for the same delivery points must be restated every week regardless of whether anything changed.
 
-**What could absorb it.** A scheduled job that reads the delivery, lateral-throughput and Gas Daily figures from their source tables, renders them into the existing fixed sentence template with the report week derived from the run date, and mails it to the standing list — leaving the analyst to review rather than retype. Deriving the effective-date line from the data window would remove the class of correction seen here.
+**What could absorb it.** A scheduled job that reads throughput by delivery point and the posted Gas Daily prices from their source systems, renders the standing template including the effective week, and mails it to the fixed list — with the header dates derived from the run date so the effective range cannot be mistyped.
 
 **How the number was reached.**
 
@@ -242,73 +242,61 @@ Assumptions from `config/estimation.yml#task_classes.recurring_report`.
     ```
     sed -n '24,24p' corpus/lokay-m/inbox/10.
     ```
-- "Below is my last California Interstate Capacity Report"
-  — `corpus/lokay-m/inbox/20.` bytes 728–782, lines 19–19
+- "Below is my last California Interstate Capacity Report."
+  — `corpus/lokay-m/inbox/20.` bytes 728–783, lines 19–19
     ```
     sed -n '19,19p' corpus/lokay-m/inbox/20.
+    ```
+- "Transwestern's average deliveries to California were 1122 MMBtu/d (103%), with San Juan lateral throughput at 844 MMBtu/d."
+  — `corpus/lokay-m/sent_items/18.` bytes 1339–1461, lines 23–23
+    ```
+    sed -n '23,23p' corpus/lokay-m/sent_items/18.
     ```
 - "Transwestern's average deliveries to California were 1058 MMBtu/d (97%), with San Juan lateral throughput at 864 MMBtu/d."
   — `corpus/lokay-m/sent_items/79.` bytes 1337–1458, lines 23–23
     ```
     sed -n '23,23p' corpus/lokay-m/sent_items/79.
     ```
-- "Transwestern's average deliveries to California were 855 MMBtu/d (79%), with San Juan lateral throughput at 839 MMBtu/d."
-  — `corpus/lokay-m/sent_items/47.` bytes 1343–1463, lines 23–23
-    ```
-    sed -n '23,23p' corpus/lokay-m/sent_items/47.
-    ```
 - "Transwestern's average deliveries to California were 1015 MMBtu/d (93%), with San Juan lateral throughput at 873 MMBtu/d."
   — `corpus/lokay-m/sent_items/110.` bytes 1339–1460, lines 23–23
     ```
     sed -n '23,23p' corpus/lokay-m/sent_items/110.
     ```
-- "Transwestern's average deliveries to California were 1122 MMBtu/d (103%)"
-  — `corpus/lokay-m/sent_items/18.` bytes 1339–1411, lines 23–23
+- "Transwestern's average deliveries to California were 815 MMBtu/d (75%), with San Juan lateral throughput at 879 MMBtu/d."
+  — `corpus/lokay-m/sent_items/117.` bytes 1338–1458, lines 23–23
     ```
-    sed -n '23,23p' corpus/lokay-m/sent_items/18.
+    sed -n '23,23p' corpus/lokay-m/sent_items/117.
     ```
 
-## 4. Meter-level scheduled-vs-actual volume reconciliation, chased by email
+## 4. Scheduled-versus-actual volume exceptions, reconciled by hand in Unify
 
-**$87/month** (range $19–$299) · 1.0 automatable hours/month · confidence high
+**$91/month** (range $20–$314) · 1.1 automatable hours/month · confidence high
 
-*Measured:* 38 messages in 34 task instances, 26 sender(s), 75 people, 18 months. rework 50%, waiting 26%, manual_transfer 29%, deadline 8%.
+*Measured:* 38 messages in 33 task instances, 26 sender(s), 67 people, 18 months. rework 61%, waiting 29%, manual_transfer 32%, deadline 3%.
 
-**What happens.** Someone notices that the gas volume recorded as flowing at a meter does not match what was nominated, confirmed or entered as a deal — a nomination of 24,000 against roughly 16,000 flowing, 8,928 MMBtu confirmed against 646 flowed, or recorded flow at a meter with no deal at all. The finder emails the scheduler or logistics contact with the meter number, the dates and the two figures, and asks whether to adjust the nomination, cut the deal, or correct the volumes. Resolution means someone going back into a volume system — Unify, MOPS/POPS, position manager — and re-keying prior-period numbers to match what the pipeline or counterparty allocated. Related OBA cases run the same way: measured-versus-scheduled histories are assembled and sent over, sometimes with daily volume statements requested by fax. The thread closes when both sides agree on a number and the system is edited by hand; often the requester is still waiting for a reply.
+**What happens.** A meter, contract or deal shows actual measured volume that does not match what was scheduled or nominated, and someone flags it by mail — often off a meter exception report or after month-end allocations arrive from a pipeline counterparty. The finder describes the discrepancy in plain text, naming the meter, deal number or contract and the volumes on each side, and asks a named colleague to decide what to do: cut or extend a deal, insert a path, adjust estimated volumes, or re-actualize. Whoever owns the record then goes back into the system of record — Unify, Sitara, MOPS or the ENA books are all named in these messages — and edits the prior period's numbers to match. The thread closes with a status note that the volumes were corrected or the month re-posted, or it simply stops. Volumes already booked in an earlier month are frequently reopened and revised.
 
-**Where it stalls.** The person who spots the discrepancy cannot fix it themselves — they must ask another party to agree the number and then edit it in a system they do not own. Half of these messages carry rework signals and escalation is the second most common role: threads are reopened ("We need to revisit this issue again. There is an exception at meter 4045 for 2/99"), and one sender reports emailing TETCO's numbers to a counterpart and getting no response. Bad data also propagates before anyone catches it — POPS showing Oct 28th identical to Oct 27th — so corrections are made retroactively across whole months rather than at the time of flow.
+**Where it stalls.** The discrepancy is visible to the person reading the exception report but the correction must be made by someone else, in a different system, for a month that is already closed — so most messages are requests or escalations rather than completions. Nearly two thirds carry rework signals: the same volumes are entered, then re-entered to match what the pipeline says it allocated. Chasing is visible where a counterparty or internal group does not answer ("I sent Jackie Young an email back showing her TETCO's numbers and I haven't received a response"), and where scheduling and allocation disagree with no arbiter named ("scheduling had 8,928 MMBtu confirmed... and only 646 MMBtu flowed"). Who owns the final adjustment is not visible in the mail; it is negotiated thread by thread.
 
-**Why it recurs.** Nominated, confirmed and actual volumes are captured in separate systems that do not reconcile themselves, and allocations arrive from pipelines and counterparties after the flow date, so every month produces a fresh batch of meter-level exceptions to argue out and re-key.
+**Why it recurs.** Measured volumes never equal scheduled volumes, and allocations arrive after the fact, so every month's close produces a fresh exception list. Systems that hold the same volume — Unify, Sitara, MOPS, the ENA books, and the counterparty's own allocation — do not agree with each other automatically, so agreement is reached by mail.
 
-**What could absorb it.** A scheduled comparison that joins nominated/confirmed volumes to actualised volumes per meter per day and emits an exception list — meter, dates, both figures, deal number if any, missing-deal flag — to a named owner, so the discrepancy arrives already quantified instead of being discovered by eye. Pair it with a logged adjustment path so a corrected volume is entered once and visible to both sides rather than re-keyed after email agreement.
+**What could absorb it.** A scheduled comparison that pulls scheduled, confirmed and actualized volumes per meter and deal from each system, flags the breaks above a tolerance, and routes each break to a named owner with the counterparty's allocation attached — so the mail carries a decision rather than a discovery. Logging the resulting adjustment against the deal number would remove the re-keying that shows up as rework here.
 
 **How the number was reached.**
 
 ```
-34.00 task instances / 18 months of coverage = 1.889 instances per month
-minutes per instance = 20 handle + (1.12 touches - 1) x 7 + 0.50 rework rate x 20 + 0.26 waiting rate x 4 = 31.88 min
+33.00 task instances / 18 months of coverage = 1.833 instances per month
+minutes per instance = 20 handle + (1.15 touches - 1) x 7 + 0.61 rework rate x 20 + 0.29 waiting rate x 4 = 34.32 min
 coordination multiplier = 1 + 0.35 x (3 median participants - 1) = 1.700
-hours per month = 1.889 x 31.88 x 1.700 / 60 = 1.706
-automatable hours = 1.706 x 0.6 automatable share = 1.024
-dollars per month = 1.024 h x $85/h = $87.00
+hours per month = 1.833 x 34.32 x 1.700 / 60 = 1.783
+automatable hours = 1.783 x 0.6 automatable share = 1.070
+dollars per month = 1.070 h x $85/h = $90.93
 ```
 
 Assumptions from `config/estimation.yml#task_classes.volume_imbalance_reconciliation`.
 
 **Evidence.**
 
-- "it seems odd to me that scheduling had 8,928 
-MMBtu confirmed at this point and only 646 MMBtu flowed."
-  — `corpus/farmer-d/logistics/2100.` bytes 1436–1538, lines 36–37 · rewrapped
-    ```
-    sed -n '36,37p' corpus/farmer-d/logistics/2100.
-    ```
-- "Why is nothing being allocated to Alpine?  This is a good deal we have in 
-place with them and I really need the problem resolved."
-  — `corpus/farmer-d/logistics/2100.` bytes 3046–3176, lines 78–79 · rewrapped
-    ```
-    sed -n '78,79p' corpus/farmer-d/logistics/2100.
-    ```
 - "asking me to go in for the 
 month of October and adjust all of my estimated volumes in Unify to match 
 what HPL shows that we were allocated"
@@ -317,36 +305,44 @@ what HPL shows that we were allocated"
     sed -n '56,58p' corpus/farmer-d/logistics/1972.
     ```
 - "I sent Jackie Young an email 
-back showing her TETCO's numbers and I haven't received a response."
-  — `corpus/farmer-d/logistics/1972.` bytes 3360–3457, lines 62–63 · rewrapped
+back showing her TETCO's numbers and I haven't received a response"
+  — `corpus/farmer-d/logistics/1972.` bytes 3360–3456, lines 62–63 · rewrapped
     ```
     sed -n '62,63p' corpus/farmer-d/logistics/1972.
     ```
-- "The actuals on this contract did not come in as scheduled.   The scheduled 
-deliveries at Texoma are 374,503, but the actuals are 352,568."
-  — `corpus/farmer-d/logistics/972.` bytes 1522–1660, lines 44–45 · rewrapped
+- "The actuals on this contract did not come in as scheduled."
+  — `corpus/farmer-d/logistics/972.` bytes 1522–1580, lines 44–44
     ```
-    sed -n '44,45p' corpus/farmer-d/logistics/972.
+    sed -n '44,44p' corpus/farmer-d/logistics/972.
     ```
-- "can you let me know first 
-if you agree with PG&E Texas numbers and if you do, will you please make the 
-necessary changes in unify."
-  — `corpus/farmer-d/logistics/972.` bytes 1805–1937, lines 47–49 · rewrapped
+- "will you please make the 
+necessary changes in unify"
+  — `corpus/farmer-d/logistics/972.` bytes 1884–1936, lines 48–49 · rewrapped
     ```
-    sed -n '47,49p' corpus/farmer-d/logistics/972.
+    sed -n '48,49p' corpus/farmer-d/logistics/972.
     ```
-- "We are getting bad numbers in POPS for Sat. Oct. 28th.  They are the same as
-Oct. 27th (27th is correct)."
-  — `corpus/farmer-d/logistics/1476.` bytes 1309–1414, lines 27–28 · rewrapped
+- "it seems odd to me that scheduling had 8,928 
+MMBtu confirmed at this point and only 646 MMBtu flowed."
+  — `corpus/farmer-d/logistics/2100.` bytes 1436–1538, lines 36–37
     ```
-    sed -n '27,28p' corpus/farmer-d/logistics/1476.
+    sed -n '36,37p' corpus/farmer-d/logistics/2100.
     ```
-- "Please watch imbalances very closely.  Double 
-check
-all numbers."
-  — `corpus/farmer-d/logistics/1476.` bytes 1417–1482, lines 28–30 · rewrapped
+- "Why is nothing being allocated to Alpine?  This is a good deal we have in 
+place with them and I really need the problem resolved."
+  — `corpus/farmer-d/logistics/2100.` bytes 3046–3176, lines 78–79
     ```
-    sed -n '28,30p' corpus/farmer-d/logistics/1476.
+    sed -n '78,79p' corpus/farmer-d/logistics/2100.
+    ```
+- "there was around 20,000 MMBTU scheduled, but when it was actualized, it was actualized at 0.  He thinks this is incorrect."
+  — `corpus/farmer-d/logistics/77.` bytes 736–858, lines 19–19
+    ```
+    sed -n '19,19p' corpus/farmer-d/logistics/77.
+    ```
+- "I have gone back into MOPS and 
+corrected these volumes."
+  — `corpus/farmer-d/logistics/1141.` bytes 1026–1082, lines 32–33 · rewrapped
+    ```
+    sed -n '32,33p' corpus/farmer-d/logistics/1141.
     ```
 
 ## 5. "Calpine Daily Gas Nomination" produced monthly
@@ -421,264 +417,40 @@ Assumptions from `config/estimation.yml#task_classes.recurring_report`.
     sed -n '5,5p' corpus/farmer-d/logistics/1561.
     ```
 
-## 6. Extending Sitara deals by request to cover unallocated meter flow
+## 6. Monthly first-of-month gas nominations emailed in by counterparties
 
-**$56/month** (range $12–$203) · 0.7 automatable hours/month · confidence high
+**$67/month** (range $9–$260) · 0.8 automatable hours/month · confidence high
 
-*Measured:* 20 messages in 15 task instances, 7 sender(s), 19 people, 7 months. rework 55%, waiting 20%, deadline 5%.
+*Measured:* 13 messages in 13 task instances, 6 sender(s), 33 people, 9 months. rework 8%, waiting 8%.
 
-**What happens.** Volume Management or a scheduler finds gas that flowed at a meter on a date the underlying deal does not cover — an extra day or two after a deal's end date, a small decatherm volume, or a whole additional month. They email the deal owner (most often Daren) with the meter number, the deal number, the dates and the volume, and ask that the existing deal be extended so an accounting arrangement can be created against it. The alternative, named in the messages themselves, is to allocate the gas "off to strangers" until someone decides what to do. The exchange ends when the deal owner extends the deal in Sitara/Unify and replies, or when a different deal is put in place instead.
+**What happens.** Each month, counterparties and plant schedulers email the logistics desk their gas volumes for the coming month. The dominant form is a recurring note from EGPFC nominating natural gas requirements for the MTBE Plant at Morgan's Point, sent with near-identical wording month after month ("EGPFC nominates the following natural gas requirements for the MTBE Plant at Morgan's Point for October 2000"). The same pattern appears for other parties and points — a Calpine January 2000 nomination, an estimated Josey Ranch nomination, and Forest's "first of the month noms". The volumes arrive as free text in the mail body rather than through a system, and the recipient is expected to pick them up and carry them into scheduling; occasionally a revision follows, keyed to a named approver ("revision PER JOHN KJELMYR, 12/26 am"). Nothing in these messages shows the downstream entry step, so where the numbers go after the mail is not visible here.
 
-**Where it stalls.** The requester cannot act on the deal themselves, so each item waits on one person; escalation messages say plainly that "Logistics is waiting to hear from Daren on this issue" and repeat the same ask days later. Discovery is late rather than continuous — one thread surfaces flow dated June 1999 and draws the reply "Hopefully we're not just finding out about this?", with the follow-up explaining the pathing sat in Autonoms, not Unify, and was not Y2K compatible. The high rework rate reflects deals being reopened after the fact, including one requester asking to extend "one more time for me".
+**Where it stalls.** Two failure modes are visible, both in a minority of the messages. First, the nomination is sometimes an estimate rather than a firm number ("This is the estimated Josey Ranch nomination"), so it must be revisited and superseded — the one correction-role message is an explicit month-end revision authorised verbally by a named person. Second, a nomination cannot be completed because a required input is held by someone else: "I am still waiting on a transport number from lori Allen in your shop." That leaves the desk holding an incomplete nomination and chasing an internal colleague for the missing field.
 
-**Why it recurs.** Physical flow routinely runs past the deal's end date — a valve not fully shut, a day or two of tail flow — and Volume Management cannot build an accounting arrangement until the deal term covers it, so every allocation cycle produces a new batch of extension requests.
+**Why it recurs.** The monthly nomination cycle: every counterparty must restate volumes for the coming month before it begins, so the same near-identical mail is composed and re-keyed each month for each plant and delivery point.
 
-**What could absorb it.** An exception report that joins allocated meter volumes against deal start/end dates and lists every meter-day with flow outside its deal term, routed to the deal owner as a queue with the deal number, meter, dates and volume prefilled — plus an in-system extend action so the requester is not composing free-text mail and waiting on one person's inbox.
-
-**How the number was reached.**
-
-```
-15.00 task instances / 7 months of coverage = 2.143 instances per month
-minutes per instance = 12 handle + (1.33 touches - 1) x 5 + 0.55 rework rate x 18 + 0.20 waiting rate x 3 = 24.17 min
-coordination multiplier = 1 + 0.35 x (3 median participants - 1) = 1.700
-hours per month = 2.143 x 24.17 x 1.700 / 60 = 1.467
-automatable hours = 1.467 x 0.45 automatable share = 0.660
-dollars per month = 0.660 h x $85/h = $56.12
-```
-
-Assumptions from `config/estimation.yml#task_classes.deal_entry_correction`.
-
-**Evidence.**
-
-- "Logistics is waiting to hear from Daren on this issue.  He will either need 
-to extend the deal or maybe there should be another deal in place."
-  — `corpus/farmer-d/logistics/782.` bytes 873–1016, lines 34–35 · rewrapped
-    ```
-    sed -n '34,35p' corpus/farmer-d/logistics/782.
-    ```
-- "Can the deal be extended 
-for 6/4 (548 dec.) and 6/9 (40 dec.) to cover this flow so that Volume 
-Management can create an accounting arrangement for these two days?"
-  — `corpus/farmer-d/logistics/1486.` bytes 759–924, lines 23–25 · rewrapped
-    ```
-    sed -n '23,25p' corpus/farmer-d/logistics/1486.
-    ```
-- "I think that the deal needs to be extended, it looks like the valve 
-was not completely shut by 9 am."
-  — `corpus/farmer-d/logistics/1502.` bytes 701–802, lines 22–23 · rewrapped
-    ```
-    sed -n '22,23p' corpus/farmer-d/logistics/1502.
-    ```
-- "Pat has asked that this issue be resolved 
-today, so, your assistance would be greatly appreciated."
-  — `corpus/farmer-d/logistics/1502.` bytes 804–903, lines 23–24 · rewrapped
-    ```
-    sed -n '23,24p' corpus/farmer-d/logistics/1502.
-    ```
-- ".16 decatherms allocated at this meter for 5/31/2000.  Can you please extend 
-deal (one more time for me) for 5/31/2000."
-  — `corpus/farmer-d/logistics/1174.` bytes 524–644, lines 21–22 · rewrapped
-    ```
-    sed -n '21,22p' corpus/farmer-d/logistics/1174.
-    ```
-- "The East Desk was not up and 
-running on Unify in June of 1999.  All of our pathing for June of 1999 was in 
-Autonoms and it's not y2K compatabile."
-  — `corpus/farmer-d/logistics/1489.` bytes 976–1123, lines 25–27 · rewrapped
-    ```
-    sed -n '25,27p' corpus/farmer-d/logistics/1489.
-    ```
-- "Can you extend the deal, or should I allocated off to strangers?"
-  — `corpus/farmer-d/logistics/1479.` bytes 751–815, lines 24–24
-    ```
-    sed -n '24,24p' corpus/farmer-d/logistics/1479.
-    ```
-- "Could you extend this deal thru the 30th so that I 
-can have Vol. Management create an accounting arrangement for it."
-  — `corpus/farmer-d/logistics/1277.` bytes 548–665, lines 18–19 · rewrapped
-    ```
-    sed -n '18,19p' corpus/farmer-d/logistics/1277.
-    ```
-
-## 7. Correcting mispriced deals by hand in Sitara after the fact
-
-**$37/month** (range $8–$124) · 0.4 automatable hours/month · confidence high
-
-*Measured:* 8 messages in 7 task instances, 4 sender(s), 12 people, 5 months. rework 100%, waiting 12%, manual_transfer 62%, deadline 12%.
-
-**What happens.** Someone notices that a deal carries the wrong commodity price — often a prior month's rate left in place, a placeholder of zero, or a figure that was superseded before the deal was booked. The person who spotted it mails the deal number and the price it should be to whoever can edit the record, usually asking for the change in Sitara, and in some instances in a second place as well (Enpower, a deal summary report, or a reconciliation spreadsheet). The editor makes the change and replies that it has been adjusted; the requester then watches the downstream report to see whether the corrected figure comes across. The thread ends when the requester confirms the new price and any revenue it drives look right, or asks for the entry to be zeroed out instead.
-
-**Where it stalls.** The correction cannot be verified by the person who requested it. Every message in the group carries a rework signal, and most also carry manual transfer: the requester hands a deal number and a price to another person, has no way to edit or check the record, and asks to be notified when the change lands — "I'll wait to see how these changes come across. Please notify me when these changes have been made." Where a report has already been produced from the bad price, the fix races a fixed publication point, as in the request to recalculate or zero an entry before the morning flash. At least one instance is a correction to a correction: an earlier price change was itself not the final price.
-
-**Why it recurs.** Prices are entered once and then move; a deal booked at a placeholder or last month's rate is only caught when a report, invoice or reconciliation sheet disagrees, which happens every month.
-
-**What could absorb it.** A validation step at deal capture that flags a commodity price equal to zero or unchanged from the prior month's rate for the same counterparty and deal, plus a confirmation mail fired automatically when the price field on a named deal changes, so the requester is notified by the system rather than by the editor. A reconciliation query comparing invoiced rate to booked rate would surface the same mismatches before a report is published.
+**What could absorb it.** A fixed submission form or structured template per counterparty and delivery point — same fields every month, with the transport number as a required field — feeding a monthly nomination sheet automatically, so volumes arrive parseable rather than as prose and revisions supersede rather than append.
 
 **How the number was reached.**
 
 ```
-7.00 task instances / 5 months of coverage = 1.400 instances per month
-minutes per instance = 12 handle + (1.14 touches - 1) x 5 + 1.00 rework rate x 18 + 0.12 waiting rate x 3 = 31.09 min
-coordination multiplier = 1 + 0.35 x (2 median participants - 1) = 1.350
-hours per month = 1.400 x 31.09 x 1.350 / 60 = 0.979
-automatable hours = 0.979 x 0.45 automatable share = 0.441
-dollars per month = 0.441 h x $85/h = $37.46
-```
-
-Assumptions from `config/estimation.yml#task_classes.deal_entry_correction`.
-
-**Evidence.**
-
-- "Deal 819592 - the commodity price needs to be 3.6318"
-  — `corpus/farmer-d/logistics/74.` bytes 708–760, lines 22–22
-    ```
-    sed -n '22,22p' corpus/farmer-d/logistics/74.
-    ```
-- "I'll wait to see how these changes come across. Please notify me when these changes have been made."
-  — `corpus/farmer-d/logistics/74.` bytes 1338–1437, lines 32–32
-    ```
-    sed -n '32,32p' corpus/farmer-d/logistics/74.
-    ```
-- "Can you please update the 04/01 price for deal # 27253 in Sitara? It 
-currently has a rate of $2.3043 (last month's price). The customer invoiced a 
-rate of $1.8351."
-  — `corpus/giron-d/sent/12.` bytes 677–842, lines 29–31
-    ```
-    sed -n '29,31p' corpus/giron-d/sent/12.
-    ```
-- "I changed the El Paso Electric deal #697528 price from $4 to $68. I should not receive the $25524.54 as revenue shown in the new deal summary."
-  — `corpus/williams-w3/sent_items/366.` bytes 579–721, lines 18–18
-    ```
-    sed -n '18,18p' corpus/williams-w3/sent_items/366.
-    ```
-- "Is there any way to recalculate this (or simply zero it out) prior to the morning flash?"
-  — `corpus/williams-w3/sent_items/366.` bytes 723–811, lines 18–18
-    ```
-    sed -n '18,18p' corpus/williams-w3/sent_items/366.
-    ```
-- "Unfortunately the change to $290 was not the final price for deal #620476 on 05/23.  It should be $295 for HE 15-17"
-  — `corpus/williams-w3/sent_items/501.` bytes 573–688, lines 19–19
-    ```
-    sed -n '19,19p' corpus/williams-w3/sent_items/501.
-    ```
-- "please change and/or review a 
-change of price for the Mar 15 item from $0.00000 to $7.20000 and advise when 
-complete"
-  — `corpus/giron-d/sent/57.` bytes 666–784, lines 34–36 · rewrapped
-    ```
-    sed -n '34,36p' corpus/giron-d/sent/57.
-    ```
-- "I adjusted the price in Sitara."
-  — `corpus/farmer-d/logistics/129.` bytes 812–843, lines 21–21
-    ```
-    sed -n '21,21p' corpus/farmer-d/logistics/129.
-    ```
-
-## 8. Daily gas nominations mailed as attached Word and Excel files
-
-**$33/month** (range $6–$113) · 0.4 automatable hours/month · confidence high
-
-*Measured:* 30 messages in 30 task instances, 5 sender(s), 32 people, 14 months. manual_transfer 10%, deadline 3%.
-
-**What happens.** Each flow day, a counterparty or scheduler sends the day's gas nomination to logistics as an attached document rather than as data — recurring examples are "CALPINE DAILY GAS NOMINATION 1.doc", "HIDALGO DAILY GAS NOMINATION.doc", monthly nomination spreadsheets such as "egmnom-Feb.xls", and dated pipeline noms like "HPL Nom for January 4, 2001". The mail body is usually empty or a single line; the volumes and paths live inside the attachment, so the recipient opens the file and re-keys or re-forwards the numbers onward. A small number of messages close the loop as confirmations ("Confirmed on my end. Same volumes as yesterday, no changes to the path.") or as coverage notes when the usual sender is away. The same filenames repeat month after month across fourteen months and five senders, indicating a fixed daily routine rather than one-off requests.
-
-**Where it stalls.** The nomination never arrives in machine-readable form. It comes as a Word or Excel attachment — and in a number of cases by fax — with no data in the mail body, so the scheduler must open each file and transfer volumes and points by hand into the nomination system; the manual_transfer signal appears on some of these messages and fax is named repeatedly. Confirmation back to the sender is also by hand and is present on only one message in the set, so there is little visible evidence that a submitted nomination was received and accepted. When the regular sender is out, continuity depends on a phone call rather than the file itself.
-
-**Why it recurs.** Nominations are per-flow-day with a daily pipeline cutoff, and the counterparties submit on a standing arrangement using the same document template each day, so the same re-keying happens every cycle.
-
-**What could absorb it.** Replace the attached document with a fixed-column submission (a shared sheet or a mailbox parser keyed on the recurring filenames) that lands the volumes, points and flow date directly in the nomination system and auto-replies with a receipt showing what was booked, flagging only rows that differ from the prior day.
-
-**How the number was reached.**
-
-```
-coverage = 29 dated / 30 messages = 0.967; instances 30 / 0.967 = 31.03 adjusted
-31.03 task instances / 14 months of coverage = 2.217 instances per month
-minutes per instance = 8 handle + (1.00 touches - 1) x 3 + 0.00 rework rate x 12 + 0.00 waiting rate x 2 = 8.00 min
-coordination multiplier = 1 + 0.35 x (5 median participants - 1) = 2.400
-hours per month = 2.217 x 8.00 x 2.400 / 60 = 0.709
-automatable hours = 0.709 x 0.55 automatable share = 0.390
-dollars per month = 0.390 h x $85/h = $33.16
+13.00 task instances / 9 months of coverage = 1.444 instances per month
+minutes per instance = 8 handle + (1.00 touches - 1) x 3 + 0.08 rework rate x 12 + 0.08 waiting rate x 2 = 9.08 min
+coordination multiplier = 1 + 0.35 x (17 median participants - 1) = 6.600
+hours per month = 1.444 x 9.08 x 6.600 / 60 = 1.442
+automatable hours = 1.442 x 0.55 automatable share = 0.793
+dollars per month = 0.793 h x $85/h = $67.42
 ```
 
 Assumptions from `config/estimation.yml#task_classes.gas_nomination`.
 
 **Evidence.**
 
-- "CALPINE DAILY GAS NOMINATION 1.doc"
-  — `corpus/farmer-d/logistics/1329.` bytes 748–782, lines 19–19
+- "EGPFC nominates the following natural gas requirements for the MTBE Plant at 
+Morgan's Point for October 2000"
+  — `corpus/farmer-d/logistics/1423.` bytes 1192–1301, lines 28–29 · rewrapped
     ```
-    sed -n '19,19p' corpus/farmer-d/logistics/1329.
-    ```
-- "HPL Nom for January 4, 2001"
-  — `corpus/farmer-d/logistics/2025.` bytes 313–340, lines 7–7
-    ```
-    sed -n '7,7p' corpus/farmer-d/logistics/2025.
-    ```
-- "(See attached file: egmnom-Feb.xls)"
-  — `corpus/farmer-d/logistics/764.` bytes 858–893, lines 32–32
-    ```
-    sed -n '32,32p' corpus/farmer-d/logistics/764.
-    ```
-- "HIDALGO DAILY GAS NOMINATION.doc"
-  — `corpus/farmer-d/logistics/1229.` bytes 667–699, lines 19–19
-    ```
-    sed -n '19,19p' corpus/farmer-d/logistics/1229.
-    ```
-- "Confirmed on my end. Same volumes as yesterday, no changes to the path."
-  — `corpus/giron-d/sent/795.` bytes 452–523, lines 16–16
-    ```
-    sed -n '16,16p' corpus/giron-d/sent/795.
-    ```
-- "HPL Nomination for January 26, 2000"
-  — `corpus/farmer-d/logistics/716.` bytes 263–298, lines 6–6
-    ```
-    sed -n '6,6p' corpus/farmer-d/logistics/716.
-    ```
-- "Will be out Friday, will call if there are any changes."
-  — `corpus/farmer-d/logistics/169.` bytes 828–883, lines 21–21
-    ```
-    sed -n '21,21p' corpus/farmer-d/logistics/169.
-    ```
-- "(See attached file: egmnom-Feb.xls)"
-  — `corpus/farmer-d/logistics/767.` bytes 840–875, lines 31–31
-    ```
-    sed -n '31,31p' corpus/farmer-d/logistics/767.
-    ```
-
-## 9. Monthly first-of-month gas nominations mailed in by plant customers
-
-**$29/month** (range $5–$100) · 0.3 automatable hours/month · confidence high
-
-*Measured:* 14 messages in 14 task instances, 6 sender(s), 31 people, 9 months. rework 14%, waiting 7%.
-
-**What happens.** Each month, counterparties and plant representatives email the logistics desk their gas requirements for the upcoming month — most often the MTBE Plant at Morgan's Point under the EGPFC heading, plus Josey Ranch, the Katy Plant and Forest volumes. The message body carries the daily volumes in MMBtu/d, sometimes broken out by specific dates ("March 1st & 2nd ... 32,000 mmbtu per day"), and is addressed to the scheduler who has to turn it into a nomination. A smaller number of messages are follow-ups on the same volumes: a revised first-of-the-month nomination, a change for a named plant, or a note that a transport number is still outstanding. The desk receives these as free-text mail and re-keys them; the exemplars show no system of record other than email, with one other system mentioned once. Threads end when the volumes are acknowledged or superseded by a revision.
-
-**Where it stalls.** The nomination arrives as prose and numbers in a mail body, so the scheduler is the transcription step. Two of the fourteen messages are corrections that restate an already-submitted first-of-month volume ("First of the month nom is now expected to be 5,479 MMBtu/d"; "revision PER JOHN KJELMYR, 12/26 am"), meaning the same nomination is handled more than once. One message stalls on an input the sender does not control — a transport number owed by someone in the counterparty's shop — and the requester is left waiting rather than able to complete the nomination. Who owns reconciling a revision against the original submission is not visible in these messages.
-
-**Why it recurs.** The nomination cycle is monthly and per-plant, so each customer sends a fresh requirement every month for as long as they buy gas; one exemplar notes a plant's last month of purchases, which is how an instance stops.
-
-**What could absorb it.** A structured intake form or fixed-format template per plant that lands the volumes as fields rather than prose, feeding the nomination directly and versioning revisions against the original submission so a change is visibly a change. Pair it with a standing prerequisite check (e.g. transport number present) that blocks submission rather than surfacing after the fact.
-
-**How the number was reached.**
-
-```
-14.00 task instances / 9 months of coverage = 1.556 instances per month
-minutes per instance = 8 handle + (1.00 touches - 1) x 3 + 0.14 rework rate x 12 + 0.07 waiting rate x 2 = 9.86 min
-coordination multiplier = 1 + 0.35 x (5 median participants - 1) = 2.400
-hours per month = 1.556 x 9.86 x 2.400 / 60 = 0.613
-automatable hours = 0.613 x 0.55 automatable share = 0.337
-dollars per month = 0.337 h x $85/h = $28.67
-```
-
-Assumptions from `config/estimation.yml#task_classes.gas_nomination`.
-
-**Evidence.**
-
-- "There has been a change for the Katy Plant.  First of the month nom is now 
-expected to be 5,479 MMBtu/d."
-  — `corpus/farmer-d/logistics/1467.` bytes 798–903, lines 26–27 · rewrapped
-    ```
-    sed -n '26,27p' corpus/farmer-d/logistics/1467.
+    sed -n '28,29p' corpus/farmer-d/logistics/1423.
     ```
 - "Below are Forest's first of the month noms:"
   — `corpus/farmer-d/logistics/2008.` bytes 815–858, lines 27–27
@@ -696,122 +468,354 @@ shop"
     ```
     sed -n '21,22p' corpus/farmer-d/logistics/1539.
     ```
-- "EGPFC nominates the following natural gas requirements for the MTBE Plant at 
-Morgan's Point for October 2000"
-  — `corpus/farmer-d/logistics/1423.` bytes 1192–1301, lines 28–29 · rewrapped
-    ```
-    sed -n '28,29p' corpus/farmer-d/logistics/1423.
-    ```
-- "EGPFC nominates the following requirements for the MTBE Plant at Morgan's 
-Point for February 2000"
-  — `corpus/farmer-d/logistics/719.` bytes 1172–1270, lines 28–29 · rewrapped
-    ```
-    sed -n '28,29p' corpus/farmer-d/logistics/719.
-    ```
 - "This is the estimated Josey Ranch nomination for the month of April
 2000."
   — `corpus/farmer-d/logistics/993.` bytes 1013–1086, lines 30–31 · rewrapped
     ```
     sed -n '30,31p' corpus/farmer-d/logistics/993.
     ```
-- "March 1st &2nd                            32,000  mmbtu per day"
-  — `corpus/farmer-d/logistics/834.` bytes 1157–1220, lines 26–26
+- "NATURAL GAS NOMINATION FOR 03/00"
+  — `corpus/farmer-d/logistics/834.` bytes 547–579, lines 11–11
     ```
-    sed -n '26,26p' corpus/farmer-d/logistics/834.
+    sed -n '11,11p' corpus/farmer-d/logistics/834.
+    ```
+- "EGPFC nominates the following for the MTBE Plant at Morgan's Point for March 
+2000"
+  — `corpus/farmer-d/logistics/834.` bytes 1468–1550, lines 33–34 · rewrapped
+    ```
+    sed -n '33,34p' corpus/farmer-d/logistics/834.
+    ```
+- "Calpine January 2000 Nomination"
+  — `corpus/farmer-d/logistics/619.` bytes 166–197, lines 5–5
+    ```
+    sed -n '5,5p' corpus/farmer-d/logistics/619.
     ```
 
-## 10. Fixing miskeyed Sitara deal entries after the fact
+## 7. Extending deal tickets by hand to cover unallocated meter flow
 
-**$26/month** (range $6–$88) · 0.3 automatable hours/month · confidence medium
+**$58/month** (range $13–$194) · 0.7 automatable hours/month · confidence high
 
-*Measured:* 10 messages in 8 task instances, 5 sender(s), 12 people, 5 months. rework 30%, waiting 10%.
+*Measured:* 22 messages in 15 task instances, 8 sender(s), 18 people, 6 months. rework 68%, waiting 14%, manual_transfer 5%, deadline 5%.
 
-**What happens.** Someone notices that a deal already captured in Sitara does not match what was intended or what actually flowed — wrong contract months, the wrong EOL meter, or a volume that has since been split between two delivery points. The person who spots it mails the deal owner or a colleague to ask whether the entry was intentional and to get it changed. A second person then amends the deal and the originator confirms the fix by mail, sometimes naming who made the correction. Most of the traffic in this cluster is short notification mail with no explicit ask; the correction itself happens outside the mailbox, in the deal system.
+**What happens.** Gas flows at a meter for days that no live deal ticket covers, so the volume cannot be allocated or booked. Whoever spots the gap — usually someone reconciling allocations or chasing volumes that Volume Management cannot arrange accounting for — emails the deal owner with the meter number, the prior deal number and the specific flow dates, asking that the existing deal be extended rather than a new one written. The deal owner amends the ticket, and the requester checks whether the change has appeared downstream in Unify before the volume can be allocated; if it has not, they ask whether the same deal ticket was used. Where no extension is possible, the fallback is to allocate the gas off to "Strangers" until someone decides what to do.
 
-**Where it stalls.** The person who finds the error is not the person who can change the record, so each instance becomes a hand-off by email and then a wait: one exemplar is a bare chase ("Have you had a chance to look at this yet?"), and closure arrives as a third-party confirmation ("Elizabeth Hernandez fixed this deal for me") rather than as a system notification. Nothing in these messages shows a check that would have caught the wrong-year or split-point entry before it was booked, so the discovery is incidental.
+**Where it stalls.** The request is a one-off email naming a deal number and dates, so nothing tracks it: the requester must come back later and confirm the amendment surfaced in Unify ("This has not yet shown up in Unify. Did you use the same deal ticket?"). Some requests cannot be honoured at all — one thread stalls on the East Desk not having been on Unify for the flow period in question — and those messages escalate rather than resolve. Two-thirds of the messages carry rework signals: the same meters and deals come back for repeated extension, including one request explicitly asking "one more time".
 
-**Why it recurs.** Deals are keyed by hand into Sitara and downstream systems, and mismatches surface later when volumes or months are compared against what actually flowed — so the same correct-and-confirm loop reappears whenever a counterparty changes points or a date is mistyped.
+**Why it recurs.** Physical flow keeps running past the end date of the deal that covers it (valves not shut, months rolling over), and nothing reconciles deal end dates against measured meter volumes, so each gap is discovered after the fact and fixed by hand.
 
-**What could absorb it.** Validation at entry that flags implausible contract months and meter/point combinations against the counterparty's active points, plus an automatic notification to the original enterer when a deal is amended, so the confirmation loop does not have to be carried by mail.
+**What could absorb it.** A scheduled reconciliation that compares measured meter volumes against deal coverage dates and raises a ticketed extension request naming the meter, last deal number and uncovered dates, then confirms automatically when the amendment appears in Unify — removing both the discovery step and the manual follow-up chase.
 
 **How the number was reached.**
 
 ```
-8.00 task instances / 5 months of coverage = 1.600 instances per month
-minutes per instance = 12 handle + (1.25 touches - 1) x 5 + 0.30 rework rate x 18 + 0.10 waiting rate x 3 = 18.95 min
+15.00 task instances / 6 months of coverage = 2.500 instances per month
+minutes per instance = 12 handle + (1.47 touches - 1) x 5 + 0.68 rework rate x 18 + 0.14 waiting rate x 3 = 27.02 min
 coordination multiplier = 1 + 0.35 x (2 median participants - 1) = 1.350
-hours per month = 1.600 x 18.95 x 1.350 / 60 = 0.682
-automatable hours = 0.682 x 0.45 automatable share = 0.307
-dollars per month = 0.307 h x $85/h = $26.09
+hours per month = 2.500 x 27.02 x 1.350 / 60 = 1.520
+automatable hours = 1.520 x 0.45 automatable share = 0.684
+dollars per month = 0.684 h x $85/h = $58.12
 ```
 
 Assumptions from `config/estimation.yml#task_classes.deal_entry_correction`.
 
 **Evidence.**
 
-- "Did you mean to put the deal in for July and November of 1999 and"
-  — `corpus/farmer-d/logistics/1184.` bytes 795–861, lines 24–24 · decoded_exact
+- "This has not yet shown up in Unify.  Did you use the same deal ticket?"
+  — `corpus/farmer-d/logistics/221.` bytes 536–606, lines 19–19
     ```
-    sed -n '24,24p' corpus/farmer-d/logistics/1184.
+    sed -n '19,19p' corpus/farmer-d/logistics/221.
     ```
-- "Aquila split the volume between two points, that is why the deal changed."
-  — `corpus/farmer-d/logistics/1303.` bytes 568–641, lines 24–24
+- "I think that the deal needs to be extended, it looks like the valve 
+was not completely shut by 9 am."
+  — `corpus/farmer-d/logistics/1502.` bytes 701–802, lines 22–23 · rewrapped
     ```
-    sed -n '24,24p' corpus/farmer-d/logistics/1303.
+    sed -n '22,23p' corpus/farmer-d/logistics/1502.
     ```
-- "Elizabeth Hernandez fixed this deal for me."
-  — `corpus/farmer-d/logistics/90.` bytes 607–650, lines 18–18
+- "Pat has asked that this issue be resolved 
+today, so, your assistance would be greatly appreciated."
+  — `corpus/farmer-d/logistics/1502.` bytes 804–903, lines 23–24 · rewrapped
     ```
-    sed -n '18,18p' corpus/farmer-d/logistics/90.
+    sed -n '23,24p' corpus/farmer-d/logistics/1502.
     ```
-- "Have you had a chance to look at this yet?"
-  — `corpus/farmer-d/logistics/16.` bytes 552–594, lines 19–19
+- "Please let me know if we want to extend this deal (85% 
+of hsc - lg, etc) or if I should put this gas on Strangers until we determine 
+what to do."
+  — `corpus/farmer-d/logistics/1520.` bytes 738–884, lines 22–24 · rewrapped
     ```
-    sed -n '19,19p' corpus/farmer-d/logistics/16.
+    sed -n '22,24p' corpus/farmer-d/logistics/1520.
+    ```
+- "I am now on the dreaded ua4 list from Vol. Mgmt."
+  — `corpus/farmer-d/logistics/1520.` bytes 886–934, lines 24–24
+    ```
+    sed -n '24,24p' corpus/farmer-d/logistics/1520.
+    ```
+- "Can the deal be extended 
+for 6/4 (548 dec.) and 6/9 (40 dec.) to cover this flow so that Volume 
+Management can create an accounting arrangement for these two days?"
+  — `corpus/farmer-d/logistics/1486.` bytes 759–924, lines 23–25 · rewrapped
+    ```
+    sed -n '23,25p' corpus/farmer-d/logistics/1486.
+    ```
+- "I don't think we can even process this request.  The East Desk was not up and 
+running on Unify in June of 1999."
+  — `corpus/farmer-d/logistics/1492.` bytes 1443–1555, lines 41–42 · rewrapped
+    ```
+    sed -n '41,42p' corpus/farmer-d/logistics/1492.
+    ```
+- ".16 decatherms allocated at this meter for 5/31/2000.  Can you please extend 
+deal (one more time for me) for 5/31/2000."
+  — `corpus/farmer-d/logistics/1174.` bytes 524–644, lines 21–22 · rewrapped
+    ```
+    sed -n '21,22p' corpus/farmer-d/logistics/1174.
     ```
 
-## 11. Nomination changes confirmed by hand with pipelines and counterparties
+## 8. Fixing wrong deal prices in Sitara after the fact
 
-**$25/month** (range $5–$82) · 0.3 automatable hours/month · confidence high
+**$46/month** (range $10–$153) · 0.5 automatable hours/month · confidence high
 
-*Measured:* 11 messages in 11 task instances, 8 sender(s), 28 people, 8 months. rework 45%, waiting 9%, manual_transfer 27%, deadline 9%.
+*Measured:* 8 messages in 7 task instances, 5 sender(s), 12 people, 4 months. rework 100%, manual_transfer 12%, deadline 12%.
 
-**What happens.** A counterparty or an internal desk asks for a nominated volume at a named meter to be changed — dropped, cut, or revised — for a specific gas day. A scheduler in the logistics mailbox picks up the request, works out what the new number should be, and then has to make two things agree: the pipeline's or counterparty's confirmation, and Enron's own record in Sitara, Unify or the confirm screen ("Pops"). Confirming means reaching a named person at El Paso, Kinder Morgan, PG&E or the like by mail or phone, then hand-editing the deal record to match. The thread closes when the new volume is echoed back as confirmed, sometimes with a note that the same change may be needed again the next day.
+**What happens.** Someone downstream — billing, settlement or a desk reviewing a deal summary — notices that the price recorded on a deal in Sitara is wrong: a stale prior-month rate, a zero, or a figure that does not match what was quoted or billed. They mail the person who can edit the deal and ask for the price to be changed for a specific deal number and flow month, sometimes naming both the wrong and the correct value. That person edits the price in Sitara, or, when the deal cannot be reopened, applies an agreed fixed price to the affected lines as a workaround. The thread closes with a confirmation that the change was made or a request to advise when complete. In one instance the correction was chased so the revenue figure would be right before the morning flash report.
 
-**Where it stalls.** The change cannot be closed out until a named individual at the pipeline or counterparty confirms the volume, and those people are not always reachable — one exemplar records being unable to reach any PG&E scheduler to check the contractual impact, another that a colleague was "having trouble confirming the volume of 5,733 with El Paso." Meanwhile the number has to be re-keyed into the deal system by hand, so the confirmed volume and the system volume drift apart; nearly half these messages carry rework signals, and several are second or third revisions of the same volume, with one flagging that changing it will leave another person's meter in imbalance.
+**Where it stalls.** Every message in this cluster carries a rework signal: the deal is priced once, discovered to be wrong later, and priced again by a second person. The correction is not made by whoever spotted it — requests, handoffs and one escalation show the fix travelling to a Sitara editor, so the error's discovery and its remedy sit in different hands. Where the deal cannot be amended at all, the group resorts to writing a fixed price onto both lines rather than fixing the source, which leaves the original record wrong. Nothing here shows a check that would catch a stale price at entry.
 
-**Why it recurs.** Nominations are per gas day with daily cutoffs, counterparties revise volumes after the fact, and the confirmation lives with an external scheduler while the record lives in Sitara/Unify — nothing links the two automatically.
+**Why it recurs.** Prices are re-set per flow month, so a deal carried forward keeps last month's rate until someone edits it; the error only surfaces when billing or a deal summary is read, which is after the fact.
 
-**What could absorb it.** A single nomination-change ticket that carries meter, gas day, old and new volume and the confirming party, and writes the agreed number into Sitara/Unify once instead of it being re-keyed, with an exception list of externally confirmed changes not yet reflected in the deal record.
+**What could absorb it.** A validation at deal entry or a nightly exception query that flags deals whose price is zero, unchanged from the prior month, or divergent from the quoted/billed price, mailed to the deal owner before the flash report is produced. Pair it with a logged price-change request so the edit, the requester and the confirmation live on the deal rather than in mail.
 
 **How the number was reached.**
 
 ```
-11.00 task instances / 8 months of coverage = 1.375 instances per month
-minutes per instance = 8 handle + (1.00 touches - 1) x 3 + 0.45 rework rate x 12 + 0.09 waiting rate x 2 = 13.64 min
+7.00 task instances / 4 months of coverage = 1.750 instances per month
+minutes per instance = 12 handle + (1.14 touches - 1) x 5 + 1.00 rework rate x 18 + 0.00 waiting rate x 3 = 30.71 min
+coordination multiplier = 1 + 0.35 x (2 median participants - 1) = 1.350
+hours per month = 1.750 x 30.71 x 1.350 / 60 = 1.209
+automatable hours = 1.209 x 0.45 automatable share = 0.544
+dollars per month = 0.544 h x $85/h = $46.26
+```
+
+Assumptions from `config/estimation.yml#task_classes.deal_entry_correction`.
+
+**Evidence.**
+
+- "Can you please update the 04/01 price for deal # 27253 in Sitara? It 
+currently has a rate of $2.3043 (last month's price)."
+  — `corpus/giron-d/sent/12.` bytes 677–800, lines 29–30
+    ```
+    sed -n '29,30p' corpus/giron-d/sent/12.
+    ```
+- "I changed the El Paso Electric deal #697528 price from $4 to $68. I should not receive the $25524.54 as revenue shown in the new deal summary."
+  — `corpus/williams-w3/sent_items/366.` bytes 579–721, lines 18–18
+    ```
+    sed -n '18,18p' corpus/williams-w3/sent_items/366.
+    ```
+- "Is there any way to recalculate this (or simply zero it out) prior to the morning flash?"
+  — `corpus/williams-w3/sent_items/366.` bytes 723–811, lines 18–18
+    ```
+    sed -n '18,18p' corpus/williams-w3/sent_items/366.
+    ```
+- "Since we cannot fix the deal, go ahead and put a fixed price of $2.81359 on 
+both lines of the May 2000 deal."
+  — `corpus/farmer-d/logistics/1285.` bytes 721–830, lines 30–31 · rewrapped
+    ```
+    sed -n '30,31p' corpus/farmer-d/logistics/1285.
+    ```
+- "please change and/or review a 
+change of price for the Mar 15 item from $0.00000 to $7.20000 and advise when 
+complete"
+  — `corpus/giron-d/sent/57.` bytes 666–784, lines 34–36 · rewrapped
+    ```
+    sed -n '34,36p' corpus/giron-d/sent/57.
+    ```
+- "Currently in Deal Manager-Sitara, it is at $2.50 and that is 
+the price that I billed them at."
+  — `corpus/farmer-d/logistics/1309.` bytes 585–679, lines 20–21 · rewrapped
+    ```
+    sed -n '20,21p' corpus/farmer-d/logistics/1309.
+    ```
+- "he has the deal priced at 5.25.  I adjusted the price in Sitara."
+  — `corpus/farmer-d/logistics/129.` bytes 779–843, lines 21–21
+    ```
+    sed -n '21,21p' corpus/farmer-d/logistics/129.
+    ```
+- "Can you please 
+update the deal in Sitara to reflect the correct price for 03/01?"
+  — `corpus/giron-d/sent/81.` bytes 810–891, lines 33–34 · rewrapped
+    ```
+    sed -n '33,34p' corpus/giron-d/sent/81.
+    ```
+
+## 9. Fixing deal prices in Sitara by hand before invoices go out
+
+**$41/month** (range $8–$150) · 0.5 automatable hours/month · confidence high
+
+*Measured:* 8 messages in 7 task instances, 5 sender(s), 13 people, 5 months. rework 75%, waiting 38%, manual_transfer 38%, deadline 25%.
+
+**What happens.** Someone preparing an invoice or reviewing a deal notices that the price recorded against a deal ticket in Sitara does not match what was agreed — an index formula instead of a fixed price, a wrong commodity price, or a spot volume sitting on the same ticket as an exchange deal. They email the person with edit rights, quoting the deal number and the corrected price, and ask for the change to be made. That person edits the ticket, and in some threads confirms back or is asked to notify when the change has come across. The exchange ends when the requester sees the corrected price flow through and can issue the invoice or move on.
+
+**Where it stalls.** The requester cannot make the edit themselves, so the correction waits on a second person: one message shows an attempted self-service fix ("I tried to get into the Sitara ticket # 373590 to correct the swing pricing") that turned into an escalation, and another asks to be notified once the change lands rather than being able to see it. The request also travels by relay — one sender asks a colleague to "forward this to Daren" — and it collides with a same-day invoicing deadline ("I need to send out my invoice this afternoon"). Most messages in this cluster carry rework signals, which fits work being redone in the system after it was first captured.
+
+**Why it recurs.** Prices are captured at deal entry but only checked at invoicing, so every billing cycle surfaces another batch of tickets whose Sitara price does not match the agreed price, and edit rights sit with someone other than the person who spots the mismatch.
+
+**What could absorb it.** A pre-invoice exception report that compares the price on each Sitara ticket against the confirmed deal terms and lists mismatches by deal number before the billing run, plus a standing change-request form that captures deal number, corrected price, affected days and requester so the edit can be applied and confirmed back without a relay email.
+
+**How the number was reached.**
+
+```
+7.00 task instances / 5 months of coverage = 1.400 instances per month
+minutes per instance = 12 handle + (1.14 touches - 1) x 5 + 0.75 rework rate x 18 + 0.38 waiting rate x 3 = 27.34 min
 coordination multiplier = 1 + 0.35 x (3 median participants - 1) = 1.700
-hours per month = 1.375 x 13.64 x 1.700 / 60 = 0.531
-automatable hours = 0.531 x 0.55 automatable share = 0.292
-dollars per month = 0.292 h x $85/h = $24.84
+hours per month = 1.400 x 27.34 x 1.700 / 60 = 1.084
+automatable hours = 1.084 x 0.45 automatable share = 0.488
+dollars per month = 0.488 h x $85/h = $41.48
+```
+
+Assumptions from `config/estimation.yml#task_classes.deal_entry_correction`.
+
+**Evidence.**
+
+- "Currently, Sitara is showing a price of  HSC GDP +.05."
+  — `corpus/farmer-d/logistics/179.` bytes 791–845, lines 18–18
+    ```
+    sed -n '18,18p' corpus/farmer-d/logistics/179.
+    ```
+- "pls forward this to Daren so that he can change the price in Sitara to $ 5.235 +.05"
+  — `corpus/farmer-d/logistics/179.` bytes 889–972, lines 20–20
+    ```
+    sed -n '20,20p' corpus/farmer-d/logistics/179.
+    ```
+- "Deal 819592 - the commodity price needs to be 3.6318"
+  — `corpus/farmer-d/logistics/74.` bytes 708–760, lines 22–22
+    ```
+    sed -n '22,22p' corpus/farmer-d/logistics/74.
+    ```
+- "I'll wait to see how these changes come across. Please notify me when these changes have been made."
+  — `corpus/farmer-d/logistics/74.` bytes 1338–1437, lines 32–32
+    ```
+    sed -n '32,32p' corpus/farmer-d/logistics/74.
+    ```
+- "I tried to get into the Sitara ticket # 373590 to correct the swing pricing"
+  — `corpus/farmer-d/logistics/106.` bytes 1341–1416, lines 39–39
+    ```
+    sed -n '39,39p' corpus/farmer-d/logistics/106.
+    ```
+- "Could you pls the pricing on this deal for March 2001 Production for days 25 & 26 to  $ 5.285?"
+  — `corpus/farmer-d/logistics/176.` bytes 1231–1325, lines 36–36
+    ```
+    sed -n '36,36p' corpus/farmer-d/logistics/176.
+    ```
+- "I need to send out my invoice this afternoon"
+  — `corpus/farmer-d/logistics/176.` bytes 1381–1425, lines 38–38
+    ```
+    sed -n '38,38p' corpus/farmer-d/logistics/176.
+    ```
+- "I need to have the spot deal placed on a different deal ticket than the 
+exchange deal (#157288)."
+  — `corpus/farmer-d/logistics/1238.` bytes 595–692, lines 23–24 · rewrapped
+    ```
+    sed -n '23,24p' corpus/farmer-d/logistics/1238.
+    ```
+
+## 10. Daily gas nominations mailed as Word and Excel attachments
+
+**$31/month** (range $6–$106) · 0.4 automatable hours/month · confidence high
+
+*Measured:* 28 messages in 28 task instances, 6 sender(s), 33 people, 14 months. manual_transfer 7%, deadline 4%.
+
+**What happens.** Each flow day, a nomination for gas volumes is sent by email to the scheduling desk, most often as an attached document — recurringly "CALPINE DAILY GAS NOMINATION 1.doc", and in some months an Excel workbook such as "egmnom-Feb.xls". Other instances are nominations onto named pipelines stated in the message itself, for example "HPL Nom for January 4, 2001" and a nomination of volumes into Eastrans for a stated gas day forward. Recipients open the attachment, read the volumes and path out of it, and key or pass them onward; the same document filename reappears month after month, so the file is being overwritten and re-sent rather than versioned. Some messages carry monthly nominations alongside the daily one, and revisions are circulated as forwards marked "(REVISED)". The exchange ends with a short confirmation back to the sender — "Confirmed on my end. Same volumes as yesterday, no changes to the path."
+
+**Where it stalls.** The nomination content lives inside an attachment rather than in the message, so nothing downstream can read it without a person opening the file; the manual_transfer signal appears on the spreadsheet forwards for exactly this reason. Because every day's file carries the identical name, a recipient cannot tell one day's nomination from another except by the mail date, and revisions arrive as separate forwarded copies rather than as an update to a record. Confirmation is verbal or by return mail and appears only once in this set, so whether a nomination was received and accepted is not visible in the trail. Coverage gaps are handled by hand too: one sender simply notes "Will be out Friday, will call if there are any changes."
+
+**Why it recurs.** Nominations are per gas day with a daily pipeline cutoff, and the volumes must be restated even when they are unchanged from the previous day. The messages span fourteen months from the same small set of senders on the same fixed filenames.
+
+**What could absorb it.** Replace the repeated attachment with a structured daily submission — a form or dated file drop whose fields (counterparty, pipeline, path, volume, gas day) are machine-readable and land directly in the scheduling system, with an automatic acknowledgement back to the sender. A roll-forward default of "same volumes as yesterday" would let unchanged days be confirmed rather than re-typed.
+
+**How the number was reached.**
+
+```
+coverage = 27 dated / 28 messages = 0.964; instances 28 / 0.964 = 29.04 adjusted
+29.04 task instances / 14 months of coverage = 2.074 instances per month
+minutes per instance = 8 handle + (1.00 touches - 1) x 3 + 0.00 rework rate x 12 + 0.00 waiting rate x 2 = 8.00 min
+coordination multiplier = 1 + 0.35 x (5 median participants - 1) = 2.400
+hours per month = 2.074 x 8.00 x 2.400 / 60 = 0.664
+automatable hours = 0.664 x 0.55 automatable share = 0.365
+dollars per month = 0.365 h x $85/h = $31.03
 ```
 
 Assumptions from `config/estimation.yml#task_classes.gas_nomination`.
 
 **Evidence.**
 
-- "he decided to go ahead and cut 
-the nom down to 30 for Saturday's gas day.  I changed the confirm in Pops to 
-reflect it."
-  — `corpus/farmer-d/logistics/2110.` bytes 1276–1397, lines 28–30 · rewrapped
+- "CALPINE DAILY GAS NOMINATION 1.doc"
+  — `corpus/farmer-d/logistics/1318.` bytes 746–780, lines 19–19
     ```
-    sed -n '28,30p' corpus/farmer-d/logistics/2110.
+    sed -n '19,19p' corpus/farmer-d/logistics/1318.
     ```
-- "I could not get a hold of any scheduler with PG&E to see the 
-contractual impact."
-  — `corpus/farmer-d/logistics/2110.` bytes 1843–1924, lines 41–42 · rewrapped
+- "This is to nominate 33,450 mmbtu/d into Eastrans for GD 6/22/2000 forward."
+  — `corpus/farmer-d/logistics/1222.` bytes 1148–1222, lines 36–36
     ```
-    sed -n '41,42p' corpus/farmer-d/logistics/2110.
+    sed -n '36,36p' corpus/farmer-d/logistics/1222.
     ```
+- "Confirmed on my end. Same volumes as yesterday, no changes to the path."
+  — `corpus/giron-d/sent/795.` bytes 452–523, lines 16–16
+    ```
+    sed -n '16,16p' corpus/giron-d/sent/795.
+    ```
+- "(See attached file: egmnom-Feb.xls)"
+  — `corpus/farmer-d/logistics/764.` bytes 858–893, lines 32–32
+    ```
+    sed -n '32,32p' corpus/farmer-d/logistics/764.
+    ```
+- "HPL Nom for January 4, 2001"
+  — `corpus/farmer-d/logistics/2025.` bytes 313–340, lines 7–7
+    ```
+    sed -n '7,7p' corpus/farmer-d/logistics/2025.
+    ```
+- "FW: Calpine Daily Gas Nomination (REVISED)"
+  — `corpus/farmer-d/logistics/773.` bytes 160–202, lines 5–5
+    ```
+    sed -n '5,5p' corpus/farmer-d/logistics/773.
+    ```
+- "Calpine Daily Gas Nomination and Monthly (JULY) Nomination"
+  — `corpus/farmer-d/logistics/1245.` bytes 161–219, lines 5–5
+    ```
+    sed -n '5,5p' corpus/farmer-d/logistics/1245.
+    ```
+- "Will be out Friday, will call if there are any changes."
+  — `corpus/farmer-d/logistics/169.` bytes 828–883, lines 21–21
+    ```
+    sed -n '21,21p' corpus/farmer-d/logistics/169.
+    ```
+
+## 11. Nomination changes confirmed by hand across Sitara, Unify and counterparties
+
+**$20/month** (range $5–$60) · 0.2 automatable hours/month · confidence high
+
+*Measured:* 8 messages in 8 task instances, 5 sender(s), 14 people, 6 months. rework 50%, manual_transfer 50%, deadline 12%.
+
+**What happens.** A counterparty, pipeline scheduler or internal desk asks for a nomination volume to be changed for one or more flow dates at a named meter or point. Whoever picks the request up restates the old and new volumes in mail, asks the other side to approve, and then makes the change in whatever record they keep — Sitara, Unify, or a personal spreadsheet. The confirmation loop closes by naming the person at the counterparty who agreed ("confirmed with Patsy Shimek @ Kinder Morgan") or by stating the change has been entered. The output is an agreed volume recorded in more than one place; there is no single system in the evidence that carries the change through on its own.
+
+**Where it stalls.** The change has to be re-keyed into each record separately, and the mail shows that half of these messages carry rework or manual-transfer markers: a volume is questioned and re-asked ("Is this correct? We'll need to change sitara"), or an amount that was already agreed cannot be confirmed with the pipeline ("Charlotte Hawkins is having trouble confirming the volume of 5,733 with El Paso"). Because approval and entry are separate steps held by different people, the requester writes back to check what was actually recorded, and one instance ends with the change likely being repeated the following day. Who owns the authoritative record — Sitara, Unify or the spreadsheet — is not visible in these messages.
+
+**Why it recurs.** Nominations are revised against daily flow cycles, and each revision must be agreed with a named person at the counterparty and then re-entered in every system that holds the volume, so a new confirmation loop starts each time a number moves.
+
+**What could absorb it.** A single change-request form that captures meter, dates, old and new volume, then writes those values into Sitara and Unify and generates the counterparty confirmation mail from the same record, so the number is keyed once and system mismatches are flagged automatically.
+
+**How the number was reached.**
+
+```
+8.00 task instances / 6 months of coverage = 1.333 instances per month
+minutes per instance = 8 handle + (1.00 touches - 1) x 3 + 0.50 rework rate x 12 + 0.00 waiting rate x 2 = 14.00 min
+coordination multiplier = 1 + 0.35 x (2 median participants - 1) = 1.350
+hours per month = 1.333 x 14.00 x 1.350 / 60 = 0.420
+automatable hours = 0.420 x 0.55 automatable share = 0.231
+dollars per month = 0.231 h x $85/h = $19.63
+```
+
+Assumptions from `config/estimation.yml#task_classes.gas_nomination`.
+
+**Evidence.**
+
 - "Will you approve revising the volume in Unify down to 2,300?  Please advise."
   — `corpus/farmer-d/logistics/1163.` bytes 715–791, lines 27–27
     ```
@@ -823,23 +827,33 @@ Paso."
     ```
     sed -n '19,20p' corpus/farmer-d/logistics/1163.
     ```
-- "the San Jac. nom  should be 29,209.  
+- "Jill 
+told me that on the 18th,19 th and 20th the San Jac. nom  should be 29,209.  
 Is this correct?  We'll need to change sitara."
-  — `corpus/farmer-d/logistics/603.` bytes 827–911, lines 30–31 · rewrapped
+  — `corpus/farmer-d/logistics/603.` bytes 781–911, lines 29–31 · rewrapped
     ```
-    sed -n '30,31p' corpus/farmer-d/logistics/603.
-    ```
-- "They would like to drop the volume again to 4400.  If we 
-change don't Kim will have an imbalance at this meter"
-  — `corpus/farmer-d/logistics/866.` bytes 680–791, lines 21–22 · rewrapped
-    ```
-    sed -n '21,22p' corpus/farmer-d/logistics/866.
+    sed -n '29,31p' corpus/farmer-d/logistics/603.
     ```
 - "This change was 
 confirmed with Patsy Shimek @ Kinder Morgan."
   — `corpus/farmer-d/logistics/2029.` bytes 783–844, lines 24–25 · rewrapped
     ```
     sed -n '24,25p' corpus/farmer-d/logistics/2029.
+    ```
+- "I've made the change in my spreadsheet."
+  — `corpus/farmer-d/logistics/1001.` bytes 1256–1295, lines 41–41
+    ```
+    sed -n '41,41p' corpus/farmer-d/logistics/1001.
+    ```
+- "They said there is a chance they will have to do it again tomorrow."
+  — `corpus/farmer-d/logistics/2108.` bytes 765–832, lines 22–22
+    ```
+    sed -n '22,22p' corpus/farmer-d/logistics/2108.
+    ```
+- "We have received a revised nomination as follows:"
+  — `corpus/farmer-d/logistics/1161.` bytes 482–531, lines 19–19
+    ```
+    sed -n '19,19p' corpus/farmer-d/logistics/1161.
     ```
 - "a nom change from
 3,300 to 2,400 mmbtu/d at HPL Meter 98-6296 delivery @ HPL Thompsonville"
@@ -854,13 +868,13 @@ confirmed with Patsy Shimek @ Kinder Morgan."
 
 Ready to use on Monday morning. Every sentence asserting current practice carries a citation marker that resolves to verified evidence; recommendations carry no marker and sit under their own heading, so observation and proposal never blur.
 
-- **Runbook: Meter-Level Scheduled-vs-Actual Volume Reconciliation** (`RUN-01-runbook-meter-level-scheduled-vs-actual-volume-recon.md`) — runbook, for *Meter-level scheduled-vs-actual volume reconciliation, chased by email*
-- **Deal price correction in Sitara: request and confirmation mail template** (`TPL-01-deal-price-correction-in-sitara-request-and-confirma.md`) — template, for *Correcting mispriced deals by hand in Sitara after the fact*
-- **Template: Weekly California Capacity Report** (`TPL-02-template-weekly-california-capacity-report.md`) — template, for *Weekly California Capacity Report, assembled and mailed by hand*
-- **Runbook: Extending a Sitara deal to cover meter flow outside the deal term** (`RUN-02-runbook-extending-a-sitara-deal-to-cover-meter-flow-.md`) — runbook, for *Extending Sitara deals by request to cover unallocated meter flow*
-- **Daily Credit Report: standing distribution email (draft)** (`EML-01-daily-credit-report-standing-distribution-email-draf.md`) — email, for *"Credit Report - 1/30/01" produced daily*
-- **Weekly California Capacity Report — transmittal email draft** (`EML-02-weekly-california-capacity-report-transmittal-email-.md`) — email, for *"California Capacity Report for Week of 01/14-01/18" produced weekly*
-- **Standing email: Calpine Daily Gas Nomination notice** (`EML-03-standing-email-calpine-daily-gas-nomination-notice.md`) — email, for *"Calpine Daily Gas Nomination" produced monthly*
+- **Checklist: Correcting a Wrong Deal Price in Sitara** (`CHK-01-checklist-correcting-a-wrong-deal-price-in-sitara.md`) — checklist, for *Fixing wrong deal prices in Sitara after the fact*
+- **Runbook: Scheduled-versus-Actual Volume Exceptions** (`RUN-01-runbook-scheduled-versus-actual-volume-exceptions.md`) — runbook, for *Scheduled-versus-actual volume exceptions, reconciled by hand in Unify*
+- **Weekly California Capacity Report — standing email template** (`TPL-01-weekly-california-capacity-report-standing-email-tem.md`) — template, for *Weekly California Capacity Report, assembled and mailed by hand*
+- **Monthly First-of-Month Gas Nomination — Standard Submission Template** (`TPL-02-monthly-first-of-month-gas-nomination-standard-submi.md`) — template, for *Monthly first-of-month gas nominations emailed in by counterparties*
+- **Standing Daily Credit Report — Distribution Email Template** (`EML-01-standing-daily-credit-report-distribution-email-temp.md`) — email, for *"Credit Report - 1/30/01" produced daily*
+- **Weekly California Capacity Report — standing cover email (draft)** (`EML-02-weekly-california-capacity-report-standing-cover-ema.md`) — email, for *"California Capacity Report for Week of 01/14-01/18" produced weekly*
+- **Standing email template: Calpine Daily Gas Nomination** (`EML-03-standing-email-template-calpine-daily-gas-nomination.md`) — email, for *"Calpine Daily Gas Nomination" produced monthly*
 
 ---
 

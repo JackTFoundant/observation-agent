@@ -1,0 +1,341 @@
+{
+  "opportunity_id": "proc_a2a7ee4187",
+  "source": "content_cluster",
+  "title": "Nomination changes confirmed by hand across Sitara, Unify and counterparties",
+  "task_class": "gas_nomination",
+  "label_mechanical": "Gas nomination and scheduling: confirm change / nomination / counterparty",
+  "narrative": {
+    "what_happens": "A counterparty, pipeline scheduler or internal desk asks for a nomination volume to be changed for one or more flow dates at a named meter or point. Whoever picks the request up restates the old and new volumes in mail, asks the other side to approve, and then makes the change in whatever record they keep \u2014 Sitara, Unify, or a personal spreadsheet. The confirmation loop closes by naming the person at the counterparty who agreed (\"confirmed with Patsy Shimek @ Kinder Morgan\") or by stating the change has been entered. The output is an agreed volume recorded in more than one place; there is no single system in the evidence that carries the change through on its own.",
+    "where_it_stalls": "The change has to be re-keyed into each record separately, and the mail shows that half of these messages carry rework or manual-transfer markers: a volume is questioned and re-asked (\"Is this correct? We'll need to change sitara\"), or an amount that was already agreed cannot be confirmed with the pipeline (\"Charlotte Hawkins is having trouble confirming the volume of 5,733 with El Paso\"). Because approval and entry are separate steps held by different people, the requester writes back to check what was actually recorded, and one instance ends with the change likely being repeated the following day. Who owns the authoritative record \u2014 Sitara, Unify or the spreadsheet \u2014 is not visible in these messages.",
+    "why_it_recurs": "Nominations are revised against daily flow cycles, and each revision must be agreed with a named person at the counterparty and then re-entered in every system that holds the volume, so a new confirmation loop starts each time a number moves.",
+    "automation_opportunity": "A single change-request form that captures meter, dates, old and new volume, then writes those values into Sitara and Unify and generates the counterparty confirmation mail from the same record, so the number is keyed once and system mismatches are flagged automatically.",
+    "coherence": "tight"
+  },
+  "status": "counted",
+  "status_reason": "",
+  "confidence": "high",
+  "artifact_shape": "runbook",
+  "measured": {
+    "instances": 8,
+    "messages": 8,
+    "dated_messages": 8,
+    "undated_messages": 0,
+    "participants_median": 2,
+    "months": 6.0,
+    "rework_rate": 0.5,
+    "waiting_rate": 0.0,
+    "manual_transfer_rate": 0.5,
+    "senders": 5
+  },
+  "gate_metrics": {
+    "messages": 8,
+    "distinct_content": 8,
+    "senders": 5,
+    "threads": 8,
+    "months": 6,
+    "weeks": 7,
+    "folders": 1,
+    "people": 14
+  },
+  "signal_rates": {
+    "rework_signal": 0.5,
+    "waiting_signal": 0.0,
+    "manual_transfer_signal": 0.5,
+    "deadline_signal": 0.125
+  },
+  "systems": {
+    "other_system": 4,
+    "email": 3,
+    "phone": 1,
+    "sitara": 1,
+    "spreadsheet": 1,
+    "unify": 1
+  },
+  "roles": {
+    "request": 3,
+    "confirmation": 2,
+    "fyi": 2,
+    "status_report": 1
+  },
+  "months": [
+    "1999-12",
+    "2000-03",
+    "2000-04",
+    "2000-05",
+    "2001-01",
+    "2001-02"
+  ],
+  "people": 14,
+  "hours_per_month": {
+    "low": 0.2,
+    "base": 0.4,
+    "high": 0.9
+  },
+  "automatable_hours_per_month": {
+    "low": 0.1,
+    "base": 0.2,
+    "high": 0.7
+  },
+  "dollars_per_month": {
+    "low": 4.56,
+    "base": 19.63,
+    "high": 60.39
+  },
+  "derivation": {
+    "formula_id": "hours_v1",
+    "estimate_version": "1.0.0",
+    "measured": {
+      "instances": 8,
+      "messages": 8,
+      "dated_messages": 8,
+      "undated_messages": 0,
+      "participants_median": 2,
+      "months": 6.0,
+      "rework_rate": 0.5,
+      "waiting_rate": 0.0,
+      "manual_transfer_rate": 0.5,
+      "senders": 5
+    },
+    "assumed": {
+      "handle_min": 8.0,
+      "per_touch_min": 3.0,
+      "rework_min": 12.0,
+      "waiting_admin_min": 2.0,
+      "automatable_share": 0.55
+    },
+    "assumed_global": {
+      "blended_rate_usd_per_hour": 85.0,
+      "coordination_alpha": 0.35,
+      "extrapolation_factor": 1.0
+    },
+    "assumption_source": "config/estimation.yml#task_classes.gas_nomination",
+    "steps": [
+      "8.00 task instances / 6 months of coverage = 1.333 instances per month",
+      "minutes per instance = 8 handle + (1.00 touches - 1) x 3 + 0.50 rework rate x 12 + 0.00 waiting rate x 2 = 14.00 min",
+      "coordination multiplier = 1 + 0.35 x (2 median participants - 1) = 1.350",
+      "hours per month = 1.333 x 14.00 x 1.350 / 60 = 0.420",
+      "automatable hours = 0.420 x 0.55 automatable share = 0.231",
+      "dollars per month = 0.231 h x $85/h = $19.63"
+    ],
+    "result": {
+      "hours_per_month": 0.4,
+      "automatable_hours_per_month": 0.2,
+      "dollars_per_month": 19.63
+    }
+  },
+  "citations": [
+    {
+      "citation_id": "cit_85be9a4dbc98",
+      "source_path": "corpus/farmer-d/logistics/1163.",
+      "source_sha256": "c9b8f74b528b399d5d554841ab7f40c06bbbee9a373559e636f7ea3407be741d",
+      "message_id": "<23882469.1075854132540.JavaMail.evans@thyme>",
+      "msg_uid": "m_863c5b041b2e",
+      "quote": "Will you approve revising the volume in Unify down to 2,300?  Please advise.",
+      "match_tier": "raw_exact",
+      "raw_start": 715,
+      "raw_end": 791,
+      "decoded_start": 239,
+      "decoded_end": 315,
+      "line_start": 27,
+      "line_end": 27,
+      "repaired": false,
+      "sender": "robert.cotten@enron.com",
+      "sent_at": "2000-05-31T09:04:00-07:00",
+      "subject": "Revised Nomination - June, 2000",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=715 count=76 if=corpus/farmer-d/logistics/1163. 2>/dev/null",
+        "sed": "sed -n '27,27p' corpus/farmer-d/logistics/1163."
+      }
+    },
+    {
+      "citation_id": "cit_d8ff0fa59bca",
+      "source_path": "corpus/farmer-d/logistics/1163.",
+      "source_sha256": "c9b8f74b528b399d5d554841ab7f40c06bbbee9a373559e636f7ea3407be741d",
+      "message_id": "<23882469.1075854132540.JavaMail.evans@thyme>",
+      "msg_uid": "m_863c5b041b2e",
+      "quote": "Charlotte Hawkins is having trouble confirming the volume of 5,733 with El \nPaso.",
+      "match_tier": "rewrapped",
+      "raw_start": 476,
+      "raw_end": 557,
+      "decoded_start": 0,
+      "decoded_end": 81,
+      "line_start": 19,
+      "line_end": 20,
+      "repaired": false,
+      "sender": "robert.cotten@enron.com",
+      "sent_at": "2000-05-31T09:04:00-07:00",
+      "subject": "Revised Nomination - June, 2000",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=476 count=81 if=corpus/farmer-d/logistics/1163. 2>/dev/null",
+        "sed": "sed -n '19,20p' corpus/farmer-d/logistics/1163."
+      }
+    },
+    {
+      "citation_id": "cit_41a6d531d3a9",
+      "source_path": "corpus/farmer-d/logistics/603.",
+      "source_sha256": "54a34e8c9bbe21156476ad77bc03e51ca31f412d4173065d3d8b6de2efd6b0c4",
+      "message_id": "<5762433.1075854119712.JavaMail.evans@thyme>",
+      "msg_uid": "m_1f77b11a84d5",
+      "quote": "Jill \ntold me that on the 18th,19 th and 20th the San Jac. nom  should be 29,209.  \nIs this correct?  We'll need to change sitara.",
+      "match_tier": "rewrapped",
+      "raw_start": 781,
+      "raw_end": 911,
+      "decoded_start": 187,
+      "decoded_end": 317,
+      "line_start": 29,
+      "line_end": 31,
+      "repaired": false,
+      "sender": "kimberly.vaughn@enron.com",
+      "sent_at": "1999-12-21T06:35:00-08:00",
+      "subject": "HL&P",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=781 count=130 if=corpus/farmer-d/logistics/603. 2>/dev/null",
+        "sed": "sed -n '29,31p' corpus/farmer-d/logistics/603."
+      }
+    },
+    {
+      "citation_id": "cit_f6bfe75fea47",
+      "source_path": "corpus/farmer-d/logistics/2029.",
+      "source_sha256": "80f62382a251756194de96b8ddfde5fd17d371cc2f32bb01a829b48043d8c820",
+      "message_id": "<2549363.1075854318072.JavaMail.evans@thyme>",
+      "msg_uid": "m_577981bf2226",
+      "quote": "This change was \nconfirmed with Patsy Shimek @ Kinder Morgan.",
+      "match_tier": "rewrapped",
+      "raw_start": 783,
+      "raw_end": 844,
+      "decoded_start": 207,
+      "decoded_end": 268,
+      "line_start": 24,
+      "line_end": 25,
+      "repaired": false,
+      "sender": "mark.mccoy@enron.com",
+      "sent_at": "2001-01-04T08:54:00-08:00",
+      "subject": "Kinder Morgan (Cannon) Sale Change",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=783 count=61 if=corpus/farmer-d/logistics/2029. 2>/dev/null",
+        "sed": "sed -n '24,25p' corpus/farmer-d/logistics/2029."
+      }
+    },
+    {
+      "citation_id": "cit_1268be76b68a",
+      "source_path": "corpus/farmer-d/logistics/1001.",
+      "source_sha256": "817e7d04da572c374bc21268cb575032755ac414a149b9417b9d2174200bb1b2",
+      "message_id": "<2626176.1075854128813.JavaMail.evans@thyme>",
+      "msg_uid": "m_60475d6f3b38",
+      "quote": "I've made the change in my spreadsheet.",
+      "match_tier": "raw_exact",
+      "raw_start": 1256,
+      "raw_end": 1295,
+      "decoded_start": 637,
+      "decoded_end": 676,
+      "line_start": 41,
+      "line_end": 41,
+      "repaired": false,
+      "sender": "tom.acton@enron.com",
+      "sent_at": "2000-04-03T02:18:00-07:00",
+      "subject": "Walter O&G/Superior April Noms",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=1256 count=39 if=corpus/farmer-d/logistics/1001. 2>/dev/null",
+        "sed": "sed -n '41,41p' corpus/farmer-d/logistics/1001."
+      }
+    },
+    {
+      "citation_id": "cit_6ce9b034b132",
+      "source_path": "corpus/farmer-d/logistics/2108.",
+      "source_sha256": "b8470540ba5a5307d1221ff7653850bf316f7bbb6f6c4dc9135e2907ec77ad53",
+      "message_id": "<16420991.1075854319855.JavaMail.evans@thyme>",
+      "msg_uid": "m_6b0447d1877d",
+      "quote": "They said there is a chance they will have to do it again tomorrow.",
+      "match_tier": "raw_exact",
+      "raw_start": 765,
+      "raw_end": 832,
+      "decoded_start": 0,
+      "decoded_end": 67,
+      "line_start": 22,
+      "line_end": 22,
+      "repaired": false,
+      "sender": "mark.mccoy@enron.com",
+      "sent_at": "2001-02-27T08:25:00-08:00",
+      "subject": "Guadalupe for 2/27----Intraday",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=765 count=67 if=corpus/farmer-d/logistics/2108. 2>/dev/null",
+        "sed": "sed -n '22,22p' corpus/farmer-d/logistics/2108."
+      }
+    },
+    {
+      "citation_id": "cit_0b830bd857b1",
+      "source_path": "corpus/farmer-d/logistics/1161.",
+      "source_sha256": "96a1da45889b9483b6859505838b3c0b46798e8f8576d5cb625bde47fb483304",
+      "message_id": "<12484500.1075854132497.JavaMail.evans@thyme>",
+      "msg_uid": "m_0ff021520073",
+      "quote": "We have received a revised nomination as follows:",
+      "match_tier": "raw_exact",
+      "raw_start": 482,
+      "raw_end": 531,
+      "decoded_start": 6,
+      "decoded_end": 55,
+      "line_start": 19,
+      "line_end": 19,
+      "repaired": false,
+      "sender": "robert.cotten@enron.com",
+      "sent_at": "2000-05-31T07:10:00-07:00",
+      "subject": "Revised Nomination - June, 2000",
+      "flags": [],
+      "check_commands": {
+        "dd": "dd bs=1 skip=482 count=49 if=corpus/farmer-d/logistics/1161. 2>/dev/null",
+        "sed": "sed -n '19,19p' corpus/farmer-d/logistics/1161."
+      }
+    },
+    {
+      "citation_id": "cit_46ade1da95de",
+      "source_path": "corpus/farmer-d/logistics/1151.",
+      "source_sha256": "10ff360bcdfcd5fb00ebccd9daa3e37f524b6c6a23d5c7b7e94d0d68fcef2d7c",
+      "message_id": "<6030338.1075854132266.JavaMail.evans@thyme>",
+      "msg_uid": "m_1240e911e911",
+      "quote": "a nom change from\n3,300 to 2,400 mmbtu/d at HPL Meter 98-6296 delivery @ HPL Thompsonville",
+      "match_tier": "rewrapped",
+      "raw_start": 880,
+      "raw_end": 970,
+      "decoded_start": 271,
+      "decoded_end": 361,
+      "line_start": 29,
+      "line_end": 30,
+      "repaired": false,
+      "sender": "tom.acton@enron.com",
+      "sent_at": "2000-05-26T04:32:00-07:00",
+      "subject": "Nom Change - Effective May 27, 2000 - SG Marshall - HPL Meter\r  98-6296",
+      "flags": [
+        "tier_rewrapped"
+      ],
+      "check_commands": {
+        "dd": "dd bs=1 skip=880 count=90 if=corpus/farmer-d/logistics/1151. 2>/dev/null",
+        "sed": "sed -n '29,30p' corpus/farmer-d/logistics/1151."
+      }
+    }
+  ],
+  "quarantined_citations": [],
+  "member_count": 8,
+  "member_uids": [
+    "m_0ff021520073",
+    "m_1240e911e911",
+    "m_1f77b11a84d5",
+    "m_577981bf2226",
+    "m_60475d6f3b38",
+    "m_6b0447d1877d",
+    "m_863c5b041b2e",
+    "m_da07af9e82d7"
+  ],
+  "flags": []
+}
