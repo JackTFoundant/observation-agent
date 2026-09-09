@@ -159,10 +159,33 @@ Three things were wrong, and all three are now fixed:
   `summary.json`, and raised as a warning by `verify` — which also warns when a run with
   counted opportunities drafted no artifacts at all.
 
-I am reporting these two runs rather than only the clean one because the pattern is the
-interesting part: the first fix was right in isolation and wrong in the system, and the
-only reason I found either failure is that I made myself run the path the grader would
-actually take instead of the warm path I had been developing against.
+**And underneath both of those was a bug of my own making.** Every cold run lost exactly
+one batch of 32 messages, and I had blamed rate limiting twice. It was self-inflicted: the
+rate-limit detector regexed the worker's *answer* for `429`, and a message uid is a hex
+hash. `m_64293e33900a` contains `429`. So a worker returned a perfectly valid batch, its
+own message id tripped the detector, the response was thrown away as a rate limit, and the
+batch retried until a deadline killed it. Deterministic, because uids are content hashes -
+which is exactly why the *same single batch* died on every run, and why the "four throttles"
+I recorded on the third run were almost certainly this and not real limits.
+
+The fix is a principle rather than a patch: **parse first, and never pattern-match a
+payload that parses.** Rate limiting and auth failure are detected structurally - a
+non-zero exit, or an error envelope - and text matching survives only as a fallback for
+when the CLI hands back prose instead of JSON. One of the new tests immediately caught my
+replacement regex still firing on ordinary corpus prose ("deal 429 was rebooked in
+Sitara").
+
+**The fourth cold run is the one that shipped:** 12 minutes 20 seconds, 80 of 80 batches,
+coverage 2,531 of 2,531, no throttles, no deadline pressure, `make verify` clean. The
+progression was 28.8 min with nothing but numbers, then 25.0 with narratives and artifacts
+but a hidden gap, then 17.1 with the gap correctly reported, then 12.3 clean.
+
+I am reporting all four rather than only the last because the pattern is the interesting
+part. The first fix was right in isolation and wrong in the system. The second exposed a
+reporting hole. The third revealed that the thing I had been diagnosing for two runs was
+not the thing that was wrong. And the only reason I found any of it is that I made myself
+run the path the grader would actually take instead of the warm path I had been developing
+against - every one of these failures was invisible from a cached run.
 
 ## Where this system is most likely to be wrong
 
@@ -229,13 +252,18 @@ actually take instead of the warm path I had been developing against.
 
 ## A note on timing
 
-A cold run takes about 24 minutes on my machine — inside the 30-minute budget, but not
-comfortably. Roughly 130 model calls, of which ~110 are extraction. Two levers exist if it
-runs long on someone else's machine, and both are one flag: `--concurrency` (adaptive
-already, but the ceiling can rise) and `OBSERVE_EXTRACT_MODEL=haiku`. The second is safe
-in a way worth spelling out: because a published quote is always *sliced from the corpus*
-and the model's string is only a search key, a cheaper model that paraphrases more costs
-recall, not correctness. A warm re-run is about five seconds.
+The shipped cold run took **12 minutes 20 seconds** on an unthrottled account: 100 model
+calls, of which 83 are extraction, against a 28-minute deadline that never came close to
+firing. A warm re-run over the unchanged corpus takes about **5 seconds** with zero model
+calls, and a resume that fills a partial run does only the missing work - filling one
+32-message gap took 79 seconds.
+
+The deadline is a safety net, not the expected duration, and it is divided per stage
+(`Context.STAGE_BUDGET`) so no single stage can consume the run. If it does run long on
+someone else's machine, the levers are `--concurrency`, `OBSERVE_BATCH_SIZE`, and
+`OBSERVE_EXTRACT_MODEL=haiku`. The last is safe in a way worth spelling out: because a
+published quote is always *sliced from the corpus* and the model's string is only a search
+key, a cheaper model that paraphrases more costs recall, not correctness.
 
 ## What I would build next, in order
 

@@ -1,0 +1,137 @@
+{
+  "opportunity_id": "proc_f4f84c33f9",
+  "source": "content_cluster",
+  "title": "Ad-hoc meter data questions and corrections in gas logistics mail",
+  "task_class": "meter_data",
+  "label_mechanical": "Meter data requests and corrections: resolve data / meter / issue",
+  "narrative": {
+    "what_happens": "Someone notices that a meter's data looks wrong or incomplete \u2014 a reading, a monthly volume, or an identifier that does not match what a counterpart expects \u2014 and raises it by email into the logistics mailbox. The activity phrases show two variants: reporting meter data or a meter data issue for a period, and resolving a meter data discrepancy or inquiry once raised. Each message here is its own thread, so what is visible is the opening notification rather than a back-and-forth; only one message is marked as a confirmation that something was settled. All eleven messages sit in a single mailbox folder, and the exemplars carry no quoted text beyond their activity phrases, so the downstream steps \u2014 who corrects the record, and in which system \u2014 are not visible in this evidence.",
+    "where_it_stalls": "No stall is measurable here: the rework, waiting, manual-transfer and deadline signal rates are all zero and ten of the eleven messages are one-way notifications. The observable weakness is different \u2014 meter problems arrive as free-text mail with no visible ticket, owner or closure step, and only one message in the set records a confirmation, so from the archive alone it cannot be told whether the other issues were fixed. Threads are singletons, which means resolution, if it happened, happened outside this channel.",
+    "why_it_recurs": "Meter identifiers and volumes key everything in scheduling and allocation, so mismatches surface whenever a period is reported. The messages appear in scattered months across two years rather than on a cycle, which points to event-driven exception handling rather than a scheduled task.",
+    "automation_opportunity": "A lightweight intake that turns a meter exception into a tracked item with a named owner and a closing note, so that raising and resolving a meter discrepancy leave a record in the same place. A validation check that flags meter identifiers and monthly volumes that fail to match between the reporting source and the scheduling record would catch some of these before anyone writes an email.",
+    "coherence": "mixed"
+  },
+  "status": "quarantined",
+  "status_reason": "only 0 verified citation(s); 3 required",
+  "confidence": "low",
+  "artifact_shape": "none",
+  "measured": {
+    "instances": 11,
+    "messages": 11,
+    "dated_messages": 11,
+    "undated_messages": 0,
+    "participants_median": 3,
+    "months": 7.0,
+    "rework_rate": 0.0,
+    "waiting_rate": 0.0,
+    "manual_transfer_rate": 0.0,
+    "senders": 5
+  },
+  "gate_metrics": {
+    "messages": 11,
+    "distinct_content": 11,
+    "senders": 5,
+    "threads": 11,
+    "months": 7,
+    "weeks": 9,
+    "folders": 1,
+    "people": 13
+  },
+  "signal_rates": {
+    "rework_signal": 0.0,
+    "waiting_signal": 0.0,
+    "manual_transfer_signal": 0.0,
+    "deadline_signal": 0.0
+  },
+  "systems": {
+    "email": 2
+  },
+  "roles": {
+    "fyi": 10,
+    "confirmation": 1
+  },
+  "months": [
+    "2000-01",
+    "2000-02",
+    "2000-03",
+    "2000-04",
+    "2000-08",
+    "2001-01",
+    "2001-05"
+  ],
+  "people": 13,
+  "hours_per_month": {
+    "low": 0.1,
+    "base": 0.4,
+    "high": 1.0
+  },
+  "automatable_hours_per_month": {
+    "low": 0.1,
+    "base": 0.3,
+    "high": 0.8
+  },
+  "dollars_per_month": {
+    "low": 4.63,
+    "base": 22.14,
+    "high": 71.53
+  },
+  "derivation": {
+    "formula_id": "hours_v1",
+    "estimate_version": "1.0.0",
+    "measured": {
+      "instances": 11,
+      "messages": 11,
+      "dated_messages": 11,
+      "undated_messages": 0,
+      "participants_median": 3,
+      "months": 7.0,
+      "rework_rate": 0.0,
+      "waiting_rate": 0.0,
+      "manual_transfer_rate": 0.0,
+      "senders": 5
+    },
+    "assumed": {
+      "handle_min": 9.0,
+      "per_touch_min": 4.0,
+      "rework_min": 12.0,
+      "waiting_admin_min": 3.0,
+      "automatable_share": 0.65
+    },
+    "assumed_global": {
+      "blended_rate_usd_per_hour": 85.0,
+      "coordination_alpha": 0.35,
+      "extrapolation_factor": 1.0
+    },
+    "assumption_source": "config/estimation.yml#task_classes.meter_data",
+    "steps": [
+      "11.00 task instances / 7 months of coverage = 1.571 instances per month",
+      "minutes per instance = 9 handle + (1.00 touches - 1) x 4 + 0.00 rework rate x 12 + 0.00 waiting rate x 3 = 9.00 min",
+      "coordination multiplier = 1 + 0.35 x (3 median participants - 1) = 1.700",
+      "hours per month = 1.571 x 9.00 x 1.700 / 60 = 0.401",
+      "automatable hours = 0.401 x 0.65 automatable share = 0.260",
+      "dollars per month = 0.260 h x $85/h = $22.14"
+    ],
+    "result": {
+      "hours_per_month": 0.4,
+      "automatable_hours_per_month": 0.3,
+      "dollars_per_month": 22.14
+    }
+  },
+  "citations": [],
+  "quarantined_citations": [],
+  "member_count": 11,
+  "member_uids": [
+    "m_23ee3b451623",
+    "m_5b185b492243",
+    "m_6039ae0c8416",
+    "m_682197d0e16c",
+    "m_7ec4e2cbea92",
+    "m_a35794a8a50c",
+    "m_b9e312bbb441",
+    "m_cf1e1996afef",
+    "m_d1ccc5b5ecc4",
+    "m_d9cebcc4e677",
+    "m_f5c96ac8f303"
+  ],
+  "flags": []
+}

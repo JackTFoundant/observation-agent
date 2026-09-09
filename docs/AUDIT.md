@@ -6,170 +6,163 @@ output of `make audit`; nothing here is hand-written.
 
 ```
 
---- 1. cit_d8ff0fa59bca  [rewrapped]
-    opportunity: Mid-month nomination revisions re-keyed by hand for Josey, Katy and El Paso
-    quote: "Charlotte Hawkins is having trouble confirming the volume of 5,733 with El 
-Paso."
-    dd bs=1 skip=476 count=81 if=corpus/farmer-d/logistics/1163. 2>/dev/null
-    sed -n '19,20p' corpus/farmer-d/logistics/1163.
+--- 1. cit_70d1c123124d  [raw_exact]
+    opportunity: "Calpine Daily Gas Nomination" produced monthly
+    quote: "Subject: Calpine Daily Gas Nomination"
+    dd bs=1 skip=158 count=37 if=corpus/farmer-d/logistics/1561. 2>/dev/null
+    sed -n '5,5p' corpus/farmer-d/logistics/1561.
 
---- 2. cit_c9e6e7fea071  [rewrapped]
-    opportunity: Monthly nomination volume estimates agreed by email before month start
-    quote: "Southern Union for May
-2100 83 st
-2100 Port Arthur"
-    dd bs=1 skip=770 count=50 if=corpus/farmer-d/logistics/1056. 2>/dev/null
-    sed -n '37,39p' corpus/farmer-d/logistics/1056.
+--- 2. cit_feeabdbb4ec3  [raw_exact]
+    opportunity: Weekly California Capacity Report, assembled and mailed by hand
+    quote: "Sorry, the effective date for this new report is 01/07-01/11."
+    dd bs=1 skip=1231 count=61 if=corpus/lokay-m/sent_items/46. 2>/dev/null
+    sed -n '23,23p' corpus/lokay-m/sent_items/46.
 
---- 3. cit_ecee0749008d  [raw_exact]
-    opportunity: Sitara deal price corrections requested by email
-    quote: "pls forward this to Daren so that he can change the price in Sitara to $ 5.235 +.05"
-    dd bs=1 skip=889 count=83 if=corpus/farmer-d/logistics/179. 2>/dev/null
-    sed -n '20,20p' corpus/farmer-d/logistics/179.
+--- 3. cit_61f81d3ab9f5  [raw_exact]
+    opportunity: "Calpine Daily Gas Nomination" produced monthly
+    quote: "Subject: Calpine Daily Gas Nomination"
+    dd bs=1 skip=158 count=37 if=corpus/farmer-d/logistics/579. 2>/dev/null
+    sed -n '5,5p' corpus/farmer-d/logistics/579.
 
---- 4. cit_76251f7744e6  [raw_exact]
-    opportunity: Real-time West power desk shift handoff and booking instructions by email
-    quote: "These pieces will need to be scheduled with the APX as the counterparty for HE 12-20."
-    dd bs=1 skip=1576 count=85 if=corpus/williams-w3/sent_items/405. 2>/dev/null
-    sed -n '27,27p' corpus/williams-w3/sent_items/405.
-
---- 5. cit_a99a1638e422  [raw_exact]
+--- 4. cit_a99a1638e422  [raw_exact]
     opportunity: "Credit Report - 1/30/01" produced daily
     quote: "Subject: Credit Report--2/2/01"
     dd bs=1 skip=161 count=30 if=corpus/giron-d/sent/267. 2>/dev/null
     sed -n '5,5p' corpus/giron-d/sent/267.
 
---- 6. cit_1fc812d3bfd7  [rewrapped]
-    opportunity: Mid-month nomination revisions re-keyed by hand for Josey, Katy and El Paso
-    quote: "There has been a change for the Katy Plant.  First of the month nom is now 
-expected to be 5,479 MMBtu/d."
-    dd bs=1 skip=798 count=105 if=corpus/farmer-d/logistics/1467. 2>/dev/null
-    sed -n '26,27p' corpus/farmer-d/logistics/1467.
+--- 5. cit_b062780bfa12  [raw_exact]
+    opportunity: Enovate daily position report (DPR), circulated by hand for approval
+    quote: "Prelim Enovate DPR for 2/14/2001"
+    dd bs=1 skip=178 count=32 if=corpus/giron-d/sent/221. 2>/dev/null
+    sed -n '5,5p' corpus/giron-d/sent/221.
 
---- 7. cit_9f0498ab829a  [rewrapped]
-    opportunity: Extending existing deal tickets in Sitara/Unify to cover unbooked meter flow
+--- 6. cit_9f0498ab829a  [rewrapped]
+    opportunity: Extending Sitara deals by request to cover unallocated meter flow
     quote: "The East Desk was not up and 
 running on Unify in June of 1999.  All of our pathing for June of 1999 was in 
 Autonoms and it's not y2K compatabile."
     dd bs=1 skip=976 count=147 if=corpus/farmer-d/logistics/1489. 2>/dev/null
     sed -n '25,27p' corpus/farmer-d/logistics/1489.
 
---- 8. cit_9e9ab1d61248  [rewrapped]
-    opportunity: Extending existing deal tickets in Sitara/Unify to cover unbooked meter flow
-    quote: "Is this date really June of 1999?  Hopefully we're not just finding out about 
-this?"
-    dd bs=1 skip=1357 count=84 if=corpus/farmer-d/logistics/1492. 2>/dev/null
-    sed -n '38,39p' corpus/farmer-d/logistics/1492.
-
---- 9. cit_209530865957  [rewrapped]
-    opportunity: Meter-level scheduled-vs-actual variance clearing across Unify, Sitara and UA4
-    quote: "I sent Jackie Young an email 
-back showing her TETCO's numbers and I haven't received a response."
-    dd bs=1 skip=3360 count=97 if=corpus/farmer-d/logistics/1972. 2>/dev/null
-    sed -n '62,63p' corpus/farmer-d/logistics/1972.
-
---- 10. cit_3d5781ebdb4e  [raw_exact]
-    opportunity: Real-time West power desk shift handoff and booking instructions by email
-    quote: "Please buy energy to cover this 15 mw short on Monday under the ST-WBOM book and sell to EPE at $0 under the ST-WBOM book."
-    dd bs=1 skip=985 count=122 if=corpus/williams-w3/sent_items/380. 2>/dev/null
-    sed -n '23,23p' corpus/williams-w3/sent_items/380.
-
---- 11. cit_e142f4dedf42  [raw_exact]
-    opportunity: Weekly California Capacity Report, assembled and mailed by hand
-    quote: "Transwestern's average deliveries to California were 959 MMBtu/d (88%), with San Juan lateral throughput at 827 MMBtu/d."
-    dd bs=1 skip=1338 count=120 if=corpus/lokay-m/sent_items/63. 2>/dev/null
-    sed -n '23,23p' corpus/lokay-m/sent_items/63.
-
---- 12. cit_9a011bdc98a6  [rewrapped]
-    opportunity: Mid-month nomination revisions re-keyed by hand for Josey, Katy and El Paso
-    quote: "This change is for the last two days of the month of March (I am sending a
-day earlier than normal deadline because I'm getting covered up with April!)"
-    dd bs=1 skip=938 count=151 if=corpus/farmer-d/logistics/984. 2>/dev/null
-    sed -n '31,32p' corpus/farmer-d/logistics/984.
-
---- 13. cit_281cdb8ece7c  [raw_exact]
-    opportunity: "California Capacity Report for Week of 01/14-01/18" produced weekly
-    quote: "Subject: California Capacity Report for Week of 01/21-01/25"
-    dd bs=1 skip=323 count=59 if=corpus/lokay-m/sent_items/30. 2>/dev/null
-    sed -n '8,8p' corpus/lokay-m/sent_items/30.
-
---- 14. cit_85be9a4dbc98  [raw_exact]
-    opportunity: Mid-month nomination revisions re-keyed by hand for Josey, Katy and El Paso
-    quote: "Will you approve revising the volume in Unify down to 2,300?  Please advise."
-    dd bs=1 skip=715 count=76 if=corpus/farmer-d/logistics/1163. 2>/dev/null
-    sed -n '27,27p' corpus/farmer-d/logistics/1163.
-
---- 15. cit_f5accb55f956  [rewrapped]
-    opportunity: Ad-hoc requests for system and deal-book access, by email
-    quote: "was I supposed to send in 
-another request for her and put it on Tom's Cost Center"
-    dd bs=1 skip=503 count=82 if=corpus/farmer-d/logistics/1992. 2>/dev/null
-    sed -n '17,18p' corpus/farmer-d/logistics/1992.
-
---- 16. cit_ac1079e9161a  [raw_exact]
-    opportunity: Moving deals between trading books by hand-run script requests
-    quote: "If I can have all the answers soon then I think the deals move can be completed around 3:00p.m."
-    dd bs=1 skip=1166 count=95 if=corpus/giron-d/inbox/67. 2>/dev/null
-    sed -n '29,29p' corpus/giron-d/inbox/67.
-
---- 17. cit_4e2ac2d3f0d4  [raw_exact]
+--- 7. cit_b843b41c8654  [raw_exact]
     opportunity: "Calpine Daily Gas Nomination" produced monthly
     quote: "Subject: Calpine Daily Gas Nomination"
-    dd bs=1 skip=156 count=37 if=corpus/farmer-d/logistics/1411. 2>/dev/null
-    sed -n '5,5p' corpus/farmer-d/logistics/1411.
+    dd bs=1 skip=152 count=37 if=corpus/farmer-d/logistics/1027. 2>/dev/null
+    sed -n '5,5p' corpus/farmer-d/logistics/1027.
 
---- 18. cit_b4d145322843  [rewrapped]
-    opportunity: Meter-level scheduled-vs-actual variance clearing across Unify, Sitara and UA4
-    quote: "scheduling had 8,928 
-MMBtu confirmed at this point and only 646 MMBtu flowed"
-    dd bs=1 skip=1460 count=77 if=corpus/farmer-d/logistics/2100. 2>/dev/null
+--- 8. cit_0c3312966342  [rewrapped]
+    opportunity: Meter-level scheduled-vs-actual volume reconciliation, chased by email
+    quote: "it seems odd to me that scheduling had 8,928 
+MMBtu confirmed at this point and only 646 MMBtu flowed."
+    dd bs=1 skip=1436 count=102 if=corpus/farmer-d/logistics/2100. 2>/dev/null
     sed -n '36,37p' corpus/farmer-d/logistics/2100.
 
---- 19. cit_e4720e85339e  [raw_exact]
-    opportunity: Mid-month nomination revisions re-keyed by hand for Josey, Katy and El Paso
-    quote: "Here's REVISED February 2000 (effective 2/17/00 ) setup for Josey"
-    dd bs=1 skip=897 count=65 if=corpus/farmer-d/logistics/800. 2>/dev/null
-    sed -n '29,29p' corpus/farmer-d/logistics/800.
+--- 9. cit_d6681d88e310  [raw_exact]
+    opportunity: Weekly California Capacity Report, assembled and mailed by hand
+    quote: "Transwestern's average deliveries to California were 855 MMBtu/d (79%), with San Juan lateral throughput at 839 MMBtu/d."
+    dd bs=1 skip=1343 count=120 if=corpus/lokay-m/sent_items/47. 2>/dev/null
+    sed -n '23,23p' corpus/lokay-m/sent_items/47.
 
---- 20. cit_35837153d4d3  [raw_exact]
-    opportunity: Ad-hoc requests for system and deal-book access, by email
-    quote: "I don't believe I am set up to review as a supervisor in the PEP system.  How 
-do I get this changed in the system?"
-    dd bs=1 skip=447 count=115 if=corpus/giron-d/sent/789. 2>/dev/null
-    sed -n '18,19p' corpus/giron-d/sent/789.
+--- 10. cit_a1667ea29fa2  [raw_exact]
+    opportunity: Correcting mispriced deals by hand in Sitara after the fact
+    quote: "Deal 819592 - the commodity price needs to be 3.6318"
+    dd bs=1 skip=708 count=52 if=corpus/farmer-d/logistics/74. 2>/dev/null
+    sed -n '22,22p' corpus/farmer-d/logistics/74.
 
---- 21. cit_31f1fd31b136  [raw_exact]
-    opportunity: "Credit Report - 1/30/01" produced daily
-    quote: "Subject: Credit Report--2/15/01"
-    dd bs=1 skip=162 count=31 if=corpus/giron-d/sent/220. 2>/dev/null
-    sed -n '5,5p' corpus/giron-d/sent/220.
+--- 11. cit_900f67bebeae  [raw_exact]
+    opportunity: Daily gas nominations mailed as attached Word and Excel files
+    quote: "HPL Nom for January 4, 2001"
+    dd bs=1 skip=313 count=27 if=corpus/farmer-d/logistics/2025. 2>/dev/null
+    sed -n '7,7p' corpus/farmer-d/logistics/2025.
 
---- 22. cit_0b31e2ddac2b  [raw_exact]
-    opportunity: Mid-month nomination revisions re-keyed by hand for Josey, Katy and El Paso
-    quote: "Prize Energy revised their nom eff. 6/26 through 6/29 for the following 
-meters:"
-    dd bs=1 skip=455 count=80 if=corpus/farmer-d/logistics/1239. 2>/dev/null
-    sed -n '19,20p' corpus/farmer-d/logistics/1239.
+--- 12. cit_da672f3158ef  [rewrapped]
+    opportunity: Extending Sitara deals by request to cover unallocated meter flow
+    quote: "I think that the deal needs to be extended, it looks like the valve 
+was not completely shut by 9 am."
+    dd bs=1 skip=701 count=101 if=corpus/farmer-d/logistics/1502. 2>/dev/null
+    sed -n '22,23p' corpus/farmer-d/logistics/1502.
 
---- 23. cit_58a2ebb7bf10  [raw_exact]
+--- 13. cit_58a2ebb7bf10  [raw_exact]
     opportunity: "Credit Report - 1/30/01" produced daily
     quote: "Subject: Credit Report--2/1/01"
     dd bs=1 skip=161 count=30 if=corpus/giron-d/sent/255. 2>/dev/null
     sed -n '5,5p' corpus/giron-d/sent/255.
 
---- 24. cit_062d4ac5876c  [raw_exact]
-    opportunity: Monthly nomination volume estimates agreed by email before month start
-    quote: "5031 at TVille I-.02 for May"
-    dd bs=1 skip=787 count=28 if=corpus/farmer-d/logistics/1057. 2>/dev/null
-    sed -n '35,35p' corpus/farmer-d/logistics/1057.
+--- 14. cit_87bf115002e9  [raw_exact]
+    opportunity: Daily gas nominations mailed as attached Word and Excel files
+    quote: "(See attached file: egmnom-Feb.xls)"
+    dd bs=1 skip=840 count=35 if=corpus/farmer-d/logistics/767. 2>/dev/null
+    sed -n '31,31p' corpus/farmer-d/logistics/767.
 
---- 25. cit_a571de3d3430  [raw_exact]
-    opportunity: Monthly meter volume figures passed by hand to schedulers
-    quote: "Meter 6722 (not sure if you need this) - Julie"
-    dd bs=1 skip=552 count=46 if=corpus/farmer-d/logistics/153. 2>/dev/null
-    sed -n '17,17p' corpus/farmer-d/logistics/153.
+--- 15. cit_4e2ac2d3f0d4  [raw_exact]
+    opportunity: "Calpine Daily Gas Nomination" produced monthly
+    quote: "Subject: Calpine Daily Gas Nomination"
+    dd bs=1 skip=156 count=37 if=corpus/farmer-d/logistics/1411. 2>/dev/null
+    sed -n '5,5p' corpus/farmer-d/logistics/1411.
+
+--- 16. cit_d7d7daa00d35  [raw_exact]
+    opportunity: Monthly first-of-month gas nominations mailed in by plant customers
+    quote: "Below are Forest's first of the month noms:"
+    dd bs=1 skip=815 count=43 if=corpus/farmer-d/logistics/2008. 2>/dev/null
+    sed -n '27,27p' corpus/farmer-d/logistics/2008.
+
+--- 17. cit_e474f470ba47  [raw_exact]
+    opportunity: "California Capacity Report for Week of 01/14-01/18" produced weekly
+    quote: "Subject: California Capacity Report for Week of 12/17-12/21"
+    dd bs=1 skip=325 count=59 if=corpus/lokay-m/sent_items/67. 2>/dev/null
+    sed -n '8,8p' corpus/lokay-m/sent_items/67.
+
+--- 18. cit_d0a4a6dca279  [raw_exact]
+    opportunity: Monthly first-of-month gas nominations mailed in by plant customers
+    quote: "revision PER JOHN KJELMYR, 12/26 am."
+    dd bs=1 skip=964 count=36 if=corpus/farmer-d/logistics/2008. 2>/dev/null
+    sed -n '34,34p' corpus/farmer-d/logistics/2008.
+
+--- 19. cit_88fbca232748  [raw_exact]
+    opportunity: Weekly California Capacity Report, assembled and mailed by hand
+    quote: "Transwestern's average deliveries to California were 884 MMBtu/d (81%), with San Juan lateral throughput at 773 MMBtu/d."
+    dd bs=1 skip=1333 count=120 if=corpus/lokay-m/inbox/32. 2>/dev/null
+    sed -n '23,23p' corpus/lokay-m/inbox/32.
+
+--- 20. cit_859399dded08  [raw_exact]
+    opportunity: Fixing miskeyed Sitara deal entries after the fact
+    quote: "Aquila split the volume between two points, that is why the deal changed."
+    dd bs=1 skip=568 count=73 if=corpus/farmer-d/logistics/1303. 2>/dev/null
+    sed -n '24,24p' corpus/farmer-d/logistics/1303.
+
+--- 21. cit_04eb86a692b1  [rewrapped]
+    opportunity: Monthly first-of-month gas nominations mailed in by plant customers
+    quote: "This is the estimated Josey Ranch nomination for the month of April
+2000."
+    dd bs=1 skip=1013 count=73 if=corpus/farmer-d/logistics/993. 2>/dev/null
+    sed -n '30,31p' corpus/farmer-d/logistics/993.
+
+--- 22. cit_2a00ab6ddeb5  [raw_exact]
+    opportunity: Daily gas nominations mailed as attached Word and Excel files
+    quote: "Confirmed on my end. Same volumes as yesterday, no changes to the path."
+    dd bs=1 skip=452 count=71 if=corpus/giron-d/sent/795. 2>/dev/null
+    sed -n '16,16p' corpus/giron-d/sent/795.
+
+--- 23. cit_3251de1464be  [rewrapped]
+    opportunity: Meter-level scheduled-vs-actual volume reconciliation, chased by email
+    quote: "Why is nothing being allocated to Alpine?  This is a good deal we have in 
+place with them and I really need the problem resolved."
+    dd bs=1 skip=3046 count=130 if=corpus/farmer-d/logistics/2100. 2>/dev/null
+    sed -n '78,79p' corpus/farmer-d/logistics/2100.
+
+--- 24. cit_45a6c764f509  [raw_exact]
+    opportunity: Weekly California Capacity Report, assembled and mailed by hand
+    quote: "Transwestern's average deliveries to California were 1015 MMBtu/d (93%), with San Juan lateral throughput at 873 MMBtu/d."
+    dd bs=1 skip=1339 count=121 if=corpus/lokay-m/sent_items/110. 2>/dev/null
+    sed -n '23,23p' corpus/lokay-m/sent_items/110.
+
+--- 25. cit_24e03b2028aa  [raw_exact]
+    opportunity: "Credit Report - 1/30/01" produced daily
+    quote: "Subject: Credit Report--3/26/01"
+    dd bs=1 skip=160 count=31 if=corpus/giron-d/sent/121. 2>/dev/null
+    sed -n '5,5p' corpus/giron-d/sent/121.
 
 
-PASS  166 checks, 0 failures, 0 warnings
-citation tiers: {'raw_exact': 85, 'rewrapped': 26, 'decoded_exact': 1}
+PASS  137 checks, 0 failures, 0 warnings
+citation tiers: {'raw_exact': 60, 'rewrapped': 28, 'decoded_exact': 1}
 ```

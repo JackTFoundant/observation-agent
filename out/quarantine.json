@@ -2,23 +2,40 @@
   "explanation": "Claims and citations excluded from the report. Nothing here is counted in any dollar total. Published rather than deleted: a report with no visible exclusions is one whose exclusions you cannot check.",
   "opportunities": [
     {
-      "opportunity_id": "proc_e4f4d73e34",
-      "title": "Meter volume figures circulated by hand as email tables",
+      "opportunity_id": "proc_8a80a4058a",
+      "title": "Enovate daily position report (DPR), circulated by hand for approval",
       "status": "quarantined",
-      "reason": "only 2 verified citation(s); 3 required",
+      "reason": "evidence from 1 sender and only 8 messages",
       "flags": [],
-      "would_have_been_dollars_per_month": 56.0,
-      "verified_citations": 2
+      "would_have_been_dollars_per_month": 25.36,
+      "verified_citations": 5
     },
     {
-      "opportunity_id": "proc_8c6d4d183a",
-      "title": "Residual bucket: one-off meter and deal fixes in gas logistics",
+      "opportunity_id": "proc_f4f84c33f9",
+      "title": "Ad-hoc meter data questions and corrections in gas logistics mail",
       "status": "quarantined",
       "reason": "only 0 verified citation(s); 3 required",
       "flags": [],
-      "would_have_been_dollars_per_month": 2.58,
+      "would_have_been_dollars_per_month": 22.14,
       "verified_citations": 0
     }
   ],
-  "citations": []
+  "citations": [
+    {
+      "msg_uid": "m_126bd5331ef0",
+      "source_path": "corpus/giron-d/sent/371.",
+      "reason": "no_anchor",
+      "detail": "Subject: 12/21 DPR to a large distribution list",
+      "proposal_preview": "Subject: 12/21 DPR to a large distribution list",
+      "opportunity_id": "proc_8a80a4058a"
+    },
+    {
+      "msg_uid": "m_50bd117740b0",
+      "source_path": "corpus/giron-d/inbox/21.",
+      "reason": "no_anchor",
+      "detail": "subject line reads: enovate new p&L",
+      "proposal_preview": "subject line reads: enovate new p&L",
+      "opportunity_id": "proc_8a80a4058a"
+    }
+  ]
 }
