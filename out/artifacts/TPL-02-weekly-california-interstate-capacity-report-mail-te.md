@@ -4,7 +4,7 @@ title: "Weekly California Interstate Capacity Report \u2014 mail template"
 artifact_type: template
 opportunity_id: proc_a58e286bd5
 opportunity_title: Weekly California Capacity Report, assembled and mailed by hand
-generated_at: '2026-09-08T22:28:23.130705+00:00'
+generated_at: '2026-09-09T11:50:46.185338+00:00'
 generator: claude -p via .claude/agents/artifact-drafter.md
 review_status: draft-unreviewed
 evidence:

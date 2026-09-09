@@ -1,6 +1,6 @@
 # Where this company is losing time
 
-*Run `final` · generated 2026-09-08T22:28:23Z · corpus digest `c94acc4b08cb`*
+*Run `final` · generated 2026-09-09T11:50:46Z · corpus digest `c94acc4b08cb`*
 
 ## $1,610 per month
 

@@ -5,7 +5,7 @@ artifact_type: runbook
 opportunity_id: proc_7dd2a1eead
 opportunity_title: Extending existing deal tickets in Sitara/Unify to cover unbooked
   meter flow
-generated_at: '2026-09-08T22:28:23.129332+00:00'
+generated_at: '2026-09-09T11:50:46.184049+00:00'
 generator: claude -p via .claude/agents/artifact-drafter.md
 review_status: draft-unreviewed
 evidence:

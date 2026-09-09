@@ -140,7 +140,7 @@ def main(argv: list[str] | None = None) -> int:
     r.add_argument("--root", default=".")
     r.add_argument("--run-id", default=None)
     r.add_argument("--concurrency", type=int, default=8)
-    r.add_argument("--deadline", type=float, default=25, help="minutes")
+    r.add_argument("--deadline", type=float, default=28, help="minutes; the safety net, not the expected duration")
     r.add_argument("--extract-model", default="sonnet")
     r.add_argument("--characterize-model", default="opus")
     r.add_argument("--artifact-model", default="opus")

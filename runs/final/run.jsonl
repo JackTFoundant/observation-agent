@@ -64,3 +64,14 @@
 {"ts":1788906503.128,"stage":"artifact","event":"cache_pass","cached":7,"pending":0}
 {"ts":1788906503.133,"stage":"artifact","event":"stage_done","selected":7,"written":7,"skipped":8,"model_calls":0,"cache_hits":7,"failed":0,"threshold_dollars":55.0,"cap":6}
 {"ts":1788906503.162,"stage":"render","event":"done","seconds":0.03}
+{"ts":1788954644.305,"stage":"parse","event":"done","files":3240,"duplicates":16,"survivors":3224,"threads":2823,"people":2691,"duration_ms":3018}
+{"ts":1788954644.469,"stage":"extract","event":"message_cache_pass","total":2531,"cached":2531,"todo":0}
+{"ts":1788954644.472,"stage":"extract_batch","event":"cache_pass","cached":0,"pending":0}
+{"ts":1788954644.472,"stage":"extract","event":"stage_done","messages_eligible":2531,"cache_hits_messages":2531,"messages_extracted_now":0,"batches":0,"batches_ok":0,"model_calls":0,"extractions":2531,"failed_batches":0,"messages_not_extracted":0,"coverage":1.0}
+{"ts":1788954645.74,"stage":"cluster","event":"done","records":1603,"clusters":965,"promoted":12,"residual":953,"seconds":1.27}
+{"ts":1788954645.744,"stage":"characterize","event":"cache_pass","cached":12,"pending":0}
+{"ts":1788954645.744,"stage":"characterize","event":"stage_done","clusters":12,"characterized":12,"model_calls":0,"cache_hits":12,"failed":0}
+{"ts":1788954646.176,"stage":"build","event":"done","opportunities":15,"counted":14,"low_confidence":0,"quarantined":1,"citations_verified":112,"citations_quarantined":0,"series_promoted":3,"series_rejected":19,"seconds":0.41}
+{"ts":1788954646.182,"stage":"artifact","event":"cache_pass","cached":7,"pending":0}
+{"ts":1788954646.188,"stage":"artifact","event":"stage_done","selected":7,"written":7,"skipped":8,"model_calls":0,"cache_hits":7,"failed":0,"threshold_dollars":55.0,"cap":6}
+{"ts":1788954646.216,"stage":"render","event":"done","seconds":0.03}

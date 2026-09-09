@@ -2,7 +2,7 @@
   "run_id": "final",
   "complete_run": true,
   "degraded_stages": [],
-  "generated_at": "2026-09-08T22:28:23.144072+00:00",
+  "generated_at": "2026-09-09T11:50:46.196734+00:00",
   "corpus_digest": "c94acc4b08cb62348a8aba9361e40e59a6bc5e13942e0d86d7029495adb5f79b",
   "scope_line": "Observed across 4 mailboxes and 3,240 messages, 1999-12-13 to 2002-03-25 (28 months). Not extrapolated beyond what was observed.",
   "attribution": {
@@ -639,7 +639,7 @@
       "task_instances": 2823,
       "people": 2691,
       "generated_tables": 1,
-      "seconds": 2.54
+      "seconds": 3.02
     },
     "stage1": {
       "messages_eligible": 2531,
@@ -658,7 +658,7 @@
       "clusters": 965,
       "promoted": 12,
       "residual": 953,
-      "seconds": 0.95
+      "seconds": 1.27
     },
     "stage3": {
       "clusters": 12,

@@ -62,7 +62,7 @@ class Context:
     cache: Cache
     log: RunLog
     started: float = field(default_factory=time.monotonic)
-    deadline_s: float = 25 * 60
+    deadline_s: float = 28 * 60
     concurrency: int = 8
     stats: dict = field(default_factory=dict)
     unextracted: list = field(default_factory=list)
@@ -75,12 +75,14 @@ class Context:
     # artifact drafting then got *zero* calls - the report shipped with no narratives and
     # no artifacts at all, while still printing a normal headline. Reserving budget is the
     # structural fix: extraction may take most of the run, but not all of it.
-    STAGE_BUDGET = {"extract": 0.55, "characterize": 0.78, "artifact": 0.96}
-    # 0.55/0.78/0.96 of a 25-minute budget is 13.8 min for extraction, then 5.8 for
-    # characterization and 4.5 for artifacts, leaving a minute of slack. The first version
-    # gave extraction 0.62 and left the later stages too little: on a throttled run
-    # extraction would still have consumed its share and characterization would have had
-    # under three minutes for fourteen calls.
+    STAGE_BUDGET = {"extract": 0.55, "characterize": 0.64, "artifact": 0.97}
+    # Tuned against a measured cold run rather than guessed. That run spent 14.8 min in
+    # extraction, ~1 min characterizing ten clusters, and 9.6 min drafting seven artifacts -
+    # artifact drafting is by far the slowest per call, because each one is a long
+    # high-effort document. An earlier split gave artifacts half the time they need.
+    #
+    # Of a 28-minute budget: 15.4 min for extraction, 2.5 for characterization, 9.3 for
+    # artifacts, and ~50s of slack before the deterministic render and verify.
 
     @property
     def deadline_at(self) -> float:
@@ -95,7 +97,7 @@ class Context:
 
 
 def new_context(root: Path, *, run_id: str | None = None, concurrency: int = 8,
-                deadline_s: float = 25 * 60) -> Context:
+                deadline_s: float = 28 * 60) -> Context:
     run_id = run_id or datetime.now(timezone.utc).strftime("run_%Y%m%dT%H%M%SZ")
     run_dir = root / "runs" / run_id
     run_dir.mkdir(parents=True, exist_ok=True)
@@ -229,19 +231,34 @@ def stage1(ctx: Context, corpus: Corpus, *, model: str = "sonnet") -> dict:
             "stage": "extract", "completed": len(outcome.results), "total": len(units),
             "effect": "some messages were never classified",
         })
-    lost: list[dict] = []
+    # Derive what is missing from ground truth, not from the error path.
+    #
+    # This is the same dishonesty the coverage block exists to prevent, one level down. The
+    # first version walked `outcome.failed`, but a unit abandoned when the stage deadline
+    # fires returns early and is never added to `failed` - so a cold run that dropped one
+    # batch of 32 reported `messages_not_extracted: 0` and `complete: True` while its own
+    # coverage_share said 0.9874. Comparing the eligible set against the extracted set
+    # cannot miss a message however it went astray: failure, deadline, budget, or bisection.
+    reason_by_uid: dict[str, dict] = {}
     for f in outcome.failed:
         for uid in f.get("expected_ids") or []:
-            if uid not in extractions:
-                msg = corpus.by_uid.get(uid)
-                lost.append({
-                    "msg_uid": uid,
-                    "path": msg.path if msg else None,
-                    "subject": (msg.subject if msg else "")[:120],
-                    "batch": f.get("unit_id"),
-                    "reason": f.get("kind"),
-                    "detail": (f.get("detail") or "")[:200],
-                })
+            reason_by_uid[uid] = {"batch": f.get("unit_id"), "reason": f.get("kind"),
+                                  "detail": (f.get("detail") or "")[:200]}
+
+    lost: list[dict] = []
+    for uid, _card, _key in cards:
+        if uid in extractions:
+            continue
+        msg = corpus.by_uid.get(uid)
+        info = reason_by_uid.get(uid, {"batch": None, "reason": "stage_deadline",
+                                       "detail": "the stage ran out of time before this "
+                                                 "batch was dispatched or completed"})
+        lost.append({
+            "msg_uid": uid,
+            "path": msg.path if msg else None,
+            "subject": (msg.subject if msg else "")[:120],
+            **info,
+        })
 
     ctx.stats["stage1"] = {
         "messages_eligible": len(cards),
@@ -518,7 +535,10 @@ def stage6(ctx: Context, opportunities, *, model: str = "opus") -> tuple[list[di
     outcome = dispatch(
         units, stage="artifact", system_prompt=system_prompt, json_schema=schema,
         validate=art.validate, cache=ctx.cache, log=ctx.log, model=model, effort="high",
-        concurrency=min(4, ctx.concurrency), timeout=360,
+        # All artifacts at once. Seven documents at concurrency 4 is two waves of the
+        # slowest call in the system, which cost 9.6 min on a measured run; one wave halves
+        # it. There are never more than `max_artifacts` of these, so the burst is bounded.
+        concurrency=max(ctx.concurrency, 7), timeout=360,
         deadline_at=ctx.stage_deadline("artifact"), max_model_calls=40,
     )
     if outcome.deadline_hit:
